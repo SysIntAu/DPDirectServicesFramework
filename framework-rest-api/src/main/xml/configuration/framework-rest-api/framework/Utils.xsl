@@ -351,7 +351,7 @@
 			xmlns:eim="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
 			xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 			xmlns:eam="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0">
-			<eim:Informations>
+			<eim:Information>
 				<eim:Information>
 					<xsl:if test="$ENDPOINT_URL != ''">
 						<!-- Strip out known patterns of local IP addresses from URL -->
@@ -363,9 +363,9 @@
 					<errcore:Description>
 						<xsl:value-of select="$DESCRIPTION_TEXT"/>
 					</errcore:Description>
-					<errcore:InformationCode>
+					<errcore:Code>
 						<xsl:value-of select="$INFORMATION_CODE"/>
-					</errcore:InformationCode>
+					</errcore:Code>
 					<errcore:MessageOrigin>
 						<xsl:value-of select="$OPERATION_CONFIG_NODE_ID"/>
 					</errcore:MessageOrigin>
@@ -373,7 +373,7 @@
 						<xsl:text>MSG</xsl:text>
 					</errcore:SubCode>
 				</eim:Information>
-			</eim:Informations>
+			</eim:Information>
 			<ecore:Acknowledgement><xsl:value-of select="$ACKNOWLEDGEMENT"/></ecore:Acknowledgement>
 		</eam:AcknowledgementMessage>
 	</xsl:template>

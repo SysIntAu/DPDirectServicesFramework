@@ -59,8 +59,8 @@
 					<xsl:when test="$SOAP_FAULT//errcore:EnterpriseErrors">
 						<xsl:variable name="ERROR_CODE">
 							<xsl:choose>
-								<xsl:when test="$SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:ErrorCode">
-									<xsl:value-of select="$SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:ErrorCode[1]"/>
+								<xsl:when test="$SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:Code">
+									<xsl:value-of select="$SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:Code[1]"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<!-- 'FRWK00026' is a general code to indicate SOAP Fault received from sub-service call or back end system -->
@@ -71,7 +71,7 @@
 						<!-- Reject to error flow -->
 						<xsl:call-template name="RejectToErrorFlow">
 							<xsl:with-param name="ERROR_CODE" 
-								select="normalize-space(//errcore:ErrorCode)"/>
+								select="normalize-space(//errcore:Code)"/>
 							<xsl:with-param name="MSG" 
 								select="normalize-space($SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:Description[1])"/>
 							<xsl:with-param name="PROVIDER_NAME"

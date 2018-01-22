@@ -19,7 +19,7 @@
 			<xs:element ref="errcore:SubDescription" minOccurs="0"/>
 			<xs:element ref="errcore:SubCode" minOccurs="0"/>
 			<xs:element ref="errcore:Description"/>
-			<xs:element ref="errcore:InformationCode"/>
+			<xs:element ref="errcore:Code"/>
 			<xs:element ref="errcore:MessageOrigin"/>
 			<xs:element ref="errcore:Location" minOccurs="0"/>
 		</xs:sequence>

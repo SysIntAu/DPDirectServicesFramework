@@ -254,9 +254,9 @@
 				<xsl:choose>
 					<!-- SOAP fault -->
 					<xsl:when test="($FAIL_ON_ERROR = 'true') 
-						and $RESPONSE/url-open/response//soapenv:Fault//errcore:ErrorCode">
+						and $RESPONSE/url-open/response//soapenv:Fault//errcore:Code">
 						<!-- Read error information -->
-						<xsl:variable name="ERROR_CODE" select="$RESPONSE/url-open/response//errcore:ErrorCode[1]"/>
+						<xsl:variable name="ERROR_CODE" select="$RESPONSE/url-open/response//errcore:Code[1]"/>
 						<xsl:variable name="ORIGINATOR_NAME">
 							<xsl:choose>
 								<xsl:when test="$RESPONSE/url-open/response//errcore:SubCode">
@@ -282,8 +282,8 @@
 						<!-- Read error information -->
 						<xsl:variable name="ERROR_CODE">
 							<xsl:choose>
-								<xsl:when test="$RESPONSE/url-open/response//errcore:ErrorCode">
-									<xsl:value-of select="$RESPONSE/url-open/response//errcore:ErrorCode[1]"/>
+								<xsl:when test="$RESPONSE/url-open/response//errcore:Code">
+									<xsl:value-of select="$RESPONSE/url-open/response//errcore:Code[1]"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="'ENTR00004'"/>
@@ -350,9 +350,9 @@
 								select="$RESPONSE/url-open/response//errcore:SubDescription[1]"/>
 							<xsl:with-param name="ERROR_CODE">
 								<xsl:choose>
-									<xsl:when test="$RESPONSE/url-open/response//errcore:ErrorCode">
+									<xsl:when test="$RESPONSE/url-open/response//errcore:Code">
 										<xsl:value-of
-											select="$RESPONSE/url-open/response//errcore:ErrorCode[1]"/>
+											select="$RESPONSE/url-open/response//errcore:Code[1]"/>
 									</xsl:when>
 									<xsl:otherwise>
 										<xsl:value-of select="'ENTR00004'"/>

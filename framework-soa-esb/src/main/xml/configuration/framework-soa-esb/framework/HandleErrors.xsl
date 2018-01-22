@@ -341,11 +341,11 @@
 			</xsl:choose>
 		</errcore:MessageOrigin>
 	</xsl:template>
-	<!-- Template to map the provided 'errcore:ErrorCode' element -->
-	<xsl:template match="errcore:ErrorCode" mode="mapError">
-		<errcore:ErrorCode>
+	<!-- Template to map the provided 'errcore:Code' element -->
+	<xsl:template match="errcore:Code" mode="mapError">
+		<errcore:Code>
 			<xsl:value-of select="$ENTERPRISE_ERROR_CODE"/>
-		</errcore:ErrorCode>
+		</errcore:Code>
 	</xsl:template>
 	<!-- Template to map the provided 'errcore:Description' element -->
 	<xsl:template match="errcore:Description" mode="mapError">
@@ -461,7 +461,7 @@
 		<xsl:variable name="ERROR_TEMPLATE">
 			<errcore:SubCode/>
 			<errcore:MessageOrigin/>
-			<errcore:ErrorCode/>
+			<errcore:Code/>
 			<errcore:Description/>
 			<errcore:SubDescription/>
 		</xsl:variable>

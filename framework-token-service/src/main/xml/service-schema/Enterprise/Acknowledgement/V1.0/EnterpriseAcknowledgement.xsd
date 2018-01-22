@@ -30,7 +30,7 @@
 	To prevent from importing EntepriseCore.xsd in order to re-use
 	ecore:Acknowledgement, eam:Acknowledgment and its type
 	"eam:acknowledgementType" are local to this schema! Also avoided extending
-	ecore:serviceResponseType to reuse eim:Informations and ewm:Warnings,
+	ecore:serviceResponseType to reuse eim:Information and ewm:Warnings,
 	so structures are referenced here
 	=========================================================================
 	-->
@@ -65,7 +65,7 @@
 	-->
 	<xs:complexType name="acknowledgementMessageType">
 		<xs:sequence>
-			<xs:element ref="eim:Informations" minOccurs="0"/>
+			<xs:element ref="eim:Information" minOccurs="0"/>
 			<xs:element ref="ewm:Warnings" minOccurs="0"/>
 			<xs:element ref="eam:Acknowledgement"/>
 		</xs:sequence>
