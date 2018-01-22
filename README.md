@@ -4,7 +4,7 @@ You can use the [editor on GitHub](https://github.com/mqsysadmin/DPDirectService
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files
 
-![alt text](https://github.com/mqsysadmin/DPDirectServicesFramework/tree/master/distribution/doc/ServicesOverview1.png)
+![alt text](https://github.com/mqsysadmin/DPDirectServicesFramework/blob/master/distribution/doc/images/ServicesOverview1.png)
 
 
 ### Markdown
