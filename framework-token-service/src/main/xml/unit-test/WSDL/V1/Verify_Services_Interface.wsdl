@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="Verify_Services_Interface_V1_0"
+	targetNamespace="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1"
+	xmlns:tns="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1"
+	xmlns:msg_V1_0="http://www.dpdirect.org/Namespace/Verify/Service/V1.0"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- =================== WS-Policy Definitions =============================== -->
+	<wsp:Policy wsu:Id="RequestPolicy">
+		<wsp:PolicyReference URI="#RequestAddressingPolicy"/>
+	</wsp:Policy>
+	<wsp:Policy wsu:Id="ResponsePolicy">
+		<!--<wsp:PolicyReference URI="#ResponseAddressingPolicy"/>-->
+	</wsp:Policy>
+	<wsp:Policy wsu:Id="RequestAddressingPolicy">
+		<wsp:All>
+			<sp:RequiredElements>
+				<!-- wsa:MessageID -->
+				<sp:XPath>/*[local-name() = 'Envelope']/*[local-name() = 'Header']/*[local-name() = 'MessageID' and
+					namespace-uri() = 'http://www.w3.org/2005/08/addressing'][1]</sp:XPath>
+			</sp:RequiredElements>
+			<sp:RequiredElements>
+				<!-- wsa:Action -->
+				<sp:XPath>/*[local-name() = 'Envelope']/*[local-name() = 'Header']/*[local-name() = 'Action' and
+					namespace-uri() = 'http://www.w3.org/2005/08/addressing'][1]</sp:XPath>
+			</sp:RequiredElements>
+		</wsp:All>
+	</wsp:Policy>
+	<wsp:Policy wsu:Id="ResponseAddressingPolicy">
+		<wsp:All>
+			<sp:RequiredElements>
+				<!-- wsa:MessageID -->
+				<sp:XPath>/*[local-name() = 'Envelope']/*[local-name() = 'Header']/*[local-name() = 'MessageID' and
+					namespace-uri() = 'http://www.w3.org/2005/08/addressing'][1]</sp:XPath>
+			</sp:RequiredElements>
+			<sp:RequiredElements>
+				<!-- wsa:Action -->
+				<sp:XPath>/*[local-name() = 'Envelope']/*[local-name() = 'Header']/*[local-name() = 'Action' and
+					namespace-uri() = 'http://www.w3.org/2005/08/addressing'][1]</sp:XPath>
+			</sp:RequiredElements>
+			<sp:RequiredElements>
+				<!-- wsa:RelatesTo -->
+				<sp:XPath>/*[local-name() = 'Envelope']/*[local-name() = 'Header']/*[local-name() = 'RelatesTo' and
+					namespace-uri() = 'http://www.w3.org/2005/08/addressing'][1]</sp:XPath>
+			</sp:RequiredElements>
+		</wsp:All>
+	</wsp:Policy>
+	<!-- =================== Type Definitions ==================================== -->
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1">
+			<xs:import namespace="http://www.dpdirect.org/Namespace/Verify/Service/V1.0"
+				schemaLocation="Verify_Messages.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<!-- =================== Message Definitions  =============================== -->
+	<wsdl:message name="Service001Request">
+		<wsdl:part element="msg_V1_0:Service001Request" name="request"/>
+	</wsdl:message>
+	<wsdl:message name="Service001Response">
+		<wsdl:part element="msg_V1_0:Service001Response" name="response"/>
+	</wsdl:message>
+	<wsdl:message name="Service002Request">
+		<wsdl:part element="msg_V1_0:Service002Request" name="request"/>
+	</wsdl:message>
+	<wsdl:message name="Service002Response">
+		<wsdl:part element="msg_V1_0:Service002Response" name="response"/>
+	</wsdl:message>
+	<wsdl:message name="Service003Request">
+		<wsdl:part element="msg_V1_0:Service003Request" name="request"/>
+	</wsdl:message>
+	<wsdl:message name="Service003Response">
+		<wsdl:part element="msg_V1_0:Service003Response" name="response"/>
+	</wsdl:message>
+	<wsdl:message name="Service004Request">
+		<wsdl:part element="msg_V1_0:Service004Request" name="request"/>
+	</wsdl:message>
+	<wsdl:message name="Service004Response">
+		<wsdl:part element="msg_V1_0:Service004Response" name="response"/>
+	</wsdl:message>
+	<wsdl:message name="Service005Request">
+		<wsdl:part element="msg_V1_0:Service005Request" name="request"/>
+	</wsdl:message>
+	<wsdl:message name="Service005Response">
+		<wsdl:part element="msg_V1_0:Service005Response" name="response"/>
+	</wsdl:message>
+	<wsdl:message name="Service006Request">
+		<wsdl:part element="msg_V1_0:Service006Request" name="request"/>
+	</wsdl:message>
+	<wsdl:message name="Service006Response">
+		<wsdl:part element="msg_V1_0:Service006Response" name="response"/>
+	</wsdl:message>
+	<wsdl:message name="Service007Request">
+		<wsdl:part element="msg_V1_0:Service007Request" name="request"/>
+	</wsdl:message>
+	<wsdl:message name="Service007Response">
+		<wsdl:part element="msg_V1_0:Service007Response" name="response"/>
+	</wsdl:message>
+	<wsdl:message name="Service008Request">
+		<wsdl:part element="msg_V1_0:Service008Request" name="request"/>
+	</wsdl:message>
+	<wsdl:message name="Service008Response">
+		<wsdl:part element="msg_V1_0:Service008Response" name="response"/>
+	</wsdl:message>
+	<wsdl:message name="Service009Request">
+		<wsdl:part element="msg_V1_0:Service009Request" name="request"/>
+	</wsdl:message>
+	<wsdl:message name="Service009Response">
+		<wsdl:part element="msg_V1_0:Service009Response" name="response"/>
+	</wsdl:message>
+	<wsdl:message name="Service010Request">
+		<wsdl:part element="msg_V1_0:Service010Request" name="request"/>
+	</wsdl:message>
+	<wsdl:message name="Service010Response">
+		<wsdl:part element="msg_V1_0:Service010Response" name="response"/>
+	</wsdl:message>
+	<wsdl:message name="VerifyServiceError">
+		<wsdl:part element="msg_V1_0:VerifyServiceError" name="fault"/>
+	</wsdl:message>
+	<!-- =================== PortType Definitions  ================================ -->
+	<wsdl:portType name="Verify_PortType_V1">
+		<wsdl:operation name="Service001">
+			<wsdl:input name="Service001Request" message="tns:Service001Request"/>
+			<wsdl:output name="Service001Response" message="tns:Service001Response"/>
+			<wsdl:fault name="VerifyServiceError" message="tns:VerifyServiceError"/>
+		</wsdl:operation>
+		<wsdl:operation name="Service002">
+			<wsdl:input name="Service002Request" message="tns:Service002Request"/>
+			<wsdl:output name="Service002Response" message="tns:Service002Response"/>
+			<wsdl:fault name="VerifyServiceError" message="tns:VerifyServiceError"/>
+		</wsdl:operation>
+		<wsdl:operation name="Service003">
+			<wsdl:input name="Service003Request" message="tns:Service003Request"/>
+			<wsdl:output name="Service003Response" message="tns:Service003Response"/>
+			<wsdl:fault name="VerifyServiceError" message="tns:VerifyServiceError"/>
+		</wsdl:operation>
+		<wsdl:operation name="Service004">
+			<wsdl:input name="Service004Request" message="tns:Service004Request"/>
+			<wsdl:output name="Service004Response" message="tns:Service004Response"/>
+			<wsdl:fault name="VerifyServiceError" message="tns:VerifyServiceError"/>
+		</wsdl:operation>
+		<wsdl:operation name="Service005">
+			<wsdl:input name="Service005Request" message="tns:Service005Request"/>
+			<wsdl:output name="Service005Response" message="tns:Service005Response"/>
+			<wsdl:fault name="VerifyServiceError" message="tns:VerifyServiceError"/>
+		</wsdl:operation>
+		<wsdl:operation name="Service006">
+			<wsdl:input name="Service006Request" message="tns:Service006Request"/>
+			<wsdl:output name="Service006Response" message="tns:Service006Response"/>
+			<wsdl:fault name="VerifyServiceError" message="tns:VerifyServiceError"/>
+		</wsdl:operation>
+		<wsdl:operation name="Service007">
+			<wsdl:input name="Service007Request" message="tns:Service007Request"/>
+			<wsdl:output name="Service007Response" message="tns:Service007Response"/>
+			<wsdl:fault name="VerifyServiceError" message="tns:VerifyServiceError"/>
+		</wsdl:operation>
+		<wsdl:operation name="Service008">
+			<wsdl:input name="Service008Request" message="tns:Service008Request"/>
+			<wsdl:output name="Service008Response" message="tns:Service008Response"/>
+			<wsdl:fault name="VerifyServiceError" message="tns:VerifyServiceError"/>
+		</wsdl:operation>
+		<wsdl:operation name="Service009">
+			<wsdl:input name="Service009Request" message="tns:Service009Request"/>
+			<wsdl:output name="Service009Response" message="tns:Service009Response"/>
+			<wsdl:fault name="VerifyServiceError" message="tns:VerifyServiceError"/>
+		</wsdl:operation>
+		<wsdl:operation name="Service010">
+			<wsdl:input name="Service010Request" message="tns:Service010Request"/>
+			<wsdl:output name="Service010Response" message="tns:Service010Response"/>
+			<wsdl:fault name="VerifyServiceError" message="tns:VerifyServiceError"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<!-- =================== Binding Definitions ================================= -->
+	<wsdl:binding name="Verify_SOAP11_Binding_V1" type="tns:Verify_PortType_V1">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="Service001">
+			<soap:operation style="document"
+				soapAction="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1/Verify_PortType_V1/Service001"/>
+			<wsdl:input name="Service001Request">
+				<soap:body use="literal"/>
+				<wsp:PolicyReference URI="#RequestPolicy"/>
+			</wsdl:input>
+			<wsdl:output name="Service001Response">
+				<soap:body use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:output>
+			<wsdl:fault name="VerifyServiceError">
+				<soap:fault name="VerifyServiceError" use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Service002">
+			<soap:operation style="document"
+				soapAction="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1/Verify_PortType_V1/Service002"/>
+			<wsdl:input name="Service002Request">
+				<soap:body use="literal"/>
+				<wsp:PolicyReference URI="#RequestPolicy"/>
+			</wsdl:input>
+			<wsdl:output name="Service002Response">
+				<soap:body use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:output>
+			<wsdl:fault name="VerifyServiceError">
+				<soap:fault name="VerifyServiceError" use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Service003">
+			<soap:operation style="document"
+				soapAction="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1/Verify_PortType_V1/Service003"/>
+			<wsdl:input name="Service003Request">
+				<soap:body use="literal"/>
+				<wsp:PolicyReference URI="#RequestPolicy"/>
+			</wsdl:input>
+			<wsdl:output name="Service003Response">
+				<soap:body use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:output>
+			<wsdl:fault name="VerifyServiceError">
+				<soap:fault name="VerifyServiceError" use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Service004">
+			<soap:operation style="document"
+				soapAction="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1/Verify_PortType_V1/Service004"/>
+			<wsdl:input name="Service004Request">
+				<soap:body use="literal"/>
+				<wsp:PolicyReference URI="#RequestPolicy"/>
+			</wsdl:input>
+			<wsdl:output name="Service004Response">
+				<soap:body use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:output>
+			<wsdl:fault name="VerifyServiceError">
+				<soap:fault name="VerifyServiceError" use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Service005">
+			<soap:operation style="document"
+				soapAction="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1/Verify_PortType_V1/Service005"/>
+			<wsdl:input name="Service005Request">
+				<soap:body use="literal"/>
+				<wsp:PolicyReference URI="#RequestPolicy"/>
+			</wsdl:input>
+			<wsdl:output name="Service005Response">
+				<soap:body use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:output>
+			<wsdl:fault name="VerifyServiceError">
+				<soap:fault name="VerifyServiceError" use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Service006">
+			<soap:operation style="document"
+				soapAction="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1/Verify_PortType_V1/Service006"/>
+			<wsdl:input name="Service006Request">
+				<soap:body use="literal"/>
+				<wsp:PolicyReference URI="#RequestPolicy"/>
+			</wsdl:input>
+			<wsdl:output name="Service006Response">
+				<soap:body use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:output>
+			<wsdl:fault name="VerifyServiceError">
+				<soap:fault name="VerifyServiceError" use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Service007">
+			<soap:operation style="document"
+				soapAction="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1/Verify_PortType_V1/Service007"/>
+			<wsdl:input name="Service007Request">
+				<soap:body use="literal"/>
+				<wsp:PolicyReference URI="#RequestPolicy"/>
+			</wsdl:input>
+			<wsdl:output name="Service007Response">
+				<soap:body use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:output>
+			<wsdl:fault name="VerifyServiceError">
+				<soap:fault name="VerifyServiceError" use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Service008">
+			<soap:operation style="document"
+				soapAction="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1/Verify_PortType_V1/Service008"/>
+			<wsdl:input name="Service008Request">
+				<soap:body use="literal"/>
+				<wsp:PolicyReference URI="#RequestPolicy"/>
+			</wsdl:input>
+			<wsdl:output name="Service008Response">
+				<soap:body use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:output>
+			<wsdl:fault name="VerifyServiceError">
+				<soap:fault name="VerifyServiceError" use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Service009">
+			<soap:operation style="document"
+				soapAction="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1/Verify_PortType_V1/Service009"/>
+			<wsdl:input name="Service009Request">
+				<soap:body use="literal"/>
+				<wsp:PolicyReference URI="#RequestPolicy"/>
+			</wsdl:input>
+			<wsdl:output name="Service009Response">
+				<soap:body use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:output>
+			<wsdl:fault name="VerifyServiceError">
+				<soap:fault name="VerifyServiceError" use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Service010">
+			<soap:operation style="document"
+				soapAction="http://www.dpdirect.org/Namespace/Verify/Services/Interface/V1/Verify_PortType_V1/Service010"/>
+			<wsdl:input name="Service010Request">
+				<soap:body use="literal"/>
+				<wsp:PolicyReference URI="#RequestPolicy"/>
+			</wsdl:input>
+			<wsdl:output name="Service010Response">
+				<soap:body use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:output>
+			<wsdl:fault name="VerifyServiceError">
+				<soap:fault name="VerifyServiceError" use="literal"/>
+				<!--<wsp:PolicyReference URI="#ResponsePolicy"/>-->
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<!-- =================== Service Definitions ================================== -->
+	<wsdl:service name="Verify_Service_V1_0">
+		<!-- HTTP Binding -->
+		<wsdl:port name="Verify_SOAP11_Port_HTTP" binding="tns:Verify_SOAP11_Binding_V1">
+			<soap:address location="http://localhost/Verify"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

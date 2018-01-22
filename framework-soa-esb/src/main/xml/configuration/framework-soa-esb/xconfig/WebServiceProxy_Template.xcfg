@@ -1,0 +1,386 @@
+<datapower-configuration version="5">
+	<configuration domain="MSG">
+		<Matching name="ServicesProxy_Template_Vx_match">
+			<mAdminState>enabled</mAdminState>
+			<MatchRules>
+				<Type>url</Type>
+				<HttpTag/>
+				<HttpValue/>
+				<Url>*/WSPStreamId</Url>
+				<ErrorCode/>
+				<XPATHExpression/>
+				<Method>default</Method>
+			</MatchRules>
+			<MatchWithPCRE>off</MatchWithPCRE>
+			<CombineWithOr>off</CombineWithOr>
+		</Matching>
+		<HTTPSourceProtocolHandler name="ServicesProxy_Template_Vx_LocalHost_HTTP_FSH">
+			<mAdminState>enabled</mAdminState>
+			<LocalAddress>localhost</LocalAddress>
+			<LocalPort>WSPHttpPort</LocalPort>
+			<HTTPVersion>HTTP/1.1</HTTPVersion>
+			<AllowedFeatures>
+				<HTTP-1.0>on</HTTP-1.0>
+				<HTTP-1.1>on</HTTP-1.1>
+				<POST>on</POST>
+				<GET>on</GET>
+				<PUT>on</PUT>
+				<HEAD>off</HEAD>
+				<OPTIONS>off</OPTIONS>
+				<TRACE>off</TRACE>
+				<DELETE>off</DELETE>
+				<CONNECT>off</CONNECT>
+				<QueryString>on</QueryString>
+				<FragmentIdentifiers>on</FragmentIdentifiers>
+				<DotDot>off</DotDot>
+				<CmdExe>off</CmdExe>
+			</AllowedFeatures>
+			<PersistentConnections>off</PersistentConnections>
+			<AllowCompression>off</AllowCompression>
+			<MaxURLLen>16384</MaxURLLen>
+			<MaxTotalHdrLen>128000</MaxTotalHdrLen>
+			<MaxHdrCount>0</MaxHdrCount>
+			<MaxNameHdrLen>0</MaxNameHdrLen>
+			<MaxValueHdrLen>0</MaxValueHdrLen>
+			<MaxQueryStringLen>0</MaxQueryStringLen>
+			<CredentialCharset>protocol</CredentialCharset>
+		</HTTPSourceProtocolHandler>
+		<HTTPSSourceProtocolHandler name="ServicesProxy_Template_Vx_LocalHost_HTTPS_FSH">
+			<mAdminState>enabled</mAdminState>
+			<LocalAddress>localhost</LocalAddress>
+			<LocalPort>WSPHttpsPort</LocalPort>
+			<HTTPVersion>HTTP/1.1</HTTPVersion>
+			<AllowedFeatures>
+				<HTTP-1.0>on</HTTP-1.0>
+				<HTTP-1.1>on</HTTP-1.1>
+				<POST>on</POST>
+				<GET>off</GET>
+				<PUT>on</PUT>
+				<HEAD>off</HEAD>
+				<OPTIONS>off</OPTIONS>
+				<TRACE>off</TRACE>
+				<DELETE>off</DELETE>
+				<CONNECT>off</CONNECT>
+				<QueryString>on</QueryString>
+				<FragmentIdentifiers>on</FragmentIdentifiers>
+				<DotDot>off</DotDot>
+				<CmdExe>off</CmdExe>
+			</AllowedFeatures>
+			<PersistentConnections>on</PersistentConnections>
+			<MaxPersistentConnectionsReuse>0</MaxPersistentConnectionsReuse>
+			<AllowCompression>off</AllowCompression>
+			<MaxURLLen>16384</MaxURLLen>
+			<MaxTotalHdrLen>128000</MaxTotalHdrLen>
+			<MaxHdrCount>0</MaxHdrCount>
+			<MaxNameHdrLen>0</MaxNameHdrLen>
+			<MaxValueHdrLen>0</MaxValueHdrLen>
+			<MaxQueryStringLen>0</MaxQueryStringLen>
+			<SSLProxy class="SSLProxyProfile">apiGatewayServices</SSLProxy>
+			<CredentialCharset>protocol</CredentialCharset>
+		</HTTPSSourceProtocolHandler>
+		<XMLManager name="WSPStreamId_Services_Cache_V1">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Deafult WSProxy XML Manager</UserSummary>
+			<CacheSize>1000</CacheSize>
+			<SHA1Caching>on</SHA1Caching>
+			<StaticDocumentCalls>on</StaticDocumentCalls>
+			<SearchResults>on</SearchResults>
+			<SupportTxWarn>off</SupportTxWarn>
+			<Memoization>on</Memoization>
+			<ParserLimitsBytesScanned>0</ParserLimitsBytesScanned>
+			<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+			<ParserLimitsAttributeCount>512</ParserLimitsAttributeCount>
+			<ParserLimitsMaxNodeSize>8388608</ParserLimitsMaxNodeSize>
+			<ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+			<ParserLimitsExternalReferences>ignore</ParserLimitsExternalReferences>
+			<ParserLimitsMaxPrefixes>0</ParserLimitsMaxPrefixes>
+			<ParserLimitsMaxNamespaces>0</ParserLimitsMaxNamespaces>
+			<ParserLimitsMaxLocalNames>0</ParserLimitsMaxLocalNames>
+			<DocCacheMaxDocs>5000</DocCacheMaxDocs>
+			<DocCacheSize>16384000</DocCacheSize>
+			<DocCachePolicy>
+				<Match>local:/*</Match>
+				<Type>fixed</Type>
+				<TTL>31536000</TTL>
+				<Priority>128</Priority>
+			</DocCachePolicy>
+			<UserAgent class="HTTPUserAgent">ESB_Services_UserAgent_V1</UserAgent>
+		</XMLManager>
+		<SLMPolicy name="ServicesProxy_Template_Vx">
+			<mAdminState>enabled</mAdminState>
+			<ExecutionPolicy>execute-all-statements</ExecutionPolicy>
+		</SLMPolicy>
+		<WSEndpointRewritePolicy name="ServicesProxy_Template_Vx">
+			<mAdminState>enabled</mAdminState>
+			<WSEndpointLocalRewriteRule>
+				<ServicePortMatchRegexp>^{http://www.namespace/Vx}ServicesProxy_Template_SOAP11_Port_HTTP$</ServicePortMatchRegexp>
+				<LocalEndpointProtocol>default</LocalEndpointProtocol>
+				<LocalEndpointHostname>var://service/domain-name</LocalEndpointHostname>
+				<LocalEndpointPort>0</LocalEndpointPort>
+				<LocalEndpointURI>/WSPStreamId</LocalEndpointURI>
+				<FrontProtocol class="HTTPSourceProtocolHandler">ServicesProxy_Template_Vx_LocalHost_HTTPS_FSH</FrontProtocol>
+				<UseFrontProtocol>on</UseFrontProtocol>
+				<WSDLBindingProtocol>soap-11</WSDLBindingProtocol>
+				<FrontsidePortSuffix/>
+			</WSEndpointLocalRewriteRule>
+			<WSEndpointRemoteRewriteRule>
+				<ServicePortMatchRegexp>^{http://www.namespace/Vx}ServicesProxy_Template_SOAP11_Port_HTTP$</ServicePortMatchRegexp>
+				<RemoteEndpointProtocol>http</RemoteEndpointProtocol>
+				<RemoteEndpointHostname>localhost</RemoteEndpointHostname>
+				<RemoteEndpointPort>10000</RemoteEndpointPort>
+				<RemoteEndpointURI>/WSPStreamId</RemoteEndpointURI>
+				<RemoteMQQM/>
+				<RemoteTibcoEMS/>
+				<RemoteWebSphereJMS/>
+			</WSEndpointRemoteRewriteRule>
+		</WSEndpointRewritePolicy>
+		<WSStylePolicy name="ServicesProxy_Template_Vx">
+			<mAdminState>enabled</mAdminState>
+			<DefStylesheetForSoap>store:///filter-reject-all.xsl</DefStylesheetForSoap>
+			<DefStylesheetForXsl>store:///identity.xsl</DefStylesheetForXsl>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_Request_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Binary_Response_Match_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_Binary_Response_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_Response_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_Transform_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_Filter_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_EncodeMTOM_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_DecodeMTOM_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_Validate_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_CallService_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_Copy_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_BackendRouting_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+			<PolicyMaps>
+				<WSDLComponentType>fragmentid</WSDLComponentType>
+				<WSDLComponentValue/>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="WSStylePolicyRule">ESB_Services_V1_Error_rule</Rule>
+				<Subscription/>
+				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
+			</PolicyMaps>
+		</WSStylePolicy>
+		<PolicyAttachments name="ServicesProxy_Template_Vx_WSPStreamId_Services.wsdl">
+			<mAdminState>enabled</mAdminState>
+			<EnforcementMode>enforce</EnforcementMode>
+			<PolicyReferences>on</PolicyReferences>
+			<SLAEnforcementMode>allow-if-no-sla</SLAEnforcementMode>
+		</PolicyAttachments>
+		<WSGateway name="ServicesProxy_Template_Vx">
+			<mAdminState>enabled</mAdminState>
+			<Priority>normal</Priority>
+			<XMLManager class="XMLManager">WSPStreamId_Services_Cache_V1</XMLManager>
+			<DefaultParamNamespace>http://www.datapower.com/param/config</DefaultParamNamespace>
+			<QueryParamNamespace>http://www.datapower.com/param/query</QueryParamNamespace>
+			<PropagateURI>off</PropagateURI>
+			<MonitorProcessingPolicy>terminate-at-first-throttle</MonitorProcessingPolicy>
+			<RequestAttachments>allow</RequestAttachments>
+			<ResponseAttachments>allow</ResponseAttachments>
+			<RootPartNotFirstAction>process-in-order</RootPartNotFirstAction>
+			<FrontAttachmentFormat>dynamic</FrontAttachmentFormat>
+			<BackAttachmentFormat>dynamic</BackAttachmentFormat>
+			<MIMEFrontHeaders>on</MIMEFrontHeaders>
+			<MIMEBackHeaders>on</MIMEBackHeaders>
+			<StreamOutputToBack>buffer-until-verification</StreamOutputToBack>
+			<StreamOutputToFront>buffer-until-verification</StreamOutputToFront>
+			<MaxMessageSize>0</MaxMessageSize>
+			<GatewayParserLimits>off</GatewayParserLimits>
+			<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+			<ParserLimitsAttributeCount>128</ParserLimitsAttributeCount>
+			<ParserLimitsMaxNodeSize>8388608</ParserLimitsMaxNodeSize>
+			<ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+			<ParserLimitsExternalReferences>forbid</ParserLimitsExternalReferences>
+			<ParserLimitsMaxPrefixes>0</ParserLimitsMaxPrefixes>
+			<ParserLimitsMaxNamespaces>0</ParserLimitsMaxNamespaces>
+			<ParserLimitsMaxLocalNames>0</ParserLimitsMaxLocalNames>
+			<ParserLimitsAttachmentByteCount>33554432</ParserLimitsAttachmentByteCount>
+			<ParserLimitsAttachmentPackageByteCount>0</ParserLimitsAttachmentPackageByteCount>
+			<DebugMode persisted="false">off</DebugMode>
+			<DebuggerType>internal</DebuggerType>
+			<DebugHistory>25</DebugHistory>
+			<FlowControl>off</FlowControl>
+			<SOAPSchemaURL>store:///schemas/soap-envelope.xsd</SOAPSchemaURL>
+			<FrontTimeout>120</FrontTimeout>
+			<BackTimeout>120</BackTimeout>
+			<FrontPersistentTimeout>180</FrontPersistentTimeout>
+			<BackPersistentTimeout>180</BackPersistentTimeout>
+			<IncludeResponseTypeEncoding>off</IncludeResponseTypeEncoding>
+			<BackHTTPVersion>HTTP/1.1</BackHTTPVersion>
+			<PersistentConnections>on</PersistentConnections>
+			<LoopDetection>off</LoopDetection>
+			<DoHostRewriting>on</DoHostRewriting>
+			<DoChunkedUpload>off</DoChunkedUpload>
+			<ProcessHTTPErrors>on</ProcessHTTPErrors>
+			<HTTPClientIPLabel>X-Client-IP</HTTPClientIPLabel>
+			<InOrderMode>
+				<Request>off</Request>
+				<Backend>off</Backend>
+				<Response>off</Response>
+			</InOrderMode>
+			<WSAMode>sync2sync</WSAMode>
+			<WSARequireAAA>on</WSARequireAAA>
+			<WSAStrip>on</WSAStrip>
+			<WSADefaultReplyTo>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</WSADefaultReplyTo>
+			<WSADefaultFaultTo>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</WSADefaultFaultTo>
+			<WSAForce>off</WSAForce>
+			<WSAGenStyle>sync</WSAGenStyle>
+			<WSAHTTPAsyncResponseCode>204</WSAHTTPAsyncResponseCode>
+			<WSATimeout>120</WSATimeout>
+			<WSRMEnabled>off</WSRMEnabled>
+			<WSRMSequenceExpiration>3600</WSRMSequenceExpiration>
+			<WSRMDestinationAcceptCreateSequence>on</WSRMDestinationAcceptCreateSequence>
+			<WSRMDestinationMaximumSequences>400</WSRMDestinationMaximumSequences>
+			<WSRMDestinationInOrder>off</WSRMDestinationInOrder>
+			<WSRMDestinationMaximumInOrderQueueLength>10</WSRMDestinationMaximumInOrderQueueLength>
+			<WSRMDestinationAcceptOffers>off</WSRMDestinationAcceptOffers>
+			<WSRMFrontForce>off</WSRMFrontForce>
+			<WSRMBackForce>off</WSRMBackForce>
+			<WSRMBackCreateSequence>off</WSRMBackCreateSequence>
+			<WSRMFrontCreateSequence>off</WSRMFrontCreateSequence>
+			<WSRMSourceMakeOffer>off</WSRMSourceMakeOffer>
+			<WSRMUsesSequenceSSL>off</WSRMUsesSequenceSSL>
+			<WSRMSourceMaximumSequences>400</WSRMSourceMaximumSequences>
+			<WSRMSourceRetransmissionInterval>10</WSRMSourceRetransmissionInterval>
+			<WSRMSourceExponentialBackoff>on</WSRMSourceExponentialBackoff>
+			<WSRMSourceMaximumRetransmissions>4</WSRMSourceMaximumRetransmissions>
+			<WSRMSourceMaximumQueueLength>30</WSRMSourceMaximumQueueLength>
+			<WSRMSourceRequestAckCount>1</WSRMSourceRequestAckCount>
+			<WSRMSourceInactivityClose>360</WSRMSourceInactivityClose>
+			<ForcePolicyExec>off</ForcePolicyExec>
+			<RewriteErrors>on</RewriteErrors>
+			<DelayErrors>on</DelayErrors>
+			<DelayErrorsDuration>3000</DelayErrorsDuration>
+			<RequestType>soap</RequestType>
+			<ResponseType>soap</ResponseType>
+			<FollowRedirects>on</FollowRedirects>
+			<AllowCompression>off</AllowCompression>
+			<AllowCacheControlHeader>off</AllowCacheControlHeader>
+			<Type>static-from-wsdl</Type>
+			<AutoCreateSources>off</AutoCreateSources>
+			<EndpointRewritePolicy class="WSEndpointRewritePolicy">ServicesProxy_Template_Vx</EndpointRewritePolicy>
+			<StylePolicy class="WSStylePolicy">ServicesProxy_Template_Vx</StylePolicy>
+			<RemoteFetchRetry>
+				<AutomaticRetry>off</AutomaticRetry>
+				<RetryInterval>1</RetryInterval>
+				<ReportingInterval>1</ReportingInterval>
+				<TotalRetries>1</TotalRetries>
+			</RemoteFetchRetry>
+			<BaseWSDL>
+				<WSDLSourceLocation>ServicesProxy_Template_Vx_WSDL_Path</WSDLSourceLocation>
+				<WSDLName>ServicesProxy_Template_Vx.wsdl</WSDLName>
+				<PolicyAttachments class="PolicyAttachments"
+					>ServicesProxy_Template_Vx_WSPStreamId_Services.wsdl</PolicyAttachments>
+			</BaseWSDL>
+			<UserToggles>
+				<WSDLName/>
+				<ServiceName/>
+				<ServicePortName/>
+				<PortTypeName/>
+				<BindingName/>
+				<OperationName/>
+				<Toggles>
+					<Enable>on</Enable>
+					<Publish>off</Publish>
+					<VerifyFaults>on</VerifyFaults>
+					<VerifyHeaders>on</VerifyHeaders>
+					<NoRequestValidation>off</NoRequestValidation>
+					<NoResponseValidation>off</NoResponseValidation>
+					<SuppressFaultsElementsForRPCWrappers>off</SuppressFaultsElementsForRPCWrappers>
+					<NoWSA>on</NoWSA>
+					<NoWSRM>on</NoWSRM>
+					<AllowXOPInclude>on</AllowXOPInclude>
+				</Toggles>
+				<Subscription/>
+				<UseFragmentID>on</UseFragmentID>
+				<FragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</FragmentID>
+			</UserToggles>
+			<!--<DecryptKey class="CryptoKey">AuthenticationManager</DecryptKey>-->
+			<EncryptedKeySHA1CacheLifeTime>0</EncryptedKeySHA1CacheLifeTime>
+			<PreserveKeyChain>off</PreserveKeyChain>
+			<DecryptWithKeyFromED>off</DecryptWithKeyFromED>
+			<SOAPActionPolicy>lax</SOAPActionPolicy>
+<!--			<PolicyParameter>
+				<PolicyParamParameters class="PolicyParameters">verbose-error-reporting</PolicyParamParameters>
+				<PolicyParamWSDLComponentType>all</PolicyParamWSDLComponentType>
+				<PolicyParamWSDLComponentValue>""</PolicyParamWSDLComponentValue>
+				<PolicyParamSubscription/>
+				<PolicyParamFragmentID/>
+			</PolicyParameter>-->
+			<WSMAgentMonitor>on</WSMAgentMonitor>
+		</WSGateway>
+	</configuration>
+</datapower-configuration>

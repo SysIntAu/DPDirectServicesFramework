@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:eim="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
+	xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
+	elementFormDefault="qualified" attributeFormDefault="qualified" version="1.0" xml:lang="en">
+	<xs:import namespace="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
+		schemaLocation="../../ErrorMessages/V1.0/ErrorCore.xsd"/>
+	<xs:element name="Informations">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="eim:Information" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Information" type="eim:informationType"/>
+	<xs:complexType name="informationType">
+		<xs:sequence>
+			<xs:element ref="errcore:SubDescription" minOccurs="0"/>
+			<xs:element ref="errcore:SubCode" minOccurs="0"/>
+			<xs:element ref="errcore:Description"/>
+			<xs:element ref="errcore:InformationCode"/>
+			<xs:element ref="errcore:MessageOrigin"/>
+			<xs:element ref="errcore:Location" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

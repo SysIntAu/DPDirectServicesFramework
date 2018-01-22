@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" elementFormDefault="qualified" version="1.0" xml:lang="en">
+  <xs:include schemaLocation="SecurityErrors.xsd"/>
+  <xs:include schemaLocation="ValidationErrors.xsd"/>
+  <xs:include schemaLocation="SystemErrors.xsd"/>
+  <xs:include schemaLocation="BusinessErrors.xsd"/>
+  <xs:complexType name="enterpriseErrorsType">
+    <xs:choice>
+      <xs:element ref="errcore:SecurityErrors"/>
+      <xs:element ref="errcore:ValidationErrors" minOccurs="0"/>
+      <xs:element ref="errcore:SystemErrors" minOccurs="0"/>
+      <xs:element ref="errcore:BusinessErrors" minOccurs="0"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:element name="EnterpriseErrors" type="errcore:enterpriseErrorsType"/>
+</xs:schema>

@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<!--=========================================================================
+	
+	Title  : ESB Configuration and Validation Build File (ANT)
+	Publisher: DPDIRECT
+	
+	Requires:
+	Apache Ant 1.7
+	JDK 1.6 with endorsed dom, jaxp, sax, serialiser, xalan, xerces, xml-apis
+	Ant Contrib 1.0b3
+	Apache Commons Logging
+	DPDIRECT Batch Validator
+	Saxon 9
+	Saxon 9 Ant
+	Saxon 9 Dom
+	Saxon 9 XPath
+	Stax API 1.0
+	Stax 2 API 3.0
+	Woodstox Core ASL 4.0
+	WSDL 4J
+	Xalan
+	Xerces
+	XML Sec
+	
+	Description and Usage:
+	The build script performs the following major tasks
+	- denormalises configuration files
+	- verifies configuration via schematron
+	- validates XML documents
+	
+	Required Options:
+	-Drelease.build.dir   = root location of built artifacts
+	-Dcomponent     = component to be validated
+	
+	Valid Targets: validate
+	
+	History:
+	2016-09-21	v1.0	Lyall Reid 		Initial Version with History.
+	2016-11-27  v1.1	Tim Goodwill	Refactored for use with ESB modernisation project.
+	
+	========================================================================-->
+<!-- *******************************************************************
+	**
+	** NAME
+	** build.xml
+	**
+	** PURPOSE
+	** ANT file used to build the distribution zip for the DataPower appliance.
+	** 
+	******************************************************************** -->
+<project name="transform-and-validate" default="transform.and.validate">
+	
+	<!-- Default locations -->
+	<property name="project.dir"  location="${basedir}/../.."/>
+	<property name="ant.resources.lib.dir"  location="${project.dir}/ant-build/lib"/>
+	
+	<!-- *****************************************************************
+		** Set up the "schematron" task library
+		****************************************************************** -->
+<!--	<path id="schematron.class.path">
+		<!-\- classpath for performing runtime tests -\->
+		<pathelement location="${ant.resources.lib.dir}/ant-schematron-dpdirect.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9-ant.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9-dom.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9-xpath.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/ant-xalan1-1.6.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/ant.jar"/>
+	</path>
+	<taskdef name="schematron" classname="org.dpdirect.schematron.SchematronTask" classpathref="schematron.class.path"/>
+	<taskdef name="saxon-xslt" classname="net.sf.saxon.ant.AntTransform" classpathref="schematron.class.path"/>-->
+	
+	<!-- *****************************************************************
+		** Set up the "batch-validator" task library
+		****************************************************************** -->
+	<path id="batchvalidator.class.path">
+		<!-- classpath for performing buildtime wsdl and xslt validation -->
+		<pathelement location="${ant.resources.lib.dir}/batch-validator-ant-task-0.0.1.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9-xpath.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/xercesImpl.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9-xpath.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/wsdl4j-20021124.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/xml-apis.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/xmlsec-1.4.2.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/ant.jar"/>
+	</path>
+	<taskdef name="batchvalidator" classname="org.dpdirect.batchvalidator.WSDLValidator" classpathref="batchvalidator.class.path"/>
+	
+	<!-- === BUILD TARGETS ================================================================================= -->
+	
+	<!-- **********************************************************
+		** target: transform.and.validate
+		**
+		** PURPOSE
+		** Control the sequence of tasks to transform and validate xml docs 
+		****************************************************************** -->
+	<target name="transform.and.validate" description="configure and validate custom xml docs prior to deployment"
+		depends="set.paths,verify.config,validate.xml"/>
+	
+	<!-- **********************************************************
+		** target: set.paths
+		**
+		** PURPOSE
+		** Find and set config and stylesheet paths
+		****************************************************************** -->
+	<target name="set.paths">
+		<path id="config.file.path">
+			<fileset dir="${release.build.dir}/local/${component}/config">
+				<include name="*Config.xml"/>
+			</fileset>
+		</path>
+		<path id="config.style.path">
+			<fileset dir="${release.build.dir}/local/${component}/config">
+				<include name="*Config.xsd"/>
+			</fileset>
+		</path>
+		<pathconvert property="config.file" refid="config.file.path"/>
+		<pathconvert property="config.style" refid="config.style.path"/>
+	</target>
+	
+	<!-- **********************************************************
+		** target: validate.xml
+		**
+		** PURPOSE
+		** Valisdate all componenrt specific xml
+		****************************************************************** -->
+	<target name="validate.xml" description="validate custom xml docs prior to deployment and transforms where necessary">
+		<echo message="**** Validate XML Documents"/>
+		<path id="xmldoc.path">
+			<fileset dir="${release.build.dir}/local/${component}">
+				<include name="**/*Config.xml"/>
+				<include name="**/*Properties.xml"/>
+				<include name="**/*Codes.xml"/>
+				<exclude name="**/codemaps/*"/>
+			</fileset>
+			<fileset dir="${release.build.dir}">
+				<include name="*/${component}/config/**/*.xml"/>
+			</fileset>
+		</path>
+		<pathconvert property="xmldoc.path.string" refid="xmldoc.path" pathsep=","/>
+		<!-- iterate through the "xmldoc.path.string" list, and validate each of the custom xml docs prior to build. Schemas are expected in the same dir as each xml doc -->
+		<for list="${xmldoc.path.string}" param="xmldoc.argvalue">
+			<sequential>
+				<echo message=" @{xmldoc.argvalue}"/>
+				<xmlvalidate failonerror="true" lenient="no" warn="yes" file="@{xmldoc.argvalue}">
+					<attribute name="http://xml.org/sax/features/validation" value="true"/>
+					<attribute name="http://apache.org/xml/features/validation/schema" value="true"/>
+					<attribute name="http://xml.org/sax/features/namespaces" value="true"/>
+				</xmlvalidate>
+			</sequential>
+		</for>
+	</target>
+	
+	<!-- **********************************************************
+		** target: validate.wsdl
+		**
+		** PURPOSE
+		** Valisdate all DataPower service WSDLs
+		****************************************************************** -->
+	<target name="validate.wsdl">
+		<echo message="****  Validate WSDL Files"/>
+		<path id="wsdl.path">
+			<fileset dir="${release.build.dir}/local">
+				<include name="service-schema/**/*.wsdl"/>
+			</fileset>
+		</path>
+		<pathconvert property="wsdl.path.string" refid="wsdl.path" pathsep=","/>
+		<for list="${wsdl.path.string}" param="file" >
+			<sequential>
+				<batchvalidator file="@{file}"/>
+			</sequential>
+		</for>
+	</target>	
+	
+	<!-- **********************************************************
+		** target: verify.config
+		**
+		** PURPOSE
+		** Schematron validation of the component configuration file
+		****************************************************************** -->
+	<target name="verify.config">
+		<echo message="****  Verify Configuration Files via Schematron"/>
+		<for list="${config.file}" delimiter="${path.separator}" param="file" >
+			<sequential>
+				<schematron schema="${release.build.dir}/local/${component}/config/${component}-ServiceConfigValidation.sch" 
+					srcfile="@{file}" failonerror="true"/>
+				<delete file="result.xml"/>
+			</sequential>
+		</for>
+	</target>
+
+</project> 

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--========================================================================
+	
+	Creator: Tim Goodwill
+	Date   : 2013
+	Title  : E1 DPESB Environment File
+	Publisher: DIBP
+	
+	Description and Usage:
+	This file is to store environmental differences for use during the
+	deployment process.
+	 
+	file but has been extended to meet ESB Project Requirements.
+	
+	History:
+	2016-01-091	v1.0	Tim Goodwill 				Initial Version with History.
+	2016-04-01	v1.1	Joy Devassy					CR12 changes, updated ISR url.
+	========================================================================-->
+<env name="E1" description="System Test Environment">
+	<location name="datapower_deployment_server" id="E15.0x">
+		<host name="mgtserver">
+			<push dir="/opt/esb/deploy/artefacts/"/>
+			<config dir="/opt/esb/deploy/exec/"/>
+			<deploy dir="/opt/esb/deploy/exec/do_deploy.sh"/>
+			<log dir="/opt/esb/deploy/logs"/>
+			<!-- Datapower Environment Parameters to Control Deployment-->
+			<container type="dps" version="1.0"
+				basedir="E:\projects\dpbuild\sdlc-deploy\datapower\deploy">
+				<parameter name="dp.hostname.list" value="dpesb0101,dpesb0102"/>
+				<parameter name="dp.port" value="5550"/>
+				<parameter name="esb.domain" value="DEV1"/>
+				<parameter name="esb.xmlmanager" value="DomainDefaultCache_V1"/>
+				<parameter name="debug" value="false"/>
+				<parameter name="fail.on.error" value="true"/>
+				<parameter name="rollback.on.error" value="true"/>
+			</container>
+			<!-- Datapower Environment Variables for Config Injection-->
+			<esbpropertys name="environment_properties">
+				<!-- Environment -->
+				<parameter name="esbproperty://envName" value="E1"/>
+				<parameter name="esbproperty://esbEchoHttpEndpoint" value="http://DEV1:10000"/>
+				<!-- SERVICELOG Logging -->
+				<parameter name="esbproperty://logging/capturePointLogs" value="none"/>
+				<parameter name="esbproperty://logging/successLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_10M_V1/?RequestQueue=ESB.SERVICE.LOG;AsyncPut=true"/>
+				<parameter name="esbproperty://logging/errorLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_10M_V1/?RequestQueue=ESB.ERROR.LOG;AsyncPut=true"/>
+				<!-- Stats Logging -->
+				<parameter name="esbproperty://logCategory/esbStats/DEV1" value="DEV1_ServiceStats"/>
+				<parameter name="esbproperty://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog-wsgw/add-log-entry/"/>
+				<parameter name="esbproperty://logTarget/remoteSystemManagement/address" value="logserver.dpdirect.org"/>
+				<parameter name="esbproperty://logTarget/remoteSystemManagement/port" value="23456"/>
+				<!-- LDAP  -->
+				<parameter name="esbproperty://authorisation/ldapConf/hostName" value="ldapserver.dpdirect.org"/>
+				<parameter name="esbproperty://authorisation/ldapConf/portNumber" value="636"/>
+				<parameter name="esbproperty://sslProxyProfile/ldapAuthorisation" value="SslClientNoCredentialsNoTLS"/>
+				<parameter name="esbproperty://authorisation/ldapConf/bindDN" value=""/>
+				<parameter name="esbproperty://authorisation/ldapConf/targetDnTemplate" value=""/>
+			</esbpropertys>
+			<!-- Datapower Environment Variables for Config Injection-->
+			<injection name="environment_properties">
+				<!-- DP Echo Endpoint -->
+				<parameter name="esbEchoHttpEndpoint" value="http://DEV1:10000"/>
+				<!-- Domain Host Alias -->
+				<parameter name="esbApplianceHostName1" value="dpesb0101"/>
+				<parameter name="esbApplianceHostName2" value="dpesb0102"/>
+				<parameter name="esbDomainHostAlias1" value="dpesb0101-dev1"/>
+				<parameter name="esbDomainHostAlias2" value="dpesb0102-dev1"/>
+				<parameter name="esbLocalHostAlias" value="DEV1"/>
+				<!-- default encryption algorithms-->
+				<parameter name="esbDefaultEncryptionAlgorithm" value="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
+				<parameter name="esbDefaultKeyTransportAlgorithm" value="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
+				<parameter name="esbDefaultDigestAlgorithm" value="http://www.w3.org/2001/04/xmlenc#sha256"/>
+				<!-- Logging -->
+				<parameter name="logCategoryServiceStats" value="DEV1_ServiceStats"/>
+				<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog-esb/add-log-entry/"/>
+				<parameter name="logTargetRemoteSystemManagementAddress" value="logserver.dpdirect.org"/>
+				<parameter name="logTargetRemoteSystemManagementPort" value="23456"/>
+			</injection>
+			<!-- Datapower Environment xconfig insertions-->
+			<insertions name="environment_insertions">
+				<!--				<insertion parentClass="LoadBalancerGroup" parentName="BamsBackend_V1">
+					<LBGroupMembers parentClass="LoadBalancerGroup" parentName="BamsBackend_V1">
+						<Server>server.local</Server>
+						<Weight>1</Weight>
+						<MappedPort>80</MappedPort>
+						<Activity/>
+						<HealthPort/>
+					</LBGroupMembers>
+				</insertion>-->
+			</insertions>
+		</host>
+	</location>
+</env>
+<!-- *************************************************************** -->

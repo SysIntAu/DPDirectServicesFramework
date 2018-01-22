@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.0">
+	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<dc:creator>N.A.</dc:creator>
+			<dc:date>2016-02-06</dc:date>
+			<dc:title>Schema for DataPower event codes XML serialisation.</dc:title>
+			<dc:subject>Schema to define format of xml files that contain a complete representation of DataPower event
+				codes for a given firmware version.</dc:subject>
+			<dc:contributor>N.A.</dc:contributor>
+			<dc:publisher>DPDIRECT</dc:publisher>
+		</xs:appinfo>
+	</xs:annotation>
+	<!--========================================================================
+		History:
+		2016-02-06	v0.1	N.A.		Initial Version.
+		========================================================================-->
+	<!--
+	=================================================================
+		Global Elements
+	=================================================================
+	-->
+	<xs:element name="DatapowerEventCodes" type="datapowerEventCodesType"/>
+	<xs:element name="EventType" type="eventTypeType"/>
+	<xs:element name="EventCode" type="eventCodeType"/>
+	<xs:element name="Description" type="xs:string"/>
+	<xs:element name="Explanation" type="xs:string"/>
+	<xs:element name="Severity" type="nonEmptyTokenType"/>
+	<!--
+	=================================================================
+		Global Complex Types
+	=================================================================
+	-->
+	<xs:complexType name="datapowerEventCodesType">
+		<xs:sequence>
+			<xs:element ref="EventType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="version" use="required" type="nonEmptyTokenType"/>
+	</xs:complexType>
+	<xs:complexType name="eventTypeType">
+		<xs:sequence>
+			<xs:element ref="EventCode"/>
+			<xs:element ref="Description"/>
+			<xs:element ref="Explanation"/>
+			<xs:element ref="Severity"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="eventCodeType">
+		<xs:simpleContent>
+			<xs:extension base="nonEmptyTokenType">
+				<xs:attribute name="decimal" use="required" type="xs:integer"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!--
+		=================================================================
+		Global Simple Types
+		=================================================================
+	-->
+	<xs:simpleType name="nonEmptyTokenType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

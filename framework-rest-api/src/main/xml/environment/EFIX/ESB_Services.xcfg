@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datapower-configuration version="3">
+	<configuration domain="DPESBE3">
+		<CryptoKey name="esbServicesEncryption">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///apikey.pem</Filename>
+			<Password>Password</Password>
+			<PasswordAlias>off</PasswordAlias>
+		</CryptoKey>
+		<CryptoCertificate name="esbServicesEncryption">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///apicer.pem</Filename>
+			<Password>Password</Password>
+			<PasswordAlias>off</PasswordAlias>
+			<IgnoreExpiration>on</IgnoreExpiration>
+		</CryptoCertificate>
+		<CryptoKey name="esbExternalEndpoint">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///apikey.pem</Filename>
+			<Password>Password</Password>
+			<PasswordAlias>off</PasswordAlias>
+		</CryptoKey>
+		<CryptoCertificate name="esbExternalEndpoint">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///apicer.pem</Filename>
+			<Password>Password</Password>
+			<PasswordAlias>off</PasswordAlias>
+			<IgnoreExpiration>on</IgnoreExpiration>
+		</CryptoCertificate>
+		<CryptoValCred name="esbExternalEndpointValCreds">
+			<mAdminState>enabled</mAdminState>
+			<Certificate class="CryptoCertificate">esbExternalEndpoint</Certificate>
+			<CertValidationMode>legacy</CertValidationMode>
+			<UseCRL>on</UseCRL>
+			<RequireCRL>off</RequireCRL>
+			<CRLDPHandling>ignore</CRLDPHandling>
+			<InitialPolicySet>2.5.29.32.0</InitialPolicySet>
+			<ExplicitPolicy>off</ExplicitPolicy>
+		</CryptoValCred>
+		<CryptoKey name="authenticationManager">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///apikey.pem</Filename>
+			<Password>Password</Password>
+			<PasswordAlias>off</PasswordAlias>
+		</CryptoKey>
+		<CryptoCertificate name="authenticationManager">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///apicer.pem</Filename>
+			<Password>Password</Password>
+			<PasswordAlias>off</PasswordAlias>
+			<IgnoreExpiration>on</IgnoreExpiration>
+		</CryptoCertificate>
+		<CryptoValCred name="authenticationManagerValCreds">
+			<mAdminState>enabled</mAdminState>
+			<Certificate class="CryptoKey">authenticationManager</Certificate>
+			<Certificate class="CryptoCertificate">authenticationManager</Certificate>
+			<CertValidationMode>legacy</CertValidationMode>
+			<UseCRL>on</UseCRL>
+			<RequireCRL>off</RequireCRL>
+			<CRLDPHandling>ignore</CRLDPHandling>
+			<InitialPolicySet>2.5.29.32.0</InitialPolicySet>
+			<ExplicitPolicy>off</ExplicitPolicy>
+		</CryptoValCred>
+		<CryptoCertificate name="documentSigner">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///apicer.pem</Filename>
+			<Password>Password</Password>
+			<PasswordAlias>off</PasswordAlias>
+			<IgnoreExpiration>off</IgnoreExpiration>
+		</CryptoCertificate>
+		<CryptoValCred name="documentSignerValCred">
+			<mAdminState>enabled</mAdminState>
+			<Certificate class="CryptoCertificate">documentSigner</Certificate>
+			<CertValidationMode>legacy</CertValidationMode>
+			<UseCRL>on</UseCRL>
+			<RequireCRL>off</RequireCRL>
+			<CRLDPHandling>ignore</CRLDPHandling>
+			<ExplicitPolicy>off</ExplicitPolicy>
+		</CryptoValCred>
+		<!-- MQQMs -->
+<!--		<MQQM name="ESB_Internal_MQQM_1_RealTime_V1">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Primary MQ Channel to LOGSERVER New Queue Manager</UserSummary>
+			<HostName>localhost</HostName>
+			<QMname>localhost</QMname>
+			<CCSID>819</CCSID>
+			<ChannelName>DP.WSG.SVRCONN</ChannelName>
+			<Heartbeat>5</Heartbeat>
+			<UserName>IMWSGJ01</UserName>
+			<MaximumMessageSize>8388608</MaximumMessageSize>
+			<CacheTimeout>64</CacheTimeout>
+			<UnitsOfWork>1</UnitsOfWork>
+			<AutomaticBackout>on</AutomaticBackout>
+			<BackoutThreshold>2</BackoutThreshold>
+			<BackoutQueueName>DP.DEAD.QUEUE</BackoutQueueName>
+			<TotalConnectionLimit>6</TotalConnectionLimit>
+			<InitialConnections>1</InitialConnections>
+			<SharingConversations>0</SharingConversations>
+			<PermitInsecureServers>off</PermitInsecureServers>
+			<SSLcipher>none</SSLcipher>
+			<ConvertInput>on</ConvertInput>
+			<AutoRetry>on</AutoRetry>
+			<RetryInterval>300</RetryInterval>
+			<RetryAttempts>0</RetryAttempts>
+			<LongRetryInterval>1800</LongRetryInterval>
+			<ReportingInterval>1</ReportingInterval>
+			<AlternateUser>off</AlternateUser>
+			<XMLManager class="XMLManager">DomainDefaultCache_V1</XMLManager>
+		</MQQM>
+		<MQQMGroup name="ESB_Internal_Grp_RealTime_V1">
+			<mAdminState>enabled</mAdminState>
+			<PrimaryQueueManager class="MQQM">ESB_Internal_MQQM_1_RealTime_V1</PrimaryQueueManager>
+		</MQQMGroup>-->
+	</configuration>
+</datapower-configuration>

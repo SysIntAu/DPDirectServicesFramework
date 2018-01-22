@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	targetNamespace="http://www.dpdirect.org/Namespace/Verify/Service/V1.0"
+	xmlns:test="http://www.dpdirect.org/Namespace/Verify/Service/V1.0" version="1.0">
+	<xs:annotation>
+		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<dc:creator>N.A.</dc:creator>
+			<dc:date>2016-12-05</dc:date>
+			<dc:title>Unit Test Schema Component Definitions</dc:title>
+			<dc:subject>Definitions of various messages used for unit test purposes.</dc:subject>
+			<dc:contributor>N.A.</dc:contributor>
+			<dc:publisher>DPDirect</dc:publisher>
+		</xs:appinfo>
+	</xs:annotation>
+	<!--
+	=================================================================
+		Global Elements
+	=================================================================
+	-->
+	<!-- Generic Error -->
+	<xs:element name="VerifyServiceError" type="test:errorType"/>
+	<!-- Service001 -->
+	<xs:element name="Service001Request" type="test:requestType"/>
+	<xs:element name="Service001Response" type="test:responseType"/>
+	<!-- Service002 -->
+	<xs:element name="Service002Request" type="test:requestType"/>
+	<xs:element name="Service002Response" type="test:responseType"/>
+	<!-- Service003 -->
+	<xs:element name="Service003Request" type="test:requestType"/>
+	<xs:element name="Service003Response" type="test:responseType"/>
+	<!-- Service004 -->
+	<xs:element name="Service004Request" type="test:requestType"/>
+	<xs:element name="Service004Response" type="test:responseType"/>
+	<!-- Service005 -->
+	<xs:element name="Service005Request" type="test:requestType"/>
+	<xs:element name="Service005Response" type="test:responseType"/>
+	<!-- Service006 -->
+	<xs:element name="Service006Request" type="test:requestType"/>
+	<xs:element name="Service006Response" type="test:responseType"/>
+	<!-- Service007 -->
+	<xs:element name="Service007Request" type="test:requestType"/>
+	<xs:element name="Service007Response" type="test:responseType"/>
+	<!-- Service008 -->
+	<xs:element name="Service008Request" type="test:requestType"/>
+	<xs:element name="Service008Response" type="test:responseType"/>
+	<!-- Service009 -->
+	<xs:element name="Service009Request" type="test:requestType"/>
+	<xs:element name="Service009Response" type="test:responseType"/>
+	<!-- Service010 -->
+	<xs:element name="Service010Request" type="test:requestType"/>
+	<xs:element name="Service010Response" type="test:responseType"/>
+	<!--
+	=================================================================
+		Global Complex Types
+	=================================================================
+	-->
+	<xs:complexType name="requestType">
+		<xs:sequence>
+			<xs:element name="RequestId" type="xs:token"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="responseType">
+		<xs:sequence>
+			<xs:element name="RequestId" type="xs:token"/>
+			<xs:element name="ResponseId" type="xs:token"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="errorType">
+		<xs:sequence>
+			<xs:element name="ErrorCode" type="xs:string"/>
+			<xs:element name="ErrorMsg" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

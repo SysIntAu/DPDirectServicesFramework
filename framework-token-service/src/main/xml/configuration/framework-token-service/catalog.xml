@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+	<rewriteURI uriStartString="local:///SecureTokenService/" rewritePrefix="./"/>
+	<rewriteSystem systemIdStartString="local:///SecureTokenService/" rewritePrefix="./"/>
+</catalog>

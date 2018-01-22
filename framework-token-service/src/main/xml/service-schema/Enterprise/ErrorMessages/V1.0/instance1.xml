@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EnterpriseErrors xmlns="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0 file:/C:/Dev/DPDIRECT_PROJECT/dpdirect-services-framework/dpdirect-framework/framework-soa-esb/src/main/xml/service-schema/Enterprise/ErrorMessages/V1.0/EnterpriseErrors.xsd">
+    <SecurityErrors>
+        <SecurityError>
+            <SubCode>SubCode0</SubCode>
+            <MessageOrigin>MessageOrigin0</MessageOrigin>
+            <ErrorCode>AAAA00000</ErrorCode>
+            <Description>Description0</Description>
+        </securityError>
+        <SecurityError>
+            <SubCode>SubCode1</SubCode>
+            <MessageOrigin>MessageOrigin1</MessageOrigin>
+            <ErrorCode>AAAA00000</ErrorCode>
+            <Description>Description1</Description>
+        </securityError>
+    </securityErrors>
+</EnterpriseErrors>

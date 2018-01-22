@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceRoute xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="ServiceRoute.xsd"  version="1.0">
+<!--	Redacted at buildtime from service config, as per the example below. 'Static' routes may be manually created here -->
+<!-- 	<InputMatchCriteria refId="Verify">
+		<Action>http://www.dpdirect.org/Namespace/Verify/ServicesProxy/Interface/V1/Verify_ServicesProxy_PortType_V1/VerifyRequest</Action>
+		<InboundURI>*/Verify</InboundURI>
+		<HTTPPort>4000</HTTPPort>
+		<LocalHostAlias>${localHostAlias}</LocalHostAlias>
+	</InputMatchCriteria>-->
+</ServiceRoute>

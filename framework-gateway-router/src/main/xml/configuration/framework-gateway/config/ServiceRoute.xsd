@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.1">
+	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<dc:creator>N.A.</dc:creator>
+			<dc:date>2016-10-19</dc:date>
+			<dc:title>DPDIRECT Datapower Service Configuration Schema</dc:title>
+			<dc:subject>XML Schema configuration model for the DataPower MSG Web Services component</dc:subject>
+			<dc:contributor>N.A.</dc:contributor>
+			<dc:publisher>DPDIRECT</dc:publisher>
+		</xs:appinfo>
+	</xs:annotation>
+	<!--========================================================================
+		History:
+		2016-10-19	v1.0	N.A.		Initial Version.
+		========================================================================-->
+	<!--
+	=================================================================
+		Global Elements
+	=================================================================
+	-->
+	<xs:element name="Action" type="nonEmptyTokenType"/>
+	<xs:element name="HTTPPort" type="xs:positiveInteger"/>
+	<xs:element name="HTTPSPort" type="xs:positiveInteger"/>
+	<xs:element name="InputMatchCriteria" type="inputMatchCriteriaType"/>
+	<xs:element name="InboundURI" type="nonEmptyTokenType"/>
+	<xs:element name="LocalHostAlias" type="nonEmptyTokenType"/>
+	<xs:element name="ServiceRoute" type="ServiceRouteType"/>
+	<!--
+	=================================================================
+		Global Complex Types
+	=================================================================
+	-->
+	<xs:complexType name="inputMatchCriteriaType">
+		<xs:sequence>
+			<xs:element ref="Action" minOccurs="0"/>
+			<xs:element ref="InboundURI" minOccurs="0"/>
+			<xs:choice>
+				<xs:element ref="HTTPPort" minOccurs="0"/>
+				<xs:element ref="HTTPSPort" minOccurs="0"/>
+			</xs:choice>
+			<xs:element ref="LocalHostAlias"/>
+		</xs:sequence>
+		<xs:attribute name="refId" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ServiceRouteType">
+		<xs:sequence>
+			<xs:element ref="InputMatchCriteria" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="version" type="nonEmptyTokenType" use="required"/>
+	</xs:complexType>
+	<!--
+	=================================================================
+		Global Simple Types
+	=================================================================
+	-->
+	<xs:simpleType name="nonEmptyTokenType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nonEmptyURIType">
+		<xs:restriction base="xs:anyURI">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

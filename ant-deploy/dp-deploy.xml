@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************
+	**
+	** NAME
+	** datapowerDeploy.xml
+	**
+	** PURPOSE
+	** This file is an ANT build script developed for the deployment of version controlled configuration files to
+	** DataPower XML acceleration devices.
+	**
+	** PARMS
+	** To use the deploy targets locally, the following parameters should be supplied as a minimum:
+	** dp.hostname OR dp.hostname.list  == Device/s to deploy to. 'dp.hostname.list' should be comma delimited, no spaces.
+	** dp.user.name, dp.user.pw == User credentials
+	** environment         == DPDIRECT environment name eg 'E1'. 
+	** release.dir         == Staging dir contains the built deployment artifacts, this will be a temporary working directory
+	**
+	** OPTIONAL PARMS - Deployment
+	** type         == deployment type, one of:  
+	**                             'file', 'dir',  'service', (${qualified.path} or ${file} or ${dir} or ${service} param required) 
+	**                             'objects', 'files',  (both services & gateway)
+	**                             'services' (all),'services.objects', 'services.files',
+	**                             'gateway' (all), 'gateway.objects', 'gateway.files',
+	**                             'schema', 'esb' (all but schema), or 'all' (default is 'all')
+	** domain          == Working domain (default is 'MSG${dp.environment}' domain)
+	** xmlmanager      == Name of an XMLManager to flush when files are uploaded (default is 'common_V1_XMLManager')
+	** qualified.path      == qualified path of the upload file or dir
+	** file, dir, service    == unique file, dir or service name for upload - path resolved, dev/test only. Corresponds to deployment type.
+	** MODIFICATIONS    DATE       	DETAILS
+	** Tim Goodwill		2012.11.26	Initial script
+	** 
+	******************************************************************** -->
+<project name="dp-deploy" default="deploy">
+	<property name="env" value="E1"/>
+	<property name="environment" value="${env}"/>
+	
+	<!-- Location of optional properties file -->
+	<property file="deployment.properties"/>
+	<property file="${environment}.properties"/>
+	
+	<!-- Device parameters -->
+	<property name="dp.soma.port"  value="5550"/>
+	<property name="dp.hostname.list" value="${dp.hostname}"/>
+	<property name="dp.environment" value="${environment}"/>
+	
+	<!-- Deployment parameters -->
+<!--	<property name="secure.environment.list" value="E7,E9"/>
+	<condition property="secure.environment" value="true">
+		<contains string="${secure.environment.list}" substring="${environment}"/>
+	</condition>-->
+	<!-- Set the XMLManager name according by proxy -->
+	<property name="xmlmanager" value="DomainDefaultCache_V1"/>
+	<property name="services.xmlmanager" value="ESB_Services_DefaultCache_V1"/>
+	<property name="api.xmlmanager" value="ESB_Services_DefaultCache_V1"/>
+	<property name="sts.xmlmanager" value="STS_DefaultCache_V1"/>
+	<!-- Framework Components -->
+	<property name="component.list" value="Common,Gateway_Router,SecureTokenService,ESB_Services,Json_RestAPI"/>
+	<property name="type" value="all"/>
+	<property name="deployment.type" value="${type}"/>
+	<property name="source.type" value="XML"/>
+	<!-- MSG Domain -->
+	<condition property="domain" value="MSGD01">
+		<equals arg1="${dp.environment}" arg2="E1" />
+	</condition>
+	<condition property="domain" value="MSGI01">
+		<equals arg1="${dp.environment}" arg2="E4" />
+	</condition>
+	<condition property="domain" value="MSGJ01">
+		<equals arg1="${dp.environment}" arg2="E5" />
+	</condition>
+	<condition property="domain" value="MSGU01">
+		<equals arg1="${dp.environment}" arg2="E6" />
+	</condition>
+	<condition property="domain" value="MSGS01">
+		<equals arg1="${dp.environment}" arg2="E7" />
+	</condition>
+	<condition property="domain" value="MSGR01">
+		<equals arg1="${dp.environment}" arg2="E8" />
+	</condition>
+	<condition property="domain" value="MSGP01">
+		<equals arg1="${dp.environment}" arg2="E9" />
+	</condition>
+	<condition property="domain" value="MSGK01">
+		<equals arg1="${dp.environment}" arg2="E3" />
+	</condition>
+	<property name="domain" value="${dp.environment}"/>
+	<!-- Deployment control -->
+	<property name="verbose" value="false"/>
+	<property name="fail.on.error" value="true"/>
+	<property name="rollback.on.error" value="false"/>
+	
+	<!-- Default locations -->
+	<property name="project.dir"  location="${basedir}/../.."/>
+	<property name="release.dir"  location="${basedir}/release"/>
+	<property name="build.dir"  location="${project.dir}/ant-build"/>
+	<property name="ant.resources.lib.dir"  location="${project.dir}/ant-build/lib"/>
+	<property name="environment.dir"  location="${release.dir}/environment"/>
+	<property name="temp.dir"  location="${release.dir}/staging"/>
+	<property name="staging.dir"  location="${temp.dir}"/>
+	
+	<!-- XACML authz file prod/non-prod -->
+	<property name="security.dir"  location="${staging.dir}/security/${dp.environment}"/>
+	
+	<!-- *****************************************************************
+		** Set up the "DPDirect" task library
+		****************************************************************** -->
+	<path id="dpdirect.class.path">
+		<!-- classpath for the dpdirect task -->
+		<pathelement location="${ant.resources.lib.dir}/dpdirect-1.0.4.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/xercesImpl-2.11.0.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/log4j.jar"/>
+	</path>
+	<taskdef name="dpDeploy" classname="org.dpdirect.dpmgmt.DPDirectTask" classpathref="dpdirect.class.path"/>
+	
+	<!-- *****************************************************************
+		** Set up the "schematron" task library
+		****************************************************************** -->
+	<path id="schematron.class.path">
+		<!-- classpath for performing runtime tests -->
+		<pathelement location="${ant.resources.lib.dir}/ant-schematron-dpdirect.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9-ant.jar"/>
+	</path>
+	<taskdef name="schematron" classname="org.dpdirect.schematron.SchematronTask" classpathref="schematron.class.path"/>
+	
+	<!-- *****************************************************************
+		** Set up the "ant-contrib" task library
+		****************************************************************** -->
+	<path id="antcontrib.class.path" path="${ant.resources.lib.dir}/ant-contrib-1.0b3.jar"/>
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="antcontrib.class.path"/>	
+	
+	<!-- === DEPLOY TARGETS ================================================================================= -->
+	
+	<!-- **********************************************************
+		** target: deploy
+		**
+		** PURPOSE
+		** This target is used to loop through the hostname and component lists, 
+		** invoking the appropriate target for each component on each host.
+		** Deployment target depends on the deployment type of 'file', 'dir', 'objects', 'files', 'esb' or 'all' (default is 'all')
+		** corresponding to targets 'deploy.file', 'deploy.dir', 'deploy.objects', 'deploy.files' and 'deploy.all' respectively.
+		****************************************************************** -->
+	<target name="deploy" 
+		description="Deploys MSG built artifacts to multiple hosts.
+		** PARAMETERS: 
+		dp.hostname OR dp.hostname.list == Device/s to deploy to. 'dp.hostname.list' should be comma delimited, no spaces.
+		environment == DPDIRECT environment name eg 'E1', will look for env properties file eg 'E1.xml' in the deploy dir. 
+		release.dir == Staging dir contains the built deployment artifacts, this will be a temporary working directory.
+		** OPTIONAL PARAMETERS: 
+		type == deployment type, of 'file', 'dir', 'objects', 'files', 'schema', 'services', 'gateway' or 'all' (default is 'all')
+		** EXAMPLES: 'ant -f dp-deploy.xml -Denvironment=E1'  or  'ant -f dp-deploy.xml -Denvironment=E1 -Dtype=services -Drelease.dir=C:/Temp/release'">
+		<echo message="Deploying ${deployment.type} to ${domain}"/>
+		<mkdir dir="${release.dir}"/>
+		<antcall target="stage.files" inheritall="true" inheritrefs="true"/>
+		<!-- Multiple deployment to parallel devices -->
+		<for list="${dp.hostname.list}" param="this.dp.host" >
+			<sequential>
+				<var name="dp.hostname" value="@{this.dp.host}"/>
+				<!-- Deploy component to the device -->
+				<antcall target="deploy.${deployment.type}" inheritall="true" inheritrefs="true"/>
+			</sequential>
+		</for>
+	</target>
+	
+	<!-- **********************************************************
+		** target: create.component.list
+		**
+		** PURPOSE
+		** Generate a list of components to be built 
+		** based on the contents of the ${release.dir}/local directory
+		****************************************************************** -->
+	<target name="create.component.list" unless="component.list">
+		<property name="component.list" value="Common,Gateway_Router,SecureTokenService,ESB_Services,Json_RestAPI"/>
+	</target>
+	
+	<!-- **********************************************************
+		** target: create.config.file.list
+		**
+		** PURPOSE
+		** Generate a list of components to be built 
+		** based on the contents of the ${release.dir}/local directory
+		****************************************************************** -->
+	<target name="create.config.file.list" unless="config.file.list">
+		<!-- store a list of source components -->
+		<path id="config.files">
+			<fileset dir="${release.dir}/local" includes="**/*Config.xml,**/*Route.xml"/>
+		</path>
+		<propertyregex property="release.dir.relative"
+			input="${release.dir}"
+			regexp="^/"
+			replace=""
+			global="false" />
+		<var name="config.file.list" unset="true"/>
+		<pathconvert property="config.file.list" pathsep="," refid="config.files">
+			<map from="${release.dir}/local/" to=""/>
+			<map from="${release.dir}\local\" to=""/>
+			<map from="${release.dir.relative}/local/" to=""/>
+			<map from="${release.dir.relative}\local\" to=""/>
+		</pathconvert>
+	</target>
+	
+	<!-- **********************************************************
+		** target: qualified.path.from.filename
+		**
+		** PURPOSE
+		** Create qualified.path from ${file} param - dev/test only.
+		****************************************************************** -->
+	<target name="qualified.path.from.filename" unless="qualified.path">
+		<fail unless="file">Error : 'file' parameter missing.</fail>
+		<path id="file.path">
+			<fileset dir="${release.dir}${file.separator}local" includes="**/${file}"/>
+		</path>
+		<pathconvert property="qualified.path" refid="file.path">
+			<map from="${release.dir}${file.separator}" to=""/>
+		</pathconvert>
+	</target>
+	
+	<!-- **********************************************************
+		** target: qualified.path.from.dirname
+		**
+		** PURPOSE
+		** Create qualified.path from ${dir} param - dev/test only.
+		****************************************************************** -->
+	<target name="qualified.path.from.dirname" unless="qualified.path">
+		<fail unless="dir">Error : 'dir' parameter missing.</fail>
+		<path id="dir.path">
+			<dirset dir="${release.dir}${file.separator}local" includes="**/${dir}"/>
+		</path>
+		<pathconvert property="qualified.path" refid="dir.path">
+			<map from="${release.dir}${file.separator}" to=""/>
+		</pathconvert>
+	</target>
+	
+	<!-- **********************************************************
+		** target: standardise.qualified.path
+		**
+		** PURPOSE
+		** Standardise qualified.path param for correct handling by set-file and set-dir
+		****************************************************************** -->
+	<target name="standardise.qualified.path" >
+		<propertyregex property="qualified.temp.1"
+			input="${qualified.path}"
+			regexp="local:///(.*)"
+			replace=""
+			defaultValue="${qualified.path}"/>
+		<propertyregex property="qualified.temp.2"
+			input="${qualified.temp.1}"
+			regexp="\\"
+			replace="/"
+			defaultValue="${qualified.temp.1}"/>
+		<propertyregex property="qualified.temp.3"
+			input="${qualified.temp.2}"
+			regexp="local\\"
+			replace=""
+			defaultValue="${qualified.temp.2}"/>
+		<propertyregex property="qualified.temp.4"
+			input="${qualified.temp.3}"
+			regexp="local/"
+			replace=""
+			defaultValue="${qualified.temp.3}"/>
+		<var name="qualified.path" value="${qualified.temp.4}"/>
+		<!-- inject if *Config.xml file to be uploaded -->
+		<if>
+			<or>
+				<contains string="${qualified.path}" substring="Config.xml"/>
+				<contains string="${qualified.path}" substring="Route.xml"/>
+			</or>
+			<then>
+				<antcall target="inject.service.config" inheritall="true" inheritrefs="true"/>
+			</then>
+		</if>
+	</target>
+	
+	<!-- **********************************************************
+		** target: stage.files
+		**
+		** PURPOSE
+		** Move deliverables to staging directory for config injection
+		****************************************************************** -->
+	<target name="stage.files">
+		<var name="staging.dir" value="${temp.dir}"/>
+		<!--copy files to temporary deploy directory-->
+		<mkdir dir="${staging.dir}"/>
+		<delete includeEmptyDirs="true" quiet="true">
+			<fileset dir="${staging.dir}" includes="**/*" defaultexcludes="no"/>
+		</delete>
+		<copy todir="${staging.dir}" overwrite="true">
+			<fileset dir="${release.dir}" excludes="staging,Certificates/**,*.xcfg"/>
+		</copy>
+		<copy todir="${staging.dir}/cert" overwrite="true" flatten="true">
+			<fileset dir="${release.dir}" includes="Certificates/${environment}/*"/>
+		</copy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: inject.config
+		**
+		** PURPOSE
+		** Inject environment specific configuration file into the object xcfg and configuration fileset
+		****************************************************************** -->
+	<target name="inject.config" depends="inject.object.config, inject.service.config"/>
+	
+	<!-- **********************************************************
+		** target: inject.object.config
+		**
+		** PURPOSE
+		** Inject environment specific configuration file into the object .xcfg files.
+		****************************************************************** -->
+	<target name="inject.object.config" unless="${dp.hostname}.object.config.injected" depends="create.component.list">
+		<!--Inject xconfig files with environment params-->
+		<for list="${component.list}" param="this.component" >
+			<sequential>
+				<var name="component" unset="true"/>
+				<!-- combine env file with component xcfg file, and suffix environment xconfig file with Env name  -->
+				<antcall target="combine.environment.config" inheritall="true" inheritrefs="true">
+					<param  name="component" value="@{this.component}"/>
+				</antcall>
+				<!-- Create runtime  properties file -->
+				<xslt in="${environment.dir}/${environment}/${environment}.xml" 
+					out="${staging.dir}/local/@{this.component}/config/@{this.component}-Properties.xml"
+					style="${environment.dir}/Create_Runtime_Properties.xsl"  force="true">
+					<param name="ENV" expression="${environment}"/>
+					<param name="HOSTNAME" expression="${dp.hostname}"/>
+					<outputproperty name="method" value="xml"/>
+					<outputproperty name="standalone" value="yes"/>
+					<outputproperty name="encoding" value="UTF-8"/>
+					<outputproperty name="indent" value="yes"/>
+				</xslt>
+				<!-- Validate properties file against schematron assertions -->
+				<path id="properties.file.path">
+					<fileset dir="${staging.dir}/local/@{this.component}/config">
+						<include name="*-Properties.xml"/>
+					</fileset>
+				</path>
+				<pathconvert property="properties.file" refid="properties.file.path"/>
+				<for list="${properties.file}" delimiter=";" param="file" >
+					<sequential>
+						<schematron schema="${staging.dir}/local/@{this.component}/config/@{this.component}-PropertiesValidation.sch" 
+							srcfile="@{file}" failonerror="true"/>
+						<delete file="result.xml"/>
+					</sequential>
+				</for>
+			</sequential>
+		</for>
+		<property name="${dp.hostname}.object.config.injected"  value="true"/>
+	</target>
+	
+	<!-- **********************************************************
+		** target: combine.environment.config
+		**
+		** PURPOSE
+		** combine env file with component xcfg file, and suffix environment xconfig file with Env name 
+		****************************************************************** -->
+	<target name="combine.environment.config" depends="environment.config.file.present,combine.environment.config.file,move.rename.config.file"/>
+	<target name="environment.config.file.present">
+		<available file="${staging.dir}/environment/${environment}/${component}.xcfg"  property="environment.config.file.present"/>
+	</target>
+	<target name="combine.environment.config.file" if="environment.config.file.present">
+		<!-- inject xcfg file with Env properties -->
+		<xslt in="${release.dir}/${component}.xcfg" out="${release.dir}/${component}_${environment}.xcfg"
+			style="${environment.dir}/Update_Environment_Properties.xsl" force="true">
+			<param name="ENV" expression="${environment}"/>
+			<param name="DOMAIN" expression="${domain}"/>
+			<param name="HOSTNAME" expression="${dp.hostname}"/>
+			<outputproperty name="method" value="xml"/>
+			<outputproperty name="standalone" value="yes"/>
+			<outputproperty name="encoding" value="UTF-8"/>
+			<outputproperty name="indent" value="yes"/>
+		</xslt>
+		<!--Combine environment xconfig file with gateway xconfig, suffix environment xconfig file with Env name -->
+		<xslt in="${release.dir}/${component}_${environment}.xcfg" out="${staging.dir}/${component}_${environment}.xcfg"
+			style="${environment.dir}/Combine_XConfig.xsl" force="true">
+			<param name="ENV" expression="${environment}"/>
+			<param name="DOMAIN" expression="${domain}"/>
+			<param name="HOSTNAME" expression="${dp.hostname}"/>
+			<param name="COMPONENT" expression="${component}"/>
+			<outputproperty name="method" value="xml"/>
+			<outputproperty name="standalone" value="yes"/>
+			<outputproperty name="encoding" value="UTF-8"/>
+			<outputproperty name="indent" value="yes"/>
+		</xslt>
+	</target>
+	<target name="move.rename.config.file" unless="environment.config.file.present">
+		<!-- no env xcfg, inject Env properties and suffix environment xconfig file with Env name -->
+		<xslt in="${release.dir}/${component}.xcfg" out="${staging.dir}/${component}_${environment}.xcfg"
+			style="${environment.dir}/Update_Environment_Properties.xsl" force="true">
+			<param name="ENV" expression="${environment}"/>
+			<param name="DOMAIN" expression="${domain}"/>
+			<param name="HOSTNAME" expression="${dp.hostname}"/>
+			<outputproperty name="method" value="xml"/>
+			<outputproperty name="standalone" value="yes"/>
+			<outputproperty name="encoding" value="UTF-8"/>
+			<outputproperty name="indent" value="yes"/>
+		</xslt>
+	</target>
+	
+	<!-- **********************************************************
+		** target: inject.service.config
+		**
+		** PURPOSE
+		** Inject environment specific configuration file into the configuration fileset
+		****************************************************************** -->
+	<target name="inject.service.config" unless="${dp.hostname}.service.config.injected" depends="create.config.file.list">
+		<!--Inject services and gateway config files with environment params-->
+		<for list="${config.file.list}" param="this.config.file" >
+			<sequential>
+				<mkdir dir="${staging.dir}/local"/>
+				<xslt in="${release.dir}/local/@{this.config.file}" out="${staging.dir}/local/@{this.config.file}"
+					style="${environment.dir}/Update_Environment_Properties.xsl" force="true">
+					<param name="ENV" expression="${environment}"/>
+					<param name="DOMAIN" expression="${domain}"/>
+					<param name="HOSTNAME" expression="${dp.hostname}"/>
+					<outputproperty name="method" value="xml"/>
+					<outputproperty name="standalone" value="yes"/>
+					<outputproperty name="encoding" value="UTF-8"/>
+					<outputproperty name="indent" value="yes"/>
+				</xslt>
+			</sequential>
+		</for>
+		<property name="${dp.hostname}.service.config.injected"  value="true"/>
+	</target>
+	
+	<!-- **********************************************************
+		** target: deploy.file
+		**
+		** PURPOSE
+		** Deploy a single file to each host, to the local:///${component} path
+		****************************************************************** -->
+	<target name="deploy.file" depends="qualified.path.from.filename, standardise.qualified.path">
+		<for list="${qualified.path}" delimiter=";" param="this.file.path" >
+			<sequential>
+				<echo message="Deploying local:///@{this.file.path}"/>
+				<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+					verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+					<operation name="set-file" srcFile="${staging.dir}/local/@{this.file.path}">
+						<option name="name" value="local:///@{this.file.path}"/>
+					</operation>
+				</dpDeploy>
+			</sequential>
+		</for>
+		<antcall target="deploy.flush.all" inheritall="true" inheritrefs="true"/>
+	</target>
+	
+	<!-- **********************************************************
+		** target: deploy.dir
+		**
+		** PURPOSE
+		** Deploy an entire directory to each host, to the local:///${component} path
+		****************************************************************** -->
+	<target name="deploy.dir" depends="qualified.path.from.dirname, standardise.qualified.path">
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="set-dir" srcDir="${staging.dir}/local/${qualified.path}" 
+				destDir="local:///${qualified.path}" overwrite="true"/>
+			<operation name="FlushStylesheetCache">
+				<option name="XMLManager" value="${sts.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${sts.xmlmanager}"/>
+			</operation>
+			<operation name="FlushStylesheetCache">
+				<option name="XMLManager" value="${services.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${services.xmlmanager}"/>
+			</operation>
+			<operation name="FlushStylesheetCache">
+				<option name="XMLManager" value="${api.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${api.xmlmanager}"/>
+			</operation>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: deploy.schema
+		**
+		** PURPOSE
+		** Deploy all schema files in the 'SOASM' dir to the local:///SOASM path, do NOT deploy objects.
+		****************************************************************** -->
+	<target name="deploy.schema">
+		<echo message="Uploading SOA Service Model to the ${domain} domain on ${dp.hostname}"/>
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="DomainQuiesce">
+				<option name="name" value="${domain}"/>
+				<option name="timeout" value="120"/>
+			</operation>
+			<operation name="set-dir" endPoint="2004" srcDir="${staging.dir}/local/service-schema" destDir="local:///service-schema" overwrite="true"/>
+			<operation name="FlushStylesheetCache">
+				<option name="XMLManager" value="${services.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${services.xmlmanager}"/>
+			</operation>
+			<operation name="DomainUnquiesce">
+				<option name="name" value="${domain}"/>
+			</operation>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: upload.schema
+		**
+		** PURPOSE
+		** Upload all schema files in the 'SOASM' dir to the local:///SOASM path, NO cache flush.
+		****************************************************************** -->
+	<target name="upload.schema">
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="set-dir" endPoint="2004" srcDir="${staging.dir}/local/service-schema" destDir="local:///service-schema" overwrite="true"/>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: deploy.security
+		**
+		** PURPOSE
+		** Upload all security files in the 'secure' dir to the local:///security path and flush cache.
+		****************************************************************** -->
+	<target name="deploy.security">
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="set-dir" srcDir="${security.dir}" destDir="local:///security" replace="false" overwrite="true"/>
+			<operation name="set-dir" srcDir="${staging.dir}/cert" destDir="cert:///" replace="false" overwrite="true"/>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${sts.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${services.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${api.xmlmanager}"/>
+			</operation>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: upload.security
+		**
+		** PURPOSE
+		** Upload all security files in the 'secure' dir to the local:///security path, NO cache flush.
+		****************************************************************** -->
+	<target name="upload.security" unless="secure.environment">
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="set-dir" srcDir="${security.dir}" destDir="local:///security" replace="false" overwrite="true"/>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: deploy.files
+		**
+		** PURPOSE
+		** Deploy all component files in the 'src' dir to the local:///${component} path, do NOT deploy objects.
+		****************************************************************** -->
+	<target name="deploy.files" depends="deploy.common.files, deploy.services.files"/>
+	
+	<!-- **********************************************************
+		** target: deploy.objects
+		**
+		** PURPOSE
+		** Deploy all objects in the ${component}.xcfg file to each dp device, do NOT deploy component files.
+		****************************************************************** -->
+	<target name="deploy.objects" depends="deploy.common.objects, deploy.services.objects, deploy.default.domain.objects"/>
+	
+	<!-- **********************************************************
+		** target: deploy.common
+		**
+		** PURPOSE
+		** Deploy all objects in the common.xcfg file to each dp device, and also
+		** deploy all component files in the 'src' dir to the local:///${component} path
+		** 
+		****************************************************************** -->
+	<target name="deploy.common" depends="deploy.common.objects, deploy.default.domain.objects, deploy.common.files"/>
+	
+	<!-- **********************************************************
+		** target: deploy.common.objects
+		**
+		** PURPOSE
+		** Deploy all objects in the ${component}.xcfg file to each dp device, do NOT deploy component files.
+		****************************************************************** -->
+	<target name="deploy.common.objects" depends="inject.object.config">
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="${rollback.on.error}">
+			<operation name="SaveConfig"/>
+			<operation name="DomainQuiesce">
+				<option name="name" value="${domain}"/>
+				<option name="timeout" value="120"/>
+			</operation>
+			<operation name="StopDomainRequest"/>
+			<operation name="do-import">
+				<option name="input-file" srcFile="${staging.dir}/Common_${environment}.xcfg"/>
+				<option name="overwrite-files" value="true"/>
+				<option name="overwrite-objects" value="true"/>
+				<option name="source-type" value="XML"/>
+			</operation>
+			<operation name="SaveConfig"/>
+			<operation name="StartDomainRequest"/>
+			<operation name="DomainUnquiesce">
+				<option name="name" value="${domain}"/>
+			</operation>
+			<operation name="GetDomainStatusRequest" waitFor="up"/>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: deploy.default.domain.objects
+		**
+		** PURPOSE
+		** Deploy all objects in the Default_Domain.xcfg file to each dp device
+		****************************************************************** -->
+	<target name="deploy.default.domain.objects" depends="determine.default.config.file.present,deploy.default.config.file"/>
+	<target name="determine.default.config.file.present">
+		<available file="${staging.dir}/environment/${environment}/Default_Domain.xcfg"  property="default.config.file.present"/>
+	</target>
+	<target name="deploy.default.config.file" if="default.config.file.present">
+		<dpDeploy firmware="5" domain="default" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="true" rollbackOnError="false">
+			<operation name="do-import">
+				<option name="input-file" srcFile="${staging.dir}/environment/${environment}/Default_Domain.xcfg"/>
+				<option name="overwrite-files" value="true"/>
+				<option name="overwrite-objects" value="true"/>
+				<option name="source-type" value="XML"/>
+			</operation>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: deploy.common.files
+		**
+		** PURPOSE
+		** deploy all common files in the 'src' dir to the local:///common path
+		****************************************************************** -->
+	<target name="deploy.common.files" depends="inject.service.config">
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}"
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="SaveConfig"/>
+			<operation name="DomainQuiesce">
+				<option name="name" value="${domain}"/>
+				<option name="timeout" value="180"/>
+			</operation>
+			<operation name="set-dir" srcDir="${staging.dir}/local/Common" destDir="local:///Common"/>
+			<operation name="DomainUnquiesce">
+				<option name="name" value="${domain}"/>
+			</operation>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: deploy.services
+		**
+		** PURPOSE
+		** Deploy all objects in the ESB_Services.xcfg file to each dp device, and also
+		** deploy all component files in the 'src' dir to the local:///${component} path
+		****************************************************************** -->
+	<target name="deploy.services" depends="deploy.services.objects, deploy.services.files"/>
+
+	<!-- **********************************************************
+		** target: deploy.services.objects
+		**
+		** PURPOSE
+		** Deploy all objects in the ESB_Services.xcfg file to each dp device, do NOT deploy component files.
+		****************************************************************** -->
+	<target name="deploy.services.objects" depends="inject.object.config">
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="${rollback.on.error}">
+			<operation name="SaveConfig"/>
+			<operation name="DomainQuiesce">
+				<option name="name" value="${domain}"/>
+				<option name="timeout" value="120"/>
+			</operation>
+			<operation name="StopDomainRequest"/>
+			<operation name="do-import">
+				<option name="input-file" srcFile="${staging.dir}/ESB_Services_${environment}.xcfg"/>
+				<option name="overwrite-files" value="true"/>
+				<option name="overwrite-objects" value="true"/>
+				<option name="source-type" value="XML"/>
+			</operation>
+			<operation name="SaveConfig"/>
+			<operation name="StartDomainRequest"/>
+			<operation name="DomainUnquiesce">
+				<option name="name" value="${domain}"/>
+			</operation>
+			<operation name="GetDomainStatusRequest" waitFor="up"/>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: deploy.services.files
+		**
+		** PURPOSE
+		** deploy all ESB_Services files in the 'src' dir to the local:///ESB_Services path
+		****************************************************************** -->
+	<target name="deploy.services.files" depends="inject.service.config">
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}"
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="SaveConfig"/>
+			<operation name="DomainQuiesce">
+				<option name="name" value="${domain}"/>
+				<option name="timeout" value="180"/>
+			</operation>
+			<operation name="set-dir" srcDir="${staging.dir}/local/ESB_Services" destDir="local:///ESB_Services" overwrite="true"/>
+			<operation name="FlushStylesheetCache">
+				<option name="XMLManager" value="${services.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${services.xmlmanager}"/>
+			</operation>
+			<operation name="DomainUnquiesce">
+				<option name="name" value="${domain}"/>
+			</operation>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: deploy.esb
+		**
+		** PURPOSE
+		** Deploy all objects in the ${component}.xcfg file to each dp device, and also
+		** deploy all component files in the 'src' dir to the local:///${component} path
+		****************************************************************** -->
+	<target name="deploy.esb" depends="quiesce.domain,upload.esb,unquiesce.domain"/>
+	
+	<!-- **********************************************************
+		** target: deploy.all
+		**
+		** PURPOSE
+		** Deploy all objects in the ${component}.xcfg file to each dp device, and also
+		** deploy all component files in the 'src' dir to the local:///${component} path
+		** includes SOASM
+		** optional: userName="${dp.user.name}" userPassword="${dp.user.pw}"
+		****************************************************************** -->
+	<target name="deploy.all" depends="quiesce.domain,upload.schema,upload.esb, unquiesce.domain"/>
+	
+	<!-- **********************************************************
+		** target: upload.esb
+		**
+		** PURPOSE
+		** Deploy all objects in the ${component}.xcfg file to each dp device, and also
+		** deploy all component files in the 'src' dir to the local:///${component} path
+		****************************************************************** -->
+	<target name="upload.esb" depends="inject.config">
+		<echo message="Uploading DPMSG configuration to the ${domain} domain on ${dp.hostname}"/>
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="false" rollbackOnError="false">
+			<operation name="SaveConfig"/>
+		</dpDeploy>
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="${rollback.on.error}">
+			<operation name="StopDomainRequest"/>
+			<operation name="GetDomainStatusRequest" waitFor="down"/>
+			<operation name="ResetDomain">
+				<option name="Domain" value="${domain}"/>
+			</operation>
+			<operation name="set-dir" srcDir="${security.dir}" destDir="local:///security" replace="false" overwrite="true"/>
+			<operation name="set-dir" srcDir="${staging.dir}/cert" destDir="cert:///" replace="false" overwrite="true"/>
+			<operation name="set-dir" srcDir="${staging.dir}/local/Common" destDir="local:///Common" overwrite="true"/>
+			<operation name="set-dir" srcDir="${staging.dir}/local/Gateway_Router" destDir="local:///Gateway_Router" overwrite="true"/>
+			<operation name="set-dir" srcDir="${staging.dir}/local/SecureTokenService" destDir="local:///SecureTokenService" overwrite="true"/>
+			<operation name="set-dir" srcDir="${staging.dir}/local/ESB_Services" destDir="local:///ESB_Services" overwrite="true"/>
+			<operation name="set-dir" srcDir="${staging.dir}/local/Json_RestAPI" destDir="local:///Json_RestAPI" overwrite="true"/>
+			<operation name="do-import">
+				<option name="input-file" srcFile="${staging.dir}/Common_${environment}.xcfg"/>
+				<option name="overwrite-files" value="true"/>
+				<option name="overwrite-objects" value="true"/>
+				<option name="source-type" value="XML"/>
+			</operation>
+			<operation name="do-import">
+				<option name="input-file" srcFile="${staging.dir}/Gateway_Router_${environment}.xcfg"/>
+				<option name="overwrite-files" value="true"/>
+				<option name="overwrite-objects" value="true"/>
+				<option name="source-type" value="XML"/>
+			</operation>
+			<operation name="do-import">
+				<option name="input-file" srcFile="${staging.dir}/SecureTokenService_${environment}.xcfg"/>
+				<option name="overwrite-files" value="true"/>
+				<option name="overwrite-objects" value="true"/>
+				<option name="source-type" value="XML"/>
+			</operation>
+			<operation name="do-import">
+				<option name="input-file" srcFile="${staging.dir}/ESB_Services_${environment}.xcfg"/>
+				<option name="overwrite-files" value="true"/>
+				<option name="overwrite-objects" value="true"/>
+				<option name="source-type" value="XML"/>
+			</operation>
+			<operation name="do-import">
+				<option name="input-file" srcFile="${staging.dir}/Json_RestAPI_${environment}.xcfg"/>
+				<option name="overwrite-files" value="true"/>
+				<option name="overwrite-objects" value="true"/>
+				<option name="source-type" value="XML"/>
+			</operation>
+		</dpDeploy>
+		<antcall target="deploy.default.domain.objects" inheritall="true" inheritrefs="true"/>
+		<antcall target="antcall.complete" inheritall="false" inheritrefs="false"/>
+		<sleep seconds="2"/>
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="StartDomainRequest"/>
+		</dpDeploy>
+		<sleep seconds="2"/>
+		<echo message="Deployment complete"/>
+	</target>
+	
+	<!-- **********************************************************
+		** target: quiesce.domain
+		**
+		** PURPOSE
+		** Quiesce the domain for safe deployment, restart.
+		****************************************************************** -->
+	<target name="quiesce.domain">
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="DomainQuiesce">
+				<option name="name" value="${domain}"/>
+				<option name="timeout" value="120"/>
+			</operation>
+		</dpDeploy>
+		<sleep seconds="2"/>
+	</target>
+	
+	<!-- **********************************************************
+		** target: unquiesce.domain
+		**
+		** PURPOSE
+		** Unquiesce the domain following deployment, restart
+		****************************************************************** -->
+	<target name="unquiesce.domain">
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="DomainUnquiesce">
+				<option name="name" value="${domain}"/>
+			</operation>
+			<operation name="GetDomainStatusRequest" waitFor="up"/>
+			<operation name="SaveConfig"/>
+		</dpDeploy>
+		<sleep seconds="2"/>
+	</target>
+	
+	<!-- **********************************************************
+		** target: flush.all.caches
+		**
+		** PURPOSE
+		** flush all XML document and schema caches
+		****************************************************************** -->
+	<target name="deploy.flush.all" depends="qualified.path.from.filename, standardise.qualified.path">
+		<echo message="Flushing XML Document and Schema Caches"/>
+		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="FlushStylesheetCache">
+				<option name="XMLManager" value="${sts.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${sts.xmlmanager}"/>
+			</operation>
+			<operation name="FlushStylesheetCache">
+				<option name="XMLManager" value="${services.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${services.xmlmanager}"/>
+			</operation>
+			<operation name="FlushStylesheetCache">
+				<option name="XMLManager" value="${api.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${api.xmlmanager}"/>
+			</operation>
+		</dpDeploy>
+	</target>
+	
+	<!-- **********************************************************
+		** target: antcall.complete
+		**
+		** PURPOSE
+		** log line seperator following antcall.
+		****************************************************************** -->
+	<target name="antcall.complete"/>
+</project>
