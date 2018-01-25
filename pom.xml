@@ -13,7 +13,6 @@
 		<module>framework-gateway-router</module>
 		<module>framework-rest-api</module>
 		<module>framework-soa-esb</module>
-		<module>framework-token-service</module>
 		<module>distribution</module>
 	</modules> 
 	<properties>

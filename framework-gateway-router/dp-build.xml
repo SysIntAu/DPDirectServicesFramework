@@ -23,7 +23,7 @@
 	<property file="build.properties"/>
 	
 	<!-- Default parameters -->
-	<property name="component.list" value="framework-common,framework-token-service,framework-soa-esb,framework-json-rest"/>
+	<property name="component.list" value="framework-common,framework-soa-esb,framework-json-rest"/>
 	<property name="wsp.template.name" value="WebServiceProxy_Template.xcfg"/>
 	<property name="gateway.router.name" value="Gateway_Router"/>
 	<property name="gateway.routefile.name" value="Gateway_Router_V1_ServiceRoute.xml"/>
