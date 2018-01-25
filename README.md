@@ -5,7 +5,9 @@ Development of Web Services involve the core XML skills:
 - WSDL and XSD interface development
 - XML service configuration
 - XSL stylesheet XML transformation
+
 Service development requires No GUI, no DataPower domain knowledge.
+
 
 ![Services1](https://github.com/mqsysadmin/DPDirectServicesFramework/blob/master/distribution/doc/images/services1.png)
 
