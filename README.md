@@ -1,11 +1,19 @@
-## Welcome to GitHub Pages
+# Welcome to the DPDirect Services Framework
 
-You can use the [editor on GitHub](https://github.com/mqsysadmin/DPDirectServicesFramework/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Summary
+The DPDirect Services Framework is an XML driven DataPower Web Services framework.
+DataPower GUI familiartiy or domain knowledge is not essential. Service development is pure XML, requiring only an XML editor to develop:
+- WSDL and XSD interfaces
+- XML service configuration
+- XSL stylesheet XML transformation
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files
+## Overview
+The DPDirect Services Framework provides a robust and consistant service chain, enabling any number of optional processing steps in any order, including AAA, schema validation, XML-to-any transformation, MTOM encoding and decoding, and service calls. The framework supports multiple transport protocols and data formats.
 
-![alt text](https://github.com/mqsysadmin/DPDirectServicesFramework/blob/master/distribution/doc/images/ServicesOverview1.png)
 
+![Services1](https://github.com/mqsysadmin/DPDirectServicesFramework/blob/master/distribution/doc/images/services1.png)
+
+...
 
 ### Markdown
 
