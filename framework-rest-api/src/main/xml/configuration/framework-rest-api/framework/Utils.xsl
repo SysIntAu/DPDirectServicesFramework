@@ -17,10 +17,8 @@
 		A collection of common utility templates
 		
 		History:
-		2016-10-23	v1.0	N.A.		Initial Version.
-		2016-02-14	v1.1	Tim Goodwill		Update RejectToErrorFlow template.
-		2016-01-28	v1.2	Tim Goodwill		Framework-only templates extracted to FrameworkUtils.xsl
-		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-10-23	v1.0	N.A.			Initial Version.
+		2016-03-20	v2.0	Tim Goodwill	Init Gateway instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Constants.xsl"/>
