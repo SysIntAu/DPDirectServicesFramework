@@ -25,31 +25,7 @@
 	<!-- Service002 -->
 	<xs:element name="Service002Request" type="test:requestType"/>
 	<xs:element name="Service002Response" type="test:responseType"/>
-	<!-- Service003 -->
-	<xs:element name="Service003Request" type="test:requestType"/>
-	<xs:element name="Service003Response" type="test:responseType"/>
-	<!-- Service004 -->
-	<xs:element name="Service004Request" type="test:requestType"/>
-	<xs:element name="Service004Response" type="test:responseType"/>
-	<!-- Service005 -->
-	<xs:element name="Service005Request" type="test:requestType"/>
-	<xs:element name="Service005Response" type="test:responseType"/>
-	<!-- Service006 -->
-	<xs:element name="Service006Request" type="test:requestType"/>
-	<xs:element name="Service006Response" type="test:responseType"/>
-	<!-- Service007 -->
-	<xs:element name="Service007Request" type="test:requestType"/>
-	<xs:element name="Service007Response" type="test:responseType"/>
-	<!-- Service008 -->
-	<xs:element name="Service008Request" type="test:requestType"/>
-	<xs:element name="Service008Response" type="test:responseType"/>
-	<!-- Service009 -->
-	<xs:element name="Service009Request" type="test:requestType"/>
-	<xs:element name="Service009Response" type="test:responseType"/>
-	<!-- Service010 -->
-	<xs:element name="Service010Request" type="test:requestType"/>
-	<xs:element name="Service010Response" type="test:responseType"/>
-	<!--
+	<!-- 
 	=================================================================
 		Global Complex Types
 	=================================================================
