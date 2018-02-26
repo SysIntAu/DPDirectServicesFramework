@@ -4,16 +4,14 @@
 	xmlns:xop="http://www.w3.org/2004/08/xop/include"
 	xmlns:dpconfig="http://www.datapower.com/param/config"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
-	xmlns:ecore="http://www.dpdirect.org/Namespace/Enterprise/Core/V1.0"
-	xmlns:eim="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
-	xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
-	xmlns:eam="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
+	xmlns:ack="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
 	xmlns:wsa="http://www.w3.org/2005/08/addressing"
 	xmlns:date="http://exslt.org/dates-and-times"
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	xmlns:dp="http://www.datapower.com/extensions" 
 	extension-element-prefixes="dp date regexp" version="1.0" 
-	exclude-result-prefixes="dp date regexp xop dpconfig wsse scm wsse ecore eim eam">
+	exclude-result-prefixes="dp date regexp xop dpconfig wsse scm wsse ack">
 	<!--========================================================================
 		Purpose:
 		A collection of common utility templates
@@ -22,7 +20,7 @@
 		2016-10-23	v1.0	N.A.		Initial Version.
 		2016-02-14	v1.1	Tim Goodwill		Update RejectToErrorFlow template.
 		2016-01-28	v1.2	Tim Goodwill		Framework-only templates extracted to FrameworkUtils.xsl
-		2016-03-20	v2.0	Tim Goodwill		Init MSG instance
+		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Constants.xsl"/>
@@ -362,35 +360,27 @@
 		<xsl:param name="INFORMATION_CODE" select="'FRWK00027'"/>
 		<xsl:param name="DESCRIPTION_TEXT" select="'Request operation completed successfully'"/>
 		<xsl:param name="ACKNOWLEDGEMENT" select="'SUCCESS'"/>
-		<eam:AcknowledgementMessage
-			xmlns:ecore="http://www.dpdirect.org/Namespace/Enterprise/Core/V1.0"
-			xmlns:eim="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
-			xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
-			xmlns:eam="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0">
-			<eim:Information>
-				<eim:Information>
-					<xsl:if test="$ENDPOINT_URL != ''">
-						<!-- Strip out known patterns of local IP addresses from URL -->
-						<xsl:variable name="SAFE_URL" select="regexp:replace($ENDPOINT_URL, '(https*://)\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\:*\d{0,4}\b', 'g', '$1(IP-removed)')"/>
-						<errcore:SubDescription>
-							<xsl:value-of select="concat('Endpoint URL ',$SAFE_URL)"/>
-						</errcore:SubDescription>
-					</xsl:if>
-					<errcore:Description>
-						<xsl:value-of select="$DESCRIPTION_TEXT"/>
-					</errcore:Description>
-					<errcore:Code>
-						<xsl:value-of select="$INFORMATION_CODE"/>
-					</errcore:Code>
-					<errcore:MessageOrigin>
-						<xsl:value-of select="$OPERATION_CONFIG_NODE_ID"/>
-					</errcore:MessageOrigin>
-					<errcore:SubCode>
-						<xsl:text>MSG</xsl:text>
-					</errcore:SubCode>
-				</eim:Information>
-			</eim:Information>
-			<ecore:Acknowledgement><xsl:value-of select="$ACKNOWLEDGEMENT"/></ecore:Acknowledgement>
-		</eam:AcknowledgementMessage>
+		<ack:AcknowledgementMessage>
+			<ack:Acknowledgement><xsl:value-of select="$ACKNOWLEDGEMENT"/></ack:Acknowledgement>
+			<xsl:if test="$ENDPOINT_URL != ''">
+				<!-- Strip out known patterns of local IP addresses from URL -->
+				<xsl:variable name="SAFE_URL" select="regexp:replace($ENDPOINT_URL, '(https*://)\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\:*\d{0,4}\b', 'g', '$1(IP-removed)')"/>
+				<ack:SubDescription>
+					<xsl:value-of select="concat('Endpoint URL ',$SAFE_URL)"/>
+				</ack:SubDescription>
+			</xsl:if>
+			<ack:Description>
+				<xsl:value-of select="$DESCRIPTION_TEXT"/>
+			</ack:Description>
+			<ack:Code>
+				<xsl:value-of select="$INFORMATION_CODE"/>
+			</ack:Code>
+			<ack:MessageOrigin>
+				<xsl:value-of select="$OPERATION_CONFIG_NODE_ID"/>
+			</ack:MessageOrigin>
+			<ack:SubCode>
+				<xsl:text>MSG</xsl:text>
+			</ack:SubCode>
+		</ack:AcknowledgementMessage>
 	</xsl:template>
 </xsl:stylesheet>

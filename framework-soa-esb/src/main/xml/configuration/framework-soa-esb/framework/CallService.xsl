@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
 	xmlns:logcore="http://www.dpdirect.org/Namespace/EnterpriseLogging/Core/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions" extension-element-prefixes="dp" version="1.0"
@@ -254,20 +254,20 @@
 				<xsl:choose>
 					<!-- SOAP fault -->
 					<xsl:when test="($FAIL_ON_ERROR = 'true') 
-						and $RESPONSE/url-open/response//soapenv:Fault//errcore:Code">
+						and $RESPONSE/url-open/response//soapenv:Fault//err:Code">
 						<!-- Read error information -->
-						<xsl:variable name="ERROR_CODE" select="$RESPONSE/url-open/response//errcore:Code[1]"/>
+						<xsl:variable name="ERROR_CODE" select="$RESPONSE/url-open/response//err:Code[1]"/>
 						<xsl:variable name="ORIGINATOR_NAME">
 							<xsl:choose>
-								<xsl:when test="$RESPONSE/url-open/response//errcore:SubCode">
-									<xsl:value-of select="$RESPONSE/url-open/response//errcore:SubCode[1]"/>
+								<xsl:when test="$RESPONSE/url-open/response//err:SubCode">
+									<xsl:value-of select="$RESPONSE/url-open/response//err:SubCode[1]"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="$PROVIDER_NAME"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:variable>
-						<xsl:variable name="ADD_DETAILS" select="$RESPONSE/url-open/response//errcore:SubDescription[1]"/>
+						<xsl:variable name="ADD_DETAILS" select="$RESPONSE/url-open/response//err:SubDescription[1]"/>
 						<!-- Reject to error flow -->
 						<xsl:call-template name="RejectToErrorFlow">
 							<xsl:with-param name="ERROR_CODE" select="$ERROR_CODE"/>
@@ -282,8 +282,8 @@
 						<!-- Read error information -->
 						<xsl:variable name="ERROR_CODE">
 							<xsl:choose>
-								<xsl:when test="$RESPONSE/url-open/response//errcore:Code">
-									<xsl:value-of select="$RESPONSE/url-open/response//errcore:Code[1]"/>
+								<xsl:when test="$RESPONSE/url-open/response//err:Code">
+									<xsl:value-of select="$RESPONSE/url-open/response//err:Code[1]"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="'ENTR00004'"/>
@@ -292,8 +292,8 @@
 						</xsl:variable>
 						<xsl:variable name="ORIGINATOR_NAME">
 							<xsl:choose>
-								<xsl:when test="$RESPONSE/url-open/response//errcore:SubCode">
-									<xsl:value-of select="$RESPONSE/url-open/response//errcore:SubCode[1]"/>
+								<xsl:when test="$RESPONSE/url-open/response//err:SubCode">
+									<xsl:value-of select="$RESPONSE/url-open/response//err:SubCode[1]"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="$PROVIDER_NAME"/>
@@ -302,8 +302,8 @@
 						</xsl:variable>
 						<xsl:variable name="ADD_DETAILS">
 							<xsl:choose>
-								<xsl:when test="$RESPONSE/url-open/response//errcore:SubDescription">
-									<xsl:value-of select="$RESPONSE/url-open/response//errcore:SubDescription[1]"/>
+								<xsl:when test="$RESPONSE/url-open/response//err:SubDescription">
+									<xsl:value-of select="$RESPONSE/url-open/response//err:SubDescription[1]"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="normalize-space(concat('A response was not received from '
@@ -324,9 +324,9 @@
 							<xsl:with-param name="MSG">
 								<xsl:choose>
 									<xsl:when
-										test="$RESPONSE/url-open/response//errcore:Description">
+										test="$RESPONSE/url-open/response//err:Description">
 										<xsl:value-of
-											select="$RESPONSE/url-open/response//errcore:Description[1]"
+											select="$RESPONSE/url-open/response//err:Description[1]"
 										/>
 									</xsl:when>
 									<xsl:otherwise>
@@ -343,16 +343,16 @@
 								</xsl:choose>
 							</xsl:with-param>
 							<xsl:with-param name="ORIGINATOR_NAME"
-								select="$RESPONSE/url-open/response//errcore:SubCode[1]"/>
+								select="$RESPONSE/url-open/response//err:SubCode[1]"/>
 							<xsl:with-param name="ORIGINATOR_LOC"
-								select="$RESPONSE/url-open/response//errcore:MessageOrigin[1]"/>
+								select="$RESPONSE/url-open/response//err:MessageOrigin[1]"/>
 							<xsl:with-param name="ADD_DETAILS"
-								select="$RESPONSE/url-open/response//errcore:SubDescription[1]"/>
+								select="$RESPONSE/url-open/response//err:SubDescription[1]"/>
 							<xsl:with-param name="ERROR_CODE">
 								<xsl:choose>
-									<xsl:when test="$RESPONSE/url-open/response//errcore:Code">
+									<xsl:when test="$RESPONSE/url-open/response//err:Code">
 										<xsl:value-of
-											select="$RESPONSE/url-open/response//errcore:Code[1]"/>
+											select="$RESPONSE/url-open/response//err:Code[1]"/>
 									</xsl:when>
 									<xsl:otherwise>
 										<xsl:value-of select="'ENTR00004'"/>

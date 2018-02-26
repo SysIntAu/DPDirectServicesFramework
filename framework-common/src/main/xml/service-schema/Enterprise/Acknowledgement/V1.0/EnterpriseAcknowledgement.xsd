@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:eam="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
-	xmlns:eim="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
-	xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
-	xmlns:ewm="http://www.dpdirect.org/Namespace/Enterprise/WarningMessages/V1.0"
+	xmlns:ack="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/WarningMessages/V1.0"
 	targetNamespace="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
 	elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.1">
 	<xs:import namespace="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
@@ -28,9 +28,9 @@
 	Note:
 	
 	To prevent from importing EntepriseCore.xsd in order to re-use
-	ecore:Acknowledgement, eam:Acknowledgment and its type
-	"eam:acknowledgementType" are local to this schema! Also avoided extending
-	ecore:serviceResponseType to reuse eim:Information and ewm:Warnings,
+	ecore:Acknowledgement, ack:Acknowledgment and its type
+	"ack:acknowledgementType" are local to this schema! Also avoided extending
+	ecore:serviceResponseType to reuse err:Information and err:Warnings,
 	so structures are referenced here
 	=========================================================================
 	-->
@@ -43,7 +43,7 @@
 	2016-02-08  	v0.2	Enrico Raymundo     	1. Changed root element from:
 							   "Acknowledgement" to "AcknowledgementMessage"
 							2. Changed "AcknowledgementText" to "Acknowledgement"
-							3. Changed "eack:" NS prefix from "eam:"
+							3. Changed "eack:" NS prefix from "ack:"
 							4. Changed targetNamespace from:
 							    "......./Enterprise/Acknowledgement/V1.0"
 							    to:
@@ -55,8 +55,8 @@
 		Global Elements
 		=================================================================
 	-->
-	<xs:element name="AcknowledgementMessage" type="eam:acknowledgementMessageType"/>
-	<xs:element name="Acknowledgement" type="eam:acknowledgementType"/>
+	<xs:element name="AcknowledgementMessage" type="ack:acknowledgementMessageType"/>
+	<xs:element name="Acknowledgement" type="ack:acknowledgementType"/>
 
 	<!--
 		=================================================================
@@ -65,9 +65,9 @@
 	-->
 	<xs:complexType name="acknowledgementMessageType">
 		<xs:sequence>
-			<xs:element ref="eim:Information" minOccurs="0"/>
-			<xs:element ref="ewm:Warnings" minOccurs="0"/>
-			<xs:element ref="eam:Acknowledgement"/>
+			<xs:element ref="err:Information" minOccurs="0"/>
+			<xs:element ref="err:Warnings" minOccurs="0"/>
+			<xs:element ref="ack:Acknowledgement"/>
 		</xs:sequence>
 	</xs:complexType>
 

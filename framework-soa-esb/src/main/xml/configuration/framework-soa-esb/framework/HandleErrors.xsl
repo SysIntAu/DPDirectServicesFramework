@@ -6,22 +6,22 @@
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
 	xmlns:ctx="http://www.dpdirect.org/Namespace/ApplicationContext/Core/V1.0"
-	xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 	xmlns:date="http://exslt.org/dates-and-times" extension-element-prefixes="dp date regexp" version="1.0"
 	exclude-result-prefixes="dp date regexp scm ctx errcore  wsse wsa xop wsnt">
 	<!--========================================================================
 		Purpose:
-		Error Handler Stylesheet for the MSG Gateway component
+		Error Handler Stylesheet for the Gateway  Gateway component
 		
 		History:
 		2016-11-07	v0.1	N.A.		Initial Version. 
-		2016-03-20	v2.0	Tim Goodwill		Init MSG instance
+		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="CodeMapping.xsl"/>
 	<xsl:include href="EventCodeUtils.xsl"/>
 	<!--============== Output Configuration =========================-->
-	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0" cdata-section-elements="errcore:Description"/>
+	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0" cdata-section-elements="err:Description"/>
 	<!--============== Global Variable Declarations =================-->
 	<!-- The literal value for a replacement token that may occur in the 'MessageDescription' element of a code mapping entry. -->
 	<xsl:variable name="UC" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
@@ -315,9 +315,9 @@
 			<xsl:apply-templates select="@*|node()"/>
 		</xsl:copy>
 	</xsl:template>
-	<!-- Template to map the provided 'errcore:SubCode' element -->
-	<xsl:template match="errcore:SubCode" mode="mapError">
-		<errcore:SubCode>
+	<!-- Template to map the provided 'err:SubCode' element -->
+	<xsl:template match="err:SubCode" mode="mapError">
+		<err:SubCode>
 			<xsl:choose>
 				<xsl:when test="normalize-space($ERROR_ORIG_NAME) != ''">
 					<xsl:value-of select="$ERROR_ORIG_NAME"/>
@@ -326,11 +326,11 @@
 					<xsl:value-of select="$THIS_PROVIDER_NAME"/>
 				</xsl:otherwise>
 			</xsl:choose>
-		</errcore:SubCode>
+		</err:SubCode>
 	</xsl:template>
-	<!-- Template to map the provided 'errcore:MessageOrigin' element -->
-	<xsl:template match="errcore:MessageOrigin" mode="mapError">
-		<errcore:MessageOrigin>
+	<!-- Template to map the provided 'err:MessageOrigin' element -->
+	<xsl:template match="err:MessageOrigin" mode="mapError">
+		<err:MessageOrigin>
 			<xsl:choose>
 				<xsl:when test="normalize-space($ERROR_ORIG_LOC) != ''">
 					<xsl:value-of select="$ERROR_ORIG_LOC"/>
@@ -339,37 +339,37 @@
 					<xsl:value-of select="'ESB_Services'"/>
 				</xsl:otherwise>
 			</xsl:choose>
-		</errcore:MessageOrigin>
+		</err:MessageOrigin>
 	</xsl:template>
-	<!-- Template to map the provided 'errcore:Code' element -->
-	<xsl:template match="errcore:Code" mode="mapError">
-		<errcore:Code>
+	<!-- Template to map the provided 'err:Code' element -->
+	<xsl:template match="err:Code" mode="mapError">
+		<err:Code>
 			<xsl:value-of select="$ENTERPRISE_ERROR_CODE"/>
-		</errcore:Code>
+		</err:Code>
 	</xsl:template>
-	<!-- Template to map the provided 'errcore:Description' element -->
-	<xsl:template match="errcore:Description" mode="mapError">
-		<errcore:Description>
+	<!-- Template to map the provided 'err:Description' element -->
+	<xsl:template match="err:Description" mode="mapError">
+		<err:Description>
 			<xsl:value-of select="$DETAILED_DESCRIPTION_TEXT"/>
-		</errcore:Description>
+		</err:Description>
 	</xsl:template>
-	<!-- Template to map the provided 'errcore:SubCode' element -->
-	<xsl:template match="errcore:SubCode" mode="mapError">
+	<!-- Template to map the provided 'err:SubCode' element -->
+	<xsl:template match="err:SubCode" mode="mapError">
 		<xsl:if test="$CODE_MAP_ENTRY/Row/Subtype = 'Logic' or $CODE_MAP_ENTRY/Row/Subtype =    'Validation'">
-			<errcore:SubCode>
+			<err:SubCode>
 				<xsl:value-of select="."/>
-			</errcore:SubCode>
+			</err:SubCode>
 		</xsl:if>
 	</xsl:template>
-	<!-- Template to map the provided 'errcore:SubDescription' element -->
-	<xsl:template match="errcore:SubDescription" mode="mapError">
+	<!-- Template to map the provided 'err:SubDescription' element -->
+	<xsl:template match="err:SubDescription" mode="mapError">
 		<xsl:if test="normalize-space($DETAILED_ADDITIONAL_TEXT) != ''">
-			<errcore:SubDescription>
+			<err:SubDescription>
 				<xsl:value-of select="$DETAILED_ADDITIONAL_TEXT"/>
-			</errcore:SubDescription>
+			</err:SubDescription>
 		</xsl:if>
 	</xsl:template>
-	<!-- Templates to strip MSG Internal Headers-->
+	<!-- Templates to strip Gateway  Internal Headers-->
 	<xsl:template match="node()|@*" mode="stripInternalHeaders">
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()" mode="stripInternalHeaders"/>
@@ -412,9 +412,9 @@
 					<soapenv:Detail>
 						<xsl:choose>
 							<xsl:when test="$CODE_MAP_ENTRY/Row">
-								<errcore:EnterpriseErrors>
+								<err:EnterpriseErrors>
 									<xsl:call-template name="CreateEnterpriseError"/>
-								</errcore:EnterpriseErrors>
+								</err:EnterpriseErrors>
 							</xsl:when>
 							<xsl:otherwise>
 								<!-- This is the result of an error code mapping configuration error.
@@ -437,9 +437,9 @@
 					<detail>
 						<xsl:choose>
 							<xsl:when test="$CODE_MAP_ENTRY/Row">
-								<errcore:EnterpriseErrors>
+								<err:EnterpriseErrors>
 									<xsl:call-template name="CreateEnterpriseError"/>
-								</errcore:EnterpriseErrors>
+								</err:EnterpriseErrors>
 							</xsl:when>
 							<xsl:otherwise>
 								<!-- This is the result of an error code mapping configuration error.
@@ -459,40 +459,40 @@
 	<!-- Named template to create a new enterprise error from a code map entry -->
 	<xsl:template name="CreateEnterpriseError">
 		<xsl:variable name="ERROR_TEMPLATE">
-			<errcore:SubCode/>
-			<errcore:MessageOrigin/>
-			<errcore:Code/>
-			<errcore:Description/>
-			<errcore:SubDescription/>
+			<err:SubCode/>
+			<err:MessageOrigin/>
+			<err:Code/>
+			<err:Description/>
+			<err:SubDescription/>
 		</xsl:variable>
 		<xsl:choose>
 			<xsl:when test="$CODE_MAP_ENTRY/Row/Subtype = 'Logic'">
-				<errcore:BusinessErrors>
-					<errcore:BusinessError>
+				<err:BusinessErrors>
+					<err:BusinessError>
 						<xsl:apply-templates select="$ERROR_TEMPLATE" mode="mapError"/>
-					</errcore:BusinessError>
-				</errcore:BusinessErrors>
+					</err:BusinessError>
+				</err:BusinessErrors>
 			</xsl:when>
 			<xsl:when test="$CODE_MAP_ENTRY/Row/Subtype = 'Validation'">
-				<errcore:ValidationErrors>
-					<errcore:ValidationError>
+				<err:ValidationErrors>
+					<err:ValidationError>
 						<xsl:apply-templates select="$ERROR_TEMPLATE" mode="mapError"/>
-					</errcore:ValidationError>
-				</errcore:ValidationErrors>
+					</err:ValidationError>
+				</err:ValidationErrors>
 			</xsl:when>
 			<xsl:when test="$CODE_MAP_ENTRY/Row/Subtype = 'Security'">
-				<errcore:SecurityErrors>
-					<errcore:SecurityError>
+				<err:SecurityErrors>
+					<err:SecurityError>
 						<xsl:apply-templates select="$ERROR_TEMPLATE" mode="mapError"/>
-					</errcore:SecurityError>
-				</errcore:SecurityErrors>
+					</err:SecurityError>
+				</err:SecurityErrors>
 			</xsl:when>
 			<xsl:otherwise>
-				<errcore:SystemErrors>
-					<errcore:SystemError>
+				<err:SystemErrors>
+					<err:SystemError>
 						<xsl:apply-templates select="$ERROR_TEMPLATE" mode="mapError"/>
-					</errcore:SystemError>
-				</errcore:SystemErrors>
+					</err:SystemError>
+				</err:SystemErrors>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>

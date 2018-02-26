@@ -5,7 +5,7 @@
 	xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
-	xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" extension-element-prefixes="dp regexp"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" extension-element-prefixes="dp regexp"
 	version="1.0" exclude-result-prefixes="dp regexp errcore scm wsa saml wsse">
 	<!--========================================================================
 		Purpose:
@@ -17,7 +17,7 @@
 		2016-03-06	v1.0	N.A.		Initial Version.
 		2016-07-17	v1.0	Tim Goodwill		Add notification support.
 		2016-09-11	v1.0	Tim Goodwill		HTTP/S timeout msg and response code addl dtl.
-		2016-03-20	v2.0	Tim Goodwill		Init MSG instance
+		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>

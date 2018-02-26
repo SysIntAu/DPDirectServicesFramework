@@ -2,10 +2,10 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
 	xmlns:wsa="http://www.w3.org/2005/08/addressing"
-	xmlns:ecore="http://www.dpdirect.org/Namespace/Enterprise/Core/V1.0"
-	xmlns:eim="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
-	xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
-	xmlns:eam="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/Core/V1.0"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
+	xmlns:ack="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions" extension-element-prefixes="dp" version="1.0"
 	exclude-result-prefixes="dp ecore eim eam">
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -35,7 +35,7 @@
 	<!-- Fault handling -->
 	<xsl:variable name="SOAP_FAULT" select="/soapenv:Envelope/soapenv:Body/soapenv:Fault"/>
 	<xsl:variable name="ASYNC_SOAP_FAULT_HANDLED" 
-		select="boolean($SOAP_FAULT//errcore:EnterpriseErrors
+		select="boolean($SOAP_FAULT//err:EnterpriseErrors
 		and (($REQ_WSA_FAULT_TO != '') or ($REQ_WSA_REPLY_TO != ''))
 		and ($RES_WSA_TO = ''))"/>
 	<xsl:variable name="ASYNC_SOAP_FAULT_NOT_HANDLED" 
@@ -56,11 +56,11 @@
 				<xsl:variable name="PROVIDER_NAME" select="dp:variable($PROVIDER_VAR_NAME)"/>
 				<xsl:choose>
 					<!-- Preserve some Enterprise Error details -->
-					<xsl:when test="$SOAP_FAULT//errcore:EnterpriseErrors">
+					<xsl:when test="$SOAP_FAULT//err:EnterpriseErrors">
 						<xsl:variable name="ERROR_CODE">
 							<xsl:choose>
-								<xsl:when test="$SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:Code">
-									<xsl:value-of select="$SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:Code[1]"/>
+								<xsl:when test="$SOAP_FAULT//err:EnterpriseErrors[1]/*[1]/*[1]/err:Code">
+									<xsl:value-of select="$SOAP_FAULT//err:EnterpriseErrors[1]/*[1]/*[1]/err:Code[1]"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<!-- 'FRWK00026' is a general code to indicate SOAP Fault received from sub-service call or back end system -->
@@ -71,18 +71,18 @@
 						<!-- Reject to error flow -->
 						<xsl:call-template name="RejectToErrorFlow">
 							<xsl:with-param name="ERROR_CODE" 
-								select="normalize-space(//errcore:Code)"/>
+								select="normalize-space(//err:Code)"/>
 							<xsl:with-param name="MSG" 
-								select="normalize-space($SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:Description[1])"/>
+								select="normalize-space($SOAP_FAULT//err:EnterpriseErrors[1]/*[1]/*[1]/err:Description[1])"/>
 							<xsl:with-param name="PROVIDER_NAME"
 								select="$PROVIDER_NAME"/>
 							<xsl:with-param name="ORIGINATOR_NAME"
-								select="normalize-space($SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:SubCode[1])"/>
+								select="normalize-space($SOAP_FAULT//err:EnterpriseErrors[1]/*[1]/*[1]/err:SubCode[1])"/>
 							<xsl:with-param name="ORIGINATOR_LOC"
-								select="normalize-space($SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:MessageOrigin[1])"/>
+								select="normalize-space($SOAP_FAULT//err:EnterpriseErrors[1]/*[1]/*[1]/err:MessageOrigin[1])"/>
 							<xsl:with-param name="ADD_DETAILS"
-								select="concat($SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:Description[1],';&#x020;',
-								$SOAP_FAULT//errcore:EnterpriseErrors[1]/*[1]/*[1]/errcore:SubDescription[1])"/>
+								select="concat($SOAP_FAULT//err:EnterpriseErrors[1]/*[1]/*[1]/err:Description[1],';&#x020;',
+								$SOAP_FAULT//err:EnterpriseErrors[1]/*[1]/*[1]/err:SubDescription[1])"/>
 							<xsl:with-param name="ERROR_OVERRIDE" select="'true'"/>
 						</xsl:call-template>
 					</xsl:when>
