@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" elementFormDefault="qualified" version="1.0" xml:lang="en">
+<xs:schema xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" elementFormDefault="qualified" version="1.0" xml:lang="en">
   <xs:include schemaLocation="ErrorCore.xsd"/>
   <xs:complexType name="securityErrorType">
     <xs:sequence>
-      <xs:element ref="errcore:Code"/>
-      <xs:element ref="errcore:Description"/>
-      <xs:element ref="errcore:SubCode" minOccurs="0"/>
-      <xs:element ref="errcore:SubDescription" minOccurs="0"/>
-      <xs:element ref="errcore:Location" minOccurs="0"/>
-      <xs:element ref="errcore:MessageOrigin"/>
+      <xs:element ref="err:Code"/>
+      <xs:element ref="err:Description"/>
+      <xs:element ref="err:SubCode" minOccurs="0"/>
+      <xs:element ref="err:SubDescription" minOccurs="0"/>
+      <xs:element ref="err:Location" minOccurs="0"/>
+      <xs:element ref="err:MessageOrigin"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="SecurityErrors" type="errcore:securityErrorsType"/>
+  <xs:element name="SecurityErrors" type="err:securityErrorsType"/>
   <xs:complexType name="securityErrorsType">
     <xs:sequence>
-      <xs:element ref="errcore:SecurityError" maxOccurs="unbounded"/>
+      <xs:element ref="err:SecurityError" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="SecurityError" type="errcore:securityErrorType"/>
+  <xs:element name="SecurityError" type="err:securityErrorType"/>
 </xs:schema>

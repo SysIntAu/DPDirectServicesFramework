@@ -58,7 +58,7 @@
 	<property name="type" value="all"/>
 	<property name="deployment.type" value="${type}"/>
 	<property name="source.type" value="XML"/>
-	<!-- MSG Domain -->
+	<!-- Gateway  Domain -->
 	<condition property="domain" value="MSGD01">
 		<equals arg1="${dp.environment}" arg2="E1" />
 	</condition>
@@ -141,7 +141,7 @@
 		** corresponding to targets 'deploy.file', 'deploy.dir', 'deploy.objects', 'deploy.files' and 'deploy.all' respectively.
 		****************************************************************** -->
 	<target name="deploy" 
-		description="Deploys MSG built artifacts to multiple hosts.
+		description="Deploys Gateway  built artifacts to multiple hosts.
 		** PARAMETERS: 
 		dp.hostname OR dp.hostname.list == Device/s to deploy to. 'dp.hostname.list' should be comma delimited, no spaces.
 		environment == DPDIRECT environment name eg 'E1', will look for env properties file eg 'E1.xml' in the deploy dir. 

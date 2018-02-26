@@ -6,7 +6,7 @@
 			<dc:creator>N.A.</dc:creator>
 			<dc:date>2016-10-19</dc:date>
 			<dc:title>DPDIRECT Datapower Service Configuration Schema</dc:title>
-			<dc:subject>XML Schema configuration model for the DataPower MSG Web Services component</dc:subject>
+			<dc:subject>XML Schema configuration model for the DataPower Gateway  Web Services component</dc:subject>
 			<dc:contributor>N.A.</dc:contributor>
 			<dc:publisher>DPDIRECT</dc:publisher>
 		</xs:appinfo>

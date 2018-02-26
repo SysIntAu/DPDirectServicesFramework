@@ -7,7 +7,7 @@
 				
 		History:
 		2016-03-06	v1.0	N.A.		Initial Version.
-		2016-03-20	v2.0	Tim Goodwill		Init MSG instance
+		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Global Variable Declarations =================-->
 	<!--

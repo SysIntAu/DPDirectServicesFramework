@@ -12,7 +12,7 @@
 		2016-08-06	v1.0	Tim Goodwill		MQ Async put (Notification).
 		2016-09-09	v1.0	Tim Goodwill		Added consumer provided timeout value (msg expiry).
 		2016-02-05  v1.1    Vikram Geevanathan	Added Support for SFTP Backends
-		2016-03-20	v2.0	Tim Goodwill		Init MSG instance
+		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>
@@ -265,7 +265,7 @@
 		<!-- Supports HTTP, SFTP and 'MQ', 'WMQ' and 'JMS' queue URIs 
 		MQ V8 URIs: http://www-01.ibm.com/support/knowledgecenter/SSFKSJ_8.0.0/com.ibm.mq.dev.doc/q029930_.htm 
 		DP V5 URIs: http://www-01.ibm.com/support/knowledgecenter/SS9H2Y_5.0.0/com.ibm.dp.xa.doc/extensionfunctions39.htm%23urlopenmq 
-		NOTE: the '/servername:port' component of an MQ uri is IGNORED. The MSG will only route to QMgrs known to the SOA QMgr. -->
+		NOTE: the '/servername:port' component of an MQ uri is IGNORED. The Gateway  will only route to QMgrs known to the SOA QMgr. -->
 		<xsl:copy>
 			<xsl:variable name="WSA_TO" select="dp:variable($REQ_WSA_TO_VAR_NAME)"/>
 			<xsl:variable name="WSA_TO_UC" select="translate(normalize-space($WSA_TO), $LC, $UC)"/>

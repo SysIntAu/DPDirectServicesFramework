@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:eim="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
-	xmlns:errcore="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
+<xs:schema xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
+	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
 	elementFormDefault="qualified" attributeFormDefault="qualified" version="1.0" xml:lang="en">
@@ -9,19 +9,19 @@
 	<xs:element name="Informations">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="eim:Information" maxOccurs="unbounded"/>
+				<xs:element ref="err:Information" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Information" type="eim:informationType"/>
+	<xs:element name="Information" type="err:informationType"/>
 	<xs:complexType name="informationType">
 		<xs:sequence>
-			<xs:element ref="errcore:SubDescription" minOccurs="0"/>
-			<xs:element ref="errcore:SubCode" minOccurs="0"/>
-			<xs:element ref="errcore:Description"/>
-			<xs:element ref="errcore:Code"/>
-			<xs:element ref="errcore:MessageOrigin"/>
-			<xs:element ref="errcore:Location" minOccurs="0"/>
+			<xs:element ref="err:SubDescription" minOccurs="0"/>
+			<xs:element ref="err:SubCode" minOccurs="0"/>
+			<xs:element ref="err:Description"/>
+			<xs:element ref="err:Code"/>
+			<xs:element ref="err:MessageOrigin"/>
+			<xs:element ref="err:Location" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

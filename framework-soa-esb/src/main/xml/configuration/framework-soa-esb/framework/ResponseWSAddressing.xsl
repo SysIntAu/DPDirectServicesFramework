@@ -6,7 +6,7 @@
 	extension-element-prefixes="dp" version="1.0" exclude-result-prefixes="dp wsa wsse">
 	<!--========================================================================
 		Purpose:
-		Ensure response addressing adheres to general MSG response policy as defined i nthe service WSDL.
+		Ensure response addressing adheres to general Gateway  response policy as defined i nthe service WSDL.
 				
 		History:
 		2016-08-30	v1.0	Tim Goodwill		Initial Version.
