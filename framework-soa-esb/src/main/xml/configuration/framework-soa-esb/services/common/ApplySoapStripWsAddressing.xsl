@@ -20,16 +20,6 @@
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dp="http://www.datapower.com/extensions"
 	extension-element-prefixes="dp" version="1.0" exclude-result-prefixes="dp soapenv scm wsse ctx">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-12-12</dc:date>
-			<dc:title>Template to apply SOAP, stripped of internal headers and ws addressing elements</dc:title>
-			<dc:subject>Template to apply SOAP, stripped of internal headers and ws addressing elements</dc:subject>
-			<dc:contributor>Tim Goodwill</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
 	<!--========================================================================
 		Purpose: Template to apply SOAP, stripped of internal headers and ws addressing elements
 		

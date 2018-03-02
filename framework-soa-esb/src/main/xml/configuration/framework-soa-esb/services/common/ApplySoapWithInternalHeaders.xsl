@@ -23,16 +23,6 @@
 	xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:date="http://exslt.org/dates-and-times"
 	extension-element-prefixes="dp date" version="1.0" exclude-result-prefixes="dp date soapenv ctx scm">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-12-12</dc:date>
-			<dc:title>Template to re-apply original inbound SOAP</dc:title>
-			<dc:subject>Template to re-apply original inbound SOAP with internal headers and wsa:Action required for internal service invocation</dc:subject>
-			<dc:contributor>Tim Goodwill</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
 	<!--========================================================================
 		Purpose:
 		Template to re-apply original inbound SOAP with internal headers and wsa:Action required for internal service invocation

@@ -21,17 +21,10 @@
 	xmlns:ack="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions" extension-element-prefixes="dp" version="1.0"
 	exclude-result-prefixes="dp err ack">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-12-12</dc:date>
-			<dc:title>Generate an acknowledgement for an async mq put</dc:title>
-			<dc:subject>Generate an acknowledgement for an async mq put where MQ has accepted the message</dc:subject>
-			<dc:contributor>Tim Goodwill</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
 	<!--========================================================================
+		Purpose:
+		Generate an acknowledgement for an async mq put where MQ has accepted the message
+		
 		History:
 		2016-12-12	v1.0	Tim Goodwill		Initial Version.
 		========================================================================-->
