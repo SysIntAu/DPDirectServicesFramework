@@ -19,7 +19,7 @@
 	xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions" xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" extension-element-prefixes="dp regexp" version="1.0"
-	exclude-result-prefixes="dp regexp errcore scm wsa saml wsse">
+	exclude-result-prefixes="dp regexp err scm wsa saml wsse">
 	<!--========================================================================
 		Purpose:
 		Performs initialisation of the generic policy flow. The request or response policy configuration

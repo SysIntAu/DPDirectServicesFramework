@@ -21,7 +21,7 @@
 	extension-element-prefixes="dp regexp" exclude-result-prefixes="dp regexp wsa" version="1.0">
 	<!--========================================================================
 		History:
-		2016-12-12	v0.1			Initial Version.
+		2016-12-12	v0.1		Tim Goodwill	Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 

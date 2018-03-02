@@ -18,17 +18,10 @@
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:date="http://exslt.org/dates-and-times" extension-element-prefixes="soapenv dp date" version="1.0"
 	exclude-result-prefixes="dp date soapenv">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-12-12</dc:date>
-			<dc:title>Filter a message with custom filter stylesheet</dc:title>
-			<dc:subject>Filters a message based on the dp:accept and dp:reject functions in a custom stylesheet</dc:subject>
-			<dc:contributor>Tim Goodwill</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
 	<!--========================================================================
+		Purpose:
+		Filters a message based on the dp:accept and dp:reject functions in a custom stylesheet
+		
 		History:
 		2016-12-12	v1.0	Tim Goodwill		Initial Version.
 		========================================================================-->

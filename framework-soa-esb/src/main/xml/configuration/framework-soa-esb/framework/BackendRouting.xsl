@@ -24,9 +24,6 @@
 		
 		History:
 		2016-12-12	v1.0	N.A.		Initial Version.
-		2016-12-12	v1.0	Tim Goodwill		MQ Async put (Notification).
-		2016-12-12	v1.0	Tim Goodwill		Added consumer provided timeout value (msg expiry).
-		2016-12-12  v1.1    Vikram Geevanathan	Added Support for SFTP Backends
 		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->

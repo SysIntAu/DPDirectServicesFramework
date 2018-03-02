@@ -30,6 +30,9 @@
 		</xs:appinfo>
 	</xs:annotation>
 	<!--========================================================================
+		Purpose:
+		Puts/posts a copy of the current context message to an MQ queue/HTTP endpoint.
+		
 		History:
 		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->

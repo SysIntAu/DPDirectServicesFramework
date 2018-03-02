@@ -33,8 +33,6 @@
 		
 		History:
 		2016-12-12	v1.0	N.A.		Initial Version.
-		2016-12-12	v1.1	Tim Goodwill		Update RejectToErrorFlow template.
-		2016-12-12	v1.2	Tim Goodwill		Framework-only templates extracted to FrameworkUtils.xsl
 		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->

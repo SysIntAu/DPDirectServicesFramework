@@ -19,7 +19,7 @@
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
 	xmlns:logcore="http://www.dpdirect.org/Namespace/EnterpriseLogging/Core/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions" extension-element-prefixes="dp" version="1.0"
-	exclude-result-prefixes="dp errcore logcore soapenv">
+	exclude-result-prefixes="dp err logcore soapenv">
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>N.A.</dc:creator>
@@ -35,9 +35,7 @@
 	<!--========================================================================
 		History:
 		2016-12-12	v1.0	N.A.			Initial Version.
-		2016-12-12	v1.1	Tim Goodwill		Add CallService Timeout.
-		2016-12-12	v1.1	Tim Goodwill		Add MQ Service call.
-		2016-12-12  v1.2    Vikram Geevanathan	Masked StopTimerEvent template within a variable  
+		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>

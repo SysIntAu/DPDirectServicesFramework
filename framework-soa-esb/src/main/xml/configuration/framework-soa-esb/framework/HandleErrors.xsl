@@ -23,7 +23,7 @@
 	xmlns:ctx="http://www.dpdirect.org/Namespace/ApplicationContext/Core/V1.0"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 	xmlns:date="http://exslt.org/dates-and-times" extension-element-prefixes="dp date regexp" version="1.0"
-	exclude-result-prefixes="dp date regexp scm ctx errcore  wsse wsa xop wsnt">
+	exclude-result-prefixes="dp date regexp scm ctx err wsse wsa xop wsnt">
 	<!--========================================================================
 		Purpose:
 		Error Handler Stylesheet for the Gateway  Gateway component
