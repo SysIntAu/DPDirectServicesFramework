@@ -11,8 +11,8 @@
 	<!-- MATCH TEMPLATES                                             -->
 	<!--=============================================================-->
 	<!-- Root Template -->
-	<xsl:template match="bioapp:CreatePersonalIdentifiersRequest">
-		<bioapp:CreatePersonalIdentifiersResponse
+	<xsl:template match="bioapp:VerifyRequest">
+		<bioapp:VerifyResponse
 			xmlns="http://www.dpdirect.org/Namespace/Identity/Core/V1.0"
 			xmlns:ns4="http://www.dpdirect.org/Namespace/Enterprise/WarningMessages/V1.0"
 			xmlns:ns3="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
@@ -31,7 +31,7 @@
 			</ns3:Information>
 			<ns5:Acknowledgement>SUCCESS</ns5:Acknowledgement>
 			<VisaApplicationCentreLodgementNumber><xsl:value-of select="//biocore:VisaApplicationCentreLodgementNumber"/></VisaApplicationCentreLodgementNumber>
-		</bioapp:CreatePersonalIdentifiersResponse>
+		</bioapp:VerifyResponse>
 	</xsl:template>
 	<!-- Modified Identity template to traverse without copying -->
 	<xsl:template match="node()|@*">

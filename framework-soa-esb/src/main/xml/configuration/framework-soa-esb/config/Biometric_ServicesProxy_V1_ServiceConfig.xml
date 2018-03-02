@@ -10,10 +10,10 @@
 			<Method>STS-XACML</Method>
 		</AAA>
 	</PreProcessConfig>
-	<OperationConfig id="CreatePersonalIdentifiers">
-		<Description>Configuration for the "CreatePersonalIdentifiers" service</Description>
+	<OperationConfig id="Verify">
+		<Description>Configuration for the "Verify" service</Description>
 		<InputMatchCriteria>
-			<Action>http://www.dpdirect.org/Namespace/Biometric/ServicesProxy/Interface/V1/Biometric_ServicesProxy_PortType_V1/CreatePersonalIdentifiers</Action>
+			<Action>http://www.dpdirect.org/Namespace/Biometric/ServicesProxy/Interface/V1/Biometric_ServicesProxy_PortType_V1/Verify</Action>
 			<InboundURI>*/Biometric</InboundURI>
 		</InputMatchCriteria>
 		<RequestPolicyConfig schemaValidate="true">
@@ -35,15 +35,15 @@
 			</Transform>
 		</ErrorPolicyConfig>
 	</OperationConfig>
-	<OperationConfig id="CreatePersonalIdentifiers_Verify">
-		<Description>Configuration for the "CreatePersonalIdentifiers" service</Description>
+	<OperationConfig id="Verify_Verify">
+		<Description>Configuration for the "Verify" service</Description>
 		<InputMatchCriteria>
-			<Action>http://www.dpdirect.org/Namespace/Biometric/ServicesProxy/Interface/V1/Biometric_ServicesProxy_PortType_V1/CreatePersonalIdentifiers</Action>
+			<Action>http://www.dpdirect.org/Namespace/Biometric/ServicesProxy/Interface/V1/Biometric_ServicesProxy_PortType_V1/Verify</Action>
 			<InboundURI>*/VerifyBiometric</InboundURI>
 		</InputMatchCriteria>
 		<RequestPolicyConfig schemaValidate="true">
 			<BackendRouting provider="BMS">
-				<BackendStub>local:///ESB_Services/services/CreatePersonalIdentifiers/V1.2/CreatePersonalIdentifiersResponse_Stub.xsl</BackendStub>
+				<BackendStub>local:///ESB_Services/services/Verify/V1.2/VerifyResponse_Stub.xsl</BackendStub>
 			</BackendRouting>
 		</RequestPolicyConfig>
 		<ResponsePolicyConfig schemaValidate="true"/>
