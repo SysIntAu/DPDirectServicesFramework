@@ -95,7 +95,7 @@
 						Provider = '*' and (Service = $SERVICE_NAME or Service = '*')]"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:copy-of select="($ENT_MSG_CODES_DOC/Worksheet/Table/Row[EnterpriseCode =        'ENTR00001' and
+					<xsl:copy-of select="($ENT_MSG_CODES_DOC/Worksheet/Table/Row[EnterpriseCode =        'ERROR0001' and
 						(Service = '*')])[1]"/>
 				</xsl:otherwise>
 			</xsl:choose>

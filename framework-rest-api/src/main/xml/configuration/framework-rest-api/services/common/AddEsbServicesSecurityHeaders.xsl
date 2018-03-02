@@ -22,17 +22,10 @@
 	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
 	xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
 	extension-element-prefixes="dp date" exclude-result-prefixes="dp  date saml wsa wsse ds wsu" version="1.0">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>N.A.</dc:creator>
-			<dc:date>2016-12-12</dc:date>
-			<dc:title>ESB_Services Security</dc:title>
-			<dc:subject>Adds SAML2 Assertion to messages being routed to ESB_Services endpoints</dc:subject>
-			<dc:contributor>N.A.</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
 	<!--========================================================================
+		Purpose:
+		Adds SAML2 Assertion to messages being routed to ESB_Services endpoints
+		
 		History:
 		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->

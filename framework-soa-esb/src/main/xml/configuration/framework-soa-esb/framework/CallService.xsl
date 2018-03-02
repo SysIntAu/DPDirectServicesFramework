@@ -299,7 +299,7 @@
 									<xsl:value-of select="$RESPONSE/url-open/response//err:Code[1]"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="'ENTR00004'"/>
+									<xsl:value-of select="'ERROR0004'"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:variable>
@@ -368,7 +368,7 @@
 											select="$RESPONSE/url-open/response//err:Code[1]"/>
 									</xsl:when>
 									<xsl:otherwise>
-										<xsl:value-of select="'ENTR00004'"/>
+										<xsl:value-of select="'ERROR0004'"/>
 									</xsl:otherwise>
 								</xsl:choose>
 							</xsl:with-param>
@@ -383,7 +383,7 @@
 								<xsl:value-of select="$PROVIDER_NAME"/>
 								<xsl:text>]</xsl:text>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 						</xsl:call-template>
 					</xsl:when>
 					<xsl:otherwise>
@@ -609,7 +609,7 @@
 						</xsl:variable>
 						<!-- Reject to error flow -->
 						<xsl:call-template name="RejectToErrorFlow">
-							<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 							<xsl:with-param name="ORIGINATOR_NAME" select="$ORIGINATOR_NAME"/>
 							<xsl:with-param name="ADD_DETAILS" select="normalize-space(concat('A response was not received from '
 								,normalize-space($ORIGINATOR_NAME),' within the timeout period and your request may not have been completed.'))"/>
@@ -628,7 +628,7 @@
 								<xsl:value-of select="$RESPONSE_URL/url-open/responsecode"/>
 								<xsl:text>]</xsl:text>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 						</xsl:call-template>
 					</xsl:when>
 					<xsl:otherwise>

@@ -21,7 +21,7 @@
 	extension-element-prefixes="dp" version="1.0" exclude-result-prefixes="dp wsa wsse">
 	<!--========================================================================
 		Purpose:
-		Ensure response addressing adheres to general Gateway  response policy as defined i nthe service WSDL.
+		Ensure response addressing adheres to general Gateway  response policy as defined in the service WSDL.
 				
 		History:
 		2016-12-12	v1.0	Tim Goodwill		Initial Version.

@@ -107,7 +107,7 @@
 		</xsl:variable>
 		<xsl:variable name="PROVIDER_RESPONSE">
 			<xsl:choose>
-				<xsl:when test="normalize-space($ERROR_CODE) = 'ENTR00007'">
+				<xsl:when test="normalize-space($ERROR_CODE) = 'ERROR0007'">
 					<xsl:value-of select="'timeout'"/>
 				</xsl:when>
 				<xsl:when test="(dp:variable($RES_IN_MSG_NAME_VAR_NAME) = 'Input')
@@ -122,10 +122,10 @@
 		<xsl:variable name="SERVICE_PROXY" select="substring-before(substring-after(dp:variable($REQ_WSA_ACTION_VAR_NAME), 'Namespace/'), '/Services')"/>
 		<xsl:variable name="SERVICE_RESULT">
 			<xsl:choose>
-				<xsl:when test="normalize-space($ERROR_CODE) = 'ENTR00007'">
+				<xsl:when test="normalize-space($ERROR_CODE) = 'ERROR0007'">
 					<xsl:value-of select="'timeout'"/>
 				</xsl:when>
-				<xsl:when test="normalize-space($ERROR_CODE) = 'ENTR00004'">
+				<xsl:when test="normalize-space($ERROR_CODE) = 'ERROR0004'">
 					<xsl:value-of select="'timeout'"/>
 				</xsl:when>
 				<xsl:when test="normalize-space($ERROR_CODE) = 'FRWK00029'">

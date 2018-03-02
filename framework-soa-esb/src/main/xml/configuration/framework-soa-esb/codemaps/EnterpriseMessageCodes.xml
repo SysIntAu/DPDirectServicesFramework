@@ -2,7 +2,7 @@
 <Worksheet name="ConsolidatedCodes">
 	<Table>
 		<Row>
-			<EnterpriseCode>ENTR00001</EnterpriseCode>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00001</ProviderCode>
 			<Service>*</Service>
@@ -13,7 +13,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00001</EnterpriseCode>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00002</ProviderCode>
 			<Service>*</Service>
@@ -24,7 +24,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00001</EnterpriseCode>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00003</ProviderCode>
 			<Service>*</Service>
@@ -35,7 +35,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00011</EnterpriseCode>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00004</ProviderCode>
 			<Service>*</Service>
@@ -46,7 +46,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00001</EnterpriseCode>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00005</ProviderCode>
 			<Service>*</Service>
@@ -57,7 +57,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00011</EnterpriseCode>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00006</ProviderCode>
 			<Service>*</Service>
@@ -68,7 +68,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00011</EnterpriseCode>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00007</ProviderCode>
 			<Service>*</Service>
@@ -79,7 +79,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00011</EnterpriseCode>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00008</ProviderCode>
 			<Service>*</Service>
@@ -90,7 +90,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00011</EnterpriseCode>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00009</ProviderCode>
 			<Service>*</Service>
@@ -101,7 +101,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00030</EnterpriseCode>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00010</ProviderCode>
 			<Service>*</Service>
@@ -112,7 +112,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00011</EnterpriseCode>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00011</ProviderCode>
 			<Service>*</Service>
@@ -123,7 +123,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00001</EnterpriseCode>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00012</ProviderCode>
 			<Service>*</Service>
@@ -134,7 +134,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00061</EnterpriseCode>
+			<EnterpriseCode>ERROR0061</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00013</ProviderCode>
 			<Service>*</Service>
@@ -145,7 +145,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00001</EnterpriseCode>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00014</ProviderCode>
 			<Service>*</Service>
@@ -156,7 +156,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00001</EnterpriseCode>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00015</ProviderCode>
 			<Service>*</Service>
@@ -167,7 +167,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00030</EnterpriseCode>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00016</ProviderCode>
 			<Service>*</Service>
@@ -178,7 +178,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00030</EnterpriseCode>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00017</ProviderCode>
 			<Service>*</Service>
@@ -189,7 +189,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00030</EnterpriseCode>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00018</ProviderCode>
 			<Service>*</Service>
@@ -200,7 +200,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR000061</EnterpriseCode>
+			<EnterpriseCode>ERROR00061</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00019</ProviderCode>
 			<Service>*</Service>
@@ -210,7 +210,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00001</EnterpriseCode>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00020</ProviderCode>
 			<Service>*</Service>
@@ -220,7 +220,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00030</EnterpriseCode>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00021</ProviderCode>
 			<Service>*</Service>
@@ -231,7 +231,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00030</EnterpriseCode>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00022</ProviderCode>
 			<Service>*</Service>
@@ -242,7 +242,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00030</EnterpriseCode>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00023</ProviderCode>
 			<Service>*</Service>
@@ -253,7 +253,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00031</EnterpriseCode>
+			<EnterpriseCode>ERROR0031</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00024</ProviderCode>
 			<Service>*</Service>
@@ -264,7 +264,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00030</EnterpriseCode>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00025</ProviderCode>
 			<Service>*</Service>
@@ -275,7 +275,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00028</EnterpriseCode>
+			<EnterpriseCode>ERROR0028</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00026</ProviderCode>
 			<Service>*</Service>
@@ -285,7 +285,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00055</EnterpriseCode>
+			<EnterpriseCode>ERROR0055</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00027</ProviderCode>
 			<Service>*</Service>
@@ -295,7 +295,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00011</EnterpriseCode>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00028</ProviderCode>
 			<Service>*</Service>
@@ -306,7 +306,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00055</EnterpriseCode>
+			<EnterpriseCode>ERROR0055</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>FRWK00029</ProviderCode>
 			<Service>*</Service>
@@ -316,7 +316,7 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00001</EnterpriseCode>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -327,7 +327,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00002</EnterpriseCode>
+			<EnterpriseCode>ERROR0002</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -338,7 +338,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00003</EnterpriseCode>
+			<EnterpriseCode>ERROR0003</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -349,7 +349,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00004</EnterpriseCode>
+			<EnterpriseCode>ERROR0004</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -359,7 +359,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00005</EnterpriseCode>
+			<EnterpriseCode>ERROR0005</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -369,7 +369,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 <!--		<Row>
-			<EnterpriseCode>ENTR00006</EnterpriseCode>
+			<EnterpriseCode>ERROR0006</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -380,7 +380,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>-->
 		<Row>
-			<EnterpriseCode>ENTR00006</EnterpriseCode>
+			<EnterpriseCode>ERROR0006</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -390,7 +390,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00007</EnterpriseCode>
+			<EnterpriseCode>ERROR0007</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -401,7 +401,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00008</EnterpriseCode>
+			<EnterpriseCode>ERROR0008</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -411,7 +411,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00009</EnterpriseCode>
+			<EnterpriseCode>ERROR0009</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -422,7 +422,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00010</EnterpriseCode>
+			<EnterpriseCode>ERROR0010</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -432,7 +432,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00011</EnterpriseCode>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
 			<Provider>DESB</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -442,7 +442,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00011</EnterpriseCode>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -453,7 +453,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00012</EnterpriseCode>
+			<EnterpriseCode>ERROR0012</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -464,7 +464,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00012</EnterpriseCode>
+			<EnterpriseCode>ERROR0012</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -475,7 +475,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00013</EnterpriseCode>
+			<EnterpriseCode>ERROR0013</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -485,7 +485,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00014</EnterpriseCode>
+			<EnterpriseCode>ERROR0014</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -495,7 +495,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00015</EnterpriseCode>
+			<EnterpriseCode>ERROR0015</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -505,7 +505,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00016</EnterpriseCode>
+			<EnterpriseCode>ERROR0016</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -515,7 +515,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00017</EnterpriseCode>
+			<EnterpriseCode>ERROR0017</EnterpriseCode>
 			<Provider>DESB</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -526,7 +526,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00017</EnterpriseCode>
+			<EnterpriseCode>ERROR0017</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -537,7 +537,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00019</EnterpriseCode>
+			<EnterpriseCode>ERROR0019</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -548,7 +548,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00020</EnterpriseCode>
+			<EnterpriseCode>ERROR0020</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -558,7 +558,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR000030</EnterpriseCode>
+			<EnterpriseCode>ERROR00030</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -568,7 +568,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR000031</EnterpriseCode>
+			<EnterpriseCode>ERROR00031</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -578,7 +578,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR000032</EnterpriseCode>
+			<EnterpriseCode>ERROR00032</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -588,9 +588,9 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00034</EnterpriseCode>
+			<EnterpriseCode>ERROR0034</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>ENTR00034</ProviderCode>
+			<ProviderCode>ERROR0034</ProviderCode>
 			<Service>*</Service>
 			<Type>Warning</Type>
 			<Subtype>Validation</Subtype>
@@ -598,7 +598,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00035</EnterpriseCode>
+			<EnterpriseCode>ERROR0035</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -609,7 +609,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00046</EnterpriseCode>
+			<EnterpriseCode>ERROR0046</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -620,7 +620,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00052</EnterpriseCode>
+			<EnterpriseCode>ERROR0052</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>
@@ -630,7 +630,7 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ENTR00053</EnterpriseCode>
+			<EnterpriseCode>ERROR0053</EnterpriseCode>
 			<Provider>*</Provider>
 			<ProviderCode>n/a</ProviderCode>
 			<Service>*</Service>

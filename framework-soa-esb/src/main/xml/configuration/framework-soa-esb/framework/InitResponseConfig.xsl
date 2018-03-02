@@ -257,7 +257,7 @@
 								<dp:set-variable name="$RES_IN_MSG_FORMAT_VAR_NAME" value="'zero-bytes'"/>
 								<!-- Reject to error flow -->
 								<xsl:call-template name="RejectToErrorFlow">
-									<xsl:with-param name="ERROR_CODE" select="'ENTR00007'"/>
+									<xsl:with-param name="ERROR_CODE" select="'ERROR0007'"/>
 									<xsl:with-param name="ORIGINATOR_NAME" select="$PROVIDER_NAME"/>
 									<xsl:with-param name="ADD_DETAILS" select="'A valid response was not returned by the backend.'"/>
 								</xsl:call-template>
@@ -292,7 +292,7 @@
 								and (number(dp:variable($DP_SERVICE_TIME_ELAPSED)) &gt;= number(dp:variable($PROVIDER_TIMEOUT_MILLIS_VAR_NAME)))">
 								<!-- Read error information -->
 								<xsl:variable name="ERROR_MSG" select="normalize-space(concat('A response was not received from ', $PROVIDER_NAME, ' within the timeout period'))"/>
-								<xsl:variable name="ERROR_CODE" select="'ENTR00007'"/>
+								<xsl:variable name="ERROR_CODE" select="'ERROR0007'"/>
 								<xsl:variable name="ERROR_SUBCODE" select="$ERROR_CODE"/>
 								<!-- Store error information (which is otherwise not accessible in sub-rule invocations later in the error flow) -->
 								<dp:set-variable name="$ERROR_MSG_VAR_NAME" value="$ERROR_MSG"/>

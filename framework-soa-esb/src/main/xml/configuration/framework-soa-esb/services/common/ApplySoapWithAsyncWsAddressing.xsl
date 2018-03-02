@@ -31,6 +31,12 @@
 			<dc:publisher>DPDIRECT</dc:publisher>
 		</xs:appinfo>
 	</xs:annotation>
+	<!--========================================================================
+		Purpose: Template to strip internal headers, but retain inbound ws addressing elements
+		
+		History:
+		2016-12-12	v1.0	Tim Goodwill				Initial Version.
+		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="local:///ESB_Services/framework/Constants.xsl"/>
 	<!--============== Output Configuration =========================-->

@@ -28,6 +28,11 @@
 		</xs:appinfo>
 	</xs:annotation>
 	<!--========================================================================
+		Purpose:
+		DataPower exported configuration file (xcfg) component-renaming transform.
+		Transforms property names within a DataPower exported configuration file (xcfg) based on a set
+				of configured search/replace parameters for a specific environment.
+		
 		History:
 		2016-12-12	v0.1	Tim Goodwill	Initial Version.
 		2016-12-12	v0.1	N.A.		Updated to strip clear-text HTTP front side handler/s in higher environments (UAT,STAGE/TRAIN/PROD).

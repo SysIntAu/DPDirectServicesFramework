@@ -30,6 +30,12 @@
 			<dc:publisher>DPDIRECT</dc:publisher>
 		</xs:appinfo>
 	</xs:annotation>
+	<!--========================================================================
+		Purpose: Template to apply SOAP, stripped of internal headers and ws addressing elements
+		
+		History:
+		2016-12-12	v1.0	Tim Goodwill				Initial Version.
+		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="local:///ESB_Services/framework/Constants.xsl"/>
 	<!--============== Output Configuration =========================-->

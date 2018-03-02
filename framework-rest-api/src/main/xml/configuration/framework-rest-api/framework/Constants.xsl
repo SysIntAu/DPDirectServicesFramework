@@ -155,7 +155,7 @@
 	<xsl:variable name="JWT_VALID_RESPONSE" select="'VALID'"/>
 	<xsl:variable name="JWT_EXPIRED_CODE" select="'token_expired'"/>
 	<xsl:variable name="DP_MANUAL_REJECT_EVENT_CODE" select="'0x00d30003'"/>
-	<xsl:variable name="DP_FALLBACK_ERROR_CODE" select="'ENTR00001'"/>
+	<xsl:variable name="DP_FALLBACK_ERROR_CODE" select="'ERROR0001'"/>
 	<xsl:variable name="SERVICES_PROXY_NAME_SUFFIX" select="'_ServicesProxy'"/>
 	<xsl:variable name="RULE_NAME_PREFIX" select="'JSONAPI_Services_V1_'"/>
 </xsl:stylesheet>

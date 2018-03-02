@@ -17,12 +17,10 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
 	xmlns:wsa="http://www.w3.org/2005/08/addressing"
-	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/Core/V1.0"
-	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/InformationMessages/V1.0"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 	xmlns:ack="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions" extension-element-prefixes="dp" version="1.0"
-	exclude-result-prefixes="dp ecore eim eam">
+	exclude-result-prefixes="dp err ack">
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>Tim Goodwill</dc:creator>

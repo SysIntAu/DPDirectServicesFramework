@@ -199,7 +199,7 @@
 	<xsl:variable name="WSA_NAMESPACE_URI" select="'http://www.w3.org/2005/08/addressing'"/>
 	<xsl:variable name="WSA_ANONYMOUS_DESTINATION" select="'http://www.w3.org/2005/08/addressing/anonymous'"/>
 	<xsl:variable name="DP_MANUAL_REJECT_EVENT_CODE" select="'0x00d30003'"/>
-	<xsl:variable name="DP_FALLBACK_ERROR_CODE" select="'ENTR00001'"/>
+	<xsl:variable name="DP_FALLBACK_ERROR_CODE" select="'ERROR0001'"/>
 	<xsl:variable name="DP_FILTER_ERROR_CODE" select="'FRWK00029'"/>
 	<xsl:variable name="DP_FILTER_FLAG_NAME" select="'DP_MSG_FILTER'"/>
 	<xsl:variable name="COMMON_ERROR_DOMAIN_LIST" select="'Framework,Enterprise'"/>

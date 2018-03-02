@@ -21,19 +21,11 @@
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	xmlns:date="http://exslt.org/dates-and-times"
 	extension-element-prefixes="dp regexp date" version="1.0" exclude-result-prefixes="dp date soapenv wst wss">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-12-12</dc:date>
-			<dc:title>Generate generic output MQMD Header.</dc:title>
-			<dc:subject>Generate generic output MQMD Header for outbound MQ Put.</dc:subject>
-			<dc:contributor>N.A.</dc:contributor>
-			<dc:contributor>Tim Goodwill</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
 	<!--
 		=================================================================
+		Purpose:
+		Generate generic output MQMD Header for outbound MQ Put
+		
 		History:
 		2016-12-12	v0.1	Tim Goodwill		Initial Version - generic.
 		=================================================================

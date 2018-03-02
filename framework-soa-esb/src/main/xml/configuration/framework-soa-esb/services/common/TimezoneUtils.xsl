@@ -20,20 +20,12 @@
 	xmlns:dp="http://www.datapower.com/extensions" 
 	extension-element-prefixes="dp date regexp" version="1.0" 
 	exclude-result-prefixes="dp date regexp">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-12-12</dc:date>
-			<dc:title>General utilities</dc:title>
-			<dc:subject>A collection of timezone utility templates</dc:subject>
-			<dc:contributor>Tim Goodwill</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
 	<!--========================================================================
+		Purpose:
+		A collection of timezone utility templates
+		
 		History:
-		2016-12-12	v1.0	N.A.		Initial Version.
-		2016-12-12	v1.1	Tim Goodwill	Update RejectToErrorFlow template.
+		2016-12-12	v1.0	Tim Goodwill	Update RejectToErrorFlow template.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<!--============== Output Configuration =========================-->

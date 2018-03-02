@@ -33,6 +33,13 @@
 			<dc:publisher>DPDIRECT</dc:publisher>
 		</xs:appinfo>
 	</xs:annotation>
+	<!--========================================================================
+		Purpose:
+		Template to re-apply original inbound SOAP with internal headers and wsa:Action required for internal service invocation
+		
+		History:
+		2016-12-12	v1.0	Tim Goodwill		Initial Version.
+		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="local:///ESB_Services/framework/Constants.xsl"/>
 	<!--============== Output Configuration =========================-->

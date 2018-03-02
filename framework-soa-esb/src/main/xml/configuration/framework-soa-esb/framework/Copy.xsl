@@ -9,7 +9,7 @@
 	*	    http://www.apache.org/licenses/LICENSE-2.0
 	*	
 	*	Unless required by applicable law or agreed to in writing, software
-	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	distributed under the License is distributeon an "AS IS" BASIS,
 	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	*	See the License for the specific language governing permissions and
 	*	limitations under the License.
@@ -29,6 +29,13 @@
 			<dc:publisher>DPDIRECT</dc:publisher>
 		</xs:appinfo>
 	</xs:annotation>
+	<!--========================================================================
+		Purpose: Puts/posts a copy of the current context message to an MQ queue or HTTP Endpoint
+		
+		History:
+		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	Tim Goodwill		HTTP & Initial Gateway version.
+		========================================================================-->
 	<!--========================================================================
 		Purpose:
 		Puts/posts a copy of the current context message to an MQ queue/HTTP endpoint.
@@ -244,7 +251,7 @@
 					<xsl:value-of select="$RESPONSE/url-open/responsecode"/>
 					<xsl:text>]</xsl:text>
 				</xsl:with-param>
-				<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+				<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -348,7 +355,7 @@
 					<xsl:value-of select="$RESPONSE/url-open/responsecode"/>
 					<xsl:text>]</xsl:text>
 				</xsl:with-param>
-				<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+				<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -385,7 +392,7 @@
 					<xsl:value-of select="$RESPONSE/url-open/responsecode"/>
 					<xsl:text>]</xsl:text>
 				</xsl:with-param>
-				<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+				<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>

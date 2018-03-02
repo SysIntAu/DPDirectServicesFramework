@@ -102,22 +102,22 @@
 			<!-- Security Error Handling (i.e. AAA failure) -->
 			<xsl:when test="$DP_EVENT_CODE = '0x01d30002'
 				or $DP_EVENT_SUBCODE = '0x01d30002'">
-				<xsl:value-of select="'ENTR00011'"/>
+				<xsl:value-of select="'ERROR0011'"/>
 			</xsl:when>
 			<!-- Invalid Character Encoding Handling -->
 			<xsl:when test="$DP_EVENT_CODE = '0x00030001'
 				or $DP_EVENT_SUBCODE = '0x00030001'">
-				<xsl:value-of select="'ENTR00001'"/>
+				<xsl:value-of select="'ERROR0001'"/>
 			</xsl:when>
 			<!-- Invalid Soap Envelope -->
 			<xsl:when test="$DP_EVENT_CODE = '0x00d30002'
 				or $DP_EVENT_SUBCODE = '0x00d30002'">
-				<xsl:value-of select="'ENTR00001'"/>
+				<xsl:value-of select="'ERROR0001'"/>
 			</xsl:when>
 			<!-- WSDL policy violation : eg. header not found -->
 			<xsl:when test="($DP_EVENT_CODE= '0x00d30003')
 				and contains(dp:variable($DP_SERVICE_ERROR_MSG), 'Required elements filter')">
-				<xsl:value-of select="'ENTR00001'"/>
+				<xsl:value-of select="'ERROR0001'"/>
 			</xsl:when>
 			<!-- Manual Rejection -->
 			<xsl:when test="dp:variable($ERROR_CODE_VAR_NAME) != ''">
