@@ -28,10 +28,10 @@
 		context variable. The INPUT context is copied to the RESULT_DOC context.
 				
 		History:
-		2016-03-06	v1.0	N.A.		Initial Version.
-		2016-07-17	v1.0	Tim Goodwill		Add notification support.
-		2016-09-11	v1.0	Tim Goodwill		HTTP/S timeout msg and response code addl dtl.
-		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	Tim Goodwill		Add notification support.
+		2016-12-12	v1.0	Tim Goodwill		HTTP/S timeout msg and response code addl dtl.
+		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>

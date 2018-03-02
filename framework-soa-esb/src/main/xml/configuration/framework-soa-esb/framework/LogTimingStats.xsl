@@ -23,7 +23,7 @@
 		Logs statistics and metadata from the current transaction flow.
 		
 		History:
-		2016-03-06	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Utils.xsl"/>

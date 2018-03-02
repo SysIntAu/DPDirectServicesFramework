@@ -26,7 +26,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-08-12</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>Generate an acknowledgement for an async mq put</dc:title>
 			<dc:subject>Generate an acknowledgement for an async mq put where MQ has accepted the message</dc:subject>
 			<dc:contributor>Tim Goodwill</dc:contributor>
@@ -35,7 +35,7 @@
 	</xs:annotation>
 	<!--========================================================================
 		History:
-		2016-08-12	v1.0	Tim Goodwill		Initial Version.
+		2016-12-12	v1.0	Tim Goodwill		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="local:///ESB_Services/framework/Utils.xsl"/>

@@ -12,7 +12,7 @@
 	** To use the deploy targets locally, the following parameters should be supplied as a minimum:
 	** dp.hostname OR dp.hostname.list  == Device/s to deploy to. 'dp.hostname.list' should be comma delimited, no spaces.
 	** dp.user.name, dp.user.pw == User credentials
-	** env         == DPDIRECT environment name eg 'E1'. 
+	** env         == DPDIRECT environment name eg 'DEV'. 
 	** release.dir         == Staging dir contains the built deployment artifacts, this will be a temporary working directory
 	**
 	** OPTIONAL PARMS - Deployment
@@ -36,7 +36,7 @@
 	**			2015.11.30	MPG Gateway Router into separate domain + allow for multiple WSProxy domains.
 	******************************************************************** -->
 <project name="dp-deploy" default="deploy">
-	<property name="env" value="E1"/>
+	<property name="env" value="DEV"/>
 	<property name="environment" value="${env}"/>
 	
 	<!-- Location of optional properties file -->
@@ -49,7 +49,7 @@
 	<property name="dp.environment" value="${environment}"/>
 	
 	<!-- Deployment parameters -->
-<!--	<property name="secure.environment.list" value="E7,E9"/>
+<!--	<property name="secure.environment.list" value="STAGE,PROD"/>
 	<condition property="secure.environment" value="true">
 		<contains string="${secure.environment.list}" substring="${environment}"/>
 	</condition>-->
@@ -167,11 +167,11 @@
 		description="Deploys ESB built artifacts to multiple hosts.
 		** PARAMETERS: 
 		dp.hostname OR dp.hostname.list == Device/s to deploy to. 'dp.hostname.list' should be comma delimited, no spaces.
-		environment == DPDIRECT environment name eg 'E1', will look for env properties file eg 'E1.xml' in the ant-deploy dir. 
+		environment == DPDIRECT environment name eg 'DEV', will look for env properties file eg 'DEV.xml' in the ant-deploy dir. 
 		release.dir == Staging dir contains the built deployment artifacts, this will be a temporary working directory.
 		** OPTIONAL PARAMETERS: 
 		type == deployment type, of 'file', 'dir', 'files', 'schema', 'services', 'gateway' or 'all' (default is 'all')
-		** EXAMPLES: 'ant -f dp-deploy.xml -Denvironment=E1'  or  'ant -f dp-deploy.xml -Denvironment=E1 -Dtype=services -Drelease.dir=C:/Temp/release'">
+		** EXAMPLES: 'ant -f dp-deploy.xml -Denvironment=DEV'  or  'ant -f dp-deploy.xml -Denvironment=DEV -Dtype=services -Drelease.dir=C:/Temp/release'">
 		<echo message="Deploying ${esb.deployment.type}"/>
 		<mkdir dir="${release.dir}"/>
 		<antcall target="stage.files" inheritall="true" inheritrefs="true"/>

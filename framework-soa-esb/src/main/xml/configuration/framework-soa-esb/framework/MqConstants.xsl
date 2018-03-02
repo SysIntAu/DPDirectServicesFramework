@@ -21,7 +21,7 @@
 		MQ constant values (as defined in the "WebSphere MQ Constants Version 6.0" document)
 				
 		History:
-		2016-11-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->
 	<!--============== Global Variable Declarations =================-->
 	<!-- MQ CCSID constants (not official MQ Constant names, just defined here for convenience)-->

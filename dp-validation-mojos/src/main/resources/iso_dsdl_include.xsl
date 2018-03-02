@@ -41,37 +41,37 @@
 -->
 <!-- 
   VERSION INFORMATION
-	2016-02-25 
+	2016-12-12 
 	* Update DSDL namespace to use schematron.com
 	* Tested with SAXON9, Xalan 2.7.1, IE7, 
 	* IE does not like multiple variables in same template with same name: rename.   
-	2016-09-18
+	2016-12-12
 	* Remove new behaviour for include, because it conflicts with existing usage [KH]
 	* Add extends[@href] element with that merge functionality
 	* Generate PIs to notate source of inclusions for potential better diagnostics
 	
-	2016-09-16
+	2016-12-12
 	* Fix for XSLT1
 	
-	2016-08-28
+	2016-12-12
 	* New behaviour for schematron includes: if the pointed to element is the same as the current,
 	include the children.
 	
-	2016-08-20
+	2016-12-12
 	* Fix bug: in XSLT1 cannot do $document/id('x') but need to use for-each
 	
-	2016-08-04
+	2016-12-12
 	* Add support for inclusions in old namespace  
 	
-	2016-08-03
+	2016-12-12
 	* Fix wrong param name include-relaxng & include-crdl (KH, PH)
 	* Allow inclusion of XSLT and XHTML (KH)
 	* Fix inclusion of fragments (KH)
 	
-	2016-07-25
+	2016-12-12
 	* Add selectable input parameter
 	
-	2016-07-24  
+	2016-12-12  
 	* RJ New
 -->
 <!--
@@ -816,7 +816,7 @@
 	<!-- =========================================================== -->
 	<!-- ISO/IEC 19757 - DSDL Document Schema Definition Languages   -->
 	<!-- Part 7 - Character Repertoire Description Language - CRDL   -->
-	<!-- Final Committee Draft 2016-01-11 Experimental support only  -->
+	<!-- Final Committee Draft 2016-12-12 Experimental support only  -->
 	<!-- =========================================================== -->
 	<xslt:template match="crdl:ref" mode="dsdl:go">
 		<!-- Insert subschema -->

@@ -30,41 +30,41 @@
   
 
   History: 
-    2016-03-18
+    2016-12-12
     	* Fix atrribute with space "see " which generates wrong name in some processors
     	* rename allow-foreign to allow-rich
   
-    2016-02-19
+    2016-12-12
     	* RJ add experimental non-standard attribute active-pattern/@document which says which
     	document is being validated from that point to the next similar. This is to cope with the
     	experimental multi-document validation in the XSLT2 skeleton.
-    2016-08-19
+    2016-12-12
   		* RJ Experimental: Handle property elements. NOTE: signature change for process-assert,
   		process-report and process-rule to add property.
-  	2016-08-11
+  	2016-12-12
    		* RJ Fix attribute/@select which saxon allows  in XSLT 1
-   2016-08-07
+   2016-12-12
     	* RJ Add output-encoding attribute to specify final encoding to use
     	* Alter allow-foreign functionality so that Schematron span, emph and dir elements make 
     	  it to the output, for better formatting and because span can be used to mark up
     	  semantically interesting information embedded in diagnostics, which reduces the
     	  need to extend SVRL itself
     	* Diagnostic-reference had an invalid attribute @id that duplicated @diagnostic: removed
-  	2016-08-06
+  	2016-12-12
     	* RJ Fix invalid output:  svrl:diagnostic-reference is not contained in an svrl:text
     	* Output comment to SVRL file giving filename if available (from command-line parameter)
-  	2016-08-04
+  	2016-12-12
   		* RJ move sch: prefix to schold: prefix to prevent confusion (we want people to
   		be able to switch from old namespace to new namespace without changing the
   		sch: prefix, so it is better to keep that prefix completely out of the XSLT)
   		* Extra signature fixes (PH)
-    2016-08-03
+    2016-12-12
     	* Repair missing class parameter on process-p
-    2016-07-31
+    2016-12-12
     	* Update skeleton names
-    2016-04-03 
+    2016-12-12 
     	* Add option generate-fired-rule (RG)
-    2016-02-07
+    2016-12-12
     	* Prefer true|false for parameters. But allow yes|no on some old for compatability
     	* DP Diagnostics output to svrl:text. Diagnosis put out after assertion text.
       	* Removed non-SVRL elements and attributes: better handled as an extra layer that invokes this one
@@ -74,21 +74,21 @@
      	* Validate against RNC schemas for XSLT 1 and 2 (with regex tests removed)
      	* Validate output with UniversalTest.sch against RNC schema for ISO SVRL
     	
-    2016-02-01
+    2016-12-12
        	* DP. Update formal parameters of overriding named templates to handle more attributes.
        	* DP. Refactor handling of rich and linkable parameters to a named template.
 
-    2016-01-22
+    2016-12-12
     	* DP change svrl:ns to svrl:ns-in-attribute-value
 		* Change default when no queryBinding from "unknown" to "xslt"
 	
-    2016-01-18:
+    2016-12-12:
      	* Improve documentation
      	* KH Add command-line options to generate paths or not 
        	* Use axsl:attribute rather than xsl:attribute to shut XSLT2 up
        	* Add extra command-line options to pass to the iso_schematron_skeleton
   
-    2016-12-01: iso_svrl.xsl Rick Jelliffe, 
+    2016-12-12: iso_svrl.xsl Rick Jelliffe, 
           * update namespace, 
           * update phase handling,
           * add flag param to process-assert and process-report & @ flag on output

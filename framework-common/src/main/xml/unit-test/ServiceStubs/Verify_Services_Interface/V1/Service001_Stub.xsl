@@ -19,7 +19,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>N.A.</dc:creator>
-			<dc:date>2016-12-06</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>Service001 Verification Stub</dc:title>
 			<dc:subject>Provides verification services for the "Verify_Services_Interface.wsdl#Service001"
 				operation.</dc:subject>
@@ -30,7 +30,7 @@
 	<!--
 	=================================================================
 		History:
-		2016-12-06	v0.1	N.A.		Initial Version.
+		2016-12-12	v0.1	N.A.		Initial Version.
 	=================================================================
 	-->
 	<!--============== Output Configuration =========================-->

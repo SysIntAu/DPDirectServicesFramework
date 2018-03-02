@@ -22,7 +22,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2004/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>N.A.</dc:creator>
-			<dc:date>2016-03-01</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>Service004 Request Generation</dc:title>
 			<dc:subject>Creates a Service004 SOAP request message.</dc:subject>
 			<dc:contributor>N.A.</dc:contributor>
@@ -32,7 +32,7 @@
 	<!--
 	=================================================================
 		History:
-		2016-03-01	v0.1	N.A.		Initial Version.
+		2016-12-12	v0.1	N.A.		Initial Version.
 	=================================================================
 	-->
 	<!--============== Included Stylesheets =========================-->

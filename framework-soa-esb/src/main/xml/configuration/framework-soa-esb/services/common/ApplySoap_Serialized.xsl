@@ -23,7 +23,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-01-28</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>Template to apply SOAP, stripped of internal headers and ws addressing elements</dc:title>
 			<dc:subject>Template to apply SOAP, stripped of internal headers and ws addressing elements</dc:subject>
 			<dc:contributor>Tim Goodwill</dc:contributor>

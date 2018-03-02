@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datapower-configuration version="3">
-	<configuration domain="DPESBE3">
+	<configuration domain="DPESBEFIX">
 		<CryptoKey name="esbExternalEndpoint">
 			<mAdminState>enabled</mAdminState>
 			<Filename>cert:///apikey.pem</Filename>
@@ -22,12 +22,12 @@
 			<IgnoreExpiration>off</IgnoreExpiration>
 		</CryptoCertificate>
 		<!-- Logs : custom log category can be used by a single comain only. Must be prefixed by DP domain name. -->
-		<LogLabel name="DPESBE3_ServiceStats">
+		<LogLabel name="DPESBEFIX_ServiceStats">
 			<mAdminState>enabled</mAdminState>
 			<UserSummary>Esb Service Stats Log</UserSummary>
 			<Type>user</Type>
 		</LogLabel>
-		<LogLabel name="DPESBE3_EsbService">
+		<LogLabel name="DPESBEFIX_EsbService">
 			<mAdminState>enabled</mAdminState>
 			<UserSummary>Esb Service Log</UserSummary>
 			<Type>user</Type>
@@ -84,7 +84,7 @@
 				<Priority>info</Priority>
 			</LogEvents>
 			<LogEvents>
-				<Class class="LogLabel">DPESBE3_EsbService</Class>
+				<Class class="LogLabel">DPESBEFIX_EsbService</Class>
 				<Priority>debug</Priority>
 			</LogEvents>
 		</LogTarget>
@@ -139,11 +139,11 @@
 				<Priority>notice</Priority>
 			</LogEvents>
 			<LogEvents>
-				<Class class="LogLabel">DPESBE3_ServiceStats</Class>
+				<Class class="LogLabel">DPESBEFIX_ServiceStats</Class>
 				<Priority>debug</Priority>
 			</LogEvents>
 			<LogEvents>
-				<Class class="LogLabel">DPESBE3_EsbService</Class>
+				<Class class="LogLabel">DPESBEFIX_EsbService</Class>
 				<Priority>debug</Priority>
 			</LogEvents>
 		</LogTarget>-->

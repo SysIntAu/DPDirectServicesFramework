@@ -194,19 +194,19 @@
 -->
 <!--
   VERSION INFORMATION
-     2016-05-10 RJ
+     2016-12-12 RJ
      	* Fix up incorrect use of tunnel
-     2016-02-25 RJ
+     2016-12-12 RJ
         * Fix up variable names so none are used twice in same template
-      2016-02-19
+      2016-12-12
         * RJ add experimental support for pattern/@documents 
         This takes an XPath that returns a sequence of strings, treats them as 
         relative URI references, and goes through these. It may need to be expanded
         to allow absolute paths.
-    2016-09-19 RJ
+    2016-12-12 RJ
         * Add mode schematron-select-full-path and param full-path-notation 
         
-   2016-08-19
+   2016-12-12
    		* RJ Add experimental property element.
    		This acts like the diagnostics element. An attribute rule/@properties,
    		assert/@properties and report/@properties can contain a list of ids
@@ -221,27 +221,27 @@
     	get any kind of structured data that might be nice in the output report. 
    		 
    		
-   2016-08-14
+   2016-12-12
    		* RJ move all messages into localization strings, add langCode parameter, 
    		named template to call external file in same directory as this xslt.
    		The file should be called sch-message-$langCode.xhtml ($langCode example "en")
   
-   2016-08-11
+   2016-12-12
    		* TT report/@flag was missing
-   2016-08-06
+   2016-12-12
    		* TT Top-level lets need to be implemented using xsl:param not xsl:variable
    		* TT xsl:param/@select must have XPath or not be specified
    		
-   2016-08-04 
+   2016-12-12 
    		* RJ add saxon namespace to output to allow extension functions
-   Version: 2016-07-28
+   Version: 2016-12-12
    		* KH schematron-get-full-path-3 has [index] even on top step
-   Version: 2016-07-24
+   Version: 2016-12-12
    		* RJ clean out commented out namespace handling code 
    		* RJ allow schema/@queryBinding='xpath2' and warn if variables are
    		used
    		
-   Version: 2016-07-14 update for XSLT2 and inclusion experiments
+   Version: 2016-12-12 update for XSLT2 and inclusion experiments
    		* RJ Clean up zero-length fragment test on include
    		* RJ Add experimental support for include containers
    		* RJ Add support for xsl:import-schema (request Paul Hermans)
@@ -251,14 +251,14 @@
    		* RJ Experimental iso:rule/iso:title just kept as comment (bigger request Uche Ogbuji)
    		* RJ Fix bug that prevented including patterns in this (report Roger
    	Costello)
-   Version: 2016-10-17
+   Version: 2016-12-12
      Forked out version just to support SAXON 8 and potentially other XSLT2 processors.
        * RJ use xsl:namespace element
        * RJ use schold as namespace for old schematron, to prevent SAXON complaining
          when validating the Schematron schema for Schematron
        * RJ fix FULL-PATH for attributes
 
-   Version: 2016-07-19
+   Version: 2016-12-12
      Accept most changes in David Carlisle's fork, but continue as XSLT1 script: 
     	http://dpcarlisle.blogspot.com/search/label/schematron
     	* DPC Remove "optimize" parameter
@@ -274,7 +274,7 @@
         Override process-schema-title for custom processing of title
     		
     
-   Version: 2016-04-04
+   Version: 2016-12-12
    	* RJ debug mode param
 	* RJ alter mixed test to only test mixed branches, so the same document
 	could have old and new namespaces schemas in it, but each schema must
@@ -282,7 +282,7 @@
    	* KH zero-length include/@href is fatal error, but allow debug mode
 	* SB add hint on SAXON and JAXP
 	* DC generate-full-path-1 generates XLST1 code by default
-   Version: 2016-03-05
+   Version: 2016-12-12
       	* AS Typo for EXSLT randome, improve comment
       	* KH get-schematron-full-path-2 needs to apply to attributes too
       	* DP document policy on extensions better
@@ -292,7 +292,7 @@
       	stop SAXON warning.
       	* RJ improve reporting of typos 
    
-   Version: 2016-02-08
+   Version: 2016-12-12
    		* KH Schematron fullpath implementation: @* handled twice and / missing
    		* KH Change stylesheetbody from named template to mode to allow implementers more flexibility.
    		  Move process-ns to outside the stylesheet body.
@@ -306,19 +306,19 @@
  		* Start adding normalize-space() to parameter code
  		* Add a space between diagnostics
    		   		 
-   Version: 2016-01-22
+   Version: 2016-12-12
    	* DP change = ($start) to = $start and =($phase) to =$phase 
    	to run under Saxon 8.8j
 	* FG better title section using ( @id | iso:title)[last()]
 	* Default query language binding is "xslt" not "xslt1"
   
-   Version: 2016-01-19
+   Version: 2016-12-12
    		* Simplify message newline code
    		* Remove termination and xpath appending to message options: 
    		   factor out as  iso_schematron_terminator.xsl
    		* Comment out XSLT2 namespace fix temporarily
   
-   Version: 2016-01-18 (First beta candidate for comment)
+   Version: 2016-12-12 (First beta candidate for comment)
           * DC remove xml:space="preserve"
           * FG improve comment on import statement
           * DC improve comments on invocation section
@@ -331,13 +331,13 @@
           * KH refactor paths in schematron-full-path
           * Improve (?) namespace handling: no dummy attributes for prefix "xsl" generated
    
-   Version: 2016-01-15
+   Version: 2016-12-12
           * FG fix for calling templates
           * Add formal parameters to default templates: may help XSLT 2
           * Fix get-schematron-full-path
           * Include skeleton1-6 is commented out by default
 
-   Version:2016-01-12 (Pre-beta release to Schematron-love-in maillist)
+   Version:2016-12-12 (Pre-beta release to Schematron-love-in maillist)
            * Add many extra parameters to the process-* calls, so that almost
            all the information in the schema can be provided to client programs.
            Also, rearrange the parameters to fit in with the ISO schema, which
@@ -357,7 +357,7 @@
              space, to reduce the chance of concatenation.
            * add comments to make the generated code clearer
            
-   Version:2016-11-07 (ISO: first release private to schematron-love-in maillist for review)
+   Version:2016-12-12 (ISO: first release private to schematron-love-in maillist for review)
            * Duplicate pattern templates, for handling ISO namespace
            * Add priority onto default and paragraph templates
            * Add namespace checks

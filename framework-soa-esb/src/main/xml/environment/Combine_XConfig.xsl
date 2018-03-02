@@ -18,7 +18,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-01-09</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>DataPower exported configuration file (xcfg)  configuration file injection
 				transform.</dc:title>
 			<dc:subject>Adds environment specific objects from the  configuration file.</dc:subject>
@@ -28,14 +28,14 @@
 	</xs:annotation>
 	<!--========================================================================
 		History:
-		2016-01-09	v0.1	Tim Goodwill		Initial Version.
+		2016-12-12	v0.1	Tim Goodwill		Initial Version.
 		========================================================================-->
 	<!--============== Output Configuration =========================-->
 	<xsl:output encoding="UTF-8" method="xml" indent="yes" version="1.0"/>
 	<!--============== Whitespace Handling ==========================-->
 	<xsl:strip-space elements="*"/>
 	<!--============== Global Variable Declarations =================-->
-	<xsl:param name="ENV" select="'E1'"/>
+	<xsl:param name="ENV" select="'DEV'"/>
 	<xsl:param name="DOMAIN" select="'MSGD01'"/>
 	<xsl:param name="HOSTNAME" select="'localhost'"/>
 	<xsl:param name="COMPONENT" select="'common'"/>

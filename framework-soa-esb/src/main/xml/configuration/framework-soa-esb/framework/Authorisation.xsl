@@ -25,7 +25,7 @@
 		Purpose:Performs authorisation against a local XACML policy file
 		
 		History:
-		2016-08-05	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Utils.xsl"/>

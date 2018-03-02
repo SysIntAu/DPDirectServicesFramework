@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datapower-configuration version="3">
-	<configuration domain="DPESBE1">
+	<configuration domain="DPESBDEV">
 		<!-- Logs : custom log category can be used by a single comain only. Must be prefixed by DP domain name. -->
 		<LogLabel name="DEV1_ServiceStats">
 			<mAdminState>enabled</mAdminState>

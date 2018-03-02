@@ -23,7 +23,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>N.A.</dc:creator>
-			<dc:date>2016-03-06</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>Call Service</dc:title>
 			<dc:subject>Calls a sub-service as part of a service request or response
 				flow</dc:subject>
@@ -34,10 +34,10 @@
 	</xs:annotation>
 	<!--========================================================================
 		History:
-		2016-03-06	v1.0	N.A.			Initial Version.
-		2016-02-26	v1.1	Tim Goodwill		Add CallService Timeout.
-		2016-05-14	v1.1	Tim Goodwill		Add MQ Service call.
-		2016-02-10  v1.2    Vikram Geevanathan	Masked StopTimerEvent template within a variable  
+		2016-12-12	v1.0	N.A.			Initial Version.
+		2016-12-12	v1.1	Tim Goodwill		Add CallService Timeout.
+		2016-12-12	v1.1	Tim Goodwill		Add MQ Service call.
+		2016-12-12  v1.2    Vikram Geevanathan	Masked StopTimerEvent template within a variable  
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>

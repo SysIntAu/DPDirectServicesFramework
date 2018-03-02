@@ -19,7 +19,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>Tim Goodwille</dc:creator>
-			<dc:date>2016-01-09</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>DataPower exported configuration file (xcfg) component-renaming transform.</dc:title>
 			<dc:subject>Transforms property names within a DataPower exported configuration file (xcfg) based on a set
 				of configured search/replace parameters for a specific environment.</dc:subject>
@@ -29,8 +29,8 @@
 	</xs:annotation>
 	<!--========================================================================
 		History:
-		2016-01-09	v0.1	Tim Goodwill	Initial Version.
-		2016-04-17	v0.1	N.A.		Updated to strip clear-text HTTP front side handler/s in higher environments (E6,E7/E8/E9).
+		2016-12-12	v0.1	Tim Goodwill	Initial Version.
+		2016-12-12	v0.1	N.A.		Updated to strip clear-text HTTP front side handler/s in higher environments (UAT,STAGE/TRAIN/PROD).
 		========================================================================-->
 	<!--============== Output Configuration =========================-->
 	<xsl:output encoding="UTF-8" method="xml" indent="yes" version="1.0"/>

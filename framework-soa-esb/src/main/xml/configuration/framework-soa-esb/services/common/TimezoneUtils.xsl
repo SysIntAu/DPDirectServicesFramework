@@ -23,7 +23,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-10-23</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>General utilities</dc:title>
 			<dc:subject>A collection of timezone utility templates</dc:subject>
 			<dc:contributor>Tim Goodwill</dc:contributor>
@@ -32,8 +32,8 @@
 	</xs:annotation>
 	<!--========================================================================
 		History:
-		2016-10-23	v1.0	N.A.		Initial Version.
-		2016-02-14	v1.1	Tim Goodwill	Update RejectToErrorFlow template.
+		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.1	Tim Goodwill	Update RejectToErrorFlow template.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<!--============== Output Configuration =========================-->
@@ -48,7 +48,7 @@
 		<xsl:copy-of select="dp:variable('var://service/system/status/DateTimeStatus')"/>
 	</xsl:template>
 	<!-- Gets current timezone offset 
-		E.g. '2016-06-28T10:10:10.100+10:00' -->
+		E.g. '2016-12-12T10:10:10.100+10:00' -->
 	<xsl:template name="GetCurrentTimezoneOffset">
 		<xsl:variable name="DATE_TIME" select="date:date-time()"/>
 		<xsl:value-of select="substring($DATE_TIME,20)"/>
@@ -56,11 +56,11 @@
 	<!-- Gets timezone offset for any date-time in the current timezone
 		E.g. '+10:00' -->
 	<xsl:template name="GetTimezoneOffset">
-		<!-- example '2016-06-24' -->
+		<!-- example '2016-12-12' -->
 		<xsl:param name="DATE"/>
 		<!-- example 'T10:50:50.158' -->
 		<xsl:param name="TIME"/>
-		<!-- example '2016-06-28T10:10:10.100' or '2016-06-28T10:10:10.100+10:00' -->
+		<!-- example '2016-12-12T10:10:10.100' or '2016-12-12T10:10:10.100+10:00' -->
 		<xsl:param name="DATE_TIME" select="date:date-time()"/>
 		<xsl:variable name="A_TIME">
 			<xsl:choose>

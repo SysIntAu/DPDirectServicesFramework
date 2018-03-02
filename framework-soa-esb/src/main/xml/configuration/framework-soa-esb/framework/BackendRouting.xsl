@@ -23,11 +23,11 @@
 		Performs backend routing based on policy configuration
 		
 		History:
-		2016-03-06	v1.0	N.A.		Initial Version.
-		2016-08-06	v1.0	Tim Goodwill		MQ Async put (Notification).
-		2016-09-09	v1.0	Tim Goodwill		Added consumer provided timeout value (msg expiry).
-		2016-02-05  v1.1    Vikram Geevanathan	Added Support for SFTP Backends
-		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	Tim Goodwill		MQ Async put (Notification).
+		2016-12-12	v1.0	Tim Goodwill		Added consumer provided timeout value (msg expiry).
+		2016-12-12  v1.1    Vikram Geevanathan	Added Support for SFTP Backends
+		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>

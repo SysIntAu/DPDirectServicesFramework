@@ -25,7 +25,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-03-06</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>Copy SOAP Fault to a WS FaultTo or ReplyTo endpoint</dc:title>
 			<dc:subject>Copy SOAP Fault to a WS FaultTo or ReplyTo endpoint</dc:subject>
 			<dc:contributor>Tim Goodwill</dc:contributor>
@@ -34,7 +34,7 @@
 	</xs:annotation>
 	<!--========================================================================
 		History:
-		2016-03-06	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="local:///ESB_Services/framework/FrameworkUtils.xsl"/>

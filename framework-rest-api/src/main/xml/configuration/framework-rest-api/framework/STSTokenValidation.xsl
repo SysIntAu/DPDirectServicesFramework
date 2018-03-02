@@ -28,7 +28,7 @@
 		Purpose:Performs authorisation against a local XACML policy file
 		
 		History:
-		2016-02-05	v1.0	Tim Goodwill		Initial Version.
+		2016-12-12	v1.0	Tim Goodwill		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Constants.xsl"/>

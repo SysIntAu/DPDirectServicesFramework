@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datapower-configuration version="3">
-	<configuration domain="DPESBE4">
+	<configuration domain="DPESBTEST">
 		<!-- Logs : custom log category can be used by a single comain only. Must be prefixed by DP domain name. -->
-		<LogLabel name="DPESBE4_ServiceStats">
+		<LogLabel name="DPESBTEST_ServiceStats">
 			<mAdminState>enabled</mAdminState>
 			<UserSummary>Esb Service Stats Log</UserSummary>
 			<Type>user</Type>
 		</LogLabel>
-		<LogLabel name="DPESBE4_EsbService">
+		<LogLabel name="DPESBTEST_EsbService">
 			<mAdminState>enabled</mAdminState>
 			<UserSummary>Esb Service Log</UserSummary>
 			<Type>user</Type>
@@ -64,7 +64,7 @@
 				<Priority>info</Priority>
 			</LogEvents>
 			<LogEvents>
-				<Class class="LogLabel">DPESBE4_EsbService</Class>
+				<Class class="LogLabel">DPESBTEST_EsbService</Class>
 				<Priority>debug</Priority>
 			</LogEvents>
 		</LogTarget>
@@ -119,11 +119,11 @@
 				<Priority>notice</Priority>
 			</LogEvents>
 			<LogEvents>
-				<Class class="LogLabel">DPESBE4_ServiceStats</Class>
+				<Class class="LogLabel">DPESBTEST_ServiceStats</Class>
 				<Priority>debug</Priority>
 			</LogEvents>
 			<LogEvents>
-				<Class class="LogLabel">DPESBE4_EsbService</Class>
+				<Class class="LogLabel">DPESBTEST_EsbService</Class>
 				<Priority>debug</Priority>
 			</LogEvents>
 		</LogTarget>-->

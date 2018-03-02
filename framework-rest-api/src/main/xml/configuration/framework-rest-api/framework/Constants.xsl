@@ -21,8 +21,8 @@
 		stylesheets within the DataPower SecureTokenService policy flows.
 		
 		History:
-		2016-03-06	v1.0	N.A.		Initial Version.
-		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Global Variable Declarations =================-->
 	<!--
@@ -88,7 +88,7 @@
 		Datapower defined xml names
 	-->
 	<!-- The SOA QMgr Group name -->
-	<xsl:variable name="LOG_QMGR_GROUP_NAME" select="'ESB_Internal_Grp_RealTime_10M_V1'"/>
+	<xsl:variable name="LOG_QMGR_GROUP_NAME" select="'ESB_Internal_Grp_RealTime_V1'"/>
 	<!--
 		Datapower pre-defined service variable names
 	-->

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datapower-configuration version="3">
-	<configuration domain="DPESBE5">
+	<configuration domain="DPESBSIT">
 		<CryptoKey name="esbServicesEncryption">
 			<mAdminState>enabled</mAdminState>
 			<Filename>cert:///apikey.pem</Filename>

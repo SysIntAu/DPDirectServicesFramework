@@ -32,10 +32,10 @@
 		A collection of common utility templates
 		
 		History:
-		2016-10-23	v1.0	N.A.		Initial Version.
-		2016-02-14	v1.1	Tim Goodwill		Update RejectToErrorFlow template.
-		2016-01-28	v1.2	Tim Goodwill		Framework-only templates extracted to FrameworkUtils.xsl
-		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.1	Tim Goodwill		Update RejectToErrorFlow template.
+		2016-12-12	v1.2	Tim Goodwill		Framework-only templates extracted to FrameworkUtils.xsl
+		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Constants.xsl"/>
@@ -270,7 +270,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	<!-- Gets a UTC representation of the current dateTime e.g. '2016-07-28T10:10:10Z' -->
+	<!-- Gets a UTC representation of the current dateTime e.g. '2016-12-12T10:10:10Z' -->
 	<xsl:template name="GetCurrentUTCDateTime">
 		<xsl:value-of select="date:add(date:date-time(),'PT0H')"/>
 	</xsl:template>
@@ -287,7 +287,7 @@
 			select="translate(substring-after(date:add(date:date-time(),'PT0H'),'T'),':.Z&#x20;','')"/>
 		<xsl:value-of select="concat($TIME_DIGITS,substring($TEMPLATE,string-length($TIME_DIGITS)+1,(8 - string-length($TIME_DIGITS))))"/>
 	</xsl:template>
-	<!-- Gets a UTC representation of the current dateTime e.g. '2016-07-28T10:10:10Z' -->
+	<!-- Gets a UTC representation of the current dateTime e.g. '2016-12-12T10:10:10Z' -->
 	<xsl:template name="GetCurrentDateTime">
 		<xsl:value-of select="date:date-time()"/>
 	</xsl:template>
@@ -306,7 +306,7 @@
 	</xsl:template>
 	<!-- Gets an ISO8601 representation of the current date time
 		to the millisecond (append the dp:time-value() function output)
-		E.g. '2016-06-28T10:10:10.100+10:00' -->
+		E.g. '2016-12-12T10:10:10.100+10:00' -->
 	<xsl:template name="GetCurrentDateTimeWithMillis">
 		<xsl:variable name="DATE_TIME" select="date:date-time()"/>
 		<xsl:variable name="TIME_MILLIS" select="dp:time-value()"/>

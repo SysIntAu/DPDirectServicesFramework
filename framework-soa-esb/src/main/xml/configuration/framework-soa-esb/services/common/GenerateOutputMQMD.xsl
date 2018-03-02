@@ -24,7 +24,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-04-08</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>Generate generic output MQMD Header.</dc:title>
 			<dc:subject>Generate generic output MQMD Header for outbound MQ Put.</dc:subject>
 			<dc:contributor>N.A.</dc:contributor>
@@ -35,7 +35,7 @@
 	<!--
 		=================================================================
 		History:
-		2016-04-08	v0.1	Tim Goodwill		Initial Version - generic.
+		2016-12-12	v0.1	Tim Goodwill		Initial Version - generic.
 		=================================================================
 	-->
 	<!--============== Included Stylesheets =========================-->

@@ -12,7 +12,7 @@
 	** To use the deploy targets locally, the following parameters should be supplied as a minimum:
 	** dp.hostname OR dp.hostname.list  == Device/s to deploy to. 'dp.hostname.list' should be comma delimited, no spaces.
 	** dp.user.name, dp.user.pw == User credentials
-	** environment         == DPDIRECT environment name eg 'E1'. 
+	** environment         == DPDIRECT environment name eg 'DEV'. 
 	** release.dir         == Staging dir contains the built deployment artifacts, this will be a temporary working directory
 	**
 	** OPTIONAL PARMS - Deployment
@@ -31,7 +31,7 @@
 	** 
 	******************************************************************** -->
 <project name="dp-deploy" default="deploy">
-	<property name="env" value="E1"/>
+	<property name="env" value="DEV"/>
 	<property name="environment" value="${env}"/>
 	
 	<!-- Location of optional properties file -->
@@ -44,7 +44,7 @@
 	<property name="dp.environment" value="${environment}"/>
 	
 	<!-- Deployment parameters -->
-<!--	<property name="secure.environment.list" value="E7,E9"/>
+<!--	<property name="secure.environment.list" value="STAGE,PROD"/>
 	<condition property="secure.environment" value="true">
 		<contains string="${secure.environment.list}" substring="${environment}"/>
 	</condition>-->
@@ -60,28 +60,28 @@
 	<property name="source.type" value="XML"/>
 	<!-- Gateway  Domain -->
 	<condition property="domain" value="MSGD01">
-		<equals arg1="${dp.environment}" arg2="E1" />
+		<equals arg1="${dp.environment}" arg2="DEV" />
 	</condition>
 	<condition property="domain" value="MSGI01">
-		<equals arg1="${dp.environment}" arg2="E4" />
+		<equals arg1="${dp.environment}" arg2="TEST" />
 	</condition>
 	<condition property="domain" value="MSGJ01">
-		<equals arg1="${dp.environment}" arg2="E5" />
+		<equals arg1="${dp.environment}" arg2="SIT" />
 	</condition>
 	<condition property="domain" value="MSGU01">
-		<equals arg1="${dp.environment}" arg2="E6" />
+		<equals arg1="${dp.environment}" arg2="UAT" />
 	</condition>
 	<condition property="domain" value="MSGS01">
-		<equals arg1="${dp.environment}" arg2="E7" />
+		<equals arg1="${dp.environment}" arg2="STAGE" />
 	</condition>
 	<condition property="domain" value="MSGR01">
-		<equals arg1="${dp.environment}" arg2="E8" />
+		<equals arg1="${dp.environment}" arg2="TRAIN" />
 	</condition>
 	<condition property="domain" value="MSGP01">
-		<equals arg1="${dp.environment}" arg2="E9" />
+		<equals arg1="${dp.environment}" arg2="PROD" />
 	</condition>
 	<condition property="domain" value="MSGK01">
-		<equals arg1="${dp.environment}" arg2="E3" />
+		<equals arg1="${dp.environment}" arg2="EFIX" />
 	</condition>
 	<property name="domain" value="${dp.environment}"/>
 	<!-- Deployment control -->
@@ -144,11 +144,11 @@
 		description="Deploys Gateway  built artifacts to multiple hosts.
 		** PARAMETERS: 
 		dp.hostname OR dp.hostname.list == Device/s to deploy to. 'dp.hostname.list' should be comma delimited, no spaces.
-		environment == DPDIRECT environment name eg 'E1', will look for env properties file eg 'E1.xml' in the deploy dir. 
+		environment == DPDIRECT environment name eg 'DEV', will look for env properties file eg 'DEV.xml' in the deploy dir. 
 		release.dir == Staging dir contains the built deployment artifacts, this will be a temporary working directory.
 		** OPTIONAL PARAMETERS: 
 		type == deployment type, of 'file', 'dir', 'objects', 'files', 'schema', 'services', 'gateway' or 'all' (default is 'all')
-		** EXAMPLES: 'ant -f dp-deploy.xml -Denvironment=E1'  or  'ant -f dp-deploy.xml -Denvironment=E1 -Dtype=services -Drelease.dir=C:/Temp/release'">
+		** EXAMPLES: 'ant -f dp-deploy.xml -Denvironment=DEV'  or  'ant -f dp-deploy.xml -Denvironment=DEV -Dtype=services -Drelease.dir=C:/Temp/release'">
 		<echo message="Deploying ${deployment.type} to ${domain}"/>
 		<mkdir dir="${release.dir}"/>
 		<antcall target="stage.files" inheritall="true" inheritrefs="true"/>

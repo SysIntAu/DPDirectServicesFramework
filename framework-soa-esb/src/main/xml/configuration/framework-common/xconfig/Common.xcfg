@@ -190,18 +190,18 @@
 			<UserAgent class="HTTPUserAgent">DomainDefaultUserAgent_V1</UserAgent>
 		</XMLManager>
 		<!-- MQQMs -->
-		<MQQM name="ESB_Internal_MQQM_1_RealTime_10M_V1">
+		<MQQM name="ESB_Internal_MQQM_1_RealTime_V1">
 			<mAdminState>disabled</mAdminState>
 			<XMLManager class="XMLManager">DomainDefaultCache_V1</XMLManager>
 		</MQQM>
-		<MQQM name="ESB_Internal_MQQM_2_RealTime_10M_V1">
+		<MQQM name="ESB_Internal_MQQM_2_RealTime_V1">
 			<mAdminState>disabled</mAdminState>
 			<XMLManager class="XMLManager">DomainDefaultCache_V1</XMLManager>
 		</MQQM>
-		<MQQMGroup name="ESB_Internal_Grp_RealTime_10M_V1">
+		<MQQMGroup name="ESB_Internal_Grp_RealTime_V1">
 			<mAdminState>enabled</mAdminState>
-			<PrimaryQueueManager class="MQQM">ESB_Internal_MQQM_1_RealTime_10M_V1</PrimaryQueueManager>
-			<BackupQueueManagers class="MQQM">ESB_Internal_MQQM_2_RealTime_10M_V1</BackupQueueManagers>
+			<PrimaryQueueManager class="MQQM">ESB_Internal_MQQM_1_RealTime_V1</PrimaryQueueManager>
+			<BackupQueueManagers class="MQQM">ESB_Internal_MQQM_2_RealTime_V1</BackupQueueManagers>
 		</MQQMGroup>
 		<WebServicesAgent name="default" intrinsic="true">
 			<mAdminState>enabled</mAdminState>

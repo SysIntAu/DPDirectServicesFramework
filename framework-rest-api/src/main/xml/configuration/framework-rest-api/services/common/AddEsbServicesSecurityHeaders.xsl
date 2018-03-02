@@ -25,7 +25,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>N.A.</dc:creator>
-			<dc:date>2016-02-27</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>ESB_Services Security</dc:title>
 			<dc:subject>Adds SAML2 Assertion to messages being routed to ESB_Services endpoints</dc:subject>
 			<dc:contributor>N.A.</dc:contributor>
@@ -34,7 +34,7 @@
 	</xs:annotation>
 	<!--========================================================================
 		History:
-		2016-02-27	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->
 	<!--============== Output Configuration =========================-->
 	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0"/>

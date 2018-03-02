@@ -25,7 +25,7 @@
 		Copy RESULT_DOC to output context, preserving INPUT context attachments
 		
 		History:
-		2016-08-30	v1.0	Tim Goodwill		Initial Version.
+		2016-12-12	v1.0	Tim Goodwill		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>

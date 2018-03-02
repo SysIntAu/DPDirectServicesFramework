@@ -22,7 +22,7 @@
 		Provides generic templates to resolve DataPower Event codes to associated metadata.
 		
 		History:
-		2016-03-06	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->
 	<!--============== Output Configuration =========================-->
 	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0"/>
