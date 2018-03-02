@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dp="http://www.datapower.com/extensions" 
 	extension-element-prefixes="dp " version="1.0"
@@ -8,11 +23,8 @@
 		Performs backend routing based on policy configuration
 		
 		History:
-		2016-03-06	v1.0	N.A.		Initial Version.
-		2016-08-06	v1.0	Tim Goodwill		MQ Async put (Notification).
-		2016-09-09	v1.0	Tim Goodwill		Added consumer provided timeout value (msg expiry).
-		2016-02-05  v1.1    Vikram Geevanathan	Added Support for SFTP Backends
-		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>
@@ -403,7 +415,7 @@
 								<xsl:value-of select="concat(' wsa:RelatesTo ', dp:variable($REQ_WSA_RELATES_TO_VAR_NAME), '.')"/>
 							</xsl:if>
 						</xsl:with-param>
-						<xsl:with-param name="ERROR_CODE" select="'ENTR00014'"/>
+						<xsl:with-param name="ERROR_CODE" select="'ERROR0014'"/>
 					</xsl:call-template>
 				</xsl:otherwise>
 			</xsl:choose>

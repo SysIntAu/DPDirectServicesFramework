@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:date="http://exslt.org/dates-and-times" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
 	xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
@@ -7,19 +22,12 @@
 	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
 	xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
 	extension-element-prefixes="dp date" exclude-result-prefixes="dp  date saml wsa wsse ds wsu" version="1.0">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>N.A.</dc:creator>
-			<dc:date>2016-02-27</dc:date>
-			<dc:title>ESB_Services Security</dc:title>
-			<dc:subject>Adds SAML2 Assertion to messages being routed to ESB_Services endpoints</dc:subject>
-			<dc:contributor>N.A.</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
 	<!--========================================================================
+		Purpose:
+		Adds SAML2 Assertion to messages being routed to ESB_Services endpoints
+		
 		History:
-		2016-02-27	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->
 	<!--============== Output Configuration =========================-->
 	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0"/>

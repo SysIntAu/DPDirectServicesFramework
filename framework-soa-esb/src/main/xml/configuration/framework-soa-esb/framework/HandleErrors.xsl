@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
 	xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xop="http://www.w3.org/2004/08/xop/include"
@@ -8,14 +23,14 @@
 	xmlns:ctx="http://www.dpdirect.org/Namespace/ApplicationContext/Core/V1.0"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 	xmlns:date="http://exslt.org/dates-and-times" extension-element-prefixes="dp date regexp" version="1.0"
-	exclude-result-prefixes="dp date regexp scm ctx errcore  wsse wsa xop wsnt">
+	exclude-result-prefixes="dp date regexp scm ctx err wsse wsa xop wsnt">
 	<!--========================================================================
 		Purpose:
 		Error Handler Stylesheet for the Gateway  Gateway component
 		
 		History:
-		2016-11-07	v0.1	N.A.		Initial Version. 
-		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v0.1	N.A.		Initial Version. 
+		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="CodeMapping.xsl"/>
@@ -87,22 +102,22 @@
 			<!-- Security Error Handling (i.e. AAA failure) -->
 			<xsl:when test="$DP_EVENT_CODE = '0x01d30002'
 				or $DP_EVENT_SUBCODE = '0x01d30002'">
-				<xsl:value-of select="'ENTR00011'"/>
+				<xsl:value-of select="'ERROR0011'"/>
 			</xsl:when>
 			<!-- Invalid Character Encoding Handling -->
 			<xsl:when test="$DP_EVENT_CODE = '0x00030001'
 				or $DP_EVENT_SUBCODE = '0x00030001'">
-				<xsl:value-of select="'ENTR00001'"/>
+				<xsl:value-of select="'ERROR0001'"/>
 			</xsl:when>
 			<!-- Invalid Soap Envelope -->
 			<xsl:when test="$DP_EVENT_CODE = '0x00d30002'
 				or $DP_EVENT_SUBCODE = '0x00d30002'">
-				<xsl:value-of select="'ENTR00001'"/>
+				<xsl:value-of select="'ERROR0001'"/>
 			</xsl:when>
 			<!-- WSDL policy violation : eg. header not found -->
 			<xsl:when test="($DP_EVENT_CODE= '0x00d30003')
 				and contains(dp:variable($DP_SERVICE_ERROR_MSG), 'Required elements filter')">
-				<xsl:value-of select="'ENTR00001'"/>
+				<xsl:value-of select="'ERROR0001'"/>
 			</xsl:when>
 			<!-- Manual Rejection -->
 			<xsl:when test="dp:variable($ERROR_CODE_VAR_NAME) != ''">

@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wst="http://schemas.xmlsoap.org/ws/2005/02/trust"
 	xmlns:wss="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
@@ -6,21 +21,13 @@
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	xmlns:date="http://exslt.org/dates-and-times"
 	extension-element-prefixes="dp regexp date" version="1.0" exclude-result-prefixes="dp date soapenv wst wss">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-04-08</dc:date>
-			<dc:title>Generate generic output MQMD Header.</dc:title>
-			<dc:subject>Generate generic output MQMD Header for outbound MQ Put.</dc:subject>
-			<dc:contributor>N.A.</dc:contributor>
-			<dc:contributor>Tim Goodwill</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
 	<!--
 		=================================================================
+		Purpose:
+		Generate generic output MQMD Header for outbound MQ Put
+		
 		History:
-		2016-04-08	v0.1	Tim Goodwill		Initial Version - generic.
+		2016-12-12	v0.1	Tim Goodwill		Initial Version - generic.
 		=================================================================
 	-->
 	<!--============== Included Stylesheets =========================-->

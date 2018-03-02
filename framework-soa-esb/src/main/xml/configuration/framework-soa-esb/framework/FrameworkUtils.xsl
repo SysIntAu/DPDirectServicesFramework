@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:wsa="http://www.w3.org/2005/08/addressing"
 	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
@@ -13,9 +28,8 @@
 		A collection of framework logging and utility templates.
 		
 		History:
-		2016-10-23	v1.0	N.A.		Initial Version.
-		2016-01-28	v1.2	Tim Goodwill		Framework-only templates extracted to FrameworkUtils.xsl
-		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Utils.xsl"/>

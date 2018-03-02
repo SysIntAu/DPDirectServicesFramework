@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wsa="http://www.w3.org/2005/08/addressing"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
 	xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions" xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" extension-element-prefixes="dp regexp" version="1.0"
-	exclude-result-prefixes="dp regexp errcore scm wsa saml wsse">
+	exclude-result-prefixes="dp regexp err scm wsa saml wsse">
 	<!--========================================================================
 		Purpose:
 		Performs initialisation of the generic policy flow. The request or response policy configuration
@@ -12,10 +27,8 @@
 		context variable. The INPUT context is copied to the RESULT_DOC context.
 		
 		History:
-		2016-03-06	v1.0	N.A.		Initial Version.
-		2016-07-17	v1.0	Tim Goodwill		Add notification support.
-		2016-09-11	v1.0	Tim Goodwill		HTTP/S timeout msg and response code addl dtl.
-		2016-03-20	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Utils.xsl"/>

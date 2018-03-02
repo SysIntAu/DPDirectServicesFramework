@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
 	xmlns:logcore="http://www.dpdirect.org/Namespace/EnterpriseLogging/Core/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions" extension-element-prefixes="dp" version="1.0"
-	exclude-result-prefixes="dp errcore logcore soapenv">
+	exclude-result-prefixes="dp err logcore soapenv">
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>N.A.</dc:creator>
-			<dc:date>2016-03-06</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>Call Service</dc:title>
 			<dc:subject>Calls a sub-service as part of a service request or response
 				flow</dc:subject>
@@ -19,10 +34,8 @@
 	</xs:annotation>
 	<!--========================================================================
 		History:
-		2016-03-06	v1.0	N.A.			Initial Version.
-		2016-02-26	v1.1	Tim Goodwill		Add CallService Timeout.
-		2016-05-14	v1.1	Tim Goodwill		Add MQ Service call.
-		2016-02-10  v1.2    Vikram Geevanathan	Masked StopTimerEvent template within a variable  
+		2016-12-12	v1.0	N.A.			Initial Version.
+		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>
@@ -286,7 +299,7 @@
 									<xsl:value-of select="$RESPONSE/url-open/response//err:Code[1]"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="'ENTR00004'"/>
+									<xsl:value-of select="'ERROR0004'"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:variable>
@@ -355,7 +368,7 @@
 											select="$RESPONSE/url-open/response//err:Code[1]"/>
 									</xsl:when>
 									<xsl:otherwise>
-										<xsl:value-of select="'ENTR00004'"/>
+										<xsl:value-of select="'ERROR0004'"/>
 									</xsl:otherwise>
 								</xsl:choose>
 							</xsl:with-param>
@@ -370,7 +383,7 @@
 								<xsl:value-of select="$PROVIDER_NAME"/>
 								<xsl:text>]</xsl:text>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 						</xsl:call-template>
 					</xsl:when>
 					<xsl:otherwise>
@@ -596,7 +609,7 @@
 						</xsl:variable>
 						<!-- Reject to error flow -->
 						<xsl:call-template name="RejectToErrorFlow">
-							<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 							<xsl:with-param name="ORIGINATOR_NAME" select="$ORIGINATOR_NAME"/>
 							<xsl:with-param name="ADD_DETAILS" select="normalize-space(concat('A response was not received from '
 								,normalize-space($ORIGINATOR_NAME),' within the timeout period and your request may not have been completed.'))"/>
@@ -615,7 +628,7 @@
 								<xsl:value-of select="$RESPONSE_URL/url-open/responsecode"/>
 								<xsl:text>]</xsl:text>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 						</xsl:call-template>
 					</xsl:when>
 					<xsl:otherwise>

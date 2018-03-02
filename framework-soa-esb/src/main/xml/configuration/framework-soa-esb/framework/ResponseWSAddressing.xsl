@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:wsa="http://www.w3.org/2005/08/addressing"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
@@ -6,10 +21,10 @@
 	extension-element-prefixes="dp" version="1.0" exclude-result-prefixes="dp wsa wsse">
 	<!--========================================================================
 		Purpose:
-		Ensure response addressing adheres to general Gateway  response policy as defined i nthe service WSDL.
+		Ensure response addressing adheres to general Gateway  response policy as defined in the service WSDL.
 				
 		History:
-		2016-08-30	v1.0	Tim Goodwill		Initial Version.
+		2016-12-12	v1.0	Tim Goodwill		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Utils.xsl"/>

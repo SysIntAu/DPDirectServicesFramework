@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributeon an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 	xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions"
@@ -6,7 +21,7 @@
 	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
 			<dc:creator>N.A.</dc:creator>
-			<dc:date>2016-03-06</dc:date>
+			<dc:date>2016-12-12</dc:date>
 			<dc:title>Copy message to an MQ queue</dc:title>
 			<dc:subject>Puts a copy of the current context message to an MQ queue</dc:subject>
 			<dc:contributor>N.A.</dc:contributor>
@@ -15,8 +30,18 @@
 		</xs:appinfo>
 	</xs:annotation>
 	<!--========================================================================
+		Purpose: Puts/posts a copy of the current context message to an MQ queue or HTTP Endpoint
+		
 		History:
-		2016-03-06	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	Tim Goodwill		HTTP & Initial Gateway version.
+		========================================================================-->
+	<!--========================================================================
+		Purpose:
+		Puts/posts a copy of the current context message to an MQ queue/HTTP endpoint.
+		
+		History:
+		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>
@@ -226,7 +251,7 @@
 					<xsl:value-of select="$RESPONSE/url-open/responsecode"/>
 					<xsl:text>]</xsl:text>
 				</xsl:with-param>
-				<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+				<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -330,7 +355,7 @@
 					<xsl:value-of select="$RESPONSE/url-open/responsecode"/>
 					<xsl:text>]</xsl:text>
 				</xsl:with-param>
-				<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+				<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -367,7 +392,7 @@
 					<xsl:value-of select="$RESPONSE/url-open/responsecode"/>
 					<xsl:text>]</xsl:text>
 				</xsl:with-param>
-				<xsl:with-param name="ERROR_CODE" select="'ENTR00004'"/>
+				<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>

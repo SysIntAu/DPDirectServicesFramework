@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:logcore="http://www.dpdirect.org/Namespace/EnterpriseLogging/Core/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions" extension-element-prefixes="dp" version="1.0"
@@ -8,7 +23,7 @@
 		Logs statistics and metadata from the current transaction flow.
 		
 		History:
-		2016-03-06	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A.		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Utils.xsl"/>
@@ -92,7 +107,7 @@
 		</xsl:variable>
 		<xsl:variable name="PROVIDER_RESPONSE">
 			<xsl:choose>
-				<xsl:when test="normalize-space($ERROR_CODE) = 'ENTR00007'">
+				<xsl:when test="normalize-space($ERROR_CODE) = 'ERROR0007'">
 					<xsl:value-of select="'timeout'"/>
 				</xsl:when>
 				<xsl:when test="(dp:variable($RES_IN_MSG_NAME_VAR_NAME) = 'Input')
@@ -107,10 +122,10 @@
 		<xsl:variable name="SERVICE_PROXY" select="substring-before(substring-after(dp:variable($REQ_WSA_ACTION_VAR_NAME), 'Namespace/'), '/Services')"/>
 		<xsl:variable name="SERVICE_RESULT">
 			<xsl:choose>
-				<xsl:when test="normalize-space($ERROR_CODE) = 'ENTR00007'">
+				<xsl:when test="normalize-space($ERROR_CODE) = 'ERROR0007'">
 					<xsl:value-of select="'timeout'"/>
 				</xsl:when>
-				<xsl:when test="normalize-space($ERROR_CODE) = 'ENTR00004'">
+				<xsl:when test="normalize-space($ERROR_CODE) = 'ERROR0004'">
 					<xsl:value-of select="'timeout'"/>
 				</xsl:when>
 				<xsl:when test="normalize-space($ERROR_CODE) = 'FRWK00029'">

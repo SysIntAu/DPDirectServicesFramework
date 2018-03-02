@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:os="urn:oasis:names:tc:xacml:2.0:policy:schema:os" 
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
 	xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/"
 	xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
 	xmlns:wsa="http://www.w3.org/2005/08/addressing"
 	xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions"
-	extension-element-prefixes="dp regexp" exclude-result-prefixes="dp regexp os wsse wst wsa saml"
+	extension-element-prefixes="dp regexp" exclude-result-prefixes="dp regexp wsse wst wsa saml"
 	version="1.0">
 	<!--========================================================================
-		Purpose:Performs authorisation against a local XACML policy file
+		Purpose: Performs authorisation against an STS endpoint
 		
 		History:
-		2016-08-05	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	Tim Goodwill		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>
@@ -114,7 +128,7 @@
 							<xsl:with-param name="MSG">
 								<xsl:text>The presented SAML assertion could not be validated.</xsl:text>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'ENTR00011'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0011'"/>
 						</xsl:call-template>
 					</xsl:when>
 					<xsl:when test="($RESPONSE/url-open/response)//wst:Status/wst:Code[1] != $SAML_VALID_RESPONSE">
@@ -125,7 +139,7 @@
 							<xsl:with-param name="MSG">
 								<xsl:text>The presented SAML assertion is not valid.</xsl:text>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'ENTR00011'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0011'"/>
 						</xsl:call-template>
 					</xsl:when>
 					<xsl:otherwise>

@@ -19,19 +19,19 @@
 -->
 <!-- 
   VERSION INFORMATION
-  2016-09-18 RJ
+  2016-12-12 RJ
   		* move out param test from iso:schema template  to work with XSLT 1. (Noah Fontes)
   		
-  2016-07-29 RJ 
+  2016-12-12 RJ 
   		* Create.  Pull out as distinct XSL in its own namespace from old iso_pre_pro.xsl
   		* Put everything in private namespace
   		* Rewrite replace_substring named template so that copyright is clear
   	
-  2016-07-24 RJ
+  2016-12-12 RJ
        * correct abstract patterns so for correct names: param/@name and
      param/@value
     
-  2016-01-12  RJ 
+  2016-12-12  RJ 
      * Use ISO namespace
      * Use pattern/@id not  pattern/@name 
      * Add Oliver Becker's suggests from old Schematron-love-in list for <copy> 

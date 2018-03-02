@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ServiceConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlLocation="local:///service-schema/Verify/WSDL/V1.0/Verify_ServicesProxy_V1.wsdl"
 	xsi:noNamespaceSchemaLocation="ServiceConfig.xsd"  version="1.0">
-	<OperationConfig id="CreatePersonalIdentifiers">
-		<Description>Configuration for the "CreatePersonalIdentifiers" service</Description>
+	<OperationConfig id="Verify">
+		<Description>Configuration for the "Verify" service</Description>
 		<InputMatchCriteria>
 			<Action>http://www.dpdirect.org/Namespace/Verify/ServicesProxy/Interface/V1/Verify_ServicesProxy_PortType_V1/VerifyRequest</Action>
 			<InboundURI>*/Verify</InboundURI>

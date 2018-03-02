@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
@@ -8,16 +23,13 @@
 	xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:date="http://exslt.org/dates-and-times"
 	extension-element-prefixes="dp date" version="1.0" exclude-result-prefixes="dp date soapenv ctx scm">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>Tim Goodwill</dc:creator>
-			<dc:date>2016-01-28</dc:date>
-			<dc:title>Template to re-apply original inbound SOAP</dc:title>
-			<dc:subject>Template to re-apply original inbound SOAP with internal headers and wsa:Action required for internal service invocation</dc:subject>
-			<dc:contributor>Tim Goodwill</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
+	<!--========================================================================
+		Purpose:
+		Template to re-apply original inbound SOAP with internal headers and wsa:Action required for internal service invocation
+		
+		History:
+		2016-12-12	v1.0	Tim Goodwill		Initial Version.
+		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="local:///ESB_Services/framework/Constants.xsl"/>
 	<!--============== Output Configuration =========================-->

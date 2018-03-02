@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+	<!-- *****************************************************************
+	*	Copyright 2016 SysInt Pty Ltd (Australia)
+	*	
+	*	Licensed under the Apache License, Version 2.0 (the "License");
+	*	you may not use this file except in compliance with the License.
+	*	You may obtain a copy of the License at
+	*	
+	*	    http://www.apache.org/licenses/LICENSE-2.0
+	*	
+	*	Unless required by applicable law or agreed to in writing, software
+	*	distributed under the License is distributed on an "AS IS" BASIS,
+	*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	*	See the License for the specific language governing permissions and
+	*	limitations under the License.
+	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
 	xmlns:xop="http://www.w3.org/2004/08/xop/include"
@@ -17,8 +32,8 @@
 		A collection of common utility templates
 		
 		History:
-		2016-10-23	v1.0	N.A.			Initial Version.
-		2016-03-20	v2.0	Tim Goodwill	Init Gateway instance
+		2016-12-12	v1.0	N.A.			Initial Version.
+		2016-12-12	v2.0	Tim Goodwill	Init Gateway instance
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Constants.xsl"/>
@@ -207,7 +222,7 @@
 		</xsl:if>
 		<xsl:text>,WSAMsgId=</xsl:text>
 	</xsl:template>
-	<!-- Gets a UTC representation of the current dateTime e.g. '2016-07-28T10:10:10Z' -->
+	<!-- Gets a UTC representation of the current dateTime e.g. '2016-12-12T10:10:10Z' -->
 	<xsl:template name="GetCurrentUTCDateTime">
 		<xsl:value-of select="date:add(date:date-time(),'PT0H')"/>
 	</xsl:template>
@@ -224,7 +239,7 @@
 			select="translate(substring-after(date:add(date:date-time(),'PT0H'),'T'),':.Z&#x20;','')"/>
 		<xsl:value-of select="concat($TIME_DIGITS,substring($TEMPLATE,string-length($TIME_DIGITS)+1,(8 - string-length($TIME_DIGITS))))"/>
 	</xsl:template>
-	<!-- Gets a UTC representation of the current dateTime e.g. '2016-07-28T10:10:10Z' -->
+	<!-- Gets a UTC representation of the current dateTime e.g. '2016-12-12T10:10:10Z' -->
 	<xsl:template name="GetCurrentDateTime">
 		<xsl:value-of select="date:date-time()"/>
 	</xsl:template>
@@ -243,7 +258,7 @@
 	</xsl:template>
 	<!-- Gets an ISO8601 representation of the current date time
 		to the millisecond (append the dp:time-value() function output)
-		E.g. '2016-06-28T10:10:10.100+10:00' -->
+		E.g. '2016-12-12T10:10:10.100+10:00' -->
 	<xsl:template name="GetCurrentDateTimeWithMillis">
 		<xsl:variable name="DATE_TIME" select="date:date-time()"/>
 		<xsl:variable name="TIME_MILLIS" select="dp:time-value()"/>

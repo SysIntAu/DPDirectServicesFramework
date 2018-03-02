@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datapower-configuration version="3">
-	<configuration domain="DPESBE4">
+	<configuration domain="DPESBTEST">
 <!--		<MQQM name="DESB_Gateway_MQQM_SOA1_RealTime_V1">
 			<mAdminState>enabled</mAdminState>
 			<!-\- Host: stbsoa01.dpdirect.org -\->
@@ -31,7 +31,7 @@
 			<AlternateUser>on</AlternateUser>
 			<XMLManager class="XMLManager">DomainDefaultCache_V1</XMLManager>
 		</MQQM>
-		<MQQMGroup name="DESB_Gateway_Grp_RealTime_10M_V1">
+		<MQQMGroup name="DESB_Gateway_Grp_RealTime_V1">
 			<mAdminState>enabled</mAdminState>
 			<PrimaryQueueManager class="MQQM">DESB_Gateway_MQQM_SOA1_RealTime_V1</PrimaryQueueManager>
 		</MQQMGroup>-->

@@ -5,7 +5,7 @@
 	xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:os ../xacml-2.0-policy.xsd">
 	<os:Description>DataPower ESB XACML 2.0 Services Access Policy Definition</os:Description>
 	<os:Target/>
-	<os:Policy PolicyId="CreatePersonalIdentifiers_Access_Policy"
+	<os:Policy PolicyId="Verify_Access_Policy"
 		RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
 		<os:Target>
 			<os:Subjects>
