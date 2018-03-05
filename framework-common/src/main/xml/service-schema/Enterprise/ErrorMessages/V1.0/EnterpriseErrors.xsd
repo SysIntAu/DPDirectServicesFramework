@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" elementFormDefault="qualified" version="1.0" xml:lang="en">
-  <xs:include schemaLocation="SecurityErrors.xsd"/>
-  <xs:include schemaLocation="ValidationErrors.xsd"/>
-  <xs:include schemaLocation="SystemErrors.xsd"/>
-  <xs:include schemaLocation="BusinessErrors.xsd"/>
+  <xs:simpleType name="codeType">
+    <xs:restriction base="xs:token">
+      <xs:length value="9"/>
+      <xs:pattern value="[A-Z]{3}[\sA-Z:\-][0-9]{5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Code" type="err:codeType"/>
+  <xs:element name="Description" type="xs:token"/>
+  <xs:element name="SubCode" type="xs:token"/>
+  <xs:element name="SubDescription" type="xs:token"/>
+  <xs:element name="Location" type="xs:token"/>
+  <xs:element name="MessageOrigin" type="xs:token"/>
   <xs:complexType name="enterpriseErrorsType">
     <xs:choice>
-      <xs:element ref="err:SecurityErrors"/>
-      <xs:element ref="err:ValidationErrors" minOccurs="0"/>
-      <xs:element ref="err:SystemErrors" minOccurs="0"/>
-      <xs:element ref="err:BusinessErrors" minOccurs="0"/>
+      <xs:element ref="err:Code"/>
+      <xs:element ref="err:Description"/>
+      <xs:element ref="err:SubCode" minOccurs="0"/>
+      <xs:element ref="err:SubDescription" minOccurs="0"/>
+      <xs:element ref="err:Location" minOccurs="0"/>
+      <xs:element ref="err:MessageOrigin"/>
     </xs:choice>
   </xs:complexType>
   <xs:element name="EnterpriseErrors" type="err:enterpriseErrorsType"/>

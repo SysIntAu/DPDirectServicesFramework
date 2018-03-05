@@ -88,7 +88,7 @@
        	* Use axsl:attribute rather than xsl:attribute to shut XSLT2 up
        	* Add extra command-line options to pass to the iso_schematron_skeleton
   
-    2016-12-12: iso_svrl.xsl Rick Jelliffe, 
+    2016-12-12 iso_svrl.xsl Rick Jelliffe, 
           * update namespace, 
           * update phase handling,
           * add flag param to process-assert and process-report & @ flag on output

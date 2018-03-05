@@ -97,7 +97,7 @@
 								<xsl:value-of select="$RESOURCE_ID"/>
 								<xsl:text>]</xsl:text>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'ERROR0011'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0010'"/>
 						</xsl:call-template>
 						<!-- Output an 'unauthorised' element -->
 						<!-- Note: This element is not recognised by DataPower which treates anything but 'approved' as an authorisation failure. -->
@@ -140,7 +140,7 @@
 								<xsl:value-of select="$RESOURCE_ID"/>
 								<xsl:text>]</xsl:text>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'ERROR0011'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0010'"/>
 						</xsl:call-template>
 						<!-- Output an 'unauthorised' element -->
 						<!-- Note: This element is not recognised by DataPower which treates anything but 'approved' as an authorisation failure. -->

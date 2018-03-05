@@ -354,7 +354,7 @@
 	<!-- Template to generate acknowledement message -->
 	<xsl:template name="GenerateAcknowledgementMsg">
 		<xsl:param name="ENDPOINT_URL"/>
-		<xsl:param name="INFORMATION_CODE" select="'FRWK00027'"/>
+		<xsl:param name="INFORMATION_CODE" select="'FRMWK0030'"/>
 		<xsl:param name="DESCRIPTION_TEXT" select="'Request operation completed successfully'"/>
 		<xsl:param name="ACKNOWLEDGEMENT" select="'SUCCESS'"/>
 		<ack:AcknowledgementMessage>

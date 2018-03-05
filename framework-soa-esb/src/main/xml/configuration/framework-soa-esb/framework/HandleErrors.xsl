@@ -102,7 +102,7 @@
 			<!-- Security Error Handling (i.e. AAA failure) -->
 			<xsl:when test="$DP_EVENT_CODE = '0x01d30002'
 				or $DP_EVENT_SUBCODE = '0x01d30002'">
-				<xsl:value-of select="'ERROR0011'"/>
+				<xsl:value-of select="'ERROR0010'"/>
 			</xsl:when>
 			<!-- Invalid Character Encoding Handling -->
 			<xsl:when test="$DP_EVENT_CODE = '0x00030001'

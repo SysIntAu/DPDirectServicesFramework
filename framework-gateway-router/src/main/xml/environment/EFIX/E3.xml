@@ -13,8 +13,8 @@
 	file but has been extended to meet ESB Project Requirements.
 	
 	History:
-	2016-01-091	v1.0	Tim Goodwill 				Initial Version with History.
-	2016-04-01	v1.1	Joy Devassy					CR12 changes, updated ISR url.
+	2016-12-12	v1.0	Tim Goodwill 				Initial Version with History.
+
 	========================================================================-->
 <env name="EFIX" description="System Test Environment">
 	<location name="datapower_deployment_server" id="E15.0x">
@@ -41,8 +41,8 @@
 				<parameter name="esbproperty://esbEchoHttpEndpoint" value="http://DPESBEFIX:10000"/>
 				<!-- SERVICELOG Logging -->
 				<parameter name="esbproperty://logging/capturePointLogs" value="none"/>
-				<parameter name="esbproperty://logging/successLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=ESB.SERVICE.LOG;AsyncPut=true"/>
-				<parameter name="esbproperty://logging/errorLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=ESB.ERROR.LOG;AsyncPut=true"/>
+				<parameter name="esbproperty://logging/successLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.SERVICE.LOG;AsyncPut=true"/>
+				<parameter name="esbproperty://logging/errorLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.ERROR.LOG;AsyncPut=true"/>
 				<!-- Stats Logging -->
 				<parameter name="esbproperty://logCategory/esbStats/DPESBEFIX" value="DPESBEFIX_ServiceStats"/>
 				<parameter name="esbproperty://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog-wsgw/add-log-entry/"/>
@@ -61,17 +61,14 @@
 				<parameter name="esbEchoHttpEndpoint" value="http://DPESBEFIX:10000"/>
 				<!-- Domain Host Alias -->
 				<parameter name="esbApplianceHostName1" value="dpgateway01"/>
-				<parameter name="esbApplianceHostName2" value="dpgateway02"/>
-				<parameter name="esbDomainHostAlias1" value="dpgateway01-dpesbe3"/>
-				<parameter name="esbDomainHostAlias2" value="dpgateway02-dpesbe3"/>
-				<parameter name="esbLocalHostAlias" value="DPESBEFIX"/>
+				<parameter name="esbApplianceHostName2" value="dpgateway02"/>				<parameter name="esbLocalHostAlias" value="DPESBEFIX"/>
 				<!-- default encryption algorithms-->
 				<parameter name="esbDefaultEncryptionAlgorithm" value="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
 				<parameter name="esbDefaultKeyTransportAlgorithm" value="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
 				<parameter name="esbDefaultDigestAlgorithm" value="http://www.w3.org/2001/04/xmlenc#sha256"/>
 				<!-- Logging -->
 				<parameter name="logCategoryServiceStats" value="DPESBEFIX_ServiceStats"/>
-				<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog-esb/add-log-entry/"/>
+				<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
 				<parameter name="logTargetRemoteSystemManagementAddress" value="logserver.dpdirect.org"/>
 				<parameter name="logTargetRemoteSystemManagementPort" value="23456"/>
 			</injection>

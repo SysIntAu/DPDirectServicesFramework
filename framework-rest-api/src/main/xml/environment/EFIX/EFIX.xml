@@ -3,7 +3,7 @@
 	
 	Creator: Tim Goodwill
 	Date   : 2016
-	Title  : UAT DPESB Environment File
+	Title  : EFIX DPESB Environment File
 	Publisher: DPDirect
 	
 	Description and Usage:
@@ -13,10 +13,10 @@
 	file but has been extended to meet ESB Project Requirements.
 	
 	History:
-	2016-01-091	v1.0	Tim Goodwill 				Initial Version with History.
-	2016-04-01	v1.1	Joy Devassy					CR12 changes, updated ISR url.
+	2016-12-12	v1.0	Tim Goodwill 				Initial Version with History.
+
 	========================================================================-->
-<env name="UAT" description="System Test Environment">
+<env name="EFIX" description="System Test Environment">
 	<location name="datapower_deployment_server" id="E15.0x">
 		<host name="mgtserver">
 			<push dir="/opt/esb/deploy/artefacts/"/>
@@ -28,7 +28,7 @@
 				basedir="E:\projects\dpbuild\sdlc-deploy\datapower\deploy">
 				<parameter name="dp.hostname.list" value="dpgateway01,dpgateway02"/>
 				<parameter name="dp.port" value="5550"/>
-				<parameter name="esb.domain" value="DPESBUAT"/>
+				<parameter name="esb.domain" value="DPESBEFIX"/>
 				<parameter name="esb.xmlmanager" value="DomainDefaultCache_V1"/>
 				<parameter name="debug" value="false"/>
 				<parameter name="fail.on.error" value="true"/>
@@ -37,14 +37,14 @@
 			<!-- Datapower Environment Variables for Config Injection-->
 			<esbpropertys name="environment_properties">
 				<!-- Environment -->
-				<parameter name="esbproperty://envName" value="UAT"/>
-				<parameter name="esbproperty://esbEchoHttpEndpoint" value="http://DPESBUAT:10000"/>
+				<parameter name="esbproperty://envName" value="EFIX"/>
+				<parameter name="esbproperty://esbEchoHttpEndpoint" value="http://DPESBEFIX:10000"/>
 				<!-- SERVICELOG Logging -->
 				<parameter name="esbproperty://logging/capturePointLogs" value="none"/>
-				<parameter name="esbproperty://logging/successLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=ESB.SERVICE.LOG;AsyncPut=true"/>
-				<parameter name="esbproperty://logging/errorLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=ESB.ERROR.LOG;AsyncPut=true"/>
+				<parameter name="esbproperty://logging/successLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.SERVICE.LOG;AsyncPut=true"/>
+				<parameter name="esbproperty://logging/errorLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.ERROR.LOG;AsyncPut=true"/>
 				<!-- Stats Logging -->
-				<parameter name="esbproperty://logCategory/esbStats/DPESBUAT" value="DPESBUAT_ServiceStats"/>
+				<parameter name="esbproperty://logCategory/esbStats/DPESBEFIX" value="DPESBEFIX_ServiceStats"/>
 				<parameter name="esbproperty://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog-wsgw/add-log-entry/"/>
 				<parameter name="esbproperty://logTarget/remoteSystemManagement/address" value="logserver.dpdirect.org"/>
 				<parameter name="esbproperty://logTarget/remoteSystemManagement/port" value="23456"/>
@@ -57,21 +57,18 @@
 			</esbpropertys>
 			<!-- Datapower Environment Variables for Config Injection-->
 			<injection name="environment_properties">
-				<!-- Biometric Service Endpoints -->
-				<parameter name="esbEchoHttpEndpoint" value="http://DPESBUAT:10000"/>
+				<!-- DP Echo Endpoint -->
+				<parameter name="esbEchoHttpEndpoint" value="http://DPESBEFIX:10000"/>
 				<!-- Domain Host Alias -->
 				<parameter name="esbApplianceHostName1" value="dpgateway01"/>
-				<parameter name="esbApplianceHostName2" value="dpgateway02"/>
-				<parameter name="esbDomainHostAlias1" value="dpgateway01-dpesbe6"/>
-				<parameter name="esbDomainHostAlias2" value="dpgateway02-dpesbe6"/>
-				<parameter name="esbLocalHostAlias" value="DPESBUAT"/>
+				<parameter name="esbApplianceHostName2" value="dpgateway02"/>				<parameter name="esbLocalHostAlias" value="DPESBEFIX"/>
 				<!-- default encryption algorithms-->
 				<parameter name="esbDefaultEncryptionAlgorithm" value="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
 				<parameter name="esbDefaultKeyTransportAlgorithm" value="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
 				<parameter name="esbDefaultDigestAlgorithm" value="http://www.w3.org/2001/04/xmlenc#sha256"/>
 				<!-- Logging -->
-				<parameter name="logCategoryServiceStats" value="DPESBUAT_ServiceStats"/>
-				<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog-esb/add-log-entry/"/>
+				<parameter name="logCategoryServiceStats" value="DPESBEFIX_ServiceStats"/>
+				<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
 				<parameter name="logTargetRemoteSystemManagementAddress" value="logserver.dpdirect.org"/>
 				<parameter name="logTargetRemoteSystemManagementPort" value="23456"/>
 			</injection>

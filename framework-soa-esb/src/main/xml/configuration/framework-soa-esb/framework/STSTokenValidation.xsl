@@ -128,7 +128,7 @@
 							<xsl:with-param name="MSG">
 								<xsl:text>The presented SAML assertion could not be validated.</xsl:text>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'ERROR0011'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0010'"/>
 						</xsl:call-template>
 					</xsl:when>
 					<xsl:when test="($RESPONSE/url-open/response)//wst:Status/wst:Code[1] != $SAML_VALID_RESPONSE">
@@ -139,7 +139,7 @@
 							<xsl:with-param name="MSG">
 								<xsl:text>The presented SAML assertion is not valid.</xsl:text>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'ERROR0011'"/>
+							<xsl:with-param name="ERROR_CODE" select="'ERROR0010'"/>
 						</xsl:call-template>
 					</xsl:when>
 					<xsl:otherwise>

@@ -415,7 +415,7 @@
 								<xsl:value-of select="concat(' wsa:RelatesTo ', dp:variable($REQ_WSA_RELATES_TO_VAR_NAME), '.')"/>
 							</xsl:if>
 						</xsl:with-param>
-						<xsl:with-param name="ERROR_CODE" select="'ERROR0014'"/>
+						<xsl:with-param name="ERROR_CODE" select="'ERROR0022'"/>
 					</xsl:call-template>
 				</xsl:otherwise>
 			</xsl:choose>
