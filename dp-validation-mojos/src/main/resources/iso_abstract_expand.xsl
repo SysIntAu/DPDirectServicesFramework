@@ -31,7 +31,7 @@
        * correct abstract patterns so for correct names: param/@name and
      param/@value
     
-  2016-12-12  RJ 
+  2016-12-12 RJ 
      * Use ISO namespace
      * Use pattern/@id not  pattern/@name 
      * Add Oliver Becker's suggests from old Schematron-love-in list for <copy> 

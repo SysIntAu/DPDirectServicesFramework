@@ -48,7 +48,7 @@
 	<!-- Gets timezone offset for any date-time in the current timezone
 		E.g. '+10:00' -->
 	<xsl:template name="GetTimezoneOffset">
-		<!-- example '2016-12-12' -->
+		<!-- example '2016-12-12 -->
 		<xsl:param name="DATE"/>
 		<!-- example 'T10:50:50.158' -->
 		<xsl:param name="TIME"/>

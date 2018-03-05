@@ -40,7 +40,7 @@
 	History:
 	
 	2016-02-05	v0.1	Enrico Raymundo		Initial Version.
-	2016-02-08  	v0.2	Enrico Raymundo     	1. Changed root element from:
+	2016-12-12 	v0.2	Enrico Raymundo     	1. Changed root element from:
 							   "Acknowledgement" to "AcknowledgementMessage"
 							2. Changed "AcknowledgementText" to "Acknowledgement"
 							3. Changed "eack:" NS prefix from "ack:"
