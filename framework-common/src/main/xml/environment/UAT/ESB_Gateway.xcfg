@@ -29,7 +29,7 @@
 			<LongRetryInterval>1800</LongRetryInterval>
 			<ReportingInterval>1</ReportingInterval>
 			<AlternateUser>on</AlternateUser>
-			<XMLManager class="XMLManager">DomainDefaultCache_V1</XMLManager>
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
 		</MQQM>
 		<MQQMGroup name="DESB_Gateway_Grp_RealTime_V1">
 			<mAdminState>enabled</mAdminState>

@@ -28,7 +28,7 @@
 				<parameter name="dp.hostname.list" value="dpgateway01,dpgateway02"/>
 				<parameter name="dp.port" value="5550"/>
 				<parameter name="esb.domain" value="DPESBSIT"/>
-				<parameter name="esb.xmlmanager" value="DomainDefaultCache_V1"/>
+				<parameter name="esb.xmlmanager" value="DomainDefaultCache"/>
 				<parameter name="debug" value="false"/>
 				<parameter name="fail.on.error" value="true"/>
 				<parameter name="rollback.on.error" value="true"/>

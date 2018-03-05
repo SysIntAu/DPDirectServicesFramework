@@ -96,7 +96,7 @@
 	<property name="source.type" value="XML"/>
 	
 	<!-- Set the XMLManager name -->
-	<property name="esb.xmlmanager" value="DomainDefaultCache_V1"/>
+	<property name="esb.xmlmanager" value="DomainDefaultCache"/>
 	<condition property="esb.webservices.xmlmanager" value="${proxy}_Cache_V1">
 		<contains string="${proxy}" substring="_Services"/>
 	</condition>
