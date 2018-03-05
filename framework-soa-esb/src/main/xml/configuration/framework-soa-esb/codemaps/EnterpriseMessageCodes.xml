@@ -1,208 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Worksheet name="ConsolidatedCodes">
 	<Table>
+		<!-- Framework Error Code Lookup -->
+		
 		<Row>
 			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>FRWK00001</ProviderCode>
+			<ProviderCode>FRMWK0001</ProviderCode>
 			<Service>*</Service>
 			<Type>Error</Type>
 			<Subtype>System</Subtype>
-			<!--<MessageDescription>A system error occurred. The system is currently unable to process your request.  Please try again. If this problem persists please contact IT Support.</MessageDescription>-->
 			<MessageDescription>Unexpected system / runtime error occurred.</MessageDescription>
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0001</EnterpriseCode>
+			<EnterpriseCode>ERROR0010</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>FRWK00002</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<!--<MessageDescription>No application name could be found</MessageDescription>-->
-			<MessageDescription>Unexpected system / runtime error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0001</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00003</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<!--<MessageDescription>Host cannot be found</MessageDescription>-->
-			<MessageDescription>Unexpected system / runtime error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0011</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00004</ProviderCode>
+			<ProviderCode>FRMWK0010</ProviderCode>
 			<Service>*</Service>
 			<Type>Error</Type>
 			<Subtype>Security</Subtype>
-			<!--<MessageDescription>No username could be found</MessageDescription>-->
 			<MessageDescription>A security-related error occurred.</MessageDescription>
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0001</EnterpriseCode>
+			<EnterpriseCode>ERROR0020</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>FRWK00005</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<!--<MessageDescription>No Filename could be found</MessageDescription>-->
-			<MessageDescription>Unexpected system / runtime error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0011</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00006</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Security</Subtype>
-			<!--<MessageDescription>Cipher cannot be found</MessageDescription>-->
-			<MessageDescription>A security-related error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0011</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00007</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Security</Subtype>
-			<!--<MessageDescription>Message Authentication cannot be found</MessageDescription>-->
-			<MessageDescription>A security-related error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0011</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00008</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Security</Subtype>
-			<!--<MessageDescription>Host key cannot be found</MessageDescription>-->
-			<MessageDescription>A security-related error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0011</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00009</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Security</Subtype>
-			<!--<MessageDescription>Private key cannot be found</MessageDescription>-->
-			<MessageDescription>A security-related error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0030</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00010</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>Message cannot be found</MessageDescription>-->
-			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0011</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00011</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Security</Subtype>
-			<!--<MessageDescription>Login to host failed</MessageDescription>-->
-			<MessageDescription>A security-related error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0001</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00012</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<!--<MessageDescription>Topic Name cannot be found</MessageDescription>-->
-			<MessageDescription>Unexpected system / runtime error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0061</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00013</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>The Soap Header is not found</MessageDescription>-->
-			<MessageDescription>Invalid or missing SOAP Envelope.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0001</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00014</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<!--<MessageDescription>No Queue Entry found in the Route file</MessageDescription>-->
-			<MessageDescription>Unexpected system / runtime error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0001</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00015</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<!--<MessageDescription>A database error has occurred</MessageDescription>-->
-			<MessageDescription>Unexpected system / runtime error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0030</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00016</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>An error message format is invalid</MessageDescription>-->
-			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0030</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00017</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>Max Message Size not specified in Routefile</MessageDescription>-->
-			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0030</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00018</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>Exceeded Maximum Message Size</MessageDescription>-->
-			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR00061</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00019</ProviderCode>
+			<ProviderCode>FRMWK0020</ProviderCode>
 			<Service>*</Service>
 			<Type>Error</Type>
 			<Subtype>Validation</Subtype>
@@ -210,84 +34,49 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0001</EnterpriseCode>
+			<EnterpriseCode>ERROR0022</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>FRWK00020</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<MessageDescription>Unexpected system / runtime error occurred. $providerDescription</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0030</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00021</ProviderCode>
+			<ProviderCode>FRMWK0022</ProviderCode>
 			<Service>*</Service>
 			<Type>Error</Type>
 			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>Non well-formed XML message or invalid character encoding</MessageDescription>-->
-			<MessageDescription>A validation error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0030</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00022</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>Schema validation error. $providerDescription</MessageDescription>-->
-			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0030</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00023</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>Schematron validation error. $providerDescription</MessageDescription>-->
-			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0031</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00024</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>Data item is missing or invalid</MessageDescription>-->
 			<MessageDescription>A syntax validation error occurred. Mandatory field missing. $providerDescription</MessageDescription>
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0030</EnterpriseCode>
+			<EnterpriseCode>ERROR0025</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>FRWK00025</ProviderCode>
+			<ProviderCode>FRMWK0025</ProviderCode>
 			<Service>*</Service>
 			<Type>Error</Type>
 			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>Blank document returned from provider</MessageDescription>-->
+			<MessageDescription>SOAP Fault received as response from a back-end system. $providerDescription</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0026</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>FRMWK0026</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
 			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0028</EnterpriseCode>
+			<EnterpriseCode>ERROR0027</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>FRWK00026</ProviderCode>
+			<ProviderCode>FRMWK0027</ProviderCode>
 			<Service>*</Service>
 			<Type>Error</Type>
 			<Subtype>Validation</Subtype>
-			<MessageDescription>SOAP Fault received as response from sub-service call or back end system. $providerDescription</MessageDescription>
+			<MessageDescription>A validation error occurred</MessageDescription>
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0055</EnterpriseCode>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>FRWK00027</ProviderCode>
+			<ProviderCode>FRMWK0030</ProviderCode>
 			<Service>*</Service>
 			<Type>Informational</Type>
 			<Subtype>Logic</Subtype>
@@ -295,136 +84,92 @@
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0011</EnterpriseCode>
+			<EnterpriseCode>ERROR0031</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>FRWK00028</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Security</Subtype>
-			<!--<MessageDescription>Security Error</MessageDescription>-->
-			<MessageDescription>A security-related error occurred.</MessageDescription>
-			<ErrorDomain>Framework</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0055</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>FRWK00029</ProviderCode>
+			<ProviderCode>FRMWK0031</ProviderCode>
 			<Service>*</Service>
 			<Type>Informational</Type>
 			<Subtype>Logic</Subtype>
-			<MessageDescription>Request/Notification excluded by DESB filter</MessageDescription>
+			<MessageDescription>Request excluded by service filter</MessageDescription>
 			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
+		
+		<!-- Enterprise Error Code Lookup -->
+		
 		<Row>
 			<EnterpriseCode>ERROR0001</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
+			<ProviderCode>*</ProviderCode>
 			<Service>*</Service>
 			<Type>Error</Type>
 			<Subtype>System</Subtype>
-<!--			<MessageDescription>A system error occurred. The system is currently unable to process your request. Please try again. If this problem persists please contact IT Support.</MessageDescription>-->
 			<MessageDescription>Unexpected system / runtime error occurred.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
+			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
 			<EnterpriseCode>ERROR0002</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
+			<ProviderCode>*</ProviderCode>
 			<Service>*</Service>
-			<Type>Warning</Type>
-			<Subtype>Security</Subtype>
-<!--			<MessageDescription>The provider is unable to authorise access to the system. If this problem persists please contact IT Support</MessageDescription>-->
-			<MessageDescription>The provider is unable to authorise access to the system.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0003</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Security</Subtype>
-<!--			<MessageDescription>The provider is unable to authorise access to the system. If this problem persists please contact IT Support</MessageDescription>-->
-			<MessageDescription>The provider is unable to authorise access to the system.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0004</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<MessageDescription>Time out error raised on a secondary service provider invocation</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0005</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Logic</Subtype>
-			<MessageDescription>Entire request could not be sent to the provider because it violates the provider payload restriction</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-<!--		<Row>
-			<EnterpriseCode>ERROR0006</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Warning</Type>
-			<Subtype>Logic</Subtype>
-			<!-\-<MessageDescription>PID / CID could not be extracted from a party search</MessageDescription>-\->
-			<MessageDescription>ID could not be extracted</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>-->
-		<Row>
-			<EnterpriseCode>ERROR0006</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<MessageDescription>Timeout occurred.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0007</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-<!--			<MessageDescription>A service time out error has occurred. The system is currently unable to process your request. Please try again. If this problem persists please contact IT Support.</MessageDescription>-->
-			<MessageDescription>A service time out error has occurred. The system is currently unable to process your request.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0008</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<MessageDescription>More than one Party Id or no Party Id is returned when searching for a given Client Id</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0009</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>Mandatory information is required. The system is currently unable to process your request. Please try again. If this problem persists please contact IT Support.</MessageDescription>-->
-			<MessageDescription>Mandatory information is required. The system is currently unable to process your request.</MessageDescription>
+			<Type>*</Type>
+			<Subtype>*</Subtype>
+			<MessageDescription>An unexpected error has occurred within the Gateway and your request may not have been completed</MessageDescription>
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
 			<EnterpriseCode>ERROR0010</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Security</Subtype>
+			<MessageDescription>A security-related error occurred.</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Security</Subtype>
+			<MessageDescription>The provider is unable to authorise access to the system.</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0012</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>System</Subtype>
+			<MessageDescription>A service time-out error has occurred. The system is currently unable to process your request</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0013</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>System</Subtype>
+			<MessageDescription>Time-out occurred</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0014</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>System</Subtype>
+			<MessageDescription>Time-out error raised on a secondary service provider invocation</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0015</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
 			<Service>*</Service>
 			<Type>*</Type>
 			<Subtype>*</Subtype>
@@ -432,197 +177,49 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0011</EnterpriseCode>
-			<Provider>DESB</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Security</Subtype>
-			<MessageDescription>An unexpected error has occurred within the ESB. Your request could not be processed</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0011</EnterpriseCode>
+			<EnterpriseCode>ERROR0016</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Security</Subtype>
-			<!--<MessageDescription>An unexpected error has occurred within the Gateway. Your request could not be processed</MessageDescription>-->
-			<MessageDescription>A security related  error has occurred within the Gateway. Your request could not be processed</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0012</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>*</Type>
-			<Subtype>*</Subtype>
-			<!--<MessageDescription>An unexpected error has occurred within the ESB and your request may not have been completed. One or more transactions may be left in an inconsistent state. Please contact the help desk</MessageDescription>-->
-			<MessageDescription>An unexpected error has occurred within the ESB and your request may not have been completed. One or more transactions may be left in an inconsistent state.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0012</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>*</Type>
-			<Subtype>*</Subtype>
-			<!--<MessageDescription>An unexpected error has occurred within the Gateway and your request may not have been completed. One or more transactions may be left in an inconsistent state. Please contact the help desk</MessageDescription>-->
-			<MessageDescription>An unexpected error has occurred within the Gateway and your request may not have been completed. One or more transactions may be left in an inconsistent state.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0013</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>*</Type>
-			<Subtype>*</Subtype>
-			<MessageDescription>The service that you requested does not exist. Please check your configuration</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0014</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
+			<ProviderCode>*</ProviderCode>
 			<Service>*</Service>
 			<Type>Error</Type>
 			<Subtype>Validation</Subtype>
-			<MessageDescription>One or more of the mandatory fields are missing from the user request</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0015</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<MessageDescription>The requested template does not exist</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0016</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Logic</Subtype>
-			<MessageDescription>Data could not be found for the specified request</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0017</EnterpriseCode>
-			<Provider>DESB</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Logic</Subtype>
-			<!--<MessageDescription>ESB does not recognise the identifier used for search. The system is currently unable to process your request. Please try again. If this problem persists please contact IT Support.</MessageDescription>-->
-			<MessageDescription>ESB does not recognise the identifier used for search. The system is currently unable to process your request. Please try again.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0017</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<!--<MessageDescription>The system does not recognise the identifier used for search. The system is currently unable to process your request. Please try again. If this problem persists please contact IT Support.</MessageDescription>-->
-			<MessageDescription>The system does not recognise the identifier used for search. The system is currently unable to process your request. Please try again.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0019</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<!--<MessageDescription>Please check the search criteria entered. An invalid Business context has been selected. If this problem persists please contact IT Support.</MessageDescription>-->
-			<MessageDescription>Please check the search criteria entered. An invalid Business context has been selected.</MessageDescription>
+			<MessageDescription>User does not have sufficient security privileges</MessageDescription>
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
 			<EnterpriseCode>ERROR0020</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>System</Subtype>
-			<MessageDescription>Master data not rendered</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR00030</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
+			<ProviderCode>*</ProviderCode>
 			<Service>*</Service>
 			<Type>Error</Type>
 			<Subtype>Validation</Subtype>
-			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
+			<MessageDescription>Invalid or missing SOAP Envelope.</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR00031</EnterpriseCode>
+			<EnterpriseCode>ERROR0021</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
+			<ProviderCode>*</ProviderCode>
 			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<MessageDescription>A syntax validation error occurred. Mandatory field missing.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR00032</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Error</Type>
-			<Subtype>Validation</Subtype>
-			<MessageDescription>User does not have sufficient security privileges.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0034</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>ERROR0034</ProviderCode>
-			<Service>*</Service>
-			<Type>Warning</Type>
-			<Subtype>Validation</Subtype>
+			<Type>*</Type>
+			<Subtype>*</Subtype>
 			<MessageDescription>Unknown service request type</MessageDescription>
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0035</EnterpriseCode>
+			<EnterpriseCode>ERROR0022</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
+			<ProviderCode>*</ProviderCode>
 			<Service>*</Service>
-			<Type>Warning</Type>
+			<Type>Error</Type>
 			<Subtype>Validation</Subtype>
-			<!--<MessageDescription>No Description was found for a code value returned from the provider. Code has been returned with the record. Please report this occurrence to IT Support.</MessageDescription>-->
-			<MessageDescription>No Description was found for a code value returned from the provider. Code has been returned with the record.</MessageDescription>
+			<MessageDescription>Sytax validation error. One or more mandatory fields are missing from the request</MessageDescription>
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0046</EnterpriseCode>
+			<EnterpriseCode>ERROR0023</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
-			<Service>*</Service>
-			<Type>Warning</Type>
-			<Subtype>System</Subtype>
-			<!--<MessageDescription>Error in data provided. The provider data (Visa Grant Number, VisaCriteriaSatisfiedCode, LodgementLocationType, VisaStatisticalCode, GrantDate, VisaClassCode, VisaSubclassCode, and User ID) does not match the information passed to the provider</MessageDescription>-->
-			<MessageDescription>Error in data provided. The provider data does not match the information in the request.</MessageDescription>
-			<ErrorDomain>Enterprise</ErrorDomain>
-		</Row>
-		<Row>
-			<EnterpriseCode>ERROR0052</EnterpriseCode>
-			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
+			<ProviderCode>*</ProviderCode>
 			<Service>*</Service>
 			<Type>Warning</Type>
 			<Subtype>System</Subtype>
@@ -630,14 +227,44 @@
 			<ErrorDomain>Enterprise</ErrorDomain>
 		</Row>
 		<Row>
-			<EnterpriseCode>ERROR0053</EnterpriseCode>
+			<EnterpriseCode>ERROR0025</EnterpriseCode>
 			<Provider>*</Provider>
-			<ProviderCode>n/a</ProviderCode>
+			<ProviderCode>*</ProviderCode>
 			<Service>*</Service>
-			<Type>Warning</Type>
-			<Subtype>System</Subtype>
-			<MessageDescription>No stored message returned from DB with a matching correlation ID</MessageDescription>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>SOAP Fault received as response from a back-end system. $providerDescription</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0026</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
 			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0027</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Informational</Type>
+			<Subtype>Logic</Subtype>
+			<MessageDescription>Request excluded by service filter</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
 		</Row>
 	</Table>
 </Worksheet>

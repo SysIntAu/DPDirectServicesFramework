@@ -57,7 +57,7 @@
 			</esbpropertys>
 			<!-- Datapower Environment Variables for Config Injection-->
 			<injection name="environment_properties">
-				<!-- Biometric Service Endpoints -->
+				<!-- Verify Service Endpoints -->
 				<parameter name="esbEchoHttpEndpoint" value="http://DPESBPROD:10000"/>
 				<!-- Domain Host Alias -->
 				<parameter name="esbApplianceHostName1" value="dpgateway01"/>

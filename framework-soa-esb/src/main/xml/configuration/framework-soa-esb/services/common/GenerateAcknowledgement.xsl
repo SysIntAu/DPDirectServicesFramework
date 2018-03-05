@@ -69,8 +69,8 @@
 									<xsl:value-of select="$SOAP_FAULT//err:EnterpriseErrors[1]/*[1]/*[1]/err:Code[1]"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<!-- 'FRWK00026' is a general code to indicate SOAP Fault received from sub-service call or back end system -->
-									<xsl:value-of select="'FRWK00026'"/>
+									<!-- 'FRMWK0025' is a general code to indicate SOAP Fault received from sub-service call or back end system -->
+									<xsl:value-of select="'FRMWK0025'"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:variable>
@@ -95,8 +95,8 @@
 					<xsl:otherwise>
 						<!-- Reject to error flow -->
 						<xsl:call-template name="RejectToErrorFlow">
-							<!-- 'FRWK00026' is a general code to indicate SOAP Fault received from sub-service call or back end system -->
-							<xsl:with-param name="ERROR_CODE" select="'FRWK00026'"/>
+							<!-- 'FRMWK0025' is a general code to indicate SOAP Fault received from sub-service call or back end system -->
+							<xsl:with-param name="ERROR_CODE" select="'FRMWK0025'"/>
 							<xsl:with-param name="ADD_DETAILS" select="concat('[response-fault-metadata
 								provider=', $PROVIDER_NAME, 'faultstring=', $SOAP_FAULT//faultstring, '&#x020;;detail=',
 								$SOAP_FAULT//detail,']')"/>

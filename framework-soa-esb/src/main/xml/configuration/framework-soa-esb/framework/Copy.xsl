@@ -251,7 +251,7 @@
 					<xsl:value-of select="$RESPONSE/url-open/responsecode"/>
 					<xsl:text>]</xsl:text>
 				</xsl:with-param>
-				<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
+				<xsl:with-param name="ERROR_CODE" select="'ERROR0014'"/>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -355,7 +355,7 @@
 					<xsl:value-of select="$RESPONSE/url-open/responsecode"/>
 					<xsl:text>]</xsl:text>
 				</xsl:with-param>
-				<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
+				<xsl:with-param name="ERROR_CODE" select="'ERROR0014'"/>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -392,7 +392,7 @@
 					<xsl:value-of select="$RESPONSE/url-open/responsecode"/>
 					<xsl:text>]</xsl:text>
 				</xsl:with-param>
-				<xsl:with-param name="ERROR_CODE" select="'ERROR0004'"/>
+				<xsl:with-param name="ERROR_CODE" select="'ERROR0014'"/>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>

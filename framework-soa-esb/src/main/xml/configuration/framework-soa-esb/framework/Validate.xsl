@@ -125,7 +125,7 @@
 								<xsl:text>One or more XML Schema Validation Errors: </xsl:text>
 								<xsl:value-of select="$VALIDATION_ERR_MSG"/>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'FRWK00022'"/>
+							<xsl:with-param name="ERROR_CODE" select="'FRMWK0026'"/>
 						</xsl:call-template>
 					</xsl:otherwise>
 				</xsl:choose>
@@ -150,7 +150,7 @@
 								<xsl:text>One or more Schematron Validation Errors: </xsl:text>
 								<xsl:value-of select="$SCHEMATRON_OUTPUT//svrl:failed-assert[1]/svrl:text[1]"/>
 							</xsl:with-param>
-							<xsl:with-param name="ERROR_CODE" select="'FRWK00023'"/>
+							<xsl:with-param name="ERROR_CODE" select="'FRMWK0027'"/>
 						</xsl:call-template>
 					</xsl:otherwise>
 				</xsl:choose>
