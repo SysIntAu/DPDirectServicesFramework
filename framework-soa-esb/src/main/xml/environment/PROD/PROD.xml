@@ -45,7 +45,7 @@
 				<parameter name="esbproperty://logging/errorLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.ERROR.LOG;AsyncPut=true"/>
 				<!-- Stats Logging -->
 				<parameter name="esbproperty://logCategory/esbStats/DPESBPROD" value="DPESBPROD_ServiceStats"/>
-				<parameter name="esbproperty://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog-wsgw/add-log-entry/"/>
+				<parameter name="esbproperty://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
 				<parameter name="esbproperty://logTarget/remoteSystemManagement/address" value="logserver.dpdirect.org"/>
 				<parameter name="esbproperty://logTarget/remoteSystemManagement/port" value="23456"/>
 				<!-- LDAP  -->
@@ -72,18 +72,20 @@
 				<parameter name="logTargetRemoteSystemManagementAddress" value="logserver.dpdirect.org"/>
 				<parameter name="logTargetRemoteSystemManagementPort" value="23456"/>
 			</injection>
+			
 			<!-- Datapower Environment xconfig insertions-->
-			<insertions name="environment_insertions">
-				<!--				<insertion parentClass="LoadBalancerGroup" parentName="BamsBackend_V1">
-					<LBGroupMembers parentClass="LoadBalancerGroup" parentName="BamsBackend_V1">
+			
+			<!-- <insertions name="environment_insertions">
+				<insertion parentClass="LoadBalancerGroup" parentName="Target_LBG">
+					<LBGroupMembers parentClass="LoadBalancerGroup" parentName="Target_LBG">
 						<Server>server.local</Server>
 						<Weight>1</Weight>
 						<MappedPort>80</MappedPort>
 						<Activity/>
 						<HealthPort/>
 					</LBGroupMembers>
-				</insertion>-->
-			</insertions>
+				</insertion>
+			</insertions>-->
 		</host>
 	</location>
 </env>
