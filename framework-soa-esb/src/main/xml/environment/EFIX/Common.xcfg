@@ -98,7 +98,7 @@
 			<Format>xml</Format>
 			<TimestampFormat>syslog</TimestampFormat>
 			<Size>500</Size>
-			<URL>http://localhost:8090/dplog-wsgw/add-log-entry/</URL>
+			<URL>http://localhost:8090/dplog/add-log-entry/</URL>
 			<ArchiveMode>rotate</ArchiveMode>
 			<UploadMethod>ftp</UploadMethod>
 			<Rotate>3</Rotate>
