@@ -41,8 +41,8 @@
 				<parameter name="esbproperty://esbEchoHttpEndpoint" value="http://DPESBPROD:10000"/>
 				<!-- SERVICELOG Logging -->
 				<parameter name="esbproperty://logging/capturePointLogs" value="none"/>
-				<parameter name="esbproperty://logging/successLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=ESB.SERVICE.LOG;AsyncPut=true"/>
-				<parameter name="esbproperty://logging/errorLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=ESB.ERROR.LOG;AsyncPut=true"/>
+				<parameter name="esbproperty://logging/successLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.SERVICE.LOG;AsyncPut=true"/>
+				<parameter name="esbproperty://logging/errorLog/putUrl/1" value="dpmq://ESB_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.ERROR.LOG;AsyncPut=true"/>
 				<!-- Stats Logging -->
 				<parameter name="esbproperty://logCategory/esbStats/DPESBPROD" value="DPESBPROD_ServiceStats"/>
 				<parameter name="esbproperty://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog-wsgw/add-log-entry/"/>
@@ -68,7 +68,7 @@
 				<parameter name="esbDefaultDigestAlgorithm" value="http://www.w3.org/2001/04/xmlenc#sha256"/>
 				<!-- Logging -->
 				<parameter name="logCategoryServiceStats" value="DPESBPROD_ServiceStats"/>
-				<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog-esb/add-log-entry/"/>
+				<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
 				<parameter name="logTargetRemoteSystemManagementAddress" value="logserver.dpdirect.org"/>
 				<parameter name="logTargetRemoteSystemManagementPort" value="23456"/>
 			</injection>
