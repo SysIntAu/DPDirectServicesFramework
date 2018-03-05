@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Worksheet name="ConsolidatedCodes">
 	<Table>
-		<!-- Framework Error Code Lookup -->
+		<!-- Framework Error Code lookup: map Framework error to Enterprise error -->
 		
 		<Row>
 			<EnterpriseCode>ERROR0001</EnterpriseCode>
