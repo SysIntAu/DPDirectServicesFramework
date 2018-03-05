@@ -116,7 +116,7 @@
 			<LongRetryInterval>1800</LongRetryInterval>
 			<ReportingInterval>1</ReportingInterval>
 			<AlternateUser>off</AlternateUser>
-			<XMLManager class="XMLManager">DomainDefaultCache_V1</XMLManager>
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
 		</MQQM>
 		<MQQMGroup name="ESB_Internal_Grp_RealTime_V1">
 			<mAdminState>enabled</mAdminState>

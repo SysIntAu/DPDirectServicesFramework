@@ -138,7 +138,7 @@
 			<DocCacheSize>0</DocCacheSize>
 			<UserAgent class="HTTPUserAgent">default</UserAgent>
 		</XMLManager>
-		<XMLManager name="DomainDefaultCache_V1">
+		<XMLManager name="DomainDefaultCache">
 			<mAdminState>enabled</mAdminState>
 			<UserSummary>Deafult Domain XML Manager</UserSummary>
 			<CacheSize>1000</CacheSize>
@@ -192,11 +192,11 @@
 		<!-- MQQMs -->
 		<MQQM name="ESB_Internal_MQQM_1_RealTime_V1">
 			<mAdminState>disabled</mAdminState>
-			<XMLManager class="XMLManager">DomainDefaultCache_V1</XMLManager>
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
 		</MQQM>
 		<MQQM name="ESB_Internal_MQQM_2_RealTime_V1">
 			<mAdminState>disabled</mAdminState>
-			<XMLManager class="XMLManager">DomainDefaultCache_V1</XMLManager>
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
 		</MQQM>
 		<MQQMGroup name="ESB_Internal_Grp_RealTime_V1">
 			<mAdminState>enabled</mAdminState>
@@ -255,7 +255,7 @@
 			<DebugHistory>25</DebugHistory>
 			<WebGUIMode>off</WebGUIMode>
 			<Type>loopback-proxy</Type>
-			<XMLManager class="XMLManager">DomainDefaultCache_V1</XMLManager>
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
 			<StylePolicy class="StylePolicy">default</StylePolicy>
 			<MaxMessageSize>0</MaxMessageSize>
 			<RequestType>unprocessed</RequestType>

@@ -49,7 +49,7 @@
 		<contains string="${secure.environment.list}" substring="${environment}"/>
 	</condition>-->
 	<!-- Set the XMLManager name according by proxy -->
-	<property name="xmlmanager" value="DomainDefaultCache_V1"/>
+	<property name="xmlmanager" value="DomainDefaultCache"/>
 	<property name="services.xmlmanager" value="ESB_Services_DefaultCache_V1"/>
 	<property name="api.xmlmanager" value="ESB_Services_DefaultCache_V1"/>
 	<property name="sts.xmlmanager" value="STS_DefaultCache_V1"/>

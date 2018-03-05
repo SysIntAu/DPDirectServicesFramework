@@ -214,7 +214,7 @@
 			<mAdminState>enabled</mAdminState>
 			<Priority>normal</Priority>
 			<FrontProtocol class="HTTPSSourceProtocolHandler">Gateway_Router_V1_Request_FSH_HTTPS</FrontProtocol>
-			<XMLManager class="XMLManager">DomainDefaultCache_V1</XMLManager>
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
 			<SSLProxy class="SSLProxyProfile">SslClientNoCredentials</SSLProxy>
 			<DefaultParamNamespace>http://www.datapower.com/param/config</DefaultParamNamespace>
 			<QueryParamNamespace>http://www.datapower.com/param/query</QueryParamNamespace>
