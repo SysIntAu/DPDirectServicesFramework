@@ -61,10 +61,7 @@
 				<parameter name="esbEchoHttpEndpoint" value="http://DPESBPROD:10000"/>
 				<!-- Domain Host Alias -->
 				<parameter name="esbApplianceHostName1" value="dpgateway01"/>
-				<parameter name="esbApplianceHostName2" value="dpgateway02"/>
-				<parameter name="esbDomainHostAlias1" value="dpgateway01-dpesbe9"/>
-				<parameter name="esbDomainHostAlias2" value="dpgateway02-dpesbe9"/>
-				<parameter name="esbLocalHostAlias" value="DPESBPROD"/>
+				<parameter name="esbApplianceHostName2" value="dpgateway02"/>				<parameter name="esbLocalHostAlias" value="DPESBPROD"/>
 				<!-- default encryption algorithms-->
 				<parameter name="esbDefaultEncryptionAlgorithm" value="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
 				<parameter name="esbDefaultKeyTransportAlgorithm" value="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>

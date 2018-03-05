@@ -70,10 +70,7 @@
 				<parameter name="esbEchoHttpEndpoint" value="http://DPESBSIT:10000"/>
 				<!-- Domain Host Alias -->
 				<parameter name="esbApplianceHostName1" value="dpgateway01"/>
-				<parameter name="esbApplianceHostName2" value="dpgateway02"/>
-				<parameter name="esbDomainHostAlias1" value="dpgateway01-dpesbe5"/>
-				<parameter name="esbDomainHostAlias2" value="dpgateway02-dpesbe5"/>
-				<parameter name="esbLocalHostAlias" value="DPESBSIT"/>
+				<parameter name="esbApplianceHostName2" value="dpgateway02"/>				<parameter name="esbLocalHostAlias" value="DPESBSIT"/>
 				<!-- STS SAML Validation endpoint-->
 				<parameter name="stsValidateServiceEndpoint" value="http://DPESBSIT:4443/STS"/>
 				<!-- default encryption algorithms-->
