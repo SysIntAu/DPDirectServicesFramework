@@ -183,9 +183,9 @@
 			</xsl:call-template>
 		</xsl:if>
 		<!-- Store the HTTP request headers -->
-		<xsl:call-template name="StoreHTTPHeadersForLog">
+<!--		<xsl:call-template name="StoreHTTPHeadersForLog">
 			<xsl:with-param name="LOGPOINT" select="'REQ'"/>
-		</xsl:call-template>
+		</xsl:call-template>-->
 		<!-- Point log in test environments only-->
 		<xsl:if test="$CAPTURE_POINT_LOGS != 'none'">
 			<!-- Store the request input message to point log -->

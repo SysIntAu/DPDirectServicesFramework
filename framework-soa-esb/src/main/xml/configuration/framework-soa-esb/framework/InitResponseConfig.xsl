@@ -142,9 +142,9 @@
 				</xsl:call-template>
 			</xsl:if>
 			<!-- Store the backend HTTP response headers -->
-			<xsl:call-template name="StoreHTTPHeadersForLog">
+<!--			<xsl:call-template name="StoreHTTPHeadersForLog">
 				<xsl:with-param name="LOGPOINT" select="'SUB_RES'"/>
-			</xsl:call-template>
+			</xsl:call-template>-->
 			<!-- Store the response WSAddressing from the SOAP header for logging -->
 			<dp:set-variable name="$RES_WSA_MSG_ID_VAR_NAME" value="string($WSA_MSG_ID)"/>
 			<dp:set-variable name="$RES_WSA_RELATES_TO_VAR_NAME" value="string($WSA_RELATES_TO)"/>
@@ -187,9 +187,9 @@
 					</xsl:call-template>
 				</xsl:if>
 				<!-- Store the backend HTTP response headers -->
-				<xsl:call-template name="StoreHTTPHeadersForLog">
+<!--				<xsl:call-template name="StoreHTTPHeadersForLog">
 					<xsl:with-param name="LOGPOINT" select="'SUB_RES'"/>
-				</xsl:call-template>
+				</xsl:call-template>-->
 				<!-- Store the point Log -->
 				<xsl:if test="($CAPTURE_POINT_LOGS != 'none')">
 					<!-- Store the response input message to point log -->
