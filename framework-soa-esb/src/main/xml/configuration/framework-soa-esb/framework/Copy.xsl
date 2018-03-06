@@ -18,17 +18,7 @@
 	xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	extension-element-prefixes="dp regexp" version="1.0" exclude-result-prefixes="dp">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>N.A.</dc:creator>
-			<dc:date>2016-12-12</dc:date>
-			<dc:title>Copy message to an MQ queue</dc:title>
-			<dc:subject>Puts a copy of the current context message to an MQ queue</dc:subject>
-			<dc:contributor>N.A.</dc:contributor>
-			<dc:contributor>Tim Goodwill</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
+
 	<!--========================================================================
 		Purpose: Puts/posts a copy of the current context message to an MQ queue or HTTP Endpoint
 		
@@ -36,13 +26,7 @@
 		2016-12-12	v1.0	N.A.		Initial Version.
 		2016-12-12	v1.0	Tim Goodwill		HTTP & Initial Gateway version.
 		========================================================================-->
-	<!--========================================================================
-		Purpose:
-		Puts/posts a copy of the current context message to an MQ queue/HTTP endpoint.
-		
-		History:
-		2016-12-12	v1.0	N.A.		Initial Version.
-		========================================================================-->
+
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>
 	<!--============== Output Configuration =========================-->
