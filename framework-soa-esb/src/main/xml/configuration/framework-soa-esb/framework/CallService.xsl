@@ -246,7 +246,7 @@
 					</xsl:call-template>
 				</xsl:variable>
 				<!-- Store the HTTP request headers -->
-				<xsl:call-template name="StoreHTTPHeadersForLog">
+<!--				<xsl:call-template name="StoreHTTPHeadersForLog">
 					<xsl:with-param name="LOGPOINT" select="'SUB_CALL'"/>
 					<xsl:with-param name="TARGET_URL" select="$ENDPOINT_URL"/>
 					<xsl:with-param name="HEADERS">
@@ -254,7 +254,7 @@
 							<xsl:copy-of select="$HTTP_HEADERS"/>
 						</headers>
 					</xsl:with-param>
-				</xsl:call-template>
+				</xsl:call-template>-->
 				<xsl:choose>
 					<!-- SOAP fault -->
 					<xsl:when test="($FAIL_ON_ERROR = 'true') 

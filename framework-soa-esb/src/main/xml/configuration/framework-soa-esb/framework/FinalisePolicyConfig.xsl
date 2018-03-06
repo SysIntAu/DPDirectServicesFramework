@@ -141,7 +141,7 @@
 			<!-- Clear the local context error variables -->
 			<dp:set-variable name="$ERROR_CODE_VAR_NAME" value="''"/>
 			<!-- Do success logging -->
-			<xsl:call-template name="SendLogMsg"/>
+			<!--<xsl:call-template name="SendLogMsg"/>-->
 		</xsl:if>
 		<xsl:if test="$TX_RULE_TYPE = 'error'">
 			<!-- Save output message root name to the environment -->
@@ -154,7 +154,7 @@
 				</xsl:call-template>
 			</xsl:if>
 			<!-- Do error logging -->
-			<xsl:call-template name="SendLogMsg"/>
+			<!--<xsl:call-template name="SendLogMsg"/>-->
 		</xsl:if>
 	</xsl:template>
 	<!-- Standard identity template -->
