@@ -14,4 +14,4 @@ The DPDirect Services Framework provides a robust and consistant service chain, 
 ![Services1](https://github.com/mqsysadmin/DPDirectServicesFramework/blob/master/distribution/doc/images/services1.png)
 
 This project is currently under active development. This page, and accompanying guides, will be augmented.
-mqsysadmin@gmail.com
+admin@sysint.com.au
