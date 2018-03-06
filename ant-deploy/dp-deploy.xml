@@ -44,17 +44,14 @@
 	<property name="dp.environment" value="${environment}"/>
 	
 	<!-- Deployment parameters -->
-<!--	<property name="secure.environment.list" value="STAGE,PROD"/>
-	<condition property="secure.environment" value="true">
-		<contains string="${secure.environment.list}" substring="${environment}"/>
-	</condition>-->
+
 	<!-- Set the XMLManager name according by proxy -->
 	<property name="xmlmanager" value="DomainDefaultCache"/>
 	<property name="services.xmlmanager" value="ESB_Services_DefaultCache_V1"/>
-	<property name="api.xmlmanager" value="ESB_Services_DefaultCache_V1"/>
-	<property name="sts.xmlmanager" value="STS_DefaultCache_V1"/>
+	<!--<property name="api.xmlmanager" value="ESB_Services_DefaultCache_V1"/>-->
+	<!--<property name="sts.xmlmanager" value="STS_DefaultCache_V1"/>-->
 	<!-- Framework Components -->
-	<property name="component.list" value="Common,Gateway_Router,SecureTokenService,ESB_Services,Json_RestAPI"/>
+	<property name="component.list" value="Common,Gateway_Router,ESB_Services"/>		<!-- ,Json_RestAPI,SecureTokenService -->
 	<property name="type" value="all"/>
 	<property name="deployment.type" value="${type}"/>
 	<property name="source.type" value="XML"/>
@@ -161,7 +158,7 @@
 		** based on the contents of the ${release.dir}/local directory
 		****************************************************************** -->
 	<target name="create.component.list" unless="component.list">
-		<property name="component.list" value="Common,Gateway_Router,SecureTokenService,ESB_Services,Json_RestAPI"/>
+		<property name="component.list" value="Common,Gateway_Router,ESB_Services"/>		<!-- ,SecureTokenService,Json_RestAPI -->
 	</target>
 	
 	<!-- **********************************************************
@@ -444,23 +441,23 @@
 			<operation name="set-dir" srcDir="${staging.dir}/local/${qualified.path}" 
 				destDir="local:///${qualified.path}" overwrite="true"/>
 			<operation name="FlushStylesheetCache">
-				<option name="XMLManager" value="${sts.xmlmanager}"/>
-			</operation>
-			<operation name="FlushDocumentCache">
-				<option name="XMLManager" value="${sts.xmlmanager}"/>
-			</operation>
-			<operation name="FlushStylesheetCache">
 				<option name="XMLManager" value="${services.xmlmanager}"/>
 			</operation>
 			<operation name="FlushDocumentCache">
 				<option name="XMLManager" value="${services.xmlmanager}"/>
 			</operation>
-			<operation name="FlushStylesheetCache">
+			<!--<operation name="FlushStylesheetCache">
 				<option name="XMLManager" value="${api.xmlmanager}"/>
 			</operation>
 			<operation name="FlushDocumentCache">
 				<option name="XMLManager" value="${api.xmlmanager}"/>
+			</operation>-->
+			<!--<operation name="FlushStylesheetCache">
+				<option name="XMLManager" value="${sts.xmlmanager}"/>
 			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${sts.xmlmanager}"/>
+			</operation>-->
 		</dpDeploy>
 	</target>
 	
@@ -516,14 +513,14 @@
 			<operation name="set-dir" srcDir="${security.dir}" destDir="local:///security" replace="false" overwrite="true"/>
 			<operation name="set-dir" srcDir="${staging.dir}/cert" destDir="cert:///" replace="false" overwrite="true"/>
 			<operation name="FlushDocumentCache">
-				<option name="XMLManager" value="${sts.xmlmanager}"/>
-			</operation>
-			<operation name="FlushDocumentCache">
 				<option name="XMLManager" value="${services.xmlmanager}"/>
 			</operation>
-			<operation name="FlushDocumentCache">
+			<!--<operation name="FlushDocumentCache">
 				<option name="XMLManager" value="${api.xmlmanager}"/>
-			</operation>
+			</operation>-->
+			<!--<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${sts.xmlmanager}"/>
+			</operation>-->
 		</dpDeploy>
 	</target>
 	
@@ -749,9 +746,9 @@
 			<operation name="set-dir" srcDir="${staging.dir}/cert" destDir="cert:///" replace="false" overwrite="true"/>
 			<operation name="set-dir" srcDir="${staging.dir}/local/Common" destDir="local:///Common" overwrite="true"/>
 			<operation name="set-dir" srcDir="${staging.dir}/local/Gateway_Router" destDir="local:///Gateway_Router" overwrite="true"/>
-			<operation name="set-dir" srcDir="${staging.dir}/local/SecureTokenService" destDir="local:///SecureTokenService" overwrite="true"/>
 			<operation name="set-dir" srcDir="${staging.dir}/local/ESB_Services" destDir="local:///ESB_Services" overwrite="true"/>
-			<operation name="set-dir" srcDir="${staging.dir}/local/Json_RestAPI" destDir="local:///Json_RestAPI" overwrite="true"/>
+			<!--<operation name="set-dir" srcDir="${staging.dir}/local/Json_RestAPI" destDir="local:///Json_RestAPI" overwrite="true"/>-->
+			<!--<operation name="set-dir" srcDir="${staging.dir}/local/SecureTokenService" destDir="local:///SecureTokenService" overwrite="true"/>-->
 			<operation name="do-import">
 				<option name="input-file" srcFile="${staging.dir}/Common_${environment}.xcfg"/>
 				<option name="overwrite-files" value="true"/>
@@ -765,23 +762,23 @@
 				<option name="source-type" value="XML"/>
 			</operation>
 			<operation name="do-import">
-				<option name="input-file" srcFile="${staging.dir}/SecureTokenService_${environment}.xcfg"/>
-				<option name="overwrite-files" value="true"/>
-				<option name="overwrite-objects" value="true"/>
-				<option name="source-type" value="XML"/>
-			</operation>
-			<operation name="do-import">
 				<option name="input-file" srcFile="${staging.dir}/ESB_Services_${environment}.xcfg"/>
 				<option name="overwrite-files" value="true"/>
 				<option name="overwrite-objects" value="true"/>
 				<option name="source-type" value="XML"/>
 			</operation>
-			<operation name="do-import">
+			<!--<operation name="do-import">
 				<option name="input-file" srcFile="${staging.dir}/Json_RestAPI_${environment}.xcfg"/>
 				<option name="overwrite-files" value="true"/>
 				<option name="overwrite-objects" value="true"/>
 				<option name="source-type" value="XML"/>
-			</operation>
+			</operation>-->
+			<!--<operation name="do-import">
+				<option name="input-file" srcFile="${staging.dir}/SecureTokenService_${environment}.xcfg"/>
+				<option name="overwrite-files" value="true"/>
+				<option name="overwrite-objects" value="true"/>
+				<option name="source-type" value="XML"/>
+			</operation>-->
 		</dpDeploy>
 		<antcall target="deploy.default.domain.objects" inheritall="true" inheritrefs="true"/>
 		<antcall target="antcall.complete" inheritall="false" inheritrefs="false"/>
@@ -840,12 +837,6 @@
 		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
 			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
 			<operation name="FlushStylesheetCache">
-				<option name="XMLManager" value="${sts.xmlmanager}"/>
-			</operation>
-			<operation name="FlushDocumentCache">
-				<option name="XMLManager" value="${sts.xmlmanager}"/>
-			</operation>
-			<operation name="FlushStylesheetCache">
 				<option name="XMLManager" value="${services.xmlmanager}"/>
 			</operation>
 			<operation name="FlushDocumentCache">
@@ -857,6 +848,12 @@
 			<operation name="FlushDocumentCache">
 				<option name="XMLManager" value="${api.xmlmanager}"/>
 			</operation>
+			<!--<operation name="FlushStylesheetCache">
+				<option name="XMLManager" value="${sts.xmlmanager}"/>
+			</operation>
+			<operation name="FlushDocumentCache">
+				<option name="XMLManager" value="${sts.xmlmanager}"/>
+			</operation>-->
 		</dpDeploy>
 	</target>
 	
