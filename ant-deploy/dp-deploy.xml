@@ -59,29 +59,20 @@
 	<property name="deployment.type" value="${type}"/>
 	<property name="source.type" value="XML"/>
 	<!-- Gateway  Domain -->
-	<condition property="domain" value="MSGD01">
+	<condition property="domain" value="DEV_DOMAIN_NAME">
 		<equals arg1="${dp.environment}" arg2="DEV" />
 	</condition>
-	<condition property="domain" value="MSGI01">
+	<condition property="domain" value="TEST_DOMAIN_NAME">
 		<equals arg1="${dp.environment}" arg2="TEST" />
 	</condition>
-	<condition property="domain" value="MSGJ01">
+	<condition property="domain" value="SIT_DOMAIN_NAME">
 		<equals arg1="${dp.environment}" arg2="SIT" />
 	</condition>
-	<condition property="domain" value="MSGU01">
+	<condition property="domain" value="UAT_DOMAIN_NAME">
 		<equals arg1="${dp.environment}" arg2="UAT" />
 	</condition>
-	<condition property="domain" value="MSGS01">
-		<equals arg1="${dp.environment}" arg2="STAGE" />
-	</condition>
-	<condition property="domain" value="MSGR01">
-		<equals arg1="${dp.environment}" arg2="TRAIN" />
-	</condition>
-	<condition property="domain" value="MSGP01">
+	<condition property="domain" value="PROD_DOMAIN_NAME">
 		<equals arg1="${dp.environment}" arg2="PROD" />
-	</condition>
-	<condition property="domain" value="MSGK01">
-		<equals arg1="${dp.environment}" arg2="EFIX" />
 	</condition>
 	<property name="domain" value="${dp.environment}"/>
 	<!-- Deployment control -->

@@ -29,7 +29,7 @@
 	<xsl:strip-space elements="*"/>
 	<!--============== Global Variable Declarations =================-->
 	<xsl:param name="ENV" select="'DEV'"/>
-	<xsl:param name="DOMAIN" select="'MSGD01'"/>
+	<xsl:param name="DOMAIN" select="'DEV_DOMAIN_NAME'"/>
 	<xsl:param name="HOSTNAME" select="'localhost'"/>
 	<xsl:param name="COMPONENT" select="'common'"/>
 	<xsl:variable name="DOC_NAME" select="string(concat($ENV,'/',$COMPONENT,'.xcfg'))"/>
