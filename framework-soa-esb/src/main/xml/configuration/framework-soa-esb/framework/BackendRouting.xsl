@@ -168,10 +168,10 @@
 					<!--<dp:set-variable name="concat('var://context/ESB_Services/debug/header/',$NAME)" value="string($VALUE)"/>-->
 				</xsl:for-each>
 				<!-- Store the HTTP request headers -->
-				<xsl:call-template name="StoreHTTPHeadersForLog">
+				<!--<xsl:call-template name="StoreHTTPHeadersToLog">
 					<xsl:with-param name="LOGPOINT" select="'REQ'"/>
 					<xsl:with-param name="TARGET_URL" select="$BACK_END_URL"/>
-				</xsl:call-template>
+				</xsl:call-template>-->
 			</xsl:when>
 			<!-- MQ Backend -->
 			<xsl:when test="$BACKEND_ROUTING/BackendRouting[1]/MQRouting">
