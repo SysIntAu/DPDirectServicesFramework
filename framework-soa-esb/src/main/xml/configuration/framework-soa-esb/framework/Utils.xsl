@@ -285,7 +285,7 @@
 			select="translate(substring-after(date:add(date:date-time(),'PT0H'),'T'),':.Z&#x20;','')"/>
 		<xsl:value-of select="concat($TIME_DIGITS,substring($TEMPLATE,string-length($TIME_DIGITS)+1,(8 - string-length($TIME_DIGITS))))"/>
 	</xsl:template>
-	<!-- Gets a UTC representation of the current dateTime e.g. '2016-12-12T10:10:10Z' -->
+	<!-- Gets current dateTime -->
 	<xsl:template name="GetCurrentDateTime">
 		<xsl:value-of select="date:date-time()"/>
 	</xsl:template>
