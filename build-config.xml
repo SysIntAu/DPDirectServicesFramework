@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config 
-            name                          ="DP_ESB"
-            description                   ="DP_ESB project build configuration"
+            name                          ="DPDirect"
+            description                   ="DPDirect project build configuration"
             xsi:noNamespaceSchemaLocation ="etc/config.xsd"
             xmlns:xsi                     ="http://www.w3.org/2001/XMLSchema-instance">
             
