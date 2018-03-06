@@ -363,7 +363,7 @@
 								<xsl:otherwise>
 									<ErrorPolicyConfig>
 										<Transform>
-											<Stylesheet>local:///ESB_Services/framework/HandleErrors.xsl</Stylesheet>
+											<Stylesheet>local:///framework-soa-esb/framework/HandleErrors.xsl</Stylesheet>
 										</Transform>
 									</ErrorPolicyConfig>
 								</xsl:otherwise>

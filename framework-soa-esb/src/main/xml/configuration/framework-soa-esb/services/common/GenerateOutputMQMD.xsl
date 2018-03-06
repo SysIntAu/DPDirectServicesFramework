@@ -31,7 +31,7 @@
 		=================================================================
 	-->
 	<!--============== Included Stylesheets =========================-->
-	<xsl:include href="local:///ESB_Services/framework/Utils.xsl"/>
+	<xsl:include href="local:///framework-soa-esb/framework/Utils.xsl"/>
 	<!--============== Output Configuration =========================-->
 	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0"/>
 	<!--============== Global Variable Declarations =================-->

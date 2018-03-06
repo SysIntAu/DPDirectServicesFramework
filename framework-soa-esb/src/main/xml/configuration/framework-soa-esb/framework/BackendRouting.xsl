@@ -165,7 +165,7 @@
 					</xsl:variable>
 					<dp:set-http-request-header name="$NAME" value="$VALUE"/>
 					<!-- Header debug variables -->
-					<!--<dp:set-variable name="concat('var://context/ESB_Services/debug/header/',$NAME)" value="string($VALUE)"/>-->
+					<!--<dp:set-variable name="concat('var://context/framework-soa-esb/debug/header/',$NAME)" value="string($VALUE)"/>-->
 				</xsl:for-each>
 				<!-- Store the HTTP request headers -->
 				<!--<xsl:call-template name="StoreHTTPHeadersToLog">
@@ -245,7 +245,7 @@
 			<xsl:when test="$BACKEND_ROUTING/BackendRouting[1]/SFTPEndpoint">
 				<dp:set-variable name="$BACKEND_PROTOCOL_VAR_NAME" value="'SFTP'"/>
 				<xsl:variable name="SFTP_FILENAME">
-					<xsl:copy-of select="dp:variable('var://context/ESB_Services/sftpFileName')"/>
+					<xsl:copy-of select="dp:variable('var://context/framework-soa-esb/sftpFileName')"/>
 				</xsl:variable>
 				<xsl:variable name="BACK_END_URL"
 					select="concat($BACKEND_ROUTING/BackendRouting[1]/SFTPEndpoint[1]/Address,$SFTP_FILENAME)"/>
@@ -281,9 +281,9 @@
 		<xsl:copy>
 			<xsl:variable name="WSA_TO" select="dp:variable($REQ_WSA_TO_VAR_NAME)"/>
 			<xsl:variable name="WSA_TO_UC" select="translate(normalize-space($WSA_TO), $LC, $UC)"/>
-			<dp:set-variable name="'var://context/ESB_Services/debug/WSA_TO'" value="string($WSA_TO)"/>
-			<dp:set-variable name="'var://context/ESB_Services/debug/WSA_TO_Trns'" value="string($WSA_TO_UC)"/>
-			<dp:set-variable name="'var://context/ESB_Services/debug/WSA_TO_Sub'" value="substring($WSA_TO_UC, 1, 3)"/>
+			<dp:set-variable name="'var://context/framework-soa-esb/debug/WSA_TO'" value="string($WSA_TO)"/>
+			<dp:set-variable name="'var://context/framework-soa-esb/debug/WSA_TO_Trns'" value="string($WSA_TO_UC)"/>
+			<dp:set-variable name="'var://context/framework-soa-esb/debug/WSA_TO_Sub'" value="substring($WSA_TO_UC, 1, 3)"/>
 			<xsl:choose>
 				<xsl:when test="substring($WSA_TO_UC, 1, 4) = 'HTTP'">
 					<HTTPEndpoint>

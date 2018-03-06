@@ -258,11 +258,11 @@
 		<xsl:param name="TO_CONTEXT" select="'RESULT_DOC'"/>
 		<xsl:param name="STRIP_ATTACHMENTS" select="'true'"/>
 		<xsl:variable name="FROM_MANIFEST" select="dp:variable(concat('var://context/',$FROM_CONTEXT,'/attachment-manifest'))"/>
-		<!--		<dp:set-variable name="'var://context/ESB_Services/MIME/IN_MANIFEST'" value="$FROM_MANIFEST"/>-->
+		<!--		<dp:set-variable name="'var://context/framework-soa-esb/MIME/IN_MANIFEST'" value="$FROM_MANIFEST"/>-->
 		<xsl:if test="$FROM_MANIFEST != ''">
 			<xsl:variable name="CONTENT_TYPE" select="normalize-space($FROM_MANIFEST/manifest/media-type/value/text())"/>
 			<!-- Store ContentType var -->
-			<dp:set-variable name="'var://context/ESB_Services/MIME/contentType'" value="string($CONTENT_TYPE)"/>
+			<dp:set-variable name="'var://context/framework-soa-esb/MIME/contentType'" value="string($CONTENT_TYPE)"/>
 			<!-- Loop through attachment manifest attachment refs -->
 			<xsl:for-each select="$FROM_MANIFEST//attachment">
 				<xsl:variable name="CID" select="current()/uri"/>

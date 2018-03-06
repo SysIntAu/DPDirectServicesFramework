@@ -179,7 +179,7 @@
 		<echo message="****  Verify Configuration Files via Schematron"/>
 		<for list="${config.file}" delimiter="${path.separator}" param="file" >
 			<sequential>
-				<schematron schema="${release.build.dir}/local/${component}/config/${component}-ServiceConfigValidation.sch" 
+				<schematron schema="${release.build.dir}/local/${component}/config/${component}_ConfigValidation.sch" 
 					srcfile="@{file}" failonerror="true"/>
 				<delete file="result.xml"/>
 			</sequential>

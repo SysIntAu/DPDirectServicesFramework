@@ -30,7 +30,7 @@
 		2016-12-12	v1.0	Tim Goodwill		Initial Version.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
-	<xsl:include href="local:///ESB_Services/framework/FrameworkUtils.xsl"/>
+	<xsl:include href="local:///framework-soa-esb/framework/FrameworkUtils.xsl"/>
 	<!--============== Output Configuration =========================-->
 	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0"/>
 	<!--============== Global Variable Declarations =================-->

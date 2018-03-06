@@ -42,7 +42,7 @@
 	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0"/>
 	<!--============== Global Variable Declarations =================-->
 	<xsl:variable name="PROPERTIES_DOC"
-		select="document('local:///ESB_Services/config/ESB_Services-Properties.xml')"/>
+		select="document('local:///framework-soa-esb/config/framework-soa-esb_Properties.xml')"/>
 	<xsl:variable name="DPDIRECT.STREAM_NAME" select="substring-before(dp:variable($DP_SERVICE_PROCESSOR_NAME), $SERVICES_PROXY_NAME_SUFFIX)"/>
 	<xsl:variable name="OPERATION_CONFIG_NODE_ID" select="normalize-space(dp:variable($OPERATION_CONFIG_NODE_ID_VAR_NAME))"/>
 	<xsl:variable name="THIS_SERVICE_NAME" select="normalize-space(regexp:replace($OPERATION_CONFIG_NODE_ID, '-.*$', 'i', ''))"/>

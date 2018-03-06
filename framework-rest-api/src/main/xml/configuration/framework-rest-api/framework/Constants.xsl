@@ -34,18 +34,18 @@
 		'Json_RestAPI' context variable names
 	-->
 	<xsl:variable name="JWT_VALIDATION_ERROR_CODE_VAR_NAME" select="'var://context/Json_RestAPI/validationErrorCode'"/>
-	<xsl:variable name="ERROR_ADD_DETAILS_VAR_NAME" select="'var://context/ESB_Services/errorSubDescription'"/>
-	<xsl:variable name="ERROR_CODE_VAR_NAME" select="'var://context/ESB_Services/errorCode'"/>
-	<xsl:variable name="ERROR_DOMAIN_VAR_NAME" select="'var://context/ESB_Services/errorDomain'"/>
-	<xsl:variable name="ERROR_MSG_VAR_NAME" select="'var://context/ESB_Services/errorMsg'"/>
-	<xsl:variable name="ERROR_ORIG_LOC_VAR_NAME" select="'var://context/ESB_Services/errorOriginatorLoc'"/>
-	<xsl:variable name="ERROR_ORIG_NAME_VAR_NAME" select="'var://context/ESB_Services/errorSubCode'"/>
-	<xsl:variable name="ERROR_PROVIDER_NAME_VAR_NAME" select="'var://context/ESB_Services/errorProviderName'"/>
-	<xsl:variable name="ERROR_SERVICE_NAME_VAR_NAME" select="'var://context/ESB_Services/errorServiceName'"/>
-	<xsl:variable name="ERROR_SUBCODE_VAR_NAME" select="'var://context/ESB_Services/errorSubCode'"/>
-	<xsl:variable name="EVENT_CODE_VAR_NAME" select="'var://context/ESB_Services/eventCode'"/>
-	<xsl:variable name="EVENT_SUBCODE_VAR_NAME" select="'var://context/ESB_Services/eventSubCode'"/>
-	<xsl:variable name="EVENT_MESSAGE_VAR_NAME" select="'var://context/ESB_Services/eventMsg'"/>
+	<xsl:variable name="ERROR_ADD_DETAILS_VAR_NAME" select="'var://context/framework-soa-esb/errorSubDescription'"/>
+	<xsl:variable name="ERROR_CODE_VAR_NAME" select="'var://context/framework-soa-esb/errorCode'"/>
+	<xsl:variable name="ERROR_DOMAIN_VAR_NAME" select="'var://context/framework-soa-esb/errorDomain'"/>
+	<xsl:variable name="ERROR_MSG_VAR_NAME" select="'var://context/framework-soa-esb/errorMsg'"/>
+	<xsl:variable name="ERROR_ORIG_LOC_VAR_NAME" select="'var://context/framework-soa-esb/errorOriginatorLoc'"/>
+	<xsl:variable name="ERROR_ORIG_NAME_VAR_NAME" select="'var://context/framework-soa-esb/errorSubCode'"/>
+	<xsl:variable name="ERROR_PROVIDER_NAME_VAR_NAME" select="'var://context/framework-soa-esb/errorProviderName'"/>
+	<xsl:variable name="ERROR_SERVICE_NAME_VAR_NAME" select="'var://context/framework-soa-esb/errorServiceName'"/>
+	<xsl:variable name="ERROR_SUBCODE_VAR_NAME" select="'var://context/framework-soa-esb/errorSubCode'"/>
+	<xsl:variable name="EVENT_CODE_VAR_NAME" select="'var://context/framework-soa-esb/eventCode'"/>
+	<xsl:variable name="EVENT_SUBCODE_VAR_NAME" select="'var://context/framework-soa-esb/eventSubCode'"/>
+	<xsl:variable name="EVENT_MESSAGE_VAR_NAME" select="'var://context/framework-soa-esb/eventMsg'"/>
 	<xsl:variable name="NEXT_RULE_NAME_VAR_NAME" select="'var://context/Json_RestAPI/nextRuleName'"/>
 	<xsl:variable name="OPERATION_CONFIG_NODE_ID_VAR_NAME" select="'var://context/Json_RestAPI/operationConfigNodeId'"/>
 	<xsl:variable name="OPERATION_CONFIG_PROVIDER_VAR_NAME" select="'var://context/Json_RestAPI/operationConfigProvider'"/>

@@ -1,6 +1,6 @@
 <datapower-configuration version="3">
 	<configuration domain="MSG">
-		<HTTPUserAgent name="ESB_Services_UserAgent_V1">
+		<HTTPUserAgent name="framework-soa-esb_UserAgent_V1">
 			<mAdminState>enabled</mAdminState>
 			<UserSummary>MSG Services User Agent</UserSummary>
 			<MaxRedirects>8</MaxRedirects>
@@ -39,7 +39,7 @@
 			<DependentPolicy>local:///security/esb-services-xacml-auth.xml</DependentPolicy>
 			<CacheTTL>0</CacheTTL>
 		</XACMLPDP>>
-		<AAAPolicy name="ESB_Services_SAML_XACML_AAAPolicy" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+		<AAAPolicy name="framework-soa-esb_SAML_XACML_AAAPolicy" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
 			xmlns:dp="http://www.datapower.com/schemas/management">
 			<mAdminState>enabled</mAdminState>
 			<ExtractIdentity>
@@ -204,7 +204,7 @@
 				<AZXACMLBindingMethod>custom</AZXACMLBindingMethod>
 				<AZXACMLBindingObject/>
 				<AZXACMLBindingXSL>store:///tspm-aaa-xacml-binding-rtss.xsl</AZXACMLBindingXSL>
-				<AZXACMLCustomObligation>local:///ESB_Services/framework/AAAXACMLObligations.xsl</AZXACMLCustomObligation>
+				<AZXACMLCustomObligation>local:///framework-soa-esb/framework/AAAXACMLObligations.xsl</AZXACMLCustomObligation>
 				<AZXACMLUseSAML2>off</AZXACMLUseSAML2>
 				<AZTAMServer/>
 				<AZTAMDefaultAction>T</AZTAMDefaultAction>
@@ -314,7 +314,7 @@
 			<EnforceSOAPActor>on</EnforceSOAPActor>
 			<WSSecActorRoleID/>
 		</AAAPolicy>
-		<AAAPolicy name="ESB_Services_STSValidate_XACMLAuthorize_AAAPolicy" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+		<AAAPolicy name="framework-soa-esb_STSValidate_XACMLAuthorize_AAAPolicy" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
 			xmlns:dp="http://www.datapower.com/schemas/management">
 			<mAdminState>enabled</mAdminState>
 			<ExtractIdentity>
@@ -359,7 +359,7 @@
 			</ExtractIdentity>
 			<Authenticate>
 				<AUMethod>custom</AUMethod>
-				<AUCustomURL>local:///ESB_Services/framework/STSTokenValidation.xsl</AUCustomURL>
+				<AUCustomURL>local:///framework-soa-esb/framework/STSTokenValidation.xsl</AUCustomURL>
 				<AUMapURL/>
 				<AUHost/>
 				<AUPort/>
@@ -447,7 +447,7 @@
 			</MapResource>
 			<Authorize>
 				<AZMethod>custom</AZMethod>
-				<AZCustomURL>local:///ESB_Services/framework/Authorisation.xsl</AZCustomURL>
+				<AZCustomURL>local:///framework-soa-esb/framework/Authorisation.xsl</AZCustomURL>
 				<AZMapURL/>
 				<AZHost/>
 				<AZPort/>
@@ -613,7 +613,7 @@
 		</Matching>
 		<HTTPSourceProtocolHandler/>
 		<HTTPSSourceProtocolHandler/>
-		<XMLManager name="ESB_Services_DefaultCache_V1">
+		<XMLManager name="framework-soa-esb_DefaultCache_V1">
 			<mAdminState>enabled</mAdminState>
 			<UserSummary>Deafult Domain XML Manager</UserSummary>
 			<CacheSize>1000</CacheSize>
@@ -639,7 +639,7 @@
 				<TTL>31536000</TTL>
 				<Priority>128</Priority>
 			</DocCachePolicy>
-			<UserAgent class="HTTPUserAgent">ESB_Services_UserAgent_V1</UserAgent>
+			<UserAgent class="HTTPUserAgent">framework-soa-esb_UserAgent_V1</UserAgent>
 		</XMLManager>
 		<PolicyParameters name="verbose-error-reporting">
 			<mAdminState>enabled</mAdminState>
@@ -680,7 +680,7 @@
 		</MTOMPolicy> 
 		<SLMPolicy/>
 		<WSEndpointRewritePolicy/>
-		<StylePolicyAction name="ESB_Services_V1_SamlSig_filter">
+		<StylePolicyAction name="framework-soa-esb_V1_SamlSig_filter">
 			<mAdminState>enabled</mAdminState>
 			<Type>filter</Type>
 			<Input>INPUT</Input>
@@ -716,13 +716,13 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_STSValidate_XACML_AAA">
+		<StylePolicyAction name="framework-soa-esb_V1_STSValidate_XACML_AAA">
 			<mAdminState>enabled</mAdminState>
 			<Type>aaa</Type>
 			<Input>INPUT</Input>
 			<Output>NULL</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
-			<AAA class="AAAPolicy">ESB_Services_STSValidate_XACMLAuthorize_AAAPolicy</AAA>
+			<AAA class="AAAPolicy">framework-soa-esb_STSValidate_XACMLAuthorize_AAAPolicy</AAA>
 			<Transactional>off</Transactional>
 			<SOAPValidation>body</SOAPValidation>
 			<SQLSourceType>static</SQLSourceType>
@@ -737,13 +737,13 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_SAML_XACML_AAAPolicy">
+		<StylePolicyAction name="framework-soa-esb_SAML_XACML_AAAPolicy">
 			<mAdminState>enabled</mAdminState>
 			<Type>aaa</Type>
 			<Input>INPUT</Input>
 			<Output>NULL</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
-			<AAA class="AAAPolicy">ESB_Services_SAML_XACML_AAAPolicy</AAA>
+			<AAA class="AAAPolicy">framework-soa-esb_SAML_XACML_AAAPolicy</AAA>
 			<Transactional>off</Transactional>
 			<SOAPValidation>body</SOAPValidation>
 			<SQLSourceType>static</SQLSourceType>
@@ -758,7 +758,7 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_Authorization_AAA">
+		<StylePolicyAction name="framework-soa-esb_V1_Authorization_AAA">
 			<mAdminState>enabled</mAdminState>
 			<Type>conditional</Type>
 			<Input>SERVICE_METADATA</Input>
@@ -769,15 +769,15 @@
 			<Asynchronous>off</Asynchronous>
 			<Condition>
 				<Expression>/OperationConfig/AAA/Method[text() = 'Signed-SAML-Filter']</Expression>
-				<ConditionAction>ESB_Services_V1_SamlSig_filter</ConditionAction>
+				<ConditionAction>framework-soa-esb_V1_SamlSig_filter</ConditionAction>
 			</Condition>
 			<Condition>
 				<Expression>/OperationConfig/AAA/Method[text() = 'STS-XACML']</Expression>
-				<ConditionAction>ESB_Services_V1_STSValidate_XACML_AAA</ConditionAction>
+				<ConditionAction>framework-soa-esb_V1_STSValidate_XACML_AAA</ConditionAction>
 			</Condition>
 			<Condition>
 				<Expression>/OperationConfig/AAA/Method[text() = 'SAML-XACML']</Expression>
-				<ConditionAction>ESB_Services_SAML_XACML_AAAPolicy</ConditionAction>
+				<ConditionAction>framework-soa-esb_SAML_XACML_AAAPolicy</ConditionAction>
 			</Condition>
 			<ResultsMode>first-available</ResultsMode>
 			<RetryCount>0</RetryCount>
@@ -789,11 +789,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_InitRequestConfig_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_InitRequestConfig_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>INPUT</Input>
-			<Transform>local://ESB_Services/framework/InitRequestConfig.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/InitRequestConfig.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -811,11 +811,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_InitResponseConfig_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_InitResponseConfig_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>INPUT</Input>
-			<Transform>local://ESB_Services/framework/InitResponseConfig.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/InitResponseConfig.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -833,11 +833,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_InitResponseConfig_BinaryResponse_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_InitResponseConfig_BinaryResponse_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>RESULT_DOC</Input>
-			<Transform>local://ESB_Services/framework/InitResponseConfig.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/InitResponseConfig.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -855,11 +855,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_HandleErrors_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_HandleErrors_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>INPUT</Input>
-			<Transform>local:///ESB_Services/framework/HandleErrors.xsl</Transform>
+			<Transform>local:///framework-soa-esb/framework/HandleErrors.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -877,11 +877,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_FinalisePolicyConfig_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_FinalisePolicyConfig_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>NULL</Input>
-			<Transform>local://ESB_Services/framework/FinalisePolicyConfig.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/FinalisePolicyConfig.xsl</Transform>
 			<Output>NULL</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -899,11 +899,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_ApplyResponseWSAddressing_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_ApplyResponseWSAddressing_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>RESULT_DOC</Input>
-			<Transform>local://ESB_Services/framework/ResponseWSAddressing.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/ResponseWSAddressing.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -921,7 +921,7 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_ResultDocToOutput_output">
+		<StylePolicyAction name="framework-soa-esb_V1_ResultDocToOutput_output">
 			<mAdminState>enabled</mAdminState>
 			<Type>results</Type>
 			<Input>RESULT_DOC</Input>
@@ -942,11 +942,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_ResultDocToOutput_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_ResultDocToOutput_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>INPUT</Input>
-			<Transform>local://ESB_Services/framework/CopyResultDoc.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/CopyResultDoc.xsl</Transform>
 			<Output>OUTPUT</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -964,11 +964,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_LogTimingStats_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_LogTimingStats_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>NULL</Input>
-			<Transform>local://ESB_Services/framework/LogTimingStats.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/LogTimingStats.xsl</Transform>
 			<Output>NULL</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -986,11 +986,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_SetNextRuleName_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_SetNextRuleName_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>SERVICE_METADATA</Input>
-			<Transform>local://ESB_Services/framework/SetNextRuleName.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/SetNextRuleName.xsl</Transform>
 			<Output>SERVICE_METADATA</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -1008,11 +1008,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_Transform_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_Transform_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>INPUT</Input>
-			<Transform>local://ESB_Services/framework/Transform.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/Transform.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -1030,11 +1030,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_Filter_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_Filter_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>filter</Type>
 			<Input>INPUT</Input>
-			<Transform>local:///ESB_Services/framework/Filter.xsl</Transform>
+			<Transform>local:///framework-soa-esb/framework/Filter.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -1052,11 +1052,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_PreProcessAttachments_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_PreProcessAttachments_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>INPUT</Input>
-			<Transform>local://ESB_Services/framework/ProcessAttachments.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/ProcessAttachments.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<StylesheetParameters>
@@ -1078,11 +1078,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_WrapBinary_xformbin">
+		<StylePolicyAction name="framework-soa-esb_V1_WrapBinary_xformbin">
 			<mAdminState>enabled</mAdminState>
 			<Type>xformbin</Type>
 			<Input>INPUT</Input>
-			<Transform>local:///ESB_Services/services/common/WrapBinary.xsl</Transform>
+			<Transform>local:///framework-soa-esb/services/common/WrapBinary.xsl</Transform>
 			<TxMode>dpa</TxMode>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
@@ -1101,7 +1101,7 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_EncodeMTOM_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_EncodeMTOM_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>RESULT_DOC</Input>
@@ -1127,7 +1127,7 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_DecodeMTOM_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_DecodeMTOM_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>RESULT_DOC</Input>
@@ -1153,11 +1153,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_PostProcessAttachments_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_PostProcessAttachments_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>RESULT_DOC</Input>
-			<Transform>local://ESB_Services/framework/ProcessAttachments.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/ProcessAttachments.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<StylesheetParameters>
@@ -1179,11 +1179,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_Validate_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_Validate_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>INPUT</Input>
-			<Transform>local://ESB_Services/framework/Validate.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/Validate.xsl</Transform>
 			<Output>VALIDATE_RESULT</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -1201,11 +1201,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_Copy_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_Copy_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>INPUT</Input>
-			<Transform>local:///ESB_Services/framework/Copy.xsl</Transform>
+			<Transform>local:///framework-soa-esb/framework/Copy.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -1223,11 +1223,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_CallService_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_CallService_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>INPUT</Input>
-			<Transform>local:///ESB_Services/framework/CallService.xsl</Transform>
+			<Transform>local:///framework-soa-esb/framework/CallService.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -1245,11 +1245,11 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_BackendRouting_xform">
+		<StylePolicyAction name="framework-soa-esb_V1_BackendRouting_xform">
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>INPUT</Input>
-			<Transform>local://ESB_Services/framework/BackendRouting.xsl</Transform>
+			<Transform>local://framework-soa-esb/framework/BackendRouting.xsl</Transform>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -1267,13 +1267,13 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_NextRuleName_call">
+		<StylePolicyAction name="framework-soa-esb_V1_NextRuleName_call">
 			<mAdminState>enabled</mAdminState>
 			<Type>call</Type>
 			<Input>RESULT_DOC</Input>
 			<Output>RESULT_DOC</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
-			<Rule>var://context/ESB_Services/nextRuleName</Rule>
+			<Rule>var://context/framework-soa-esb/nextRuleName</Rule>
 			<Transactional>off</Transactional>
 			<SOAPValidation>body</SOAPValidation>
 			<SQLSourceType>static</SQLSourceType>
@@ -1288,7 +1288,7 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<StylePolicyAction name="ESB_Services_V1_NextRuleName_conditional">
+		<StylePolicyAction name="framework-soa-esb_V1_NextRuleName_conditional">
 			<mAdminState>enabled</mAdminState>
 			<Type>conditional</Type>
 			<Input>SERVICE_METADATA</Input>
@@ -1299,7 +1299,7 @@
 			<Asynchronous>off</Asynchronous>
 			<Condition>
 				<Expression>/OperationConfig/*</Expression>
-				<ConditionAction>ESB_Services_V1_NextRuleName_call</ConditionAction>
+				<ConditionAction>framework-soa-esb_V1_NextRuleName_call</ConditionAction>
 			</Condition>
 			<ResultsMode>first-available</ResultsMode>
 			<RetryCount>0</RetryCount>
@@ -1311,285 +1311,285 @@
 			<MethodType>POST</MethodType>
 			<MethodType2>POST</MethodType2>
 		</StylePolicyAction>
-		<WSStylePolicyRule name="ESB_Services_V1_Request_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_Request_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>request-rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_InitRequestConfig_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_FinalisePolicyConfig_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_InitRequestConfig_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_FinalisePolicyConfig_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_Binary_Response_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_Binary_Response_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>response-rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_WrapBinary_xformbin</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_InitResponseConfig_BinaryResponse_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ApplyResponseWSAddressing_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_FinalisePolicyConfig_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_LogTimingStats_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_WrapBinary_xformbin</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_InitResponseConfig_BinaryResponse_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ApplyResponseWSAddressing_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_FinalisePolicyConfig_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_LogTimingStats_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_Response_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_Response_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>response-rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_InitResponseConfig_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ApplyResponseWSAddressing_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_FinalisePolicyConfig_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_LogTimingStats_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_InitResponseConfig_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ApplyResponseWSAddressing_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_FinalisePolicyConfig_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_LogTimingStats_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_xform</Actions>
 		</WSStylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_Error_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_Error_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>error-rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_InitResponseConfig_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ApplyResponseWSAddressing_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_FinalisePolicyConfig_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_LogTimingStats_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_InitResponseConfig_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ApplyResponseWSAddressing_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_FinalisePolicyConfig_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_LogTimingStats_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
 		<!-- Duplicate WSStylePolicy and StylePolicy rules required to satisfy CALL -->
-		<WSStylePolicyRule name="ESB_Services_V1_AAA_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_AAA_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_Authorization_AAA</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_Authorization_AAA</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<StylePolicyRule name="ESB_Services_V1_AAA_rule">
+		<StylePolicyRule name="framework-soa-esb_V1_AAA_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_Authorization_AAA</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_Authorization_AAA</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</StylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_Transform_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_Transform_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_Transform_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_Transform_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<StylePolicyRule name="ESB_Services_V1_Transform_rule">
+		<StylePolicyRule name="framework-soa-esb_V1_Transform_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_Transform_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_Transform_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</StylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_Filter_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_Filter_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_Filter_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_Filter_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<StylePolicyRule name="ESB_Services_V1_Filter_rule">
+		<StylePolicyRule name="framework-soa-esb_V1_Filter_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_Filter_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_Filter_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</StylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_EncodeMTOM_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_EncodeMTOM_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_PreProcessAttachments_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_EncodeMTOM_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_PostProcessAttachments_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_PreProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_EncodeMTOM_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_PostProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<StylePolicyRule name="ESB_Services_V1_EncodeMTOM_rule">
+		<StylePolicyRule name="framework-soa-esb_V1_EncodeMTOM_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_PreProcessAttachments_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_EncodeMTOM_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_PostProcessAttachments_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_PreProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_EncodeMTOM_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_PostProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</StylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_DecodeMTOM_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_DecodeMTOM_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_PreProcessAttachments_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_DecodeMTOM_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_PostProcessAttachments_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_PreProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_DecodeMTOM_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_PostProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<StylePolicyRule name="ESB_Services_V1_DecodeMTOM_rule">
+		<StylePolicyRule name="framework-soa-esb_V1_DecodeMTOM_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_PreProcessAttachments_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_DecodeMTOM_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_PostProcessAttachments_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_PreProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_DecodeMTOM_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_PostProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</StylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_Validate_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_Validate_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_Validate_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_Validate_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<StylePolicyRule name="ESB_Services_V1_Validate_rule">
+		<StylePolicyRule name="framework-soa-esb_V1_Validate_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_Validate_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_Validate_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</StylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_Copy_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_Copy_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_Copy_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_Copy_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<StylePolicyRule name="ESB_Services_V1_Copy_rule">
+		<StylePolicyRule name="framework-soa-esb_V1_Copy_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_Copy_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_Copy_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</StylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_CallService_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_CallService_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_CallService_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_CallService_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<StylePolicyRule name="ESB_Services_V1_CallService_rule">
+		<StylePolicyRule name="framework-soa-esb_V1_CallService_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_CallService_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_CallService_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</StylePolicyRule>
-		<WSStylePolicyRule name="ESB_Services_V1_BackendRouting_rule">
+		<WSStylePolicyRule name="framework-soa-esb_V1_BackendRouting_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_BackendRouting_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_BackendRouting_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</WSStylePolicyRule>
-		<StylePolicyRule name="ESB_Services_V1_BackendRouting_rule">
+		<StylePolicyRule name="framework-soa-esb_V1_BackendRouting_rule">
 			<mAdminState>enabled</mAdminState>
 			<Direction>rule</Direction>
 			<InputFormat>none</InputFormat>
 			<OutputFormat>none</OutputFormat>
 			<NonXMLProcessing>off</NonXMLProcessing>
 			<Unprocessed>off</Unprocessed>
-			<Actions class="StylePolicyAction">ESB_Services_V1_BackendRouting_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_SetNextRuleName_xform</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_NextRuleName_conditional</Actions>
-			<Actions class="StylePolicyAction">ESB_Services_V1_ResultDocToOutput_output</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_BackendRouting_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">framework-soa-esb_V1_ResultDocToOutput_output</Actions>
 		</StylePolicyRule>
 		<WSStylePolicy/>
 		<PolicyAttachments/>

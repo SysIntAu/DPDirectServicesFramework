@@ -18,7 +18,7 @@
 	<!--========================================================================
 		Purpose:
 		A collection of constant DataPower variable and context definitions (URIs) for common use across
-		stylesheets within the DataPower ESB_Services policy flows.
+		stylesheets within the DataPower framework-soa-esb policy flows.
 				
 		History:
 		2016-12-12	v1.0	N.A.		Initial Version.
@@ -28,98 +28,98 @@
 	<!--
 		Local File Path variable names
 	-->
-	<xsl:variable name="DPDIRECT_SERVICES_ROOT_FOLDER" select="'local:///ESB_Services/'"/>
+	<xsl:variable name="DPDIRECT_SERVICES_ROOT_FOLDER" select="'local:///framework-soa-esb/'"/>
 	<xsl:variable name="SERVICE_SCHEMA_ROOT_FOLDER" select="'local:///service-schema/'"/>
-	<xsl:variable name="GENERIC_MQMD_XSLT_PATH" select="'local:///ESB_Services/services/common/GenerateOutputMQMD.xsl'"/>
+	<xsl:variable name="GENERIC_MQMD_XSLT_PATH" select="'local:///framework-soa-esb/services/common/GenerateOutputMQMD.xsl'"/>
 	<!--
-		'ESB_Services' context variable names
+		'framework-soa-esb' context variable names
 	-->
-	<xsl:variable name="AUTHZ_RESULT_SET_VAR_NAME" select="'var://context/ESB_Services/authorisationResultSet'"/>
-	<xsl:variable name="BACKEND_MQMD_VAR_NAME" select="'var://context/ESB_Services/backendMQMD'"/>
-	<xsl:variable name="BACKEND_MQMP_VAR_NAME" select="'var://context/ESB_Services/backendMQMP'"/>
-	<xsl:variable name="BACKEND_PROTOCOL_VAR_NAME" select="'var://context/ESB_Services/backsideProtocol'"/>
-	<xsl:variable name="CALL_SERVICE_RES_DOC_BASEVAR_NAME" select="'var://context/ESB_Services/callServiceResponseDoc/'"/>
-	<xsl:variable name="TRANSACTION_ID_VAR_NAME" select="'var://context/ESB_Services/consumerTransactionId'"/>
-	<xsl:variable name="TRANSACTION_ID_TYPE_VAR_NAME" select="'var://context/ESB_Services/consumerTransactionIdType'"/>
-	<xsl:variable name="ENTERPRISE_FAULT_DTL_VAR_NAME" select="'var://context/ESB_Services/enterpriseFaultDetail'"/>
-	<xsl:variable name="ERROR_ADD_DETAILS_VAR_NAME" select="'var://context/ESB_Services/errorSubDescription'"/>
-	<xsl:variable name="ERROR_CODE_VAR_NAME" select="'var://context/ESB_Services/errorCode'"/>
-	<xsl:variable name="ERROR_TO_WSA_ENDPOINT_RESULT_VAR_NAME" select="'var://context/ESB_Services/errorToWSAEndpointResult'"/>
-	<xsl:variable name="ERROR_TO_WSA_ENDPOINT_RETURN_CODE_VAR_NAME" select="'var://context/ESB_Services/errorToWSAEndpointReturnCode'"/>
-	<xsl:variable name="EVENT_CODE_VAR_NAME" select="'var://context/ESB_Services/eventCode'"/>
-	<xsl:variable name="EVENT_SUBCODE_VAR_NAME" select="'var://context/ESB_Services/eventSubCode'"/>
-	<xsl:variable name="EVENT_MESSAGE_VAR_NAME" select="'var://context/ESB_Services/eventMsg'"/>
-	<xsl:variable name="ERROR_DOMAIN_VAR_NAME" select="'var://context/ESB_Services/errorDomain'"/>
-	<xsl:variable name="ERROR_MSG_VAR_NAME" select="'var://context/ESB_Services/errorMsg'"/>
-	<xsl:variable name="ERROR_ORIG_LOC_VAR_NAME" select="'var://context/ESB_Services/errorOriginatorLoc'"/>
-	<xsl:variable name="ERROR_ORIG_NAME_VAR_NAME" select="'var://context/ESB_Services/errorSubCode'"/>
-	<xsl:variable name="ERROR_PROVIDER_NAME_VAR_NAME" select="'var://context/ESB_Services/errorProviderName'"/>
-	<xsl:variable name="ERROR_SERVICE_NAME_VAR_NAME" select="'var://context/ESB_Services/errorServiceName'"/>
-	<xsl:variable name="ERROR_SUBCODE_VAR_NAME" select="'var://context/ESB_Services/errorSubCode'"/>
-	<xsl:variable name="ERROR_OVERRIDE_VAR_NAME" select="'var://context/ESB_Services/errorOverride'"/>
-	<xsl:variable name="EXTENSION_VARS_VAR_NAME" select="'var://context/ESB_Services/_extension/variables'"/>
-	<xsl:variable name="FLOW_DIRECTION_VAR_NAME" select="'var://context/ESB_Services/flowDirection'"/>
-	<xsl:variable name="HTTP_HEADERS_LIST_VAR_NAME" select="'var://context/ESB_Services/httpHeadersList'"/>
-	<xsl:variable name="MSG_IDENTIFIERS_VAR_NAME" select="'var://context/ESB_Services/msgIdentifiers'"/>
-	<xsl:variable name="NEXT_RULE_NAME_VAR_NAME" select="'var://context/ESB_Services/nextRuleName'"/>
-	<xsl:variable name="POINT_LOG_REQ_INMSG_VAR_NAME" select="'var://context/ESB_Services/pointLogReqInMsg'"/>
-	<xsl:variable name="POINT_LOG_REQ_OUTMSG_VAR_NAME" select="'var://context/ESB_Services/pointLogReqOutMsg'"/>
-	<xsl:variable name="POINT_LOG_RES_INMSG_VAR_NAME" select="'var://context/ESB_Services/pointLogResInMsg'"/>
-	<xsl:variable name="POINT_LOG_RES_OUTMSG_VAR_NAME" select="'var://context/ESB_Services/pointLogResOutMsg'"/>
-	<xsl:variable name="POLICY_CONFIG_NODE_ID_VAR_NAME" select="'var://context/ESB_Services/operationConfigNodeId'"/>
-	<xsl:variable name="OPERATION_CONFIG_NODE_ID_VAR_NAME" select="'var://context/ESB_Services/operationConfigNodeId'"/>
-	<xsl:variable name="OPERATION_CONFIG_PROVIDER_VAR_NAME" select="'var://context/ESB_Services/operationConfigProvider'"/>
-	<xsl:variable name="PROVIDER_VAR_NAME" select="'var://context/ESB_Services/providerName'"/>
-	<xsl:variable name="PROVIDER_TIMEOUT_MILLIS_VAR_NAME" select="'var://context/ESB_Services/providerTimeoutMillis'"/>
-	<xsl:variable name="REQ_HTTP_HEADERS_IN_VAR_NAME" select="'var://context/ESB_Services/requestHttpHeadersIn'"/>
-	<xsl:variable name="REQ_HTTP_HEADERS_OUT_VAR_NAME" select="'var://context/ESB_Services/requestHttpHeadersOut'"/>
-	<xsl:variable name="RES_HTTP_HEADERS_IN_VAR_NAME" select="'var://context/ESB_Services/responseHttpHeadersIn'"/>
-	<xsl:variable name="RES_HTTP_HEADERS_OUT_VAR_NAME" select="'var://context/ESB_Services/responseHttpHeadersOut'"/>
-	<xsl:variable name="RES_IN_MSG_FORMAT_VAR_NAME" select="'var://context/ESB_Services/responseInMsgFormat'"/>
-	<xsl:variable name="RES_IN_MSG_NAME_VAR_NAME" select="'var://context/ESB_Services/responseInMsgName'"/>
-	<xsl:variable name="RES_OUT_MSG_FORMAT_VAR_NAME" select="'var://context/ESB_Services/responseOutMsgFormat'"/>
-	<xsl:variable name="REQ_IN_MSG_FORMAT_VAR_NAME" select="'var://context/ESB_Services/requestInMsgFormat'"/>
-	<xsl:variable name="REQ_OUT_MSG_FORMAT_VAR_NAME" select="'var://context/ESB_Services/requestOutMsgFormat'"/>
-	<xsl:variable name="REQ_OUT_MSG_ASYNC_VAR_NAME" select="'var://context/ESB_Services/requestOutMsgAsync'"/>
-	<xsl:variable name="REQ_SOAP_ENV_VAR_NAME" select="'var://context/ESB_Services/requestSOAPEnv'"/>
-	<xsl:variable name="REQ_SOAP_NAMESPACE_VAR_NAME" select="'var://context/ESB_Services/reqestSOAPNamespace'"/>
-	<xsl:variable name="REQ_USER_NAME_VAR_NAME" select="'var://context/ESB_Services/requestUserName'"/>
-	<xsl:variable name="REQ_WSA_ACTION_VAR_NAME" select="'var://context/ESB_Services/wsaRequestAction'"/>
-	<xsl:variable name="REQ_WSA_MSG_ID_VAR_NAME" select="'var://context/ESB_Services/requestWsaMsgId'"/>
-	<xsl:variable name="REQ_WSA_RELATES_TO_VAR_NAME" select="'var://context/ESB_Services/requestWsaRelatesTo'"/>
-	<xsl:variable name="REQ_WSA_TO_VAR_NAME" select="'var://context/ESB_Services/requestWsaTo'"/>
-	<xsl:variable name="REQ_WSA_FROM_VAR_NAME" select="'var://context/ESB_Services/requestWsaFrom'"/>
-	<xsl:variable name="REQ_WSA_REPLY_TO_VAR_NAME" select="'var://context/ESB_Services/requestWsaReplyTo'"/>
-	<xsl:variable name="REQ_WSA_FAULT_TO_VAR_NAME" select="'var://context/ESB_Services/requestWsaFaultTo'"/>
-	<xsl:variable name="REQ_WSA_SECURITY_VAR_NAME" select="'var://context/ESB_Services/requestWsaSecurity'"/>
-	<xsl:variable name="REQ_WSM_OPERATION_VAR_NAME" select="'var://context/ESB_Services/requestWsmOperation'"/>
-	<xsl:variable name="RES_WSA_MSG_ID_VAR_NAME" select="'var://context/ESB_Services/responseWsaMsgId'"/>
-	<xsl:variable name="RES_WSA_RELATES_TO_VAR_NAME" select="'var://context/ESB_Services/responseWsaRelatesTo'"/>
-	<xsl:variable name="RES_WSA_TO_VAR_NAME" select="'var://context/ESB_Services/responseWsaTo'"/>
-	<xsl:variable name="RES_WSA_FAULT_TO_VAR_NAME" select="'var://context/ESB_Services/responseWsaFaultTo'"/>
-	<xsl:variable name="SAML_ASSERTION_VAR_NAME" select="'var://context/ESB_Services/samlAssertion'"/>
-	<xsl:variable name="SERVICE_IDENTIFIER_VAR_NAME" select="'var://context/ESB_Services/serviceIdentifier'"/>
-	<xsl:variable name="SERVICE_NAME_VAR_NAME" select="'var://context/ESB_Services/serviceName'"/>
-	<xsl:variable name="SERVICE_TRANSACTION_ID_VAR_NAME" select="'var://context/ESB_Services/serviceTransactionId'"/>
-	<xsl:variable name="SFTP_OUTPUT_FILE_NAME" select="'var://context/ESB_Services/sftpOutputFileName'"/>
-	<xsl:variable name="SERVICE_CHAIN_METADATA_VAR_NAME" select="'var://context/ESB_Services/serviceChainMetadata'"/>
-	<xsl:variable name="STATS_REPORT_VAR_NAME" select="'var://context/ESB_Services/statsReport'"/>
-	<xsl:variable name="WSU_TIMESTAMP_VAR_NAME" select="'var://context/ESB_Services/wsuTimestamp'"/>
-	<xsl:variable name="STATS_LOG_REQ_INMSG_ROOT_VAR_NAME" select="'var://context/ESB_Services/statsLogReqInMsgRoot'"/>
-	<xsl:variable name="STATS_LOG_REQ_INMSG_SIZE_VAR_NAME" select="'var://context/ESB_Services/statsLogReqInMsgSize'"/>
-	<xsl:variable name="STATS_LOG_REQ_OUTMSG_ROOT_VAR_NAME" select="'var://context/ESB_Services/statsLogReq OutMsgRoot'"/>
-	<xsl:variable name="STATS_LOG_RES_INMSG_ROOT_VAR_NAME" select="'var://context/ESB_Services/statsLogResInMsgRoot'"/>
-	<xsl:variable name="STATS_LOG_RES_INMSG_SIZE_VAR_NAME" select="'var://context/ESB_Services/statsLogResInMsgSize'"/>
-	<xsl:variable name="STATS_LOG_RES_OUTMSG_ROOT_VAR_NAME" select="'var://context/ESB_Services/statsLogResOutMsgRoot'"/>
-	<xsl:variable name="TIMER_ELAPSED_BASEVAR_NAME" select="'var://context/ESB_Services/timerElapsed/'"/>
-	<xsl:variable name="TIMER_START_BASEVAR_NAME" select="'var://context/ESB_Services/timerStart/'"/>
+	<xsl:variable name="AUTHZ_RESULT_SET_VAR_NAME" select="'var://context/framework-soa-esb/authorisationResultSet'"/>
+	<xsl:variable name="BACKEND_MQMD_VAR_NAME" select="'var://context/framework-soa-esb/backendMQMD'"/>
+	<xsl:variable name="BACKEND_MQMP_VAR_NAME" select="'var://context/framework-soa-esb/backendMQMP'"/>
+	<xsl:variable name="BACKEND_PROTOCOL_VAR_NAME" select="'var://context/framework-soa-esb/backsideProtocol'"/>
+	<xsl:variable name="CALL_SERVICE_RES_DOC_BASEVAR_NAME" select="'var://context/framework-soa-esb/callServiceResponseDoc/'"/>
+	<xsl:variable name="TRANSACTION_ID_VAR_NAME" select="'var://context/framework-soa-esb/consumerTransactionId'"/>
+	<xsl:variable name="TRANSACTION_ID_TYPE_VAR_NAME" select="'var://context/framework-soa-esb/consumerTransactionIdType'"/>
+	<xsl:variable name="ENTERPRISE_FAULT_DTL_VAR_NAME" select="'var://context/framework-soa-esb/enterpriseFaultDetail'"/>
+	<xsl:variable name="ERROR_ADD_DETAILS_VAR_NAME" select="'var://context/framework-soa-esb/errorSubDescription'"/>
+	<xsl:variable name="ERROR_CODE_VAR_NAME" select="'var://context/framework-soa-esb/errorCode'"/>
+	<xsl:variable name="ERROR_TO_WSA_ENDPOINT_RESULT_VAR_NAME" select="'var://context/framework-soa-esb/errorToWSAEndpointResult'"/>
+	<xsl:variable name="ERROR_TO_WSA_ENDPOINT_RETURN_CODE_VAR_NAME" select="'var://context/framework-soa-esb/errorToWSAEndpointReturnCode'"/>
+	<xsl:variable name="EVENT_CODE_VAR_NAME" select="'var://context/framework-soa-esb/eventCode'"/>
+	<xsl:variable name="EVENT_SUBCODE_VAR_NAME" select="'var://context/framework-soa-esb/eventSubCode'"/>
+	<xsl:variable name="EVENT_MESSAGE_VAR_NAME" select="'var://context/framework-soa-esb/eventMsg'"/>
+	<xsl:variable name="ERROR_DOMAIN_VAR_NAME" select="'var://context/framework-soa-esb/errorDomain'"/>
+	<xsl:variable name="ERROR_MSG_VAR_NAME" select="'var://context/framework-soa-esb/errorMsg'"/>
+	<xsl:variable name="ERROR_ORIG_LOC_VAR_NAME" select="'var://context/framework-soa-esb/errorOriginatorLoc'"/>
+	<xsl:variable name="ERROR_ORIG_NAME_VAR_NAME" select="'var://context/framework-soa-esb/errorSubCode'"/>
+	<xsl:variable name="ERROR_PROVIDER_NAME_VAR_NAME" select="'var://context/framework-soa-esb/errorProviderName'"/>
+	<xsl:variable name="ERROR_SERVICE_NAME_VAR_NAME" select="'var://context/framework-soa-esb/errorServiceName'"/>
+	<xsl:variable name="ERROR_SUBCODE_VAR_NAME" select="'var://context/framework-soa-esb/errorSubCode'"/>
+	<xsl:variable name="ERROR_OVERRIDE_VAR_NAME" select="'var://context/framework-soa-esb/errorOverride'"/>
+	<xsl:variable name="EXTENSION_VARS_VAR_NAME" select="'var://context/framework-soa-esb/_extension/variables'"/>
+	<xsl:variable name="FLOW_DIRECTION_VAR_NAME" select="'var://context/framework-soa-esb/flowDirection'"/>
+	<xsl:variable name="HTTP_HEADERS_LIST_VAR_NAME" select="'var://context/framework-soa-esb/httpHeadersList'"/>
+	<xsl:variable name="MSG_IDENTIFIERS_VAR_NAME" select="'var://context/framework-soa-esb/msgIdentifiers'"/>
+	<xsl:variable name="NEXT_RULE_NAME_VAR_NAME" select="'var://context/framework-soa-esb/nextRuleName'"/>
+	<xsl:variable name="POINT_LOG_REQ_INMSG_VAR_NAME" select="'var://context/framework-soa-esb/pointLogReqInMsg'"/>
+	<xsl:variable name="POINT_LOG_REQ_OUTMSG_VAR_NAME" select="'var://context/framework-soa-esb/pointLogReqOutMsg'"/>
+	<xsl:variable name="POINT_LOG_RES_INMSG_VAR_NAME" select="'var://context/framework-soa-esb/pointLogResInMsg'"/>
+	<xsl:variable name="POINT_LOG_RES_OUTMSG_VAR_NAME" select="'var://context/framework-soa-esb/pointLogResOutMsg'"/>
+	<xsl:variable name="POLICY_CONFIG_NODE_ID_VAR_NAME" select="'var://context/framework-soa-esb/operationConfigNodeId'"/>
+	<xsl:variable name="OPERATION_CONFIG_NODE_ID_VAR_NAME" select="'var://context/framework-soa-esb/operationConfigNodeId'"/>
+	<xsl:variable name="OPERATION_CONFIG_PROVIDER_VAR_NAME" select="'var://context/framework-soa-esb/operationConfigProvider'"/>
+	<xsl:variable name="PROVIDER_VAR_NAME" select="'var://context/framework-soa-esb/providerName'"/>
+	<xsl:variable name="PROVIDER_TIMEOUT_MILLIS_VAR_NAME" select="'var://context/framework-soa-esb/providerTimeoutMillis'"/>
+	<xsl:variable name="REQ_HTTP_HEADERS_IN_VAR_NAME" select="'var://context/framework-soa-esb/requestHttpHeadersIn'"/>
+	<xsl:variable name="REQ_HTTP_HEADERS_OUT_VAR_NAME" select="'var://context/framework-soa-esb/requestHttpHeadersOut'"/>
+	<xsl:variable name="RES_HTTP_HEADERS_IN_VAR_NAME" select="'var://context/framework-soa-esb/responseHttpHeadersIn'"/>
+	<xsl:variable name="RES_HTTP_HEADERS_OUT_VAR_NAME" select="'var://context/framework-soa-esb/responseHttpHeadersOut'"/>
+	<xsl:variable name="RES_IN_MSG_FORMAT_VAR_NAME" select="'var://context/framework-soa-esb/responseInMsgFormat'"/>
+	<xsl:variable name="RES_IN_MSG_NAME_VAR_NAME" select="'var://context/framework-soa-esb/responseInMsgName'"/>
+	<xsl:variable name="RES_OUT_MSG_FORMAT_VAR_NAME" select="'var://context/framework-soa-esb/responseOutMsgFormat'"/>
+	<xsl:variable name="REQ_IN_MSG_FORMAT_VAR_NAME" select="'var://context/framework-soa-esb/requestInMsgFormat'"/>
+	<xsl:variable name="REQ_OUT_MSG_FORMAT_VAR_NAME" select="'var://context/framework-soa-esb/requestOutMsgFormat'"/>
+	<xsl:variable name="REQ_OUT_MSG_ASYNC_VAR_NAME" select="'var://context/framework-soa-esb/requestOutMsgAsync'"/>
+	<xsl:variable name="REQ_SOAP_ENV_VAR_NAME" select="'var://context/framework-soa-esb/requestSOAPEnv'"/>
+	<xsl:variable name="REQ_SOAP_NAMESPACE_VAR_NAME" select="'var://context/framework-soa-esb/reqestSOAPNamespace'"/>
+	<xsl:variable name="REQ_USER_NAME_VAR_NAME" select="'var://context/framework-soa-esb/requestUserName'"/>
+	<xsl:variable name="REQ_WSA_ACTION_VAR_NAME" select="'var://context/framework-soa-esb/wsaRequestAction'"/>
+	<xsl:variable name="REQ_WSA_MSG_ID_VAR_NAME" select="'var://context/framework-soa-esb/requestWsaMsgId'"/>
+	<xsl:variable name="REQ_WSA_RELATES_TO_VAR_NAME" select="'var://context/framework-soa-esb/requestWsaRelatesTo'"/>
+	<xsl:variable name="REQ_WSA_TO_VAR_NAME" select="'var://context/framework-soa-esb/requestWsaTo'"/>
+	<xsl:variable name="REQ_WSA_FROM_VAR_NAME" select="'var://context/framework-soa-esb/requestWsaFrom'"/>
+	<xsl:variable name="REQ_WSA_REPLY_TO_VAR_NAME" select="'var://context/framework-soa-esb/requestWsaReplyTo'"/>
+	<xsl:variable name="REQ_WSA_FAULT_TO_VAR_NAME" select="'var://context/framework-soa-esb/requestWsaFaultTo'"/>
+	<xsl:variable name="REQ_WSA_SECURITY_VAR_NAME" select="'var://context/framework-soa-esb/requestWsaSecurity'"/>
+	<xsl:variable name="REQ_WSM_OPERATION_VAR_NAME" select="'var://context/framework-soa-esb/requestWsmOperation'"/>
+	<xsl:variable name="RES_WSA_MSG_ID_VAR_NAME" select="'var://context/framework-soa-esb/responseWsaMsgId'"/>
+	<xsl:variable name="RES_WSA_RELATES_TO_VAR_NAME" select="'var://context/framework-soa-esb/responseWsaRelatesTo'"/>
+	<xsl:variable name="RES_WSA_TO_VAR_NAME" select="'var://context/framework-soa-esb/responseWsaTo'"/>
+	<xsl:variable name="RES_WSA_FAULT_TO_VAR_NAME" select="'var://context/framework-soa-esb/responseWsaFaultTo'"/>
+	<xsl:variable name="SAML_ASSERTION_VAR_NAME" select="'var://context/framework-soa-esb/samlAssertion'"/>
+	<xsl:variable name="SERVICE_IDENTIFIER_VAR_NAME" select="'var://context/framework-soa-esb/serviceIdentifier'"/>
+	<xsl:variable name="SERVICE_NAME_VAR_NAME" select="'var://context/framework-soa-esb/serviceName'"/>
+	<xsl:variable name="SERVICE_TRANSACTION_ID_VAR_NAME" select="'var://context/framework-soa-esb/serviceTransactionId'"/>
+	<xsl:variable name="SFTP_OUTPUT_FILE_NAME" select="'var://context/framework-soa-esb/sftpOutputFileName'"/>
+	<xsl:variable name="SERVICE_CHAIN_METADATA_VAR_NAME" select="'var://context/framework-soa-esb/serviceChainMetadata'"/>
+	<xsl:variable name="STATS_REPORT_VAR_NAME" select="'var://context/framework-soa-esb/statsReport'"/>
+	<xsl:variable name="WSU_TIMESTAMP_VAR_NAME" select="'var://context/framework-soa-esb/wsuTimestamp'"/>
+	<xsl:variable name="STATS_LOG_REQ_INMSG_ROOT_VAR_NAME" select="'var://context/framework-soa-esb/statsLogReqInMsgRoot'"/>
+	<xsl:variable name="STATS_LOG_REQ_INMSG_SIZE_VAR_NAME" select="'var://context/framework-soa-esb/statsLogReqInMsgSize'"/>
+	<xsl:variable name="STATS_LOG_REQ_OUTMSG_ROOT_VAR_NAME" select="'var://context/framework-soa-esb/statsLogReq OutMsgRoot'"/>
+	<xsl:variable name="STATS_LOG_RES_INMSG_ROOT_VAR_NAME" select="'var://context/framework-soa-esb/statsLogResInMsgRoot'"/>
+	<xsl:variable name="STATS_LOG_RES_INMSG_SIZE_VAR_NAME" select="'var://context/framework-soa-esb/statsLogResInMsgSize'"/>
+	<xsl:variable name="STATS_LOG_RES_OUTMSG_ROOT_VAR_NAME" select="'var://context/framework-soa-esb/statsLogResOutMsgRoot'"/>
+	<xsl:variable name="TIMER_ELAPSED_BASEVAR_NAME" select="'var://context/framework-soa-esb/timerElapsed/'"/>
+	<xsl:variable name="TIMER_START_BASEVAR_NAME" select="'var://context/framework-soa-esb/timerStart/'"/>
 	<!--
 		Custom context names
 	-->
 	<xsl:variable name="SERVICE_METADATA_CONTEXT_NAME" select="'var://context/SERVICE_METADATA/'"/>
 	<xsl:variable name="RESULT_DOC_CONTEXT_NAME" select="'var://context/RESULT_DOC/'"/>
 	<!-- CallService handling of Binary or MTOM messages -->
-	<xsl:variable name="CONTENT_BINARY_VAR_NAME" select="'var://context/ESB_Services/contentBinary'"/>
+	<xsl:variable name="CONTENT_BINARY_VAR_NAME" select="'var://context/framework-soa-esb/contentBinary'"/>
 	<xsl:variable name="VALIDATE_RESULT_CONTEXT_NAME" select="'var://context/VALIDATE_RESULT/'"/>
 	<!-- 
 		Log event key values
@@ -204,7 +204,7 @@
 	<xsl:variable name="DP_FILTER_FLAG_NAME" select="'DP_MSG_FILTER'"/>
 	<xsl:variable name="COMMON_ERROR_DOMAIN_LIST" select="'Framework,Enterprise'"/>
 	<xsl:variable name="SERVICES_PROXY_NAME_SUFFIX" select="'_ServicesProxy'"/>
-	<xsl:variable name="RULE_NAME_PREFIX" select="'ESB_Services_V1_'"/>
+	<xsl:variable name="RULE_NAME_PREFIX" select="'framework-soa-esb_V1_'"/>
 	<xsl:variable name="EMPTY_SOAP_11_DOC">
 		<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 			<soap:Header/>

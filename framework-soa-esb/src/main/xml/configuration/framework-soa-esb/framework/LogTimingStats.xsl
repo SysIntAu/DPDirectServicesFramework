@@ -339,7 +339,7 @@
 	<xsl:template match="variable" mode="createStatsReport">
 		<xsl:if test="starts-with(normalize-space(.),'var://local/timerElapsed/')">
 			<xsl:variable name="VAR_NAME"
-				select="concat('var://context/ESB_Services/',substring-after(.,'var://local/'))"/>
+				select="concat('var://context/framework-soa-esb/',substring-after(.,'var://local/'))"/>
 			<xsl:variable name="ELAPSED_MILLIS" select="dp:variable($VAR_NAME)"/>
 			<xsl:variable name="IN_STEP_NAME"
 				select="normalize-space(translate(substring-after(.,'var://local/timerElapsed/'),'/','_'))"/>

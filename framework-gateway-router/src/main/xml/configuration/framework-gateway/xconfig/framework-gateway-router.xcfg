@@ -64,7 +64,7 @@
 			<mAdminState>enabled</mAdminState>
 			<Type>xformbin</Type>
 			<Input>INPUT</Input>
-			<Transform>local:///Gateway_Router/framework/RouteToDPService.xsl</Transform>
+			<Transform>local:///framework-gateway-router/framework/RouteToDPService.xsl</Transform>
 			<TxMode>default</TxMode>
 			<Output>NULL</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
@@ -87,7 +87,7 @@
 			<mAdminState>enabled</mAdminState>
 			<Type>xform</Type>
 			<Input>NULL</Input>
-			<Transform>local:///Gateway_Router/framework/RouteToDPService.xsl</Transform>
+			<Transform>local:///framework-gateway-router/framework/RouteToDPService.xsl</Transform>
 			<Output>NULL</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>
 			<OutputType>default</OutputType>
@@ -109,7 +109,7 @@
 			<mAdminState>enabled</mAdminState>
 			<Type>xformbin</Type>
 			<Input>NULL</Input>
-			<Transform>local:///Gateway_Router/framework/HandleErrors.xsl</Transform>
+			<Transform>local:///framework-gateway-router/framework/HandleErrors.xsl</Transform>
 			<TxMode>default</TxMode>
 			<Output>NULL</Output>
 			<NamedInOutLocationType>default</NamedInOutLocationType>

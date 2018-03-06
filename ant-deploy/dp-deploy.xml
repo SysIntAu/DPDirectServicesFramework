@@ -22,8 +22,8 @@
 	**                             'services' (all),'services.objects', 'services.files',
 	**                             'gateway' (all), 'gateway.objects', 'gateway.files',
 	**                             'schema', 'esb' (all but schema), or 'all' (default is 'all')
-	** domain          == Working domain (default is 'MSG${dp.environment}' domain)
-	** xmlmanager      == Name of an XMLManager to flush when files are uploaded (default is 'common_V1_XMLManager')
+	** domain          == Working domain (default is '{dp.environment}' domain)
+	** xmlmanager      == Name of an XMLManager to flush when files are uploaded
 	** qualified.path      == qualified path of the upload file or dir
 	** file, dir, service    == unique file, dir or service name for upload - path resolved, dev/test only. Corresponds to deployment type.
 	** MODIFICATIONS    DATE       	DETAILS
@@ -47,11 +47,11 @@
 
 	<!-- Set the XMLManager name according by proxy -->
 	<property name="xmlmanager" value="DomainDefaultCache"/>
-	<property name="services.xmlmanager" value="ESB_Services_DefaultCache_V1"/>
-	<!--<property name="api.xmlmanager" value="ESB_Services_DefaultCache_V1"/>-->
+	<property name="services.xmlmanager" value="framework-soa-esb_DefaultCache_V1"/>
+	<!--<property name="api.xmlmanager" value="framework-soa-esb_DefaultCache_V1"/>-->
 	<!--<property name="sts.xmlmanager" value="STS_DefaultCache_V1"/>-->
 	<!-- Framework Components -->
-	<property name="component.list" value="Common,Gateway_Router,ESB_Services"/>		<!-- ,Json_RestAPI,SecureTokenService -->
+	<property name="component.list" value="framework-common,framework-gateway-router,framework-soa-esb"/>		<!-- ,Json_RestAPI,SecureTokenService -->
 	<property name="type" value="all"/>
 	<property name="deployment.type" value="${type}"/>
 	<property name="source.type" value="XML"/>
@@ -158,7 +158,7 @@
 		** based on the contents of the ${release.dir}/local directory
 		****************************************************************** -->
 	<target name="create.component.list" unless="component.list">
-		<property name="component.list" value="Common,Gateway_Router,ESB_Services"/>		<!-- ,SecureTokenService,Json_RestAPI -->
+		<property name="component.list" value="framework-common,framework-gateway-router,framework-soa-esb"/>		<!-- ,SecureTokenService,Json_RestAPI -->
 	</target>
 	
 	<!-- **********************************************************
@@ -579,7 +579,7 @@
 			</operation>
 			<operation name="StopDomainRequest"/>
 			<operation name="do-import">
-				<option name="input-file" srcFile="${staging.dir}/Common_${environment}.xcfg"/>
+				<option name="input-file" srcFile="${staging.dir}/common_${environment}.xcfg"/>
 				<option name="overwrite-files" value="true"/>
 				<option name="overwrite-objects" value="true"/>
 				<option name="source-type" value="XML"/>
@@ -629,7 +629,7 @@
 				<option name="name" value="${domain}"/>
 				<option name="timeout" value="180"/>
 			</operation>
-			<operation name="set-dir" srcDir="${staging.dir}/local/Common" destDir="local:///Common"/>
+			<operation name="set-dir" srcDir="${staging.dir}/local/common" destDir="local:///common"/>
 			<operation name="DomainUnquiesce">
 				<option name="name" value="${domain}"/>
 			</operation>
@@ -640,7 +640,7 @@
 		** target: deploy.services
 		**
 		** PURPOSE
-		** Deploy all objects in the ESB_Services.xcfg file to each dp device, and also
+		** Deploy all objects in the framework-soa-esb.xcfg file to each dp device, and also
 		** deploy all component files in the 'src' dir to the local:///${component} path
 		****************************************************************** -->
 	<target name="deploy.services" depends="deploy.services.objects, deploy.services.files"/>
@@ -649,7 +649,7 @@
 		** target: deploy.services.objects
 		**
 		** PURPOSE
-		** Deploy all objects in the ESB_Services.xcfg file to each dp device, do NOT deploy component files.
+		** Deploy all objects in the framework-soa-esb.xcfg file to each dp device, do NOT deploy component files.
 		****************************************************************** -->
 	<target name="deploy.services.objects" depends="inject.object.config">
 		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
@@ -661,7 +661,7 @@
 			</operation>
 			<operation name="StopDomainRequest"/>
 			<operation name="do-import">
-				<option name="input-file" srcFile="${staging.dir}/ESB_Services_${environment}.xcfg"/>
+				<option name="input-file" srcFile="${staging.dir}/framework-soa-esb_${environment}.xcfg"/>
 				<option name="overwrite-files" value="true"/>
 				<option name="overwrite-objects" value="true"/>
 				<option name="source-type" value="XML"/>
@@ -679,7 +679,7 @@
 		** target: deploy.services.files
 		**
 		** PURPOSE
-		** deploy all ESB_Services files in the 'src' dir to the local:///ESB_Services path
+		** deploy all framework-soa-esb files in the 'src' dir to the local:///framework-soa-esb path
 		****************************************************************** -->
 	<target name="deploy.services.files" depends="inject.service.config">
 		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}"
@@ -689,7 +689,7 @@
 				<option name="name" value="${domain}"/>
 				<option name="timeout" value="180"/>
 			</operation>
-			<operation name="set-dir" srcDir="${staging.dir}/local/ESB_Services" destDir="local:///ESB_Services" overwrite="true"/>
+			<operation name="set-dir" srcDir="${staging.dir}/local/framework-soa-esb" destDir="local:///framework-soa-esb" overwrite="true"/>
 			<operation name="FlushStylesheetCache">
 				<option name="XMLManager" value="${services.xmlmanager}"/>
 			</operation>
@@ -730,7 +730,7 @@
 		** deploy all component files in the 'src' dir to the local:///${component} path
 		****************************************************************** -->
 	<target name="upload.esb" depends="inject.config">
-		<echo message="Uploading DPMSG configuration to the ${domain} domain on ${dp.hostname}"/>
+		<echo message="Uploading DP configuration to the ${domain} domain on ${dp.hostname}"/>
 		<dpDeploy firmware="5" domain="${domain}" hostname="${dp.hostname}" 
 			verbose="${verbose}" failOnError="false" rollbackOnError="false">
 			<operation name="SaveConfig"/>
@@ -744,13 +744,13 @@
 			</operation>
 			<operation name="set-dir" srcDir="${security.dir}" destDir="local:///security" replace="false" overwrite="true"/>
 			<operation name="set-dir" srcDir="${staging.dir}/cert" destDir="cert:///" replace="false" overwrite="true"/>
-			<operation name="set-dir" srcDir="${staging.dir}/local/Common" destDir="local:///Common" overwrite="true"/>
+			<operation name="set-dir" srcDir="${staging.dir}/local/common" destDir="local:///common" overwrite="true"/>
 			<operation name="set-dir" srcDir="${staging.dir}/local/Gateway_Router" destDir="local:///Gateway_Router" overwrite="true"/>
-			<operation name="set-dir" srcDir="${staging.dir}/local/ESB_Services" destDir="local:///ESB_Services" overwrite="true"/>
+			<operation name="set-dir" srcDir="${staging.dir}/local/framework-soa-esb" destDir="local:///framework-soa-esb" overwrite="true"/>
 			<!--<operation name="set-dir" srcDir="${staging.dir}/local/Json_RestAPI" destDir="local:///Json_RestAPI" overwrite="true"/>-->
 			<!--<operation name="set-dir" srcDir="${staging.dir}/local/SecureTokenService" destDir="local:///SecureTokenService" overwrite="true"/>-->
 			<operation name="do-import">
-				<option name="input-file" srcFile="${staging.dir}/Common_${environment}.xcfg"/>
+				<option name="input-file" srcFile="${staging.dir}/common_${environment}.xcfg"/>
 				<option name="overwrite-files" value="true"/>
 				<option name="overwrite-objects" value="true"/>
 				<option name="source-type" value="XML"/>
@@ -762,7 +762,7 @@
 				<option name="source-type" value="XML"/>
 			</operation>
 			<operation name="do-import">
-				<option name="input-file" srcFile="${staging.dir}/ESB_Services_${environment}.xcfg"/>
+				<option name="input-file" srcFile="${staging.dir}/framework-soa-esb_${environment}.xcfg"/>
 				<option name="overwrite-files" value="true"/>
 				<option name="overwrite-objects" value="true"/>
 				<option name="source-type" value="XML"/>

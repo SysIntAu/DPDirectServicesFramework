@@ -351,7 +351,7 @@
 					<xsl:value-of select="$ERROR_ORIG_LOC"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:value-of select="'ESB_Services'"/>
+					<xsl:value-of select="'framework-soa-esb'"/>
 				</xsl:otherwise>
 			</xsl:choose>
 		</err:MessageOrigin>

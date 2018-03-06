@@ -45,9 +45,9 @@
 		<xsl:copy-of select="dp:variable(concat('var://context/',$dpconfig:FROM_CONTEXT))"/>
 		<!-- Copy attachments to OUTPUT context -->
 		<xsl:variable name="FROM_MANIFEST" select="dp:variable(concat('var://context/',$dpconfig:FROM_CONTEXT,'/attachment-manifest'))"/>
-<!--		<dp:set-variable name="'var://context/ESB_Services/MIME/FROM_MANIFEST'" value="$FROM_MANIFEST"/>-->
+<!--		<dp:set-variable name="'var://context/framework-soa-esb/MIME/FROM_MANIFEST'" value="$FROM_MANIFEST"/>-->
 <!--		<xsl:variable name="TO_MANIFEST" select="dp:variable(concat('var://context/',$dpconfig:TO_CONTEXT,'/attachment-manifest'))"/>-->
-<!--		<dp:set-variable name="'var://context/ESB_Services/MIME/TO_MANIFEST'" value="$TO_MANIFEST"/>-->
+<!--		<dp:set-variable name="'var://context/framework-soa-esb/MIME/TO_MANIFEST'" value="$TO_MANIFEST"/>-->
 		<xsl:choose>
 <!--			<xsl:when test="($FROM_MANIFEST/manifest != '') and ($TO_MANIFEST/manifest = '') ">-->
 			<xsl:when test="$FROM_MANIFEST/manifest != ''">
@@ -58,8 +58,8 @@
 				</xsl:call-template>
 				<xsl:variable name="CONTENT_TYPE">
 					<xsl:choose>
-						<xsl:when test="dp:variable('var://context/ESB_Services/MIME/contentType') != ''">
-							<xsl:value-of select="dp:variable('var://context/ESB_Services/MIME/contentType')"/>
+						<xsl:when test="dp:variable('var://context/framework-soa-esb/MIME/contentType') != ''">
+							<xsl:value-of select="dp:variable('var://context/framework-soa-esb/MIME/contentType')"/>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="normalize-space($FROM_MANIFEST/manifest/media-type/value/text())"/>

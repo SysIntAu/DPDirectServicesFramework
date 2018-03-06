@@ -32,7 +32,7 @@
 	<xsl:variable name="DP_SERVICE_LOCAL_SERVICE_ADDRESS" select="'var://service/local-service-address'"/>
 	<xsl:variable name="DP_SERVICE_ROUTING_URL" select="'var://service/routing-url'"/>
 	<xsl:variable name="DP_PROTOCOL_METHOD" select="'var://service/protocol-method'"/>
-	<xsl:variable name="GATEWAY_ROUTER_ROOT_FOLDER" select="'local:///Gateway_Router/'"/>
+	<xsl:variable name="GATEWAY_ROUTER_ROOT_FOLDER" select="'local:///framework-gateway-router/'"/>
 	<xsl:variable name="ROUTING_DOC"
 		select="document(concat($GATEWAY_ROUTER_ROOT_FOLDER,'config/Gateway_Router_V1_ServiceRoute.xml'))"/>
 	<xsl:variable name="WSA_ACTION" select="normalize-space(/*[local-name() = 'Envelope'][1]/*[local-name() =
@@ -46,8 +46,8 @@
 	<!-- Root Template -->
 	<xsl:template match="/">
 		<!-- Debug vars -->
-<!--		<dp:set-variable name="'var://context/Gateway_Router/debug/action'" value="string($WSA_ACTION)"/>
-		<dp:set-variable name="'var://context/Gateway_Router/debug/uri'" value="string($INPUT_URI)"/>-->
+<!--		<dp:set-variable name="'var://context/framework-gateway-router/debug/action'" value="string($WSA_ACTION)"/>
+		<dp:set-variable name="'var://context/framework-gateway-router/debug/uri'" value="string($INPUT_URI)"/>-->
 		<xsl:choose>
 			<xsl:when test="$WSA_ACTION != ''">
 				<xsl:variable name="ROUTING_IDENTIFIER">
@@ -82,8 +82,8 @@
 					</xsl:choose>
 				</xsl:variable>
 				<!-- Debug vars -->
-<!--				<dp:set-variable name="'var://context/Gateway_Router/debug/ROUTING_IDENTIFIER'" value="$ROUTING_IDENTIFIER"/>
-				<dp:set-variable name="'var://context/Gateway_Router/debug/ROUTING_ADDRESS'" value="normalize-space($ROUTING_ADDRESS)"/>-->
+<!--				<dp:set-variable name="'var://context/framework-gateway-router/debug/ROUTING_IDENTIFIER'" value="$ROUTING_IDENTIFIER"/>
+				<dp:set-variable name="'var://context/framework-gateway-router/debug/ROUTING_ADDRESS'" value="normalize-space($ROUTING_ADDRESS)"/>-->
 				<!-- Construct web service request from service metadata configuration -->
 				<dp:set-variable name="$DP_SERVICE_ROUTING_URL" value="normalize-space($ROUTING_ADDRESS)"/>
 				<!-- Set http Connection header to 'close' -->

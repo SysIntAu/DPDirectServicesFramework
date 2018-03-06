@@ -24,7 +24,7 @@
 	extension-element-prefixes="dp date" exclude-result-prefixes="dp  date saml wsa wsse ds wsu" version="1.0">
 	<!--========================================================================
 		Purpose:
-		Adds SAML2 Assertion to messages being routed to ESB_Services endpoints
+		Adds SAML2 Assertion to messages being routed to framework-soa-esb endpoints
 		
 		History:
 		2016-12-12	v1.0	N.A.		Initial Version.

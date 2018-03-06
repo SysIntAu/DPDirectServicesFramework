@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-	<rewriteURI uriStartString="local:///ESB_Services/" rewritePrefix="./"/>
-	<rewriteSystem systemIdStartString="local:///ESB_Services/" rewritePrefix="./"/>
+	<rewriteURI uriStartString="local:///framework-soa-esb/" rewritePrefix="./"/>
+	<rewriteSystem systemIdStartString="local:///framework-soa-esb/" rewritePrefix="./"/>
 </catalog>

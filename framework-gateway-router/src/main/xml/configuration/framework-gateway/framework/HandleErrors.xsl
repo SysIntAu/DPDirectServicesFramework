@@ -59,8 +59,8 @@
 				<dp:set-variable name="'var://service/error-protocol-reason-phrase'" value="'Error'"/>
 			</xsl:when>
 		</xsl:choose>
-		<dp:set-variable name="'var://context/Gateway_Router/RESPONSE_CODE'" value="string($RESPONSE_CODE)"/>
-		<dp:set-variable name="'var://context/Gateway_Router/X_RESPONSE_CODE'" value="string($X_RESPONSE_CODE)"/>
+		<dp:set-variable name="'var://context/framework-gateway-router/RESPONSE_CODE'" value="string($RESPONSE_CODE)"/>
+		<dp:set-variable name="'var://context/framework-gateway-router/X_RESPONSE_CODE'" value="string($X_RESPONSE_CODE)"/>
 		<!-- CORS support -->
 		<dp:set-http-response-header name="'Access-Control-Allow-Origin'" value="'*'"/>
 	</xsl:template>

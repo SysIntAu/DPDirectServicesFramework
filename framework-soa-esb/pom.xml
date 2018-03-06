@@ -232,7 +232,7 @@
 							<goal>schematron</goal>
 						</goals>
 						<configuration>
-							<schema>${project.build.outputDirectory}/local/ondisk/ESB_Gateway/config/ESB_Gateway-ServiceConfigValidation.sch</schema>
+							<schema>${project.build.outputDirectory}/local/ondisk/ESB_Gateway/config/framework-gateway-router_ConfigValidation.sch</schema>
 							<includes>
 								<include>**/ESB_Gateway/config/**/*.xml</include>
 							</includes>
@@ -245,7 +245,7 @@
 							<goal>schematron</goal>
 						</goals>
 						<configuration>
-							<schema>${project.build.outputDirectory}/local/ondisk/framework-soa-esb/config/ESBFramework-ServiceConfigValidation.sch</schema>
+							<schema>${project.build.outputDirectory}/local/ondisk/framework-soa-esb/config/framework-soa-esb_ConfigValidation.sch</schema>
 							<includes>
 								<include>**/ESBFramework/config/**/*.xml</include>
 							</includes>

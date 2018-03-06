@@ -10,7 +10,7 @@
 		</InputMatchCriteria>
 		<RequestPolicyConfig schemaValidate="true">
 			<BackendRouting provider="BMS">
-				<BackendStub>local:///ESB_Services/services/Verify/V1.0/VerifyResponse_Stub.xsl</BackendStub>
+				<BackendStub>local:///framework-soa-esb/services/Verify/V1.0/VerifyResponse_Stub.xsl</BackendStub>
 				<!--<HTTPEndpoint>
 					<Address>${msgVerifyHttpEndpoint}</Address>
 				</HTTPEndpoint>
@@ -20,7 +20,7 @@
 		<ResponsePolicyConfig schemaValidate="true"/>
 		<ErrorPolicyConfig schemaValidate="true">
 			<Transform>
-				<Stylesheet>local:///ESB_Services/framework/HandleErrors.xsl</Stylesheet>
+				<Stylesheet>local:///framework-soa-esb/framework/HandleErrors.xsl</Stylesheet>
 			</Transform>
 		</ErrorPolicyConfig>
 	</OperationConfig>

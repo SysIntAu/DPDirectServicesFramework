@@ -104,7 +104,7 @@
 				<TTL>31536000</TTL>
 				<Priority>128</Priority>
 			</DocCachePolicy>
-			<UserAgent class="HTTPUserAgent">ESB_Services_UserAgent_V1</UserAgent>
+			<UserAgent class="HTTPUserAgent">framework-soa-esb_UserAgent_V1</UserAgent>
 		</XMLManager>
 		<SLMPolicy name="ServicesProxy_Template_Vx">
 			<mAdminState>enabled</mAdminState>
@@ -142,7 +142,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_Request_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Request_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -150,7 +150,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Binary_Response_Match_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_Binary_Response_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Binary_Response_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -158,7 +158,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_Response_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Response_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -166,7 +166,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_Transform_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Transform_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -174,7 +174,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_Filter_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Filter_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -182,7 +182,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_EncodeMTOM_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_EncodeMTOM_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -190,7 +190,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_DecodeMTOM_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_DecodeMTOM_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -198,14 +198,14 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_Validate_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Validate_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>			<PolicyMaps>
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_CallService_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_CallService_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -213,7 +213,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_Copy_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Copy_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -221,7 +221,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_BackendRouting_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_BackendRouting_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -229,7 +229,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">ESB_Services_V1_Error_rule</Rule>
+				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Error_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>

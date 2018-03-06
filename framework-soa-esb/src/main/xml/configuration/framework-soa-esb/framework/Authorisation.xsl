@@ -61,8 +61,8 @@
 						<xsl:for-each select="$GROUP_ATTRIBUTES//saml:Attribute[@name='group']/saml:AttributeValue">
 							<xsl:variable name="GROUP_NAME" select="normalize-space(current())"></xsl:variable>
 							<!-- Debu authz vars -->
-							<dp:set-variable name="concat('var://context/ESB_Services/debug/',position(),'/SUBJECT_ID')" value="$GROUP_NAME"/>
-							<dp:set-variable name="concat('var://context/ESB_Services/debug/',position(),'/RESOURCE_ID')" value="$RESOURCE_ID"/>
+							<dp:set-variable name="concat('var://context/framework-soa-esb/debug/',position(),'/SUBJECT_ID')" value="$GROUP_NAME"/>
+							<dp:set-variable name="concat('var://context/framework-soa-esb/debug/',position(),'/RESOURCE_ID')" value="$RESOURCE_ID"/>
 							<xsl:element name="AuthorisationResult">
 								<xsl:attribute name="groupName">
 									<xsl:value-of select="$GROUP_NAME"/>

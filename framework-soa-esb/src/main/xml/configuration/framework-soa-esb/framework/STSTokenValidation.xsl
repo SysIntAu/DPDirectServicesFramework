@@ -50,8 +50,8 @@
 				<xsl:variable name="WSSE_SECURITY_HEADER"
 					select="identity/entry/token/wsse:Security"/>
 				<!-- debug vars -->
-				<dp:set-variable name="'var://context/ESB_Services/debug/identity'" value="container/identity"/>
-				<dp:set-variable name="'var://context/ESB_Services/debug/WSSE_SECURITY_HEADER'" value="$WSSE_SECURITY_HEADER"/>
+				<dp:set-variable name="'var://context/framework-soa-esb/debug/identity'" value="container/identity"/>
+				<dp:set-variable name="'var://context/framework-soa-esb/debug/WSSE_SECURITY_HEADER'" value="$WSSE_SECURITY_HEADER"/>
 				<xsl:variable name="STS_VALIDATE_MSG">
 					<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
 						xmlns:dp="http://www.datapower.com/schemas/management">

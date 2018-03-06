@@ -458,7 +458,7 @@
 						</header>
 					</xsl:if>
 				</xsl:variable>
-				<dp:set-variable name="'var://context/ESB_Services/debug/CallServiceHeaders'"
+				<dp:set-variable name="'var://context/framework-soa-esb/debug/CallServiceHeaders'"
 					value="$HEADERS"/>
 				<!-- Store the request output message to point log for async and echo-endpoint transactions -->
 				<xsl:call-template name="StorePointLog">
