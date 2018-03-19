@@ -13,7 +13,7 @@
 	2016-01-23	v1.0    N.A.		Initial Version with History.
 	========================================================================-->
 <datapower-configuration version="3">
-	<configuration domain="MSG">
+	<configuration domain="DPESB">
 		<HTTPSSourceProtocolHandler name="Gateway_Router_V1_Request_FSH_HTTPS">
 			<mAdminState>enabled</mAdminState>
 			<LocalAddress>MSG</LocalAddress>

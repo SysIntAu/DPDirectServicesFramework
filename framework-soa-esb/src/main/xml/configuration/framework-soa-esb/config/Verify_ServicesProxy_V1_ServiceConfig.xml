@@ -12,7 +12,7 @@
 			<BackendRouting provider="BMS">
 				<BackendStub>local:///framework-soa-esb/services/Verify/V1.0/VerifyResponse_Stub.xsl</BackendStub>
 				<!--<HTTPEndpoint>
-					<Address>${msgVerifyHttpEndpoint}</Address>
+					<Address>${verifyHttpEndpoint}</Address>
 				</HTTPEndpoint>
 				<TimeoutSeconds>31</TimeoutSeconds>-->
 			</BackendRouting>

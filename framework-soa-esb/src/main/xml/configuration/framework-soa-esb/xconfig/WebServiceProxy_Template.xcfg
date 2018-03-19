@@ -1,5 +1,5 @@
 <datapower-configuration version="5">
-	<configuration domain="MSG">
+	<configuration domain="DPESB">
 		<Matching name="ServicesProxy_Template_Vx_match">
 			<mAdminState>enabled</mAdminState>
 			<MatchRules>

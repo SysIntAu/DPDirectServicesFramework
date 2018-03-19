@@ -1,5 +1,5 @@
 <datapower-configuration version="3">
-	<configuration domain="MSG" 
+	<configuration domain="DPESB" 
 		xmlns:env="http://www.w3.org/2003/05/soap-envelope"
 		xmlns:dp="http://www.datapower.com/schemas/management">
 		<HTTPUserAgent name="default" intrinsic="true">
