@@ -38,7 +38,7 @@
 	<xsl:strip-space elements="*"/>
 	<!--============== Global Variable Declarations =================-->
 	<xsl:param name="ENV" select="'E0'"/>
-	<xsl:param name="DOMAIN" select="'MSG'"/>
+	<xsl:param name="DOMAIN" select="'DPESB'"/>
 	<xsl:param name="HOSTNAME" select="'none'"/>
 	<xsl:variable name="DOC_NAME" select="string(concat($ENV,'/', $ENV, '.xml'))"/>
 	<xsl:variable name="ENV_DOC" select="document($DOC_NAME)"/>

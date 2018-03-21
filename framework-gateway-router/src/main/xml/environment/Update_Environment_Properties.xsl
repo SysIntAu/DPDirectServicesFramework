@@ -28,11 +28,6 @@
 		</xs:appinfo>
 	</xs:annotation>
 	<!--========================================================================
-		Purpose:
-		DataPower exported configuration file (xcfg) component-renaming transform.
-		Transforms property names within a DataPower exported configuration file (xcfg) based on a set
-				of configured search/replace parameters for a specific environment.
-		
 		History:
 		2016-12-12	v0.1	Tim Goodwill	Initial Version.
 		2016-12-12	v0.1	N.A.		Updated to strip clear-text HTTP front side handler/s in higher environments (UAT,STAGE/TRAIN/PROD).
@@ -43,7 +38,7 @@
 	<xsl:strip-space elements="*"/>
 	<!--============== Global Variable Declarations =================-->
 	<xsl:param name="ENV" select="'E0'"/>
-	<xsl:param name="DOMAIN" select="'MSG'"/>
+	<xsl:param name="DOMAIN" select="'DPESB'"/>
 	<xsl:param name="HOSTNAME" select="'none'"/>
 	<xsl:variable name="DOC_NAME" select="string(concat($ENV,'/', $ENV, '.xml'))"/>
 	<xsl:variable name="ENV_DOC" select="document($DOC_NAME)"/>

@@ -469,7 +469,7 @@
 						<xsl:value-of select="$USER_NAME"/>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:value-of select="'MSG'"/>
+						<xsl:value-of select="'DPESB'"/>
 					</xsl:otherwise>
 				</xsl:choose>
 			</UserIdentifier>
@@ -483,7 +483,7 @@
 				<xsl:value-of select="'0'"/>
 			</PutApplType>
 			<PutApplName>
-				<xsl:value-of select="'MSG'"/>
+				<xsl:value-of select="'DPESB'"/>
 			</PutApplName>
 			<PutDate>
 				<xsl:call-template name="GetCurrentUTCDateAsYYYYMMDD"/>
