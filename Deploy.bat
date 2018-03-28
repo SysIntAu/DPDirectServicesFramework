@@ -8,10 +8,9 @@ set Environment=%1
 echo Deploy build to DP environment %Environment%
 echo.
 
-REM set ANT_HOME=C:\tools\Ant_1.9.1
-set ANT_HOME=C:\tools\apache-ant-1.7.1
-set JAVA_HOME=C:\tools\jdk1.8.0_31
-set PATH=%PATH%;C:\Tools\Ant\bin;C:\tools\jdk1.8.0_31\bin
+set ANT_HOME=C:\Program Files\apache-ant-1.8.2
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_162
+set PATH=%PATH%;C:\Program Files\apache-ant-1.8.2\bin;C:\Program Files\Java\jdk1.8.0_162
 
 cd .\target
 
