@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt">
 	<title>A Schematron Schema for assertion of SOAP header fields.</title>
-	<ns uri="http://schemas.xmlsoap.org/soap/envelope/" prefix="soap"/>
-	<ns uri="http://www.w3.org/2005/08/addressing" prefix="wsa"/>
+	<ns uri="http://www.w3.org/2003/05/soap-envelope" prefix="soap"/>
+	<ns uri="http://schemas.xmlsoap.org/ws/2004/08/addressing" prefix="wsa"/>
 	<ns uri="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
 		prefix="wsse"/>
 	<pattern>

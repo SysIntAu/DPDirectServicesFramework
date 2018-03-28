@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:errcore="http://www.crimtrac.gov.au/Namespace/common/ErrorMessages/V1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.crimtrac.gov.au/Namespace/common/ErrorMessages/V1.1" elementFormDefault="qualified" version="1.0" xml:lang="en">
+	<xs:include schemaLocation="ValidationErrors.xsd"/>
+	<xs:include schemaLocation="LogicErrors.xsd"/>
+	<xs:include schemaLocation="SystemErrors.xsd"/>
+	<xs:include schemaLocation="SecurityErrors.xsd"/>
+	<xs:complexType name="commonErrorsType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element ref="errcore:SecurityErrors"/>
+				<xs:element ref="errcore:SystemErrors" minOccurs="0"/>
+				<xs:element ref="errcore:LogicErrors" minOccurs="0"/>
+				<xs:element ref="errcore:ValidationErrors" minOccurs="0"/>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element ref="errcore:SystemErrors"/>
+				<xs:element ref="errcore:LogicErrors" minOccurs="0"/>
+				<xs:element ref="errcore:ValidationErrors" minOccurs="0"/>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element ref="errcore:LogicErrors"/>
+				<xs:element ref="errcore:ValidationErrors" minOccurs="0"/>
+			</xs:sequence>
+			<xs:element ref="errcore:ValidationErrors"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="commonErrors" type="errcore:commonErrorsType"/>
+</xs:schema>

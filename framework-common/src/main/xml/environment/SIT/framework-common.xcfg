@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datapower-configuration version="3">
-	<configuration domain="DPESBSIT">
+	<configuration domain="DPSOASIT">
 		<!-- Logs : custom log category can be used by a single comain only. Must be prefixed by DP domain name. -->
-		<LogLabel name="DPESBSIT_ServiceStats">
+		<LogLabel name="DPSOASIT_ServiceStats">
 			<mAdminState>enabled</mAdminState>
-			<UserSummary>Esb Service Stats Log</UserSummary>
+			<UserSummary>SOA Service Stats Log</UserSummary>
 			<Type>user</Type>
 		</LogLabel>
-		<LogLabel name="DPESBSIT_EsbService">
+		<LogLabel name="DPSOASIT_EsbService">
 			<mAdminState>enabled</mAdminState>
-			<UserSummary>Esb Service Log</UserSummary>
+			<UserSummary>SOA Service Log</UserSummary>
 			<Type>user</Type>
 		</LogLabel>
 		<LogTarget name="default-log" intrinsic="true">
@@ -64,14 +64,14 @@
 				<Priority>info</Priority>
 			</LogEvents>
 			<LogEvents>
-				<Class class="LogLabel">DPESBSIT_EsbService</Class>
+				<Class class="LogLabel">DPSOASIT_EsbService</Class>
 				<Priority>debug</Priority>
 			</LogEvents>
 		</LogTarget>
 <!--		<LogTarget name="Remote_Performance_Log_Target_SOAP">
 			<mAdminState>enabled</mAdminState>
-			<UserSummary>Logs to remote Tomcat application which processesEnterpriseStats log messages and logs to a rolling
-				file (which is indexed by Splunk).</UserSummary>
+			<UserSummary>Logs to remote log target which processesEnterpriseStats log messages and logs to a rolling
+				file.</UserSummary>
 			<Type>soap</Type>
 			<Priority>normal</Priority>
 			<SoapVersion>soap11</SoapVersion>
@@ -119,11 +119,11 @@
 				<Priority>notice</Priority>
 			</LogEvents>
 			<LogEvents>
-				<Class class="LogLabel">DPESBSIT_ServiceStats</Class>
+				<Class class="LogLabel">DPSOASIT_ServiceStats</Class>
 				<Priority>debug</Priority>
 			</LogEvents>
 			<LogEvents>
-				<Class class="LogLabel">DPESBSIT_EsbService</Class>
+				<Class class="LogLabel">DPSOASIT_EsbService</Class>
 				<Priority>debug</Priority>
 			</LogEvents>
 		</LogTarget>-->

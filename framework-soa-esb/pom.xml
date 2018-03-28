@@ -175,8 +175,8 @@
 							<validationSets>
 								<validationSet>
 									<validating>true</validating>
-									<dir>${project.build.outputDirectory}/local/ondisk/ESB_Gateway</dir>
-									<systemId>${project.build.outputDirectory}/local/ondisk/ESB_Gateway/config/GatewayConfig.xsd</systemId>
+									<dir>${project.build.outputDirectory}/local/ondisk/SOA_Gateway</dir>
+									<systemId>${project.build.outputDirectory}/local/ondisk/SOA_Gateway/config/GatewayConfig.xsd</systemId>
 									<includes>
 										<include>**/*Config.xml</include>
 									</includes>
@@ -199,8 +199,8 @@
 								</validationSet>
 								<validationSet>
 									<validating>true</validating>
-									<dir>${project.build.outputDirectory}/local/ondisk/ESB_Gateway</dir>
-									<systemId>${project.build.outputDirectory}/local/ondisk/ESB_Gateway/framework/DataPowerEventCodes.xsd</systemId>
+									<dir>${project.build.outputDirectory}/local/ondisk/SOA_Gateway</dir>
+									<systemId>${project.build.outputDirectory}/local/ondisk/SOA_Gateway/framework/DataPowerEventCodes.xsd</systemId>
 									<includes>
 										<include>**/*Codes.xml</include>
 									</includes>
@@ -232,9 +232,9 @@
 							<goal>schematron</goal>
 						</goals>
 						<configuration>
-							<schema>${project.build.outputDirectory}/local/ondisk/ESB_Gateway/config/framework-gateway-router_ConfigValidation.sch</schema>
+							<schema>${project.build.outputDirectory}/local/ondisk/SOA_Gateway/config/SOA_Gateway-ServiceConfigValidation.sch</schema>
 							<includes>
-								<include>**/ESB_Gateway/config/**/*.xml</include>
+								<include>**/SOA_Gateway/config/**/*.xml</include>
 							</includes>
 						</configuration>
 					</execution>
@@ -245,9 +245,9 @@
 							<goal>schematron</goal>
 						</goals>
 						<configuration>
-							<schema>${project.build.outputDirectory}/local/ondisk/framework-soa-esb/config/framework-soa-esb_ConfigValidation.sch</schema>
+							<schema>${project.build.outputDirectory}/local/ondisk/framework-soa-esb/config/framework-soa-esb-ServiceConfigValidation.sch</schema>
 							<includes>
-								<include>**/ESBFramework/config/**/*.xml</include>
+								<include>**/framework-soa-esb/config/**/*.xml</include>
 							</includes>
 						</configuration>
 					</execution>

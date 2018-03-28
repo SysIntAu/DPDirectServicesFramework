@@ -15,7 +15,7 @@
 	*	limitations under the License.
 	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dp="http://www.datapower.com/extensions"
+	xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/extensions"
 	extension-element-prefixes="dp" version="1.0" exclude-result-prefixes="dp soapenv">
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="local:///framework-soa-esb/framework/Constants.xsl"/>

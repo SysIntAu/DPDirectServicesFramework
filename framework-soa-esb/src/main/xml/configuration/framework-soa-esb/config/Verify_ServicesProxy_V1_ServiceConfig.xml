@@ -9,7 +9,7 @@
 			<HTTPSPort>4000</HTTPSPort>
 		</InputMatchCriteria>
 		<RequestPolicyConfig schemaValidate="true">
-			<BackendRouting provider="BMS">
+			<BackendRouting provider="IIB">
 				<BackendStub>local:///framework-soa-esb/services/Verify/V1.0/VerifyResponse_Stub.xsl</BackendStub>
 				<!--<HTTPEndpoint>
 					<Address>${verifyHttpEndpoint}</Address>

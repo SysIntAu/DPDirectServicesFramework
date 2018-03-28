@@ -18,7 +18,7 @@
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
 	xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/"
 	xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-	xmlns:wsa="http://www.w3.org/2005/08/addressing"
+	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
 	xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	extension-element-prefixes="dp regexp" exclude-result-prefixes="dp regexp wsse wst wsa saml"
@@ -53,7 +53,7 @@
 				<dp:set-variable name="'var://context/framework-soa-esb/debug/identity'" value="container/identity"/>
 				<dp:set-variable name="'var://context/framework-soa-esb/debug/WSSE_SECURITY_HEADER'" value="$WSSE_SECURITY_HEADER"/>
 				<xsl:variable name="STS_VALIDATE_MSG">
-					<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+					<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
 						xmlns:dp="http://www.datapower.com/schemas/management">
 						<soap:Header>
 							<xsl:copy-of select="$WSSE_SECURITY_HEADER"/>

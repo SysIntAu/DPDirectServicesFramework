@@ -16,10 +16,10 @@
 	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
-	xmlns:wsa="http://www.w3.org/2005/08/addressing"
+	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
 	xmlns:ctx="http://www.dpdirect.org/Namespace/ApplicationContext/Core/V1.0"
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dp="http://www.datapower.com/extensions"
+	xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/extensions"
 	extension-element-prefixes="dp" version="1.0" exclude-result-prefixes="dp soapenv scm ctx">
 	<!--========================================================================
 		Purpose:Template to strip internal headers, but retain inbound ws addressing elements

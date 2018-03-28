@@ -23,8 +23,8 @@
 		Logs statistics and metadata from the current transaction flow.
 		
 		History:
-		2016-12-12	v1.0	N.A.		Initial Version.
-		2016-12-12	v1.0	Tim Goodwill		HTTP & Initial Gateway version.
+		2016-12-12	v1.0	N.A. , Tim Goodwill		Initial Version
+.
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Utils.xsl"/>

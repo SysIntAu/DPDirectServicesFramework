@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--=========================================================================
 	
-	Title  : ESB Configuration and Validation Build File (ANT)
+	Title  : SOA Configuration and Validation Build File (ANT)
 	Publisher: DPDIRECT
 	
 	Requires:
@@ -81,7 +81,7 @@
 		<pathelement location="${ant.resources.lib.dir}/xmlsec-1.4.2.jar"/>
 		<pathelement location="${ant.resources.lib.dir}/ant.jar"/>
 	</path>
-	<taskdef name="batchvalidator" classname="org.dpdirect.batchvalidator.WSDLValidator" classpathref="batchvalidator.class.path"/>
+	<!--<taskdef name="batchvalidator" classname="org.dpdirect.batchvalidator.WSDLValidator" classpathref="batchvalidator.class.path"/>-->
 	
 	<!-- === BUILD TARGETS ================================================================================= -->
 	
@@ -179,7 +179,7 @@
 		<echo message="****  Verify Configuration Files via Schematron"/>
 		<for list="${config.file}" delimiter="${path.separator}" param="file" >
 			<sequential>
-				<schematron schema="${release.build.dir}/local/${component}/config/${component}_ConfigValidation.sch" 
+				<schematron schema="${release.build.dir}/local/${component}/config/${component}-ServiceConfigValidation.sch" 
 					srcfile="@{file}" failonerror="true"/>
 				<delete file="result.xml"/>
 			</sequential>

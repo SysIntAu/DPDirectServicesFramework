@@ -18,7 +18,7 @@
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
 	xmlns:ctx="http://www.dpdirect.org/Namespace/ApplicationContext/Core/V1.0"
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dp="http://www.datapower.com/extensions"
+	xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/extensions"
 	extension-element-prefixes="dp" version="1.0" exclude-result-prefixes="dp soapenv scm wsse ctx">
 	<!--========================================================================
 		Purpose: Template to apply SOAP, stripped of internal headers and ws addressing elements

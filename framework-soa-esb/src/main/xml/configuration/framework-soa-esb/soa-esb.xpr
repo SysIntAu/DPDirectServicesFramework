@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="16.1">
+    <meta>
+        <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
+        <options>
+            <serialized version="16.1" xml:space="preserve">
+                <map>
+                    <entry>
+                        <String>validation.scenarios</String>
+                        <validationScenario-array/>
+                    </entry>
+                </map>
+            </serialized>
+        </options>
+    </meta>
+    <projectTree name="soa-esb.xpr">
+        <folder path="codemaps/"/>
+        <folder path="config/"/>
+        <folder path="framework/"/>
+        <folder path="services/"/>
+        <folder path="xconfig/"/>
+        <file name="catalog.xml"/>
+    </projectTree>
+</project>

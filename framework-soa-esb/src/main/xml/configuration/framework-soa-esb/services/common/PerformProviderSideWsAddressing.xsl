@@ -14,8 +14,8 @@
 	*	See the License for the specific language governing permissions and
 	*	limitations under the License.
 	**********************************************************************-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wsa="http://www.w3.org/2005/08/addressing"
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dp="http://www.datapower.com/extensions"
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+	xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/extensions"
 	extension-element-prefixes="dp" version="1.0" exclude-result-prefixes="dp">
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="local:///framework-soa-esb/framework/Utils.xsl"/>

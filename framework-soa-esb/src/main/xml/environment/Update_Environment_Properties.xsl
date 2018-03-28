@@ -14,20 +14,13 @@
 	*	See the License for the specific language governing permissions and
 	*	limitations under the License.
 	**********************************************************************-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exslt="http://exslt.org/common"
-	extension-element-prefixes="exslt" version="1.0">
-	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<dc:creator>Tim Goodwille</dc:creator>
-			<dc:date>2016-12-12</dc:date>
-			<dc:title>DataPower exported configuration file (xcfg) component-renaming transform.</dc:title>
-			<dc:subject>Transforms property names within a DataPower exported configuration file (xcfg) based on a set
-				of configured search/replace parameters for a specific environment.</dc:subject>
-			<dc:contributor>N.A.</dc:contributor>
-			<dc:publisher>DPDIRECT</dc:publisher>
-		</xs:appinfo>
-	</xs:annotation>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 	<!--========================================================================
+		Purpose:
+		DataPower exported configuration file (xcfg) component-renaming transform.
+		Transforms property names within a DataPower exported configuration file (xcfg) based on a set
+		of configured search/replace parameters for a specific environment.
+		
 		History:
 		2016-12-12	v0.1	Tim Goodwill	Initial Version.
 		2016-12-12	v0.1	N.A.		Updated to strip clear-text HTTP front side handler/s in higher environments (UAT,STAGE/TRAIN/PROD).
@@ -38,7 +31,7 @@
 	<xsl:strip-space elements="*"/>
 	<!--============== Global Variable Declarations =================-->
 	<xsl:param name="ENV" select="'E0'"/>
-	<xsl:param name="DOMAIN" select="'DPESB'"/>
+	<xsl:param name="DOMAIN" select="'DPSOA'"/>
 	<xsl:param name="HOSTNAME" select="'none'"/>
 	<xsl:variable name="DOC_NAME" select="string(concat($ENV,'/', $ENV, '.xml'))"/>
 	<xsl:variable name="ENV_DOC" select="document($DOC_NAME)"/>
@@ -46,19 +39,18 @@
 	<xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
 	<xsl:variable name="injection" select="$ENV_DOC//injection"/>
 	<xsl:variable name="insertions" select="$ENV_DOC//insertions"/>
-	<xsl:variable name="container" select="$ENV_DOC//location[@name =
-		'datapower_deployment_server']/host/container[@name = 'dps']"/>
+	<xsl:variable name="container" select="$ENV_DOC//container[@name = 'dpsoa']"/>
 	<xsl:variable name="dpDomain">
-		<xsl:value-of select="$container/parameter[@name = 'domain']/@value"/>
+		<xsl:value-of select="$container/parameter[@name = 'soa.domain']/@value"/>
 	</xsl:variable>
 	<xsl:variable name="localHostAlias">
 		<xsl:value-of select="$injection/parameter[@name = 'localHostAlias']/@value"/>
 	</xsl:variable>
 	<xsl:variable name="applianceHostName1">
-		<xsl:value-of select="$injection/parameter[@name = 'applianceHostName1']/@value"/>
+		<xsl:value-of select="$injection/parameter[@name = 'dpApplianceHostName1']/@value"/>
 	</xsl:variable>
 	<xsl:variable name="applianceHostName2">
-		<xsl:value-of select="$injection/parameter[@name = 'applianceHostName2']/@value"/>
+		<xsl:value-of select="$injection/parameter[@name = 'dpApplianceHostName2']/@value"/>
 	</xsl:variable>
 
 	<!--============== Stylesheet Parameter Declarations ============-->

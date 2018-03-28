@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datapower-configuration version="3">
-	<configuration domain="DPESBSIT">
-<!--		<MQQM name="DESB_Gateway_MQQM_SOA1_RealTime_V1">
+	<configuration domain="DPSOASIT">
+<!--		<MQQM name="SOA_Gateway_MQQM_RealTime_V1">
 			<mAdminState>enabled</mAdminState>
-			<!-\- Host: stbsoa01.dpdirect.org -\->
+			<!-\- Host: dpsoa01.dpdirect.org -\->
 			<HostName>localhost:1414</HostName>
 			<QMname>QM1</QMname>
 			<CCSID>1208</CCSID>
-			<ChannelName>DP.ESB.SVRCONN</ChannelName>
+			<ChannelName>DP.SOA.SVRCONN</ChannelName>
 			<Heartbeat>280</Heartbeat>
 			<UserName>dpmqclnt</UserName>
 			<MaximumMessageSize>104857600</MaximumMessageSize>
@@ -15,7 +15,7 @@
 			<UnitsOfWork>1</UnitsOfWork>
 			<AutomaticBackout>on</AutomaticBackout>
 			<BackoutThreshold>1</BackoutThreshold>
-			<BackoutQueueName>ESB.DP.EXCEPTION</BackoutQueueName>
+			<BackoutQueueName>DP.SOA.EXCEPTION</BackoutQueueName>
 			<TotalConnectionLimit>450</TotalConnectionLimit>
 			<InitialConnections>1</InitialConnections>
 			<SharingConversations>0</SharingConversations>
@@ -31,9 +31,9 @@
 			<AlternateUser>on</AlternateUser>
 			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
 		</MQQM>
-		<MQQMGroup name="DESB_Gateway_Grp_RealTime_V1">
+		<MQQMGroup name="SOA_Gateway_Grp_RealTime_V1">
 			<mAdminState>enabled</mAdminState>
-			<PrimaryQueueManager class="MQQM">DESB_Gateway_MQQM_SOA1_RealTime_V1</PrimaryQueueManager>
+			<PrimaryQueueManager class="MQQM">SOA_Gateway_MQQM_RealTime_V1</PrimaryQueueManager>
 		</MQQMGroup>-->
 	</configuration>
 </datapower-configuration>

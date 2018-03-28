@@ -14,8 +14,12 @@
 	*	See the License for the specific language governing permissions and
 	*	limitations under the License.
 	**********************************************************************-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns:exslt="http://exslt.org/common"
-	extension-element-prefixes="exslt" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:wsoap11="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:exslt="http://exslt.org/common"
+	extension-element-prefixes="exslt wsoap11 wsoap12 xsi" version="1.0">
 	<!--========================================================================
 		History:
 		2016-12-12	v0.1	Tim Goodwill	Initial Version.
@@ -26,14 +30,34 @@
 	<xsl:strip-space elements="*"/>
 	<!--============== Global Variable Declarations =================-->
 	<xsl:param name="SERVICE_CONFIG_FILE_PATH" select="''"/>
+	<!--<xsl:variable name="SERVICE_CONFIG_FILE_DOC" select="document('C:/Projects/DPDirectServicesFramework/target/release/local/framework-soa-esb/config/PoliceCheckResultRetrievalService_ServicesProxy_V1_ServiceConfig.xml')"/>-->
 	<xsl:variable name="SERVICE_CONFIG_FILE_DOC" select="document($SERVICE_CONFIG_FILE_PATH)"/>
 	<!-- WSDL must path must contain the path elements .../WSDL/Vx.0/WsdlName.wsdl -->
 	<xsl:variable name="WSDL_DP_PATH" select="string($SERVICE_CONFIG_FILE_DOC/ServiceConfig/@wsdlLocation[1])"/>
 	<xsl:variable name="WSDL_NAME" select="substring-after(substring-after($WSDL_DP_PATH, '/WSDL/V'), '/')"/>
-	<xsl:variable name="SERVICES_STREAM" select="substring-before($WSDL_NAME, '_ServicesProxy')"/>
-	<xsl:variable name="WSDL_BUILD_PATH" select="concat('../../local/', substring-after($WSDL_DP_PATH, 'local:///'))"/>
+	<xsl:variable name="SERVICES_STREAM">
+		<xsl:choose>
+			<xsl:when test="contains($WSDL_NAME,'_ServicesProxy')">
+				<xsl:value-of select="substring-before($WSDL_NAME, '_ServicesProxy')"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="substring-before($WSDL_NAME, '.wsdl')"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="WSDL_BUILD_PATH" select="concat('../local/', substring-after($WSDL_DP_PATH, 'local:///'))"/>
 	<xsl:variable name="WSDL_DOC" select="document($WSDL_BUILD_PATH)"/>
 	<xsl:variable name="WSDL_NAMESPACE" select="string($WSDL_DOC//*[local-name() = 'definitions'][1]/@targetNamespace)"/>
+	<xsl:variable name="WSDL_SOAP_VERSION">
+		<xsl:choose>
+			<xsl:when test="$WSDL_DOC//*[local-name() = 'definitions']/*[local-name() = 'binding']/wsoap11:binding">
+				<xsl:value-of select="'soap-11'"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="'soap-12'"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
 	<xsl:variable name="WSDL_SERVICE_NAME" select="string($WSDL_DOC//*[local-name() = 'definitions']/*[local-name() = 'service']/@name)"/>
 	<xsl:variable name="WSDL_SERVICE_PORT_NAME" select="string($WSDL_DOC//*[local-name() = 'definitions']/*[local-name() = 'service']/*[local-name() = 'port'][1]/@name)"/>
 	<xsl:variable name="DP_CONFIG" select="//configuration[1]"/>
@@ -132,7 +156,7 @@
 				<xsl:call-template name="TemplateNameSubstitution">
 					<xsl:with-param name="STRING" select="substring-after($STRING,'ServicesProxy_Template')"/>
 				</xsl:call-template>
-			</xsl:when>
+			</xsl:when>                       
 			<xsl:when test="contains($STRING,'http://www.namespace/Vx')">
 				<xsl:call-template name="TemplateNameSubstitution">
 					<xsl:with-param name="STRING" select="substring-before($STRING,'http://www.namespace/Vx')"/>
@@ -214,82 +238,113 @@
 		<xsl:param name="PORT"/>
 		<xsl:apply-templates select="."/>
 	</xsl:template>
+	
 	<!-- Template to create multiple WSEndpointLocalRewriteRule corresponding to configured FSH -->
 	<xsl:template match="WSEndpointLocalRewriteRule">
 		<xsl:variable name="REWRITE_RULE" select="."/>
-		<!-- Unique list of HTTPS Port numbers -->
-		<xsl:apply-templates select="$HTTPS_FSH//LocalPort | $HTTP_FSH//LocalPort" mode="buildRewriteRule">
-			<xsl:with-param name="REWRITE_RULE" select="."/>
-		</xsl:apply-templates>
+		<xsl:apply-templates select="@*"/>
+		<xsl:for-each select="$SERVICE_CONFIG_FILE_DOC//InboundURI">
+			<xsl:variable name="INBOUND_URI">
+				<xsl:choose>
+					<xsl:when test="contains(., '*')">
+						<xsl:value-of select="substring-after(., '*')"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="normalize-space(.)"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<xsl:for-each select="$SERVICE_CONFIG_FILE_DOC//HTTPSPort">
+				<xsl:apply-templates select="$REWRITE_RULE" mode="buildRewriteRule">
+					<xsl:with-param name="ENDPOINT_PROTOCOL" select="'https'"/>
+					<xsl:with-param name="INBOUND_PORT" select="normalize-space(.)"/>
+					<xsl:with-param name="INBOUND_URI" select="$INBOUND_URI"/>
+				</xsl:apply-templates>
+			</xsl:for-each>
+			<xsl:for-each select="$SERVICE_CONFIG_FILE_DOC//HTTPPort">
+				<xsl:apply-templates select="$REWRITE_RULE" mode="buildRewriteRule">
+					<xsl:with-param name="ENDPOINT_PROTOCOL" select="'http'"/>
+					<xsl:with-param name="INBOUND_PORT" select="normalize-space(.)"/>
+					<xsl:with-param name="INBOUND_URI" select="$INBOUND_URI"/>
+				</xsl:apply-templates>
+			</xsl:for-each>
+		</xsl:for-each>
 	</xsl:template>
-	<xsl:template match="LocalPort" mode="buildRewriteRule">
-		<!-- Unique list of HTTPS Port numbers -->
-		<xsl:param name="REWRITE_RULE"/>
-		<xsl:apply-templates select="$SERVICE_CONFIG_FILE_DOC//InboundURI[not(.=preceding::*)]" mode="buildRewriteRule">
-			<xsl:with-param name="REWRITE_RULE" select="$REWRITE_RULE"/>
-			<xsl:with-param name="PORT" select="normalize-space(.)"/>
-			<xsl:with-param name="PORT_POS" select="position()"/>
-		</xsl:apply-templates>
-	</xsl:template>
-	<xsl:template match="InboundURI" mode="buildRewriteRule">
-		<xsl:param name="REWRITE_RULE"/>
-		<xsl:param name="PORT"/>
-		<xsl:param name="PORT_POS"/>
-		<xsl:variable name="URI" select="normalize-space(.)"/>
-		<xsl:variable name="URI_POS" select="position()"/>
-		<xsl:variable name="URI_COUNT" select="count($SERVICE_CONFIG_FILE_DOC//InboundURI[not(.=preceding::*)])"/>
-		<WSEndpointLocalRewriteRule>
-			<xsl:apply-templates select="$REWRITE_RULE/@*"/>
-			<xsl:apply-templates select="$REWRITE_RULE/node()" mode="buildRewriteRule">
-				<xsl:with-param name="POSITION" select="(($PORT_POS - 1) * $URI_COUNT) + $URI_POS"/>
-				<xsl:with-param name="PORT" select="$PORT"/>
-				<xsl:with-param name="URI" select="$URI"/>
+	<xsl:template match="WSEndpointRemoteRewriteRule">
+		<xsl:variable name="REWRITE_RULE" select="."/>
+		<xsl:apply-templates select="@*"/>
+		<xsl:for-each select="$SERVICE_CONFIG_FILE_DOC//InboundURI">
+			<xsl:variable name="INBOUND_URI">
+				<xsl:choose>
+					<xsl:when test="contains(., '*')">
+						<xsl:value-of select="substring-after(., '*')"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="normalize-space(.)"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<xsl:apply-templates select="$REWRITE_RULE" mode="buildRewriteRule">
+				<xsl:with-param name="INBOUND_URI" select="$INBOUND_URI"/>
 			</xsl:apply-templates>
-		</WSEndpointLocalRewriteRule>
+		</xsl:for-each>
 	</xsl:template>
-	<xsl:template match="FrontProtocol" mode="buildRewriteRule">
-		<xsl:param name="POSITION"/>
-		<xsl:param name="PORT"/>
-		<xsl:param name="URI"/>
+	<!-- Template to perform Identity Transforms for 'buildRewriteRule' mode -->
+	<xsl:template match="WSEndpointLocalRewriteRule | WSEndpointRemoteRewriteRule" mode="buildRewriteRule">
+		<xsl:param name="ENDPOINT_PROTOCOL"/>
+		<xsl:param name="INBOUND_PORT"/>
+		<xsl:param name="INBOUND_URI"/>
 		<xsl:copy>
-			<xsl:apply-templates select="@*"/>
-			<!-- Find the matching FSH name -->
-			<xsl:value-of select="normalize-space(($HTTPS_FSH//HTTPSSourceProtocolHandler[normalize-space(LocalPort) = normalize-space($PORT)] | 
-				$HTTP_FSH//HTTPSourceProtocolHandler[normalize-space(LocalPort) = normalize-space($PORT)])[1]/@name)"/>
+			<xsl:apply-templates select="*" mode="buildRewriteRule">
+				<xsl:with-param name="ENDPOINT_PROTOCOL" select="$ENDPOINT_PROTOCOL"/>
+				<xsl:with-param name="INBOUND_PORT" select="$INBOUND_PORT"/>
+				<xsl:with-param name="INBOUND_URI" select="$INBOUND_URI"/>
+			</xsl:apply-templates>
 		</xsl:copy>
 	</xsl:template>
-	<xsl:template match="LocalEndpointURI" mode="buildRewriteRule">
-		<xsl:param name="POSITION"/>
-		<xsl:param name="PORT"/>
-		<xsl:param name="URI"/>
-		<xsl:copy>
-			<xsl:choose>
-				<xsl:when test="contains($URI, '*')">
-					<xsl:value-of select="substring-after($URI, '*')"/>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="$URI"/>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:copy>
+	<xsl:template match="LocalEndpointProtocol" mode="buildRewriteRule">
+		<xsl:param name="ENDPOINT_PROTOCOL"/>
+		<xsl:param name="INBOUND_PORT"/>
+		<xsl:param name="INBOUND_URI"/>
+		<xsl:copy><xsl:value-of select="$ENDPOINT_PROTOCOL"/></xsl:copy>
 	</xsl:template>
-	<xsl:template match="FrontsidePortSuffix" mode="buildRewriteRule">
-		<xsl:param name="POSITION"/>
-		<xsl:param name="PORT"/>
-		<xsl:param name="URI"/>
-		<xsl:copy>
-			<xsl:if test="number($POSITION) > 1">
-				<xsl:value-of select="string(number($POSITION) - 1)"/>
-			</xsl:if>
-		</xsl:copy>
+	<xsl:template match="LocalEndpointPort" mode="buildRewriteRule">
+		<xsl:param name="ENDPOINT_PROTOCOL"/>
+		<xsl:param name="INBOUND_PORT"/>
+		<xsl:param name="INBOUND_URI"/>
+		<xsl:copy><xsl:value-of select="$INBOUND_PORT"/></xsl:copy>
+	</xsl:template>
+	<xsl:template match="LocalEndpointURI | RemoteEndpointURI" mode="buildRewriteRule">
+		<xsl:param name="ENDPOINT_PROTOCOL"/>
+		<xsl:param name="INBOUND_PORT"/>
+		<xsl:param name="INBOUND_URI"/>
+		<xsl:copy><xsl:value-of select="$INBOUND_URI"/></xsl:copy>
+	</xsl:template>
+	<xsl:template match="WSDLBindingProtocol" mode="buildRewriteRule">
+		<xsl:param name="ENDPOINT_PROTOCOL"/>
+		<xsl:param name="INBOUND_PORT"/>
+		<xsl:param name="INBOUND_URI"/>
+		<xsl:copy><xsl:value-of select="$WSDL_SOAP_VERSION"/></xsl:copy>
+	</xsl:template>
+	<xsl:template match="WSDLBindingProtocol" mode="buildRewriteRule">
+		<xsl:param name="ENDPOINT_PROTOCOL"/>
+		<xsl:param name="INBOUND_PORT"/>
+		<xsl:param name="INBOUND_URI"/>
+		<xsl:copy><xsl:value-of select="$WSDL_SOAP_VERSION"/></xsl:copy>
 	</xsl:template>
 	<!-- Template to perform a Standard Identity Transform, 'buildRewriteRule' mode -->
 	<xsl:template match="node()|@*" mode="buildRewriteRule">
-		<xsl:param name="POSITION"/>
-		<xsl:param name="PORT"/>
-		<xsl:param name="URI"/>
-		<xsl:apply-templates select="."/>
+		<xsl:param name="ENDPOINT_PROTOCOL"/>
+		<xsl:param name="INBOUND_PORT"/>
+		<xsl:param name="INBOUND_URI"/>
+		<xsl:copy>
+			<xsl:call-template name="TemplateNameSubstitution">
+				<xsl:with-param name="STRING" select="normalize-space(.)"/>
+			</xsl:call-template>
+		</xsl:copy>
 	</xsl:template>
+	
+
 	<!--=============================================================-->
 	<!--  WSPROXY USERTOGGLES                                     -->
 	<!--=============================================================-->

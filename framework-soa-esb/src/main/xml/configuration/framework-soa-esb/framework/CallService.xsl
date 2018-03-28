@@ -16,17 +16,19 @@
 	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+	xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" 
+	xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"
 	xmlns:logcore="http://www.dpdirect.org/Namespace/EnterpriseLogging/Core/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions" extension-element-prefixes="dp" version="1.0"
-	exclude-result-prefixes="dp err logcore soapenv">
+	exclude-result-prefixes="dp err logcore soap11 soap12">
+
 	<!--========================================================================
 		Purpose:
 		Calls a sub-service as part of a service request or response flow
 		
 		History:
 		2016-12-12	v1.0	N.A.			Initial Version.
-		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
+
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>
@@ -258,7 +260,7 @@
 				<xsl:choose>
 					<!-- SOAP fault -->
 					<xsl:when test="($FAIL_ON_ERROR = 'true') 
-						and $RESPONSE/url-open/response//soapenv:Fault//err:Code">
+						and ($RESPONSE/url-open/response//soap11:Fault//err:Code | $RESPONSE/url-open/response//soap12:Fault//err:Code)">
 						<!-- Read error information -->
 						<xsl:variable name="ERROR_CODE" select="$RESPONSE/url-open/response//err:Code[1]"/>
 						<xsl:variable name="ORIGINATOR_NAME">

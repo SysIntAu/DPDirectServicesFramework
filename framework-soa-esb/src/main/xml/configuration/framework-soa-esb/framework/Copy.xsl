@@ -18,15 +18,21 @@
 	xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	extension-element-prefixes="dp regexp" version="1.0" exclude-result-prefixes="dp">
-
+	
 	<!--========================================================================
 		Purpose: Puts/posts a copy of the current context message to an MQ queue or HTTP Endpoint
 		
 		History:
-		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A. , Tim Goodwill		Initial Version
 		2016-12-12	v1.0	Tim Goodwill		HTTP & Initial Gateway version.
 		========================================================================-->
-
+	<!--========================================================================
+		Purpose:
+		Puts/posts a copy of the current context message to an MQ queue/HTTP endpoint.
+		
+		History:
+		2016-12-12	v1.0	N.A. , Tim Goodwill		Initial Version
+		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>
 	<!--============== Output Configuration =========================-->
@@ -469,7 +475,7 @@
 						<xsl:value-of select="$USER_NAME"/>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:value-of select="'DPESB'"/>
+						<xsl:value-of select="'DPSOA'"/>
 					</xsl:otherwise>
 				</xsl:choose>
 			</UserIdentifier>
@@ -483,7 +489,7 @@
 				<xsl:value-of select="'0'"/>
 			</PutApplType>
 			<PutApplName>
-				<xsl:value-of select="'DPESB'"/>
+				<xsl:value-of select="'DPSOA'"/>
 			</PutApplName>
 			<PutDate>
 				<xsl:call-template name="GetCurrentUTCDateAsYYYYMMDD"/>

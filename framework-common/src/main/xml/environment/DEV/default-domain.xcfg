@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datapower-configuration version="3">
+	<configuration domain="DEV1">
+	<!-- ===== Example default domain configuration. Not recommended for production deployment ===== -->
+<!--		<RADIUSSettings name="RADIUS-Settings" intrinsic="true" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+			xmlns:dp="http://www.datapower.com/schemas/management">
+			<mAdminState>enabled</mAdminState>
+			<Timeout>1000</Timeout>
+			<Retries>3</Retries>
+			<AAAServers>
+				<Number>1</Number>
+				<Host>10.1.1.1</Host>
+				<Port>1812</Port>
+				<Secret>testing123</Secret>
+			</AAAServers>
+		</RADIUSSettings>-->
+	</configuration>
+</datapower-configuration>

@@ -18,11 +18,11 @@
 	<!--========================================================================
 		Purpose:
 		A collection of constant DataPower variable and context definitions (URIs) for common use across
-		stylesheets within the DataPower framework-soa-esb policy flows.
+		stylesheets within the DataPower SOA_Services policy flows.
 				
 		History:
-		2016-12-12	v1.0	N.A.		Initial Version.
-		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A. , Tim Goodwill		Initial Version
+
 		========================================================================-->
 	<!--============== Global Variable Declarations =================-->
 	<!--
@@ -32,7 +32,7 @@
 	<xsl:variable name="SERVICE_SCHEMA_ROOT_FOLDER" select="'local:///service-schema/'"/>
 	<xsl:variable name="GENERIC_MQMD_XSLT_PATH" select="'local:///framework-soa-esb/services/common/GenerateOutputMQMD.xsl'"/>
 	<!--
-		'framework-soa-esb' context variable names
+		'SOA_Services' context variable names
 	-->
 	<xsl:variable name="AUTHZ_RESULT_SET_VAR_NAME" select="'var://context/framework-soa-esb/authorisationResultSet'"/>
 	<xsl:variable name="BACKEND_MQMD_VAR_NAME" select="'var://context/framework-soa-esb/backendMQMD'"/>
@@ -78,9 +78,17 @@
 	<xsl:variable name="RES_IN_MSG_FORMAT_VAR_NAME" select="'var://context/framework-soa-esb/responseInMsgFormat'"/>
 	<xsl:variable name="RES_IN_MSG_NAME_VAR_NAME" select="'var://context/framework-soa-esb/responseInMsgName'"/>
 	<xsl:variable name="RES_OUT_MSG_FORMAT_VAR_NAME" select="'var://context/framework-soa-esb/responseOutMsgFormat'"/>
+	
+	
+	<xsl:variable name="REQ_MQ_MSG_ID_VAR_NAME" select="'var://context/framework-soa-esb/requestMqMsgId'"/>
+	<xsl:variable name="REQ_MQMD_VAR_NAME" select="'var://context/framework-soa-esb/requestMqmd'"/>
+	
+	
 	<xsl:variable name="REQ_IN_MSG_FORMAT_VAR_NAME" select="'var://context/framework-soa-esb/requestInMsgFormat'"/>
 	<xsl:variable name="REQ_OUT_MSG_FORMAT_VAR_NAME" select="'var://context/framework-soa-esb/requestOutMsgFormat'"/>
 	<xsl:variable name="REQ_OUT_MSG_ASYNC_VAR_NAME" select="'var://context/framework-soa-esb/requestOutMsgAsync'"/>
+	<xsl:variable name="REQ_REPLYTOQ_VAR_NAME" select="'var://context/framework-soa-esb/reployToQueue'"/>
+	<xsl:variable name="REQ_REPLYTOQMGR_VAR_NAME" select="'var://context/framework-soa-esb/reployToQmgr'"/>
 	<xsl:variable name="REQ_SOAP_ENV_VAR_NAME" select="'var://context/framework-soa-esb/requestSOAPEnv'"/>
 	<xsl:variable name="REQ_SOAP_NAMESPACE_VAR_NAME" select="'var://context/framework-soa-esb/reqestSOAPNamespace'"/>
 	<xsl:variable name="REQ_USER_NAME_VAR_NAME" select="'var://context/framework-soa-esb/requestUserName'"/>
@@ -135,8 +143,9 @@
 		Datapower defined xml names
 	-->
 	<!-- The Internal QMgr Group name -->
-	<xsl:variable name="LOG_QMGR_GROUP_NAME" select="'ESB_Internal_Grp_RealTime_V1'"/>
-	<xsl:variable name="BACKEND_QMGR_GROUP_NAME" select="'ESB_Internal_Grp_RealTime_V1'"/>
+	<xsl:variable name="LOG_QMGR_GROUP_NAME" select="'SOA_Internal_Grp_RealTime_V1'"/>
+	<xsl:variable name="BACKEND_QMGR_GROUP_NAME" select="'SOA_Internal_Grp_RealTime_V1'"/>
+	<xsl:variable name="SOA_QMGR_GROUP_NAME" select="'SOA_Internal_Grp_RealTime_V1'"/>
 	<!--
 		Datapower pre-defined service variable names
 	-->
@@ -204,7 +213,7 @@
 	<xsl:variable name="DP_FILTER_FLAG_NAME" select="'DP_MSG_FILTER'"/>
 	<xsl:variable name="COMMON_ERROR_DOMAIN_LIST" select="'Framework,Enterprise'"/>
 	<xsl:variable name="SERVICES_PROXY_NAME_SUFFIX" select="'_ServicesProxy'"/>
-	<xsl:variable name="RULE_NAME_PREFIX" select="'framework-soa-esb_V1_'"/>
+	<xsl:variable name="RULE_NAME_PREFIX" select="'SOA_Services_V1_'"/>
 	<xsl:variable name="EMPTY_SOAP_11_DOC">
 		<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 			<soap:Header/>

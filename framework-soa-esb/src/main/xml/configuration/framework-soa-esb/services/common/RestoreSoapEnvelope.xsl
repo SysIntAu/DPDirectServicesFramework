@@ -15,7 +15,7 @@
 	*	limitations under the License.
 	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions"

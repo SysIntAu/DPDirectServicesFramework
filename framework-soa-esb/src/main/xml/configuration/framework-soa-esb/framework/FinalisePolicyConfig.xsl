@@ -21,8 +21,8 @@
 		Performs finalisation of the generic policy flow and boundary logging 
 		
 		History:
-		2016-12-12	v1.0	N.A.		Initial Version.
-		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A. , Tim Goodwill		Initial Version
+
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>

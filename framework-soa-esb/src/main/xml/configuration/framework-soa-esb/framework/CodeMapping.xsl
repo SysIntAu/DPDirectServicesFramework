@@ -22,12 +22,12 @@
 		
 		History:
 		2016-12-12	v0.1	N.A.		Initial Version.
-		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
+
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Utils.xsl"/>
 	<!--============== Global Variable Declarations =================-->
-	<xsl:variable name="THIS_PROVIDER_NAME" select="'DPESB'"/>
+	<xsl:variable name="THIS_PROVIDER_NAME" select="'DPSOA'"/>
 	<xsl:variable name="ENT_MSG_CODES_DOC_NAME" select="'EnterpriseMessageCodes.xml'"/>
 	<xsl:variable name="ENT_MSG_CODES_DOC"
 		select="document(concat($DPDIRECT_SERVICES_ROOT_FOLDER, 'codemaps/',$ENT_MSG_CODES_DOC_NAME))"/>
@@ -41,7 +41,7 @@
 		<!-- Optional -->
 		<xsl:param name="SERVICE_NAME" select="''"/>
 		<!-- Optional -->
-		<xsl:param name="PROVIDER_NAME" select="'DPESB'"/>
+		<xsl:param name="PROVIDER_NAME" select="'DPSOA'"/>
 		<!-- create prioritsed Code Map Entry set -->
 		<xsl:variable name="SERVICE_INSTANCES">
 			<xsl:copy-of select="$ENT_MSG_CODES_DOC/Worksheet/Table/Row[Service = $SERVICE_NAME]"/>

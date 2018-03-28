@@ -15,7 +15,7 @@
 	*	limitations under the License.
 	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
 	xmlns:wsa="http://www.w3.org/2005/08/addressing"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 	xmlns:ack="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"

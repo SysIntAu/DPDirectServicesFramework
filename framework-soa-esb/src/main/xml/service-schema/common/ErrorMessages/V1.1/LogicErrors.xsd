@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:errcore="http://www.crimtrac.gov.au/Namespace/common/ErrorMessages/V1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.crimtrac.gov.au/Namespace/common/ErrorMessages/V1.1" elementFormDefault="qualified" version="1.0" xml:lang="en">
+	<xs:include schemaLocation="ErrorMessagesCore.xsd"/>
+	<xs:complexType name="logicErrorType">
+		<xs:sequence>
+			<xs:element ref="errcore:OriginatorName"/>
+			<xs:element ref="errcore:OriginatorLocation"/>
+			<xs:element ref="errcore:ErrorCode"/>
+			<xs:element ref="errcore:DescriptionText"/>
+			<xs:element ref="errcore:LocationText" minOccurs="0"/>
+			<xs:element ref="errcore:AdditionalDetailText" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LogicError" type="errcore:logicErrorType"/>
+	<xs:element name="LogicErrors" type="errcore:logicErrorsType"/>
+	<xs:complexType name="logicErrorsType">
+		<xs:sequence>
+			<xs:element ref="errcore:LogicError" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

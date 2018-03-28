@@ -24,7 +24,7 @@
 		content of the xml wrapper elements "Input/WrappedText".
 		
 		History:
-		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A. , Tim Goodwill		Initial Version
 		========================================================================-->
 	<dp:input-mapping href="WrapBinary.ffd" type="ffd"/>
 	<xsl:output method="xml"/>

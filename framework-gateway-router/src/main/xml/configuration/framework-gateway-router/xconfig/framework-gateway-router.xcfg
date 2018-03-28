@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--========================================================================
+	Creator   : N.A. / Tim Goodwill
+	Date      : 2013
+	Title     : Datapower Configuration File - Gateway_Router
+	Publisher : DPDIRECT
+	
+	Description and Usage:
+	This file is the primary datapower object configuration file for the 
+	Gateway_Router component.
+	
+	History:
+	2016-01-23	v1.0    N.A.		Initial Version with History.
+	========================================================================-->
+<datapower-configuration version="3">
+	<configuration domain="DPSOA">
+		<HTTPSourceProtocolHandler name="Gateway_Router_V1_Request_FSH_HTTP">
+			<mAdminState>enabled</mAdminState>
+			<LocalAddress>localhost</LocalAddress>
+			<LocalPort>8080</LocalPort>
+			<HTTPVersion>HTTP/1.1</HTTPVersion>
+			<AllowedFeatures>
+				<HTTP-1.0>on</HTTP-1.0>
+				<HTTP-1.1>on</HTTP-1.1>
+				<POST>on</POST>
+				<GET>on</GET>
+				<PUT>on</PUT>
+				<HEAD>off</HEAD>
+				<OPTIONS>off</OPTIONS>
+				<TRACE>off</TRACE>
+				<DELETE>off</DELETE>
+				<CONNECT>off</CONNECT>
+				<QueryString>on</QueryString>
+				<FragmentIdentifiers>on</FragmentIdentifiers>
+				<DotDot>off</DotDot>
+				<CmdExe>off</CmdExe>
+			</AllowedFeatures>
+			<PersistentConnections>off</PersistentConnections>
+			<AllowCompression>off</AllowCompression>
+			<MaxURLLen>16384</MaxURLLen>
+			<MaxTotalHdrLen>128000</MaxTotalHdrLen>
+			<MaxHdrCount>0</MaxHdrCount>
+			<MaxNameHdrLen>0</MaxNameHdrLen>
+			<MaxValueHdrLen>0</MaxValueHdrLen>
+			<MaxQueryStringLen>0</MaxQueryStringLen>
+			<CredentialCharset>protocol</CredentialCharset>
+		</HTTPSourceProtocolHandler>
+<!--		<HTTPSSourceProtocolHandler name="Gateway_Router_V1_Request_FSH_HTTPS">
+			<mAdminState>enabled</mAdminState>
+			<LocalAddress>localhost</LocalAddress>
+			<LocalPort>443</LocalPort>
+			<HTTPVersion>HTTP/1.1</HTTPVersion>
+			<AllowedFeatures>
+				<HTTP-1.0>on</HTTP-1.0>
+				<HTTP-1.1>on</HTTP-1.1>
+				<POST>on</POST>
+				<GET>on</GET>
+				<PUT>on</PUT>
+				<HEAD>on</HEAD>
+				<OPTIONS>on</OPTIONS>
+				<TRACE>off</TRACE>
+				<DELETE>on</DELETE>
+				<CONNECT>off</CONNECT>
+				<QueryString>on</QueryString>
+				<FragmentIdentifiers>on</FragmentIdentifiers>
+				<DotDot>off</DotDot>
+				<CmdExe>off</CmdExe>
+			</AllowedFeatures>
+			<PersistentConnections>on</PersistentConnections>
+			<AllowCompression>off</AllowCompression>
+			<MaxURLLen>16384</MaxURLLen>
+			<MaxTotalHdrLen>128000</MaxTotalHdrLen>
+			<MaxHdrCount>0</MaxHdrCount>
+			<MaxNameHdrLen>0</MaxNameHdrLen>
+			<MaxValueHdrLen>0</MaxValueHdrLen>
+			<MaxQueryStringLen>0</MaxQueryStringLen>
+			<SSLProxy class="SSLProxyProfile">SslClientNoCredentials</SSLProxy>
+			<CredentialCharset>protocol</CredentialCharset>
+		</HTTPSSourceProtocolHandler>-->
+		<Matching name="WSA_NoURI_Match_Rule">
+			<mAdminState>enabled</mAdminState>
+			<MatchRules>
+				<Type>url</Type>
+				<HttpTag/>
+				<HttpValue/>
+				<Url>/</Url>
+				<ErrorCode/>
+				<XPATHExpression/>
+				<Method>default</Method>
+			</MatchRules>
+			<MatchWithPCRE>off</MatchWithPCRE>
+			<CombineWithOr>off</CombineWithOr>
+		</Matching>
+		<StylePolicyAction name="Gateway_Router_V1_WSA_RequestRule_xformbin">
+			<mAdminState>enabled</mAdminState>
+			<Type>xformbin</Type>
+			<Input>INPUT</Input>
+			<Transform>local:///framework-gateway-router/framework/RouteToDPService.xsl</Transform>
+			<TxMode>default</TxMode>
+			<Output>NULL</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="Gateway_Router_V1_RouteToDPService_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local:///framework-gateway-router/framework/RouteToDPService.xsl</Transform>
+			<Output>NULL</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="Gateway_Router_V1_HandleErrors_xformbin">
+			<mAdminState>enabled</mAdminState>
+			<Type>xformbin</Type>
+			<Input>NULL</Input>
+			<Transform>local:///framework-gateway-router/framework/HandleErrors.xsl</Transform>
+			<TxMode>default</TxMode>
+			<Output>NULL</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="Gateway_Router_V1_InputToOutput_output">
+			<mAdminState>enabled</mAdminState>
+			<Type>results</Type>
+			<Input>INPUT</Input>
+			<Output>OUTPUT</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyRule name="Gateway_Router_V1_WSA_RequestRule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>request-rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>on</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">Gateway_Router_V1_WSA_RequestRule_xformbin</Actions>
+			<Actions class="StylePolicyAction">Gateway_Router_V1_InputToOutput_output</Actions>
+		</StylePolicyRule>
+		<StylePolicyRule name="Gateway_Router_V1_RequestRule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>request-rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>on</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">Gateway_Router_V1_RouteToDPService_xform</Actions>
+			<Actions class="StylePolicyAction">Gateway_Router_V1_InputToOutput_output</Actions>
+		</StylePolicyRule>
+		<StylePolicyRule name="Gateway_Router_V1_ResponseRule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>response-rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>on</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">Gateway_Router_V1_HandleErrors_xformbin</Actions>
+			<Actions class="StylePolicyAction">Gateway_Router_V1_InputToOutput_output</Actions>
+		</StylePolicyRule>
+		<StylePolicyRule name="Gateway_Router_V1_ErrorRule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>error-rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>on</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">Gateway_Router_V1_HandleErrors_xformbin</Actions>
+			<Actions class="StylePolicyAction">Gateway_Router_V1_InputToOutput_output</Actions>
+		</StylePolicyRule>
+		<StylePolicy name="Gateway_Router_Policy">
+			<mAdminState>enabled</mAdminState>
+			<DefStylesheetForSoap>store:///filter-reject-all.xsl</DefStylesheetForSoap>
+			<DefStylesheetForXsl>store:///identity.xsl</DefStylesheetForXsl>
+			<PolicyMaps>
+				<Match class="Matching">WSA_NoURI_Match_Rule</Match>
+				<Rule class="StylePolicyRule">Gateway_Router_V1_WSA_RequestRule</Rule>
+			</PolicyMaps>
+			<PolicyMaps>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="StylePolicyRule">Gateway_Router_V1_RequestRule</Rule>
+			</PolicyMaps>
+			<PolicyMaps>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="StylePolicyRule">Gateway_Router_V1_ResponseRule</Rule>
+			</PolicyMaps>
+			<PolicyMaps>
+				<Match class="Matching">Url_All_V1</Match>
+				<Rule class="StylePolicyRule">Gateway_Router_V1_ErrorRule</Rule>
+			</PolicyMaps>
+		</StylePolicy>
+		<MultiProtocolGateway name="Gateway_Router_V1">
+			<mAdminState>enabled</mAdminState>
+			<Priority>normal</Priority>
+			<FrontProtocol class="HTTPSourceProtocolHandler">Gateway_Router_V1_Request_FSH_HTTP</FrontProtocol>
+			<!--<FrontProtocol class="HTTPSSourceProtocolHandler">Gateway_Router_V1_Request_FSH_HTTPS</FrontProtocol>-->
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
+			<SSLClientConfigType>client</SSLClientConfigType>
+			<SSLClient class="SSLClientProfile">SOA_GW</SSLClient>
+			<FWCred class="CryptoFWCred">SOA_GW</FWCred>
+			<DefaultParamNamespace>http://www.datapower.com/param/config</DefaultParamNamespace>
+			<QueryParamNamespace>http://www.datapower.com/param/query</QueryParamNamespace>
+			<PropagateURI>on</PropagateURI>
+			<MonitorProcessingPolicy>terminate-at-first-throttle</MonitorProcessingPolicy>
+			<RequestAttachments>allow</RequestAttachments>
+			<ResponseAttachments>allow</ResponseAttachments>
+			<RootPartNotFirstAction>process-in-order</RootPartNotFirstAction>
+			<FrontAttachmentFormat>dynamic</FrontAttachmentFormat>
+			<BackAttachmentFormat>dynamic</BackAttachmentFormat>
+			<MIMEFrontHeaders>on</MIMEFrontHeaders>
+			<MIMEBackHeaders>on</MIMEBackHeaders>
+			<StreamOutputToBack>buffer-until-verification</StreamOutputToBack>
+			<StreamOutputToFront>buffer-until-verification</StreamOutputToFront>
+			<MaxMessageSize>0</MaxMessageSize>
+			<GatewayParserLimits>off</GatewayParserLimits>
+			<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+			<ParserLimitsAttributeCount>128</ParserLimitsAttributeCount>
+			<ParserLimitsMaxNodeSize>33554432</ParserLimitsMaxNodeSize>
+			<ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+			<ParserLimitsExternalReferences>forbid</ParserLimitsExternalReferences>
+			<ParserLimitsMaxPrefixes>0</ParserLimitsMaxPrefixes>
+			<ParserLimitsMaxNamespaces>0</ParserLimitsMaxNamespaces>
+			<ParserLimitsMaxLocalNames>0</ParserLimitsMaxLocalNames>
+			<ParserLimitsAttachmentByteCount>2000000000</ParserLimitsAttachmentByteCount>
+			<ParserLimitsAttachmentPackageByteCount>0</ParserLimitsAttachmentPackageByteCount>
+			<DebugMode persisted="false">off</DebugMode>
+			<DebuggerType>internal</DebuggerType>
+			<DebugHistory>25</DebugHistory>
+			<FlowControl>off</FlowControl>
+			<SOAPSchemaURL>store:///schemas/soap-envelope.xsd</SOAPSchemaURL>
+			<FrontTimeout>240</FrontTimeout>
+			<BackTimeout>240</BackTimeout>
+			<FrontPersistentTimeout>240</FrontPersistentTimeout>
+			<BackPersistentTimeout>240</BackPersistentTimeout>
+			<IncludeResponseTypeEncoding>off</IncludeResponseTypeEncoding>
+			<BackHTTPVersion>HTTP/1.1</BackHTTPVersion>
+			<PersistentConnections>off</PersistentConnections>
+			<LoopDetection>off</LoopDetection>
+			<DoHostRewriting>on</DoHostRewriting>
+			<DoChunkedUpload>off</DoChunkedUpload>
+			<ProcessHTTPErrors>on</ProcessHTTPErrors>
+			<HTTPClientIPLabel>X-Client-IP</HTTPClientIPLabel>
+			<InOrderMode>
+				<Request>off</Request>
+				<Backend>off</Backend>
+				<Response>off</Response>
+			</InOrderMode>
+			<WSAMode>sync2sync</WSAMode>
+			<WSARequireAAA>on</WSARequireAAA>
+			<WSAStrip>on</WSAStrip>
+			<WSADefaultReplyTo>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</WSADefaultReplyTo>
+			<WSADefaultFaultTo>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</WSADefaultFaultTo>
+			<WSAForce>off</WSAForce>
+			<WSAGenStyle>sync</WSAGenStyle>
+			<WSAHTTPAsyncResponseCode>204</WSAHTTPAsyncResponseCode>
+			<WSATimeout>240</WSATimeout>
+			<WSRMEnabled>off</WSRMEnabled>
+			<WSRMSequenceExpiration>3600</WSRMSequenceExpiration>
+			<WSRMDestinationAcceptCreateSequence>on</WSRMDestinationAcceptCreateSequence>
+			<WSRMDestinationMaximumSequences>400</WSRMDestinationMaximumSequences>
+			<WSRMDestinationInOrder>off</WSRMDestinationInOrder>
+			<WSRMDestinationMaximumInOrderQueueLength>10</WSRMDestinationMaximumInOrderQueueLength>
+			<WSRMDestinationAcceptOffers>off</WSRMDestinationAcceptOffers>
+			<WSRMFrontForce>off</WSRMFrontForce>
+			<WSRMBackForce>off</WSRMBackForce>
+			<WSRMBackCreateSequence>off</WSRMBackCreateSequence>
+			<WSRMFrontCreateSequence>off</WSRMFrontCreateSequence>
+			<WSRMSourceMakeOffer>off</WSRMSourceMakeOffer>
+			<WSRMUsesSequenceSSL>off</WSRMUsesSequenceSSL>
+			<WSRMSourceMaximumSequences>400</WSRMSourceMaximumSequences>
+			<WSRMSourceRetransmissionInterval>10</WSRMSourceRetransmissionInterval>
+			<WSRMSourceExponentialBackoff>on</WSRMSourceExponentialBackoff>
+			<WSRMSourceMaximumRetransmissions>4</WSRMSourceMaximumRetransmissions>
+			<WSRMSourceMaximumQueueLength>30</WSRMSourceMaximumQueueLength>
+			<WSRMSourceRequestAckCount>1</WSRMSourceRequestAckCount>
+			<WSRMSourceInactivityClose>360</WSRMSourceInactivityClose>
+			<ForcePolicyExec>off</ForcePolicyExec>
+			<RewriteErrors>on</RewriteErrors>
+			<DelayErrors>on</DelayErrors>
+			<DelayErrorsDuration>300</DelayErrorsDuration>
+			<RequestType>xml</RequestType>
+			<ResponseType>xml</ResponseType>
+			<FollowRedirects>off</FollowRedirects>
+			<StylePolicy class="StylePolicy">Gateway_Router_Policy</StylePolicy>
+			<Type>dynamic-backend</Type>
+			<AllowCompression>off</AllowCompression>
+			<AllowCacheControlHeader>off</AllowCacheControlHeader>
+		</MultiProtocolGateway>
+	</configuration>
+</datapower-configuration>

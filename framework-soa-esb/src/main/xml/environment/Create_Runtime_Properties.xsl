@@ -26,7 +26,7 @@
 		<!-- Create the root output element -->
 		<PropertiesList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:noNamespaceSchemaLocation="PropertiesList.xsd">
-			<xsl:apply-templates select="//dpdirects/parameter"/>
+			<xsl:apply-templates select="//runtime/parameter"/>
 		</PropertiesList>
 	</xsl:template>
 	<!-- Template to create "Property" output elements -->

@@ -15,9 +15,9 @@
 	*	limitations under the License.
 	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
-	xmlns:wsa="http://www.w3.org/2005/08/addressing"
+	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
 	xmlns:ctx="http://www.dpdirect.org/Namespace/ApplicationContext/Core/V1.0"
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions"
@@ -78,7 +78,7 @@
 		</xsl:choose>
 	</xsl:variable>
 	<xsl:variable name="DPDIRECT.SERVICE_STREAM" select="substring-before(substring-after($REQUEST_NAMESPACE_URI, 'http://www.dpdirect.org/Namespace/'), '/Service/')"/>
-	<xsl:variable name="ESB_PROXY_ID">
+	<xsl:variable name="SOA_PROXY_ID">
 		<xsl:choose>
 			<xsl:when test="$DPDIRECT.SERVICE_STREAM = 'PersonIdentity'">
 				<xsl:value-of select="'Identity'"/>
@@ -91,12 +91,12 @@
 			</xsl:when>
 		</xsl:choose>
 	</xsl:variable>
-	<xsl:variable name="ESB_SERVICE_REQUEST_ACTION">
-		<xsl:variable name="ESB_INTERFACE_NS_PREFIX" select="'http://www.dpdirect.org/Namespace/'"/>
-		<xsl:variable name="ESB_INTERFACE_NS_SUFFIX" select="'/Services/Interface/V1/'"/>
-		<xsl:variable name="ESB_INTERFACE_PORT_SUFFIX" select="'_PortType_V1/'"/>
-		<xsl:if test="normalize-space($ESB_PROXY_ID) != ''">
-			<xsl:value-of select="concat($ESB_INTERFACE_NS_PREFIX, $ESB_PROXY_ID, $ESB_INTERFACE_NS_SUFFIX,  $ESB_PROXY_ID, $ESB_INTERFACE_PORT_SUFFIX, $REQUEST_ACTION_ENDPOINT)"/>
+	<xsl:variable name="SOA_SERVICE_REQUEST_ACTION">
+		<xsl:variable name="SOA_INTERFACE_NS_PREFIX" select="'http://www.dpdirect.org/Namespace/'"/>
+		<xsl:variable name="SOA_INTERFACE_NS_SUFFIX" select="'/Services/Interface/V1/'"/>
+		<xsl:variable name="SOA_INTERFACE_PORT_SUFFIX" select="'_PortType_V1/'"/>
+		<xsl:if test="normalize-space($SOA_PROXY_ID) != ''">
+			<xsl:value-of select="concat($SOA_INTERFACE_NS_PREFIX, $SOA_PROXY_ID, $SOA_INTERFACE_NS_SUFFIX,  $SOA_PROXY_ID, $SOA_INTERFACE_PORT_SUFFIX, $REQUEST_ACTION_ENDPOINT)"/>
 		</xsl:if>
 	</xsl:variable>
 	<!--=============================================================-->
@@ -140,7 +140,7 @@
 					<ctx:InvocationContext>
 						<ctx:Call>
 							<ctx:BranchIndex>1</ctx:BranchIndex>
-							<ctx:CallerName>DESB</ctx:CallerName>
+							<ctx:CallerName>DPSOA</ctx:CallerName>
 							<ctx:CallerLocation><xsl:value-of select="$POLICY_LOCATION"/></ctx:CallerLocation>
 						</ctx:Call>
 					</ctx:InvocationContext>
@@ -158,8 +158,8 @@
 				<xsl:when test="normalize-space($ACTION_HEADER) != ''">
 					<xsl:value-of select="$ACTION_HEADER"/>
 				</xsl:when>
-				<xsl:when test="normalize-space($ESB_SERVICE_REQUEST_ACTION) != ''">
-					<xsl:value-of select="$ESB_SERVICE_REQUEST_ACTION"/>
+				<xsl:when test="normalize-space($SOA_SERVICE_REQUEST_ACTION) != ''">
+					<xsl:value-of select="$SOA_SERVICE_REQUEST_ACTION"/>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="dp:variable($REQ_WSA_ACTION_VAR_NAME)"/>

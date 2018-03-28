@@ -21,7 +21,6 @@
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 	xmlns:ack="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
-	xmlns:wsa="http://www.w3.org/2005/08/addressing"
 	xmlns:date="http://exslt.org/dates-and-times"
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	xmlns:dp="http://www.datapower.com/extensions" 
@@ -32,8 +31,8 @@
 		A collection of common utility templates
 		
 		History:
-		2016-12-12	v1.0	N.A.		Initial Version.
-		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A. , Tim Goodwill		Initial Version
+
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Constants.xsl"/>
@@ -42,12 +41,13 @@
 	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0"/>
 	<!--============== Global Variable Declarations =================-->
 	<xsl:variable name="PROPERTIES_DOC"
-		select="document('local:///framework-soa-esb/config/framework-soa-esb_Properties.xml')"/>
+		select="document('local:///framework-soa-esb/config/framework-soa-esb-Properties.xml')"/>
 	<xsl:variable name="DPDIRECT.STREAM_NAME" select="substring-before(dp:variable($DP_SERVICE_PROCESSOR_NAME), $SERVICES_PROXY_NAME_SUFFIX)"/>
 	<xsl:variable name="OPERATION_CONFIG_NODE_ID" select="normalize-space(dp:variable($OPERATION_CONFIG_NODE_ID_VAR_NAME))"/>
 	<xsl:variable name="THIS_SERVICE_NAME" select="normalize-space(regexp:replace($OPERATION_CONFIG_NODE_ID, '-.*$', 'i', ''))"/>
 	<!-- Determine the name of the service log category (must be unique for each domain) -->
 	<xsl:variable name="SERVICE_LOG_CATEGORY" select="concat(string(dp:variable($DP_SERVICE_DOMAIN_NAME)), $DPDIRECT.LOGCAT_DPDIRECT.SERVICE_SUFFIX)"/>
+	<xsl:variable name="MSG" select="."/>
 	<!--=============================================================-->
 	<!-- NAMED TEMPLATES                                             -->
 	<!--=============================================================-->

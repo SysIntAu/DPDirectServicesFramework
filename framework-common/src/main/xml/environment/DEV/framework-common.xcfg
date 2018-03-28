@@ -1,15 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datapower-configuration version="3">
-	<configuration domain="DPESBDEV">
+	<configuration domain="DPSOADEV">
+		<CryptoCertificate name="authenticationManager"
+			xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+			xmlns:dp="http://www.datapower.com/schemas/management">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///SOA_GW_DEV-sscert.pem</Filename>
+			<Password>Password</Password>
+			<PasswordAlias>off</PasswordAlias>
+			<IgnoreExpiration>on</IgnoreExpiration>
+		</CryptoCertificate>
+		<CryptoCertificate name="soaServicesEncryption"
+			xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+			xmlns:dp="http://www.datapower.com/schemas/management">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///SOA_GW_DEV-sscert.pem</Filename>
+			<Password>Password</Password>
+			<PasswordAlias>off</PasswordAlias>
+			<IgnoreExpiration>on</IgnoreExpiration>
+		</CryptoCertificate>
+		<CryptoCertificate name="SOA_GW" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+			xmlns:dp="http://www.datapower.com/schemas/management">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///SOA_GW_DEV-sscert.pem</Filename>
+			<PasswordAlias>off</PasswordAlias>
+			<IgnoreExpiration>off</IgnoreExpiration>
+		</CryptoCertificate>
+		<CryptoKey name="authenticationManager" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+			xmlns:dp="http://www.datapower.com/schemas/management">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///SOA_GW_DEV-privkey.pem</Filename>
+			<PasswordAlias>on</PasswordAlias>
+			<Alias class="PasswordAlias">SOA_GW_DEV</Alias>
+		</CryptoKey>
+		<CryptoKey name="soaServicesEncryption" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+			xmlns:dp="http://www.datapower.com/schemas/management">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///SOA_GW_DEV-privkey.pem</Filename>
+			<PasswordAlias>on</PasswordAlias>
+			<Alias class="PasswordAlias">SOA_GW_DEV</Alias>
+		</CryptoKey>
+		<CryptoKey name="SOA_GW" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+			xmlns:dp="http://www.datapower.com/schemas/management">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///SOA_GW_DEV-privkey.pem</Filename>
+			<PasswordAlias>on</PasswordAlias>
+			<Alias class="PasswordAlias">SOA_GW</Alias>
+		</CryptoKey>
 		<!-- Logs : custom log category can be used by a single comain only. Must be prefixed by DP domain name. -->
 		<LogLabel name="DEV1_ServiceStats">
 			<mAdminState>enabled</mAdminState>
-			<UserSummary>Esb Service Stats Log</UserSummary>
+			<UserSummary>SOA Service Stats Log</UserSummary>
 			<Type>user</Type>
 		</LogLabel>
 		<LogLabel name="DEV1_EsbService">
 			<mAdminState>enabled</mAdminState>
-			<UserSummary>Esb Service Log</UserSummary>
+			<UserSummary>SOA Service Log</UserSummary>
 			<Type>user</Type>
 		</LogLabel>
 		<LogTarget name="default-log" intrinsic="true">
@@ -70,8 +116,8 @@
 		</LogTarget>
 <!--		<LogTarget name="Remote_Performance_Log_Target_SOAP">
 			<mAdminState>enabled</mAdminState>
-			<UserSummary>Logs to remote Tomcat application which processesEnterpriseStats log messages and logs to a rolling
-				file (which is indexed by Splunk).</UserSummary>
+			<UserSummary>Logs to remote log target which processesEnterpriseStats log messages and logs to a rolling
+				file.</UserSummary>
 			<Type>soap</Type>
 			<Priority>normal</Priority>
 			<SoapVersion>soap11</SoapVersion>

@@ -16,21 +16,21 @@
 	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
-	xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xop="http://www.w3.org/2004/08/xop/include"
+	xmlns:xop="http://www.w3.org/2004/08/xop/include"
 	xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2" xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
 	xmlns:ctx="http://www.dpdirect.org/Namespace/ApplicationContext/Core/V1.0"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0"
 	xmlns:date="http://exslt.org/dates-and-times" extension-element-prefixes="dp date regexp" version="1.0"
-	exclude-result-prefixes="dp date regexp scm ctx err wsse wsa xop wsnt">
+	exclude-result-prefixes="dp date regexp scm ctx err wsse xop wsnt">
 	<!--========================================================================
 		Purpose:
 		Error Handler Stylesheet for the Gateway  Gateway component
 		
 		History:
 		2016-12-12	v0.1	N.A.		Initial Version. 
-		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
+
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="CodeMapping.xsl"/>
@@ -298,20 +298,20 @@
 				</xsl:when>
 				<!-- If SOAP envelope is missing generate an envelope and soap fault -->
 				<xsl:when test="dp:variable($REQ_SOAP_NAMESPACE_VAR_NAME) = $SOAP12_NAMESPACE_URI">
-					<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
-						<soapenv:Header/>
-						<soapenv:Body>
+					<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+						<soap:Header/>
+						<soap:Body>
 							<xsl:call-template name="CreateSOAPFault"/>
-						</soapenv:Body>
-					</soapenv:Envelope>
+						</soap:Body>
+					</soap:Envelope>
 				</xsl:when>
 				<xsl:otherwise>
-					<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-						<soapenv:Header/>
-						<soapenv:Body>
+					<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+						<soap:Header/>
+						<soap:Body>
 							<xsl:call-template name="CreateSOAPFault"/>
-						</soapenv:Body>
-					</soapenv:Envelope>
+						</soap:Body>
+					</soap:Envelope>
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
@@ -351,7 +351,7 @@
 					<xsl:value-of select="$ERROR_ORIG_LOC"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:value-of select="'framework-soa-esb'"/>
+					<xsl:value-of select="'SOA_Services'"/>
 				</xsl:otherwise>
 			</xsl:choose>
 		</err:MessageOrigin>
@@ -391,15 +391,15 @@
 		</xsl:copy>
 	</xsl:template>
 	<xsl:template match="wsse:Password" mode="stripInternalHeaders"/>
-	<xsl:template match="wsa:To" mode="stripInternalHeaders"/>
-	<xsl:template match="wsa:Address" mode="stripInternalHeaders"/>
-	<xsl:template match="wsa:Action" mode="stripInternalHeaders">
+	<xsl:template match="*[local-name() = 'To'][parent::*[local-name() = 'Header']]" mode="stripInternalHeaders"/>
+	<xsl:template match="*[local-name() = 'Address'][parent::*[local-name() = 'Header']]" mode="stripInternalHeaders"/>
+	<xsl:template match="*[local-name() = 'Action'][parent::*[local-name() = 'Header']]" mode="stripInternalHeaders">
 		<xsl:if test="string(dp:variable($SERVICE_IDENTIFIER_VAR_NAME)) =
 			'{http://www.ibm.com/AC/commonbaseevent1_0_1}CommonBaseEvents'">
 			<xsl:copy-of select="."/>
 		</xsl:if>
 	</xsl:template>
-	<xsl:template match="wsa:MessageID" mode="stripInternalHeaders"/>
+	<xsl:template match="*[local-name() = 'MessageID'][parent::*[local-name() = 'Header']]" mode="stripInternalHeaders"/>
 	<xsl:template match="wsse:Security" mode="stripInternalHeaders">
 		<xsl:copy>
 			<xsl:copy-of select="@*"/>
@@ -416,15 +416,15 @@
 	<xsl:template name="CreateSOAPFault">
 		<xsl:choose>
 			<xsl:when test="dp:variable($REQ_SOAP_NAMESPACE_VAR_NAME) = $SOAP12_NAMESPACE_URI">
-				<soapenv:Fault xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
-					<soapenv:Code>
-						<soapenv:Value>DPDIRECT.SERVICE_ERROR</soapenv:Value>
-					</soapenv:Code>
-					<soapenv:Reason>
-						<soapenv:Text xml:lang="en-US">Please see details.</soapenv:Text>
-					</soapenv:Reason>
-					<soapenv:Role>www.dpdirect.org</soapenv:Role>
-					<soapenv:Detail>
+				<soap:Fault xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+					<soap:Code>
+						<soap:Value>DPDIRECT_SERVICE_ERROR</soap:Value>
+					</soap:Code>
+					<soap:Reason>
+						<soap:Text xml:lang="en-US">Please see details.</soap:Text>
+					</soap:Reason>
+					<soap:Role>www.dpdirect.org</soap:Role>
+					<soap:Detail>
 						<xsl:choose>
 							<xsl:when test="$CODE_MAP_ENTRY/Row">
 								<err:EnterpriseErrors>
@@ -441,12 +441,12 @@
 								</xsl:call-template>
 							</xsl:otherwise>
 						</xsl:choose>
-					</soapenv:Detail>
-				</soapenv:Fault>
+					</soap:Detail>
+				</soap:Fault>
 			</xsl:when>
 			<xsl:otherwise>
-				<soapenv:Fault xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-					<faultcode>DPDIRECT.SERVICE_ERROR</faultcode>
+				<soap:Fault xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+					<faultcode>DPDIRECT_SERVICE_ERROR</faultcode>
 					<faultstring>Please see details.</faultstring>
 					<faultactor>www.dpdirect.org</faultactor>
 					<detail>
@@ -467,7 +467,7 @@
 							</xsl:otherwise>
 						</xsl:choose>
 					</detail>
-				</soapenv:Fault>
+				</soap:Fault>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>

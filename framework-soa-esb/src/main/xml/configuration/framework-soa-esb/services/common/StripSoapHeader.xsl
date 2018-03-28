@@ -15,7 +15,7 @@
 	*	limitations under the License.
 	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" version="1.0" exclude-result-prefixes="soapenv">
+	xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" version="1.0" exclude-result-prefixes="soapenv">
 	<!--============== Output Configuration =========================-->
 	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0"/>
 	<!--=============================================================-->

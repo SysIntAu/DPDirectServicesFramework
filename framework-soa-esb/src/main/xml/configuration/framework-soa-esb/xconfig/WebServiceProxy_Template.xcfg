@@ -1,5 +1,5 @@
 <datapower-configuration version="5">
-	<configuration domain="DPESB">
+	<configuration domain="DPSOA">
 		<Matching name="ServicesProxy_Template_Vx_match">
 			<mAdminState>enabled</mAdminState>
 			<MatchRules>
@@ -53,6 +53,7 @@
 			<AllowedFeatures>
 				<HTTP-1.0>on</HTTP-1.0>
 				<HTTP-1.1>on</HTTP-1.1>
+				<HTTP-2.0>off</HTTP-2.0>
 				<POST>on</POST>
 				<GET>off</GET>
 				<PUT>on</PUT>
@@ -61,6 +62,7 @@
 				<TRACE>off</TRACE>
 				<DELETE>off</DELETE>
 				<CONNECT>off</CONNECT>
+				<CustomMethods>off</CustomMethods>
 				<QueryString>on</QueryString>
 				<FragmentIdentifiers>on</FragmentIdentifiers>
 				<DotDot>off</DotDot>
@@ -69,14 +71,20 @@
 			<PersistentConnections>on</PersistentConnections>
 			<MaxPersistentConnectionsReuse>0</MaxPersistentConnectionsReuse>
 			<AllowCompression>off</AllowCompression>
+			<AllowWebSocketUpgrade>off</AllowWebSocketUpgrade>
+			<WebSocketIdleTimeout>0</WebSocketIdleTimeout>
 			<MaxURLLen>16384</MaxURLLen>
 			<MaxTotalHdrLen>128000</MaxTotalHdrLen>
 			<MaxHdrCount>0</MaxHdrCount>
 			<MaxNameHdrLen>0</MaxNameHdrLen>
 			<MaxValueHdrLen>0</MaxValueHdrLen>
 			<MaxQueryStringLen>0</MaxQueryStringLen>
-			<SSLProxy class="SSLProxyProfile">apiGatewayServices</SSLProxy>
 			<CredentialCharset>protocol</CredentialCharset>
+			<SSLServerConfigType>server</SSLServerConfigType>
+			<SSLServer class="SSLServerProfile">SOA_GW</SSLServer>
+			<HTTP2MaxStreams>100</HTTP2MaxStreams>
+			<HTTP2MaxFrameSize>16384</HTTP2MaxFrameSize>
+			<HTTP2StreamHeader>off</HTTP2StreamHeader>
 		</HTTPSSourceProtocolHandler>
 		<XMLManager name="WSPStreamId_Services_Cache_V1">
 			<mAdminState>enabled</mAdminState>
@@ -104,7 +112,7 @@
 				<TTL>31536000</TTL>
 				<Priority>128</Priority>
 			</DocCachePolicy>
-			<UserAgent class="HTTPUserAgent">framework-soa-esb_UserAgent_V1</UserAgent>
+			<UserAgent class="HTTPUserAgent">SOA_Services_UserAgent_V1</UserAgent>
 		</XMLManager>
 		<SLMPolicy name="ServicesProxy_Template_Vx">
 			<mAdminState>enabled</mAdminState>
@@ -113,18 +121,18 @@
 		<WSEndpointRewritePolicy name="ServicesProxy_Template_Vx">
 			<mAdminState>enabled</mAdminState>
 			<WSEndpointLocalRewriteRule>
-				<ServicePortMatchRegexp>^{http://www.namespace/Vx}ServicesProxy_Template_SOAP11_Port_HTTP$</ServicePortMatchRegexp>
+				<ServicePortMatchRegexp>^{http://www.namespace/Vx}.*</ServicePortMatchRegexp>
 				<LocalEndpointProtocol>default</LocalEndpointProtocol>
-				<LocalEndpointHostname>var://service/domain-name</LocalEndpointHostname>
+				<LocalEndpointHostname>${esbLocalHostAlias}</LocalEndpointHostname>
 				<LocalEndpointPort>0</LocalEndpointPort>
 				<LocalEndpointURI>/WSPStreamId</LocalEndpointURI>
 				<FrontProtocol class="HTTPSourceProtocolHandler">ServicesProxy_Template_Vx_LocalHost_HTTPS_FSH</FrontProtocol>
 				<UseFrontProtocol>on</UseFrontProtocol>
-				<WSDLBindingProtocol>soap-11</WSDLBindingProtocol>
+				<WSDLBindingProtocol>soap-12</WSDLBindingProtocol>
 				<FrontsidePortSuffix/>
 			</WSEndpointLocalRewriteRule>
 			<WSEndpointRemoteRewriteRule>
-				<ServicePortMatchRegexp>^{http://www.namespace/Vx}ServicesProxy_Template_SOAP11_Port_HTTP$</ServicePortMatchRegexp>
+				<ServicePortMatchRegexp>^{http://www.namespace/Vx}.*</ServicePortMatchRegexp>
 				<RemoteEndpointProtocol>http</RemoteEndpointProtocol>
 				<RemoteEndpointHostname>localhost</RemoteEndpointHostname>
 				<RemoteEndpointPort>10000</RemoteEndpointPort>
@@ -142,7 +150,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Request_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_Request_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -150,7 +158,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Binary_Response_Match_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Binary_Response_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_Binary_Response_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -158,7 +166,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Response_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_Response_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -166,7 +174,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Transform_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_Transform_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -174,7 +182,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Filter_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_Filter_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -182,7 +190,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_EncodeMTOM_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_EncodeMTOM_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -190,7 +198,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_DecodeMTOM_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_DecodeMTOM_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -198,14 +206,14 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Validate_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_Validate_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>			<PolicyMaps>
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_CallService_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_CallService_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -213,7 +221,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Copy_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_Copy_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -221,7 +229,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_BackendRouting_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_BackendRouting_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -229,7 +237,7 @@
 				<WSDLComponentType>fragmentid</WSDLComponentType>
 				<WSDLComponentValue/>
 				<Match class="Matching">Url_All_V1</Match>
-				<Rule class="WSStylePolicyRule">framework-soa-esb_V1_Error_rule</Rule>
+				<Rule class="WSStylePolicyRule">SOA_Services_V1_Error_rule</Rule>
 				<Subscription/>
 				<WSDLFragmentID>http://www.namespace/Vx#dp.wsdlName(ServicesProxy_Template_Vx.wsdl)</WSDLFragmentID>
 			</PolicyMaps>
@@ -244,6 +252,8 @@
 			<mAdminState>enabled</mAdminState>
 			<Priority>normal</Priority>
 			<XMLManager class="XMLManager">WSPStreamId_Services_Cache_V1</XMLManager>
+			<SSLClientConfigType>client</SSLClientConfigType>
+			<SSLClient class="SSLClientProfile">SOA_GW</SSLClient>
 			<DefaultParamNamespace>http://www.datapower.com/param/config</DefaultParamNamespace>
 			<QueryParamNamespace>http://www.datapower.com/param/query</QueryParamNamespace>
 			<PropagateURI>off</PropagateURI>
@@ -373,13 +383,15 @@
 			<PreserveKeyChain>off</PreserveKeyChain>
 			<DecryptWithKeyFromED>off</DecryptWithKeyFromED>
 			<SOAPActionPolicy>lax</SOAPActionPolicy>
-<!--			<PolicyParameter>
+			<!-- ====== verbose-error-reporting should be disabled in production ====== -->
+			<PolicyParameter>
 				<PolicyParamParameters class="PolicyParameters">verbose-error-reporting</PolicyParamParameters>
 				<PolicyParamWSDLComponentType>all</PolicyParamWSDLComponentType>
 				<PolicyParamWSDLComponentValue>""</PolicyParamWSDLComponentValue>
 				<PolicyParamSubscription/>
 				<PolicyParamFragmentID/>
-			</PolicyParameter>-->
+			</PolicyParameter>
+			<!-- ======================================================================= -->
 			<WSMAgentMonitor>on</WSMAgentMonitor>
 		</WSGateway>
 	</configuration>

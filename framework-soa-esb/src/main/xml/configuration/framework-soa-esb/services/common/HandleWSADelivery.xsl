@@ -15,9 +15,9 @@
 	*	limitations under the License.
 	**********************************************************************-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
-	xmlns:wsa="http://www.w3.org/2005/08/addressing"
+	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
 	xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions"
@@ -45,7 +45,7 @@
 				<xsl:copy-of select="$REQ_MQMD"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:call-template name="GetCurrentReqMQMD"/>
+				<xsl:call-template name="GetBackendReqMQMD"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
@@ -391,13 +391,13 @@
 		</xsl:variable>
 		<!-- Header for the request -->
 		<xsl:variable name="HEADERS">
-			<header name="{$MQMD_ELEMENT_NAME}">
+			<header name="MQMD">
 				<xsl:value-of select="$SERIALIZED_MQMD"/>
 			</header>
 			<!-- Set the MQMD header -->
 			<dp:set-request-header name="$MQMD_ELEMENT_NAME" value="$SERIALIZED_MQMD"/>
 			<xsl:if test="$SERIALIZED_MQOD != ''">
-				<header name="{$MQOD_ELEMENT_NAME}">
+				<header name="MQOD">
 					<xsl:value-of select="$SERIALIZED_MQOD"/>
 				</header>
 				<!-- Set the MQOD header -->
@@ -576,7 +576,7 @@
 						<xsl:value-of select="$USER_NAME"/>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:value-of select="'DPESB'"/>
+						<xsl:value-of select="'DPSOA'"/>
 					</xsl:otherwise>
 				</xsl:choose>
 			</UserIdentifier>
@@ -590,7 +590,7 @@
 				<xsl:value-of select="'0'"/>
 			</PutApplType>
 			<PutApplName>
-				<xsl:value-of select="'DPESB'"/>
+				<xsl:value-of select="'DPSOA'"/>
 			</PutApplName>
 			<PutDate>
 				<xsl:call-template name="GetCurrentUTCDateAsYYYYMMDD"/>

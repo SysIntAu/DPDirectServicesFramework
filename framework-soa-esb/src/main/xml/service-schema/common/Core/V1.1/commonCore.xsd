@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ccore="http://www.crimtrac.gov.au/Namespace/common/Core/V1.1" xmlns:eim="http://www.crimtrac.gov.au/Namespace/common/InformationMessages/V1.1" xmlns:ewm="http://www.crimtrac.gov.au/Namespace/common/WarningMessages/V1.1" targetNamespace="http://www.crimtrac.gov.au/Namespace/common/Core/V1.1" elementFormDefault="qualified" version="1.0" xml:lang="en">
+	<xs:import namespace="http://www.crimtrac.gov.au/Namespace/common/InformationMessages/V1.1" schemaLocation="../../InformationMessages/V1.1/InformationMessages.xsd"/>
+	<xs:import namespace="http://www.crimtrac.gov.au/Namespace/common/WarningMessages/V1.1" schemaLocation="../../WarningMessages/V1.1/WarningMessages.xsd"/>
+	<!--  ****************************************************************
+  Module:   Common Core
+  Date:       17-08-2012
+  Version:   1.0 (See change history at the end of this file)
+  Creators:  Tanya Strausov (TS)
+  Publisher: CrimTrac
+*************************************************************** -->
+	<!-- *************** Element Declaration ***************                              -->
+	<xs:element name="Acknowledgement" type="xs:string"/>
+	<xs:element name="Address" type="ccore:addressType"/>
+	<xs:element name="Addresses" type="ccore:addressesType"/>
+	<xs:element name="Agency" type="xs:string"/>
+	<xs:element name="AdditionalIdentifier" type="xs:string"/>
+	<xs:element name="BatchNumber" type="xs:string"/>
+	<xs:element name="BirthDate" type="ccore:dateType"/>
+	<xs:element name="BirthDateRange" type="ccore:birthDateRangeType"/>
+	<xs:element name="BirthDateYearOnly" type="xs:boolean"/>
+	<xs:element name="BirthPlace" type="ccore:birthPlaceType"/>
+	<xs:element name="Category" type="xs:string"/>
+	<xs:element name="Classification" type="xs:string"/>
+	<xs:element name="CommonServiceRequest" type="ccore:commonServiceRequestType">
+		<xs:annotation>
+			<xs:documentation>Holds non-functional data about the incoming request.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CommonServiceResponse" type="ccore:commonServiceResponseType">
+		<xs:annotation>
+			<xs:documentation>Holds audit data about the response.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Country" type="xs:string"/>
+	<xs:element name="Court" type="xs:string"/>
+	<xs:element name="Date" type="xs:date"/>
+	<xs:element name="DateFrom" type="ccore:dateType"/>
+	<xs:element name="DateTo" type="ccore:dateType"/>
+	<xs:element name="Day" type="xs:gDay"/>
+	<xs:element name="Disclaimer" type="xs:string"/>
+	<xs:element name="EndDate" type="xs:string"/>		
+	<xs:element name="FamilyName" type="xs:string"/>
+	<xs:element name="FingerprintId" type="xs:long"/>
+	<xs:element name="FirstGivenName" type="xs:string"/>
+	<xs:element name="FrameData" type="ccore:frameDataType">
+		<xs:annotation>
+			<xs:documentation>Frame Data is used for paging functionality</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FrameSize" type="ccore:nonNegativeIntegerType"/>
+	<xs:element name="FrameStart" type="ccore:nonNegativeIntegerType"/>
+	<xs:element name="Gender" type="xs:string"/>
+	<xs:element name="GivenNames" type="xs:string"/>
+	<xs:element name="IdentityConfirmed" type="xs:boolean"/>
+	<xs:element name="IdentityDocument" type="ccore:identityDocumentType"/>
+	<xs:element name="IdentityDocuments" type="ccore:identityDocumentsType"/>
+	<xs:element name="InformedConsent" type="xs:boolean"/>
+	<xs:element name="InvolvementResult" type="xs:string"/>
+	<xs:element name="InvolvementType" type="xs:string"/>
+	<xs:element name="Jurisdiction" type="xs:string"/>
+	<xs:element name="JurisdictionReferenceNumber" type="xs:string"/>
+	<xs:element name="Licence" type="ccore:licenceType"/>
+	<xs:element name="Licences" type="ccore:licencesType"/>
+	<xs:element name="Line" type="xs:string"/>
+	<xs:element name="MatchDate" type="xs:date"/>
+	<xs:element name="MatchesFound" type="ccore:matchesFoundType"/>
+	<xs:element name="MatchType" type="xs:string"/>
+	<xs:element name="MessageCode" type="xs:string"/>
+	<xs:element name="MessageText" type="xs:string"/>
+	<xs:element name="Month" type="xs:gMonth"/>
+	<xs:element name="Name" type="ccore:nameType"/>
+	<xs:element name="NameId" type="xs:string"/>
+	<xs:element name="NameType" type="xs:string"/>
+	<xs:element name="NoConsentReason" type="xs:string"/>
+	<xs:element name="Note" type="xs:string"/>
+	<xs:element name="Notification" type="xs:string"/>
+	<xs:element name="Number" type="xs:string"/>
+	<xs:element name="Offence" type="xs:string"/>
+	<xs:element name="Officecode" type="xs:string"/>
+	<xs:element name="Organisation" type="xs:string"/>
+	<xs:element name="OtherGivenNames" type="xs:string"/>
+	<xs:element name="Passport" type="ccore:passportType"/>
+	<xs:element name="Passports" type="ccore:passportsType"/>
+	<xs:element name="Phone" type="ccore:phoneType"/>
+	<xs:element name="Phones" type="ccore:phonesType"/>
+	<xs:element name="Postcode" type="xs:string"/>
+	<xs:element name="Priority" type="xs:string"/>
+	<xs:element name="PriorityReason" type="xs:string"/>
+	<xs:element name="Purpose" type="xs:string"/>
+	<xs:element name="Reference" type="xs:string"/>
+	<xs:element name="References" type="xs:string"/>
+	<xs:element name="RequestID" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>An id that the calling system must pass to identify the call. Used for correlation of messages (as opposed to audit).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="RequestorSystemAuditId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>A unique identifier that identifies an audit record corresponding to the request held in the referencing system.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="RequestorSystemTimestamp" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Represents timestamp of date/time of request send.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="RequestorUserId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The id of the person that made the request (in the calling system).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ResponseID" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Unique identifier for the response.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ResponseSystemTimestamp" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Represents timestamp of date/time of response sent.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Result" type="ccore:resultType"/>
+	<xs:element name="SearchOperator" type="ccore:searchOperatorType">
+		<xs:annotation>
+			<xs:documentation>The search operator allows for logical ANDing and ORing of search fields. 
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ServiceAcknowledgement" type="ccore:serviceAcknowledgementType"/>
+	<xs:element name="ServiceNotification" type="ccore:serviceNotificationType"/>
+	<xs:element name="Sighted" type="xs:boolean"/>
+	<xs:element name="SingleNameOnly" type="xs:boolean"/>
+	<xs:element name="Source" type="xs:string"/>
+	<xs:element name="Suburb" type="xs:string"/>
+	<xs:element name="StartDate" type="xs:string"/>		
+	<xs:element name="State" type="xs:string"/>
+	<xs:element name="Status" type="xs:string"/>
+	<xs:element name="StatusReason" type="xs:string"/>
+	<xs:element name="SubjectDetails" type="xs:string"/>
+	<xs:element name="SubmitDate" type="xs:date"/>
+	<xs:element name="TotalCount" type="ccore:nonNegativeIntegerType"/>
+	<xs:element name="Town" type="xs:string"/>
+	<xs:element name="Type" type="xs:string"/>
+	<xs:element name="Year" type="xs:gYear"/>
+	<!-- *************** Complex Data Types ***************                              -->
+	<xs:complexType name="addressType">
+		<xs:sequence>
+			<xs:element ref="ccore:Type"/>
+			<xs:element ref="ccore:Line"/>
+			<xs:element ref="ccore:Suburb" minOccurs="0"/>
+			<xs:element ref="ccore:State" minOccurs="0"/>
+			<xs:element ref="ccore:Postcode" minOccurs="0"/>
+			<xs:element ref="ccore:Country"/>
+			<xs:element ref="ccore:StartDate" minOccurs="0"/>
+			<xs:element ref="ccore:EndDate" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addressesType">
+		<xs:sequence>
+			<xs:element ref="ccore:Address" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="birthDateRangeType">
+		<xs:sequence>
+			<xs:element ref="ccore:DateFrom" minOccurs="0"/>
+			<xs:element ref="ccore:DateTo" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="birthPlaceType">
+		<xs:sequence>
+			<xs:element ref="ccore:Town" minOccurs="0"/>
+			<xs:element ref="ccore:State" minOccurs="0"/>
+			<xs:element ref="ccore:Country"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dateType">
+		<xs:sequence>
+			<xs:element ref="ccore:Year"/>
+			<xs:element ref="ccore:Month" minOccurs="0"/>
+			<xs:element ref="ccore:Day" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="frameDataType">
+		<xs:sequence>
+			<xs:element ref="ccore:FrameStart"/>
+			<xs:element ref="ccore:FrameSize"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="identityDocumentType">
+		<xs:sequence>
+			<xs:element ref="ccore:Type"/>
+			<xs:element ref="ccore:Reference"/>
+			<xs:element ref="ccore:Sighted" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="identityDocumentsType">
+		<xs:sequence>
+			<xs:element ref="ccore:IdentityDocument" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="licenceType">
+		<xs:sequence>
+			<xs:element ref="ccore:Type"/>
+			<xs:element ref="ccore:Agency"/>
+			<xs:element ref="ccore:Number"/>
+			<xs:element ref="ccore:Sighted" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="licencesType">
+		<xs:sequence>
+			<xs:element ref="ccore:Licence" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nameType">
+		<xs:sequence>
+			<xs:element ref="ccore:Type"/>
+			<xs:element ref="ccore:FamilyName"/>
+			<xs:element ref="ccore:FirstGivenName" minOccurs="0"/>
+			<xs:element ref="ccore:OtherGivenNames" minOccurs="0"/>
+			<xs:element ref="ccore:SingleNameOnly" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="namesType">
+		<xs:sequence>
+			<xs:element ref="ccore:Name" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="passportType">
+		<xs:sequence>
+			<xs:element ref="ccore:Type"/>
+			<xs:element ref="ccore:Number"/>
+			<xs:element ref="ccore:Country"/>
+			<xs:element ref="ccore:Sighted" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="passportsType">
+		<xs:sequence>
+			<xs:element ref="ccore:Passport" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="phoneType">
+		<xs:sequence>
+			<xs:element ref="ccore:Type"/>
+			<xs:element ref="ccore:Number"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="phonesType">
+		<xs:sequence>
+			<xs:element ref="ccore:Phone" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="resultType">
+		<xs:sequence>
+			<xs:element ref="ccore:Type"/>
+			<xs:element ref="ccore:Date"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="serviceAcknowledgementType">
+		<xs:complexContent>
+			<xs:extension base="ccore:serviceResponseType">
+				<xs:sequence>
+					<xs:element ref="ccore:Acknowledgement"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="serviceNotificationType">
+		<xs:complexContent>
+			<xs:extension base="ccore:serviceResponseType">
+				<xs:sequence>
+					<xs:element ref="ccore:Notification"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="serviceResponseType">
+		<xs:sequence>
+			<xs:element ref="eim:Informations" minOccurs="0"/>
+			<xs:element ref="ewm:Warnings" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="commonServiceRequestType">
+		<xs:sequence>
+			<xs:element ref="ccore:RequestorSystemTimestamp"/>
+			<xs:element ref="ccore:RequestID"/>
+			<xs:element ref="ccore:RequestorUserId" minOccurs="0"/>
+			<xs:element ref="ccore:RequestorSystemAuditId" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="commonServiceResponseType">
+		<xs:sequence>
+			<xs:element ref="ccore:RequestorSystemTimestamp"/>
+			<xs:element ref="ccore:RequestID"/>
+			<xs:element ref="ccore:ResponseSystemTimestamp"/>
+			<xs:element ref="ccore:ResponseID"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- *************** Simple Data Types ***************                              -->
+	<xs:simpleType name="matchesFoundType">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="searchOperatorType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="ANY"/>
+			<xs:enumeration value="ALL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nonNegativeIntegerType">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- **************************************************************
+                            CHANGE HISTORY
+     **************************************************************
+*
+* VERSION: 1.0
+* DATE:       21-08-2012
+* BY:           TS
+* PURPOSE: 	Initial version
+* DATE:       22-11-2012
+* BY:           TS
+* PURPOSE: 	New elements added that will be used by NameSearch project:
+* BirthDate, BirthDateRange, CommonServiceRequest, CommonServiceResponse, DateFrom, DateTo, Day, FrameData, FrameSize, FrameStart,
+  Month, NameId, NameType, RequestID, RequestorSystemAuditId, RequestorSystemTimestamp, RequestorUserId, ResponseID,      
+  ResponseSystemTimestamp, SearchOperator, TotalCount, Year.
+
+  New Types: birthDateRangeType, dateType, frameDataType, commonServiceRequestType, commonServiceResponseType, searchOperatorType,
+  nonNegativeIntegerType
+
+-->
+</xs:schema>

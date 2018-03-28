@@ -25,14 +25,14 @@
 		Purpose:Performs authorisation against a local XACML policy file
 		
 		History:
-		2016-12-12	v1.0	N.A.		Initial Version.
+		2016-12-12	v1.0	N.A. , Tim Goodwill		Initial Version
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Utils.xsl"/>
 	<!--============== Output Configuration =========================-->
 	<xsl:output encoding="UTF-8" method="xml" indent="no" version="1.0"/>
 	<!--============== Global Variable Declarations =================-->
-	<xsl:variable name="XACML_POLICY_SET" select="document('local:///security/esb-services-xacml-auth.xml')//os:PolicySet"/>
+	<xsl:variable name="XACML_POLICY_SET" select="document('local:///security/soa-services-xacml-auth.xml')//os:PolicySet"/>
 	<!--=============================================================-->
 	<!-- MATCH TEMPLATES                                             -->
 	<!--=============================================================-->

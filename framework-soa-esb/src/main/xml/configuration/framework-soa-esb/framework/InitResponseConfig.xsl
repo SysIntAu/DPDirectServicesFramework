@@ -14,13 +14,13 @@
 	*	See the License for the specific language governing permissions and
 	*	limitations under the License.
 	**********************************************************************-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wsa="http://www.w3.org/2005/08/addressing"
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
 	xmlns:dp="http://www.datapower.com/extensions"
 	xmlns:regexp="http://exslt.org/regular-expressions"
 	xmlns:scm="http://www.dpdirect.org/Namespace/ServiceChainMetadata/V1.0"
 	xmlns:err="http://www.dpdirect.org/Namespace/Enterprise/ErrorMessages/V1.0" extension-element-prefixes="dp regexp"
-	version="1.0" exclude-result-prefixes="dp regexp err scm wsa wsse">
+	version="1.0" exclude-result-prefixes="dp regexp err scm wsse">
 	<!--========================================================================
 		Purpose:
 		Performs initialisation of the generic policy flow. The request or response policy configuration
@@ -28,8 +28,8 @@
 		context variable. The INPUT context is copied to the RESULT_DOC context.
 				
 		History:
-		2016-12-12	v1.0	N.A.		Initial Version.
-		2016-12-12	v2.0	Tim Goodwill		Init Gateway  instance
+		2016-12-12	v1.0	N.A. , Tim Goodwill		Initial Version
+
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="FrameworkUtils.xsl"/>
@@ -40,19 +40,19 @@
 	<xsl:variable name="CONFIG_DOC"
 		select="document(concat($DPDIRECT_SERVICES_ROOT_FOLDER,'config/',$PROXY_NAME,'_ServiceConfig.xml'))"/>
 	<xsl:variable name="WSA_ACTION" select="normalize-space(/*[local-name() = 'Envelope'][1]/*[local-name() =
-		'Header'][1]/wsa:Action[1])"/>
+		'Header'][1]/*[local-name() = 'Action'][1])"/>
 	<xsl:variable name="WSA_TO" select="normalize-space(/*[local-name() = 'Envelope'][1]/*[local-name() =
-		'Header'][1]/wsa:To[normalize-space(.) != $WSA_ANONYMOUS_DESTINATION])"/>
+		'Header'][1]/*[local-name() = 'To'][1][normalize-space(.) != $WSA_ANONYMOUS_DESTINATION])"/>
 	<xsl:variable name="WSA_FROM" select="normalize-space(/*[local-name() = 'Envelope'][1]/*[local-name() =
-		'Header'][1]/wsa:From[normalize-space(.) != $WSA_ANONYMOUS_DESTINATION])"/>
+		'Header'][1]/*[local-name() = 'From'][1][normalize-space(.) != $WSA_ANONYMOUS_DESTINATION])"/>
 	<xsl:variable name="WSA_REPLY_TO" select="normalize-space(/*[local-name() = 'Envelope'][1]/*[local-name() = 
-		'Header'][1]/wsa:ReplyTo[1]/wsa:Address[normalize-space(.) != $WSA_ANONYMOUS_DESTINATION])"/>
+		'Header'][1]/*[local-name() = 'ReplyTo'][1]/*[local-name() = 'Address'][normalize-space(.) != $WSA_ANONYMOUS_DESTINATION])"/>
 	<xsl:variable name="WSA_FAULT_TO" select="normalize-space(/*[local-name() = 'Envelope'][1]/*[local-name() = 
-		'Header'][1]/wsa:FaultTo[1]/wsa:Address[normalize-space(.) != $WSA_ANONYMOUS_DESTINATION])"/>
+		'Header'][1]/*[local-name() = 'FaultTo'][1]/*[local-name() = 'Address'][normalize-space(.) != $WSA_ANONYMOUS_DESTINATION])"/>
 	<xsl:variable name="WSA_MSG_ID" select="normalize-space(/*[local-name() = 'Envelope'][1]/*[local-name() =
-		'Header'][1]/wsa:MessageID[1])"/>
+		'Header'][1]/*[local-name() = 'MessageID'][1])"/>
 	<xsl:variable name="WSA_RELATES_TO" select="normalize-space(/*[local-name() = 'Envelope'][1]/*[local-name() =
-		'Header'][1]/wsa:RelatesTo[1])"/>
+		'Header'][1]/*[local-name() = 'RelatesTo'][1])"/>
 	<xsl:variable name="REQUEST_TRANSACTION_ID" select="normalize-space((/*[local-name() = 'Envelope'][1]/*[local-name() =
 		'Header'][1])//*[local-name() = 'TransactionId'][1])"/>
 	<xsl:variable name="SOAP_FAULT" select="/*[local-name() = 'Envelope']/*[local-name() = 'Body']/*[local-name() =

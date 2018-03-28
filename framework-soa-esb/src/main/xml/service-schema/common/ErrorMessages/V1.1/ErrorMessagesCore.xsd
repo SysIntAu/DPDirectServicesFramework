@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:errcore="http://www.crimtrac.gov.au/Namespace/common/ErrorMessages/V1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.crimtrac.gov.au/Namespace/common/ErrorMessages/V1.1" elementFormDefault="qualified" version="1.0" xml:lang="en">
+	<xs:element name="AdditionalDetailText" type="xs:token"/>
+	<xs:simpleType name="informationCodeType">
+		<xs:restriction base="xs:token">
+			<xs:length value="9"/>
+			<xs:pattern value="[A-Z]{4}[0-9]{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="LocationText" type="xs:token"/>
+	<xs:element name="WarningCode" type="errcore:warningCodeType"/>
+	<xs:element name="ErrorCode" type="errcore:errorCodeType"/>
+	<xs:element name="DescriptionText" type="xs:token"/>
+	<xs:element name="OriginatorLocation" type="xs:token"/>
+	<xs:element name="InformationCode" type="errcore:informationCodeType"/>
+	<xs:element name="OriginatorName" type="xs:token"/>
+	<xs:simpleType name="errorCodeType">
+		<xs:restriction base="xs:token">
+			<xs:length value="9"/>
+			<xs:pattern value="[A-Z]{4}[0-9]{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="warningCodeType">
+		<xs:restriction base="xs:token">
+			<xs:length value="9"/>
+			<xs:pattern value="[A-Z]{4}[0-9]{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
