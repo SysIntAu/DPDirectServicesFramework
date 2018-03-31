@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.dpdirect.soa.esb</groupId>
 		<artifactId>dpdirect-framework</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
 	<artifactId>distribution</artifactId>
 	<name>distribution</name>
@@ -20,7 +20,7 @@
 		</dependency>
 		<dependency>
 		  <groupId>org.dpdirect.soa.esb</groupId>
-		  <artifactId>dpAntTasks</artifactId>
+		  <artifactId>dp-validation-ant-tasks</artifactId>
 		  <version>${project.version}</version>
 		</dependency>
 	</dependencies>

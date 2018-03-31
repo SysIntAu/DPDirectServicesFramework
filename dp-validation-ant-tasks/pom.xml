@@ -4,10 +4,10 @@
 	<parent>
 		<groupId>org.dpdirect.soa.esb</groupId>
 		<artifactId>dpdirect-framework</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
-	<artifactId>dpAntTasks</artifactId>
-	<name>dpAntTasks</name>
+	<artifactId>dp-validation-ant-tasks</artifactId>
+	<name>dp-validation-ant-tasks</name>
 	<description>batch-validator-ant-task is a collection of ant tasks to validate XML resources at build time.</description>
 	
 	<profiles>

@@ -7,8 +7,8 @@
 	<name>dpdirect-framework</name>
 	<description>Multi-module project for dpdirect-framework.</description>
 	<modules>
-		<!--<module>dp-ant-tasks</module>
-		<module>dp-mojos</module>-->
+		<module>dp-validation-ant-tasks</module>
+		<module>dp-validation-mojos</module>
 		<module>framework-common</module>
 		<module>framework-gateway-router</module>
 		<module>framework-rest-api</module>

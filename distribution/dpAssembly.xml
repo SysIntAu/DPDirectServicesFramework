@@ -20,7 +20,7 @@
 				<exclude>xalan:*:jar</exclude>
 				<exclude>xml-resolver:*:jar</exclude>
 				<exclude>xom:*:jar</exclude>
-				<exclude>*:dpAntTasks:jar</exclude>
+				<exclude>*:dp-validation-ant-tasks:jar</exclude>
             </excludes> 
 			<useProjectArtifact>false</useProjectArtifact>
 			<outputDirectory>lib</outputDirectory>
@@ -57,9 +57,9 @@
 		<moduleSet>
 			 <useAllReactorProjects>true</useAllReactorProjects>
 			<includes>
-				<include>*:esb_framework:jar:${project.version}</include>
-				<!--include>*:dpAntTasks:*:${project.version}</include-->
-				<!--include>*:dpMojos:*:${project.version}</include-->				
+				<include>*:framework-soa-esb:jar:${project.version}</include>
+				<!--include>*:dp-validation-ant-tasks:*:${project.version}</include-->
+				<!--include>*:dp-validation-mojos:*:${project.version}</include-->				
 			</includes>
 			<binaries>
 				<unpack>true</unpack>

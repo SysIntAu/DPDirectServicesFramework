@@ -7,8 +7,8 @@
 		<artifactId>dpdirect-framework</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>framework-soa-esb</artifactId>
-	<name>framework-soa-esb</name>
+	<artifactId>framework-common</artifactId>
+	<name>framework-common</name>
 	<description/>
 	<dependencies/>
 	<build>
@@ -24,7 +24,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/local/ondisk</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/local</outputDirectory>
 							<resources>
 								<resource>
 									<directory>src/main/xml/configuration</directory>
@@ -51,7 +51,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/local/ondisk/framework-soa-esb</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/local/framework-common</outputDirectory>
 							<resources>
 								<resource>
 									<directory>src/main/xml/</directory>
@@ -87,7 +87,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/local/ondisk/unit-test</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/local/unit-test</outputDirectory>
 							<resources>
 								<resource>
 									<directory>src/main/xml/unit-test</directory>
@@ -159,120 +159,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--		<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>xml-maven-plugin</artifactId>
-				<version>1.0</version>
-				<executions>
-					<execution>
-						<id>validation</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>validate</goal>
-						</goals>
-						<configuration>
-							<basedir>${project.build.outputDirectory}</basedir>
-							<validationSets>
-								<validationSet>
-									<validating>true</validating>
-									<dir>${project.build.outputDirectory}/local/ondisk/SOA_Gateway</dir>
-									<systemId>${project.build.outputDirectory}/local/ondisk/SOA_Gateway/config/GatewayConfig.xsd</systemId>
-									<includes>
-										<include>**/*Config.xml</include>
-									</includes>
-								</validationSet>
-								<validationSet>
-									<validating>true</validating>
-									<dir>${project.build.outputDirectory}/local/ondisk/framework-soa-esb</dir>
-									<systemId>${project.build.outputDirectory}/local/ondisk/framework-soa-esb/config/ServiceConfig.xsd</systemId>
-									<includes>
-										<include>**/*ServiceConfig.xml</include>
-									</includes>
-								</validationSet>
-								<validationSet>
-									<validating>true</validating>
-									<dir>${project.build.outputDirectory}/local/ondisk/framework-soa-esb</dir>
-									<systemId>${project.build.outputDirectory}/local/ondisk/framework-soa-esb/config/PropertiesList.xsd</systemId>
-									<includes>
-										<include>**/*Properties.xml</include>
-									</includes>
-								</validationSet>
-								<validationSet>
-									<validating>true</validating>
-									<dir>${project.build.outputDirectory}/local/ondisk/SOA_Gateway</dir>
-									<systemId>${project.build.outputDirectory}/local/ondisk/SOA_Gateway/framework/DataPowerEventCodes.xsd</systemId>
-									<includes>
-										<include>**/*Codes.xml</include>
-									</includes>
-									<excludes>
-										<exclude>**/codemaps/*</exclude>
-									</excludes>
-								</validationSet>
-							</validationSets>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>net.sf.saxon</groupId>
-						<artifactId>Saxon-HE</artifactId>
-						<version>9.4</version>
-					</dependency>
-				</dependencies>
-			</plugin>-->
-			<!--		<plugin>
-				<groupId>org.dpdirect.soa.esb</groupId>
-				<artifactId>dpMojos</artifactId>
-				<version>${project.version}</version>
-				<executions>
-					<execution>
-						<id>schematronGateway</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>schematron</goal>
-						</goals>
-						<configuration>
-							<schema>${project.build.outputDirectory}/local/ondisk/SOA_Gateway/config/SOA_Gateway-ServiceConfigValidation.sch</schema>
-							<includes>
-								<include>**/SOA_Gateway/config/**/*.xml</include>
-							</includes>
-						</configuration>
-					</execution>
-					<execution>
-						<id>schematronServices</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>schematron</goal>
-						</goals>
-						<configuration>
-							<schema>${project.build.outputDirectory}/local/ondisk/framework-soa-esb/config/framework-soa-esb-ServiceConfigValidation.sch</schema>
-							<includes>
-								<include>**/framework-soa-esb/config/**/*.xml</include>
-							</includes>
-						</configuration>
-					</execution>
-					<execution>
-						<id>wsdlValidate</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>wsdlValidate</goal>
-						</goals>
-						<configuration>
-							<includes>
-								<include>**/*Services_Interface.wsdl</include>
-							</includes>
-							<excludes/>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>net.sf.saxon</groupId>
-						<artifactId>Saxon-HE</artifactId>
-						<version>9.4</version>
-					</dependency>
-				</dependencies>
-			</plugin>-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>

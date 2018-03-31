@@ -222,7 +222,7 @@
 			</plugin>-->
 			<!--		<plugin>
 				<groupId>org.dpdirect.soa.esb</groupId>
-				<artifactId>dpMojos</artifactId>
+				<artifactId>dp-validation-mojos</artifactId>
 				<version>${project.version}</version>
 				<executions>
 					<execution>

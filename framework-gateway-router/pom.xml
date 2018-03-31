@@ -24,7 +24,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/local/ondisk</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/local</outputDirectory>
 							<resources>
 								<resource>
 									<directory>src/main/xml/configuration</directory>
@@ -51,7 +51,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/local/ondisk/framework-gateway</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/local/framework-gateway-router</outputDirectory>
 							<resources>
 								<resource>
 									<directory>src/main/xml/</directory>
@@ -72,7 +72,7 @@
 							<outputDirectory>${project.build.outputDirectory}/xcfg</outputDirectory>
 							<resources>
 								<resource>
-									<directory>src/main/xml/configuration/framework-gateway/xcfg</directory>
+									<directory>src/main/xml/configuration/framework-gateway-router/xcfg</directory>
 									<includes>
 										<include>*.xcfg</include>
 									</includes>
@@ -87,7 +87,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/local/ondisk/unit-test</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/local/unit-test</outputDirectory>
 							<resources>
 								<resource>
 									<directory>src/main/xml/unit-test</directory>
@@ -146,7 +146,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/dpdirect_esb</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/ant-deploy</outputDirectory>
 							<resources>
 								<resource>
 									<directory>src/main/resources</directory>

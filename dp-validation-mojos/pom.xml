@@ -4,11 +4,11 @@
 	<parent>
 		<groupId>org.dpdirect.soa.esb</groupId>
 		<artifactId>DPDirect_main</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
-	<artifactId>dpMojos</artifactId>
+	<artifactId>dp-validation-mojos</artifactId>
 	<packaging>maven-plugin</packaging>
-	<name>dpMojos</name>
+	<name>dp-validation-mojos</name>
 	<description>iso-schematron-ant-task is a collection of ant tasks to validate XML resources at build time.</description>
 	<dependencies>
 		<dependency>
