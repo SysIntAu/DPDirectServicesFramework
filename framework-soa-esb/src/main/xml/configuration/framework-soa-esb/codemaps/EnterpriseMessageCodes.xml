@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Worksheet name="ConsolidatedCodes">
+	<Table>
+		<!-- Framework Error Code lookup: map Framework error to Enterprise error -->
+		
+		<Row>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>FRMWK0001</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>System</Subtype>
+			<MessageDescription>Unexpected system / runtime error occurred.</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0010</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>FRMWK0010</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Security</Subtype>
+			<MessageDescription>A security-related error occurred.</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0020</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>FRMWK0020</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>Invalid or missing SOAP Envelope.</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0022</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>FRMWK0022</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>A syntax validation error occurred. Mandatory field missing. $providerDescription</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0025</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>FRMWK0025</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>SOAP Fault received as response from a back-end system. $providerDescription</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0026</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>FRMWK0026</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0027</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>FRMWK0027</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>A validation error occurred</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>FRMWK0030</ProviderCode>
+			<Service>*</Service>
+			<Type>Informational</Type>
+			<Subtype>Logic</Subtype>
+			<MessageDescription>Request operation completed successfully</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0031</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>FRMWK0031</ProviderCode>
+			<Service>*</Service>
+			<Type>Informational</Type>
+			<Subtype>Logic</Subtype>
+			<MessageDescription>Request excluded by service filter</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		
+		<!-- Enterprise Error Code Lookup -->
+		
+		<Row>
+			<EnterpriseCode>ERROR0001</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>System</Subtype>
+			<MessageDescription>Unexpected system / runtime error occurred.</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0002</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>*</Type>
+			<Subtype>*</Subtype>
+			<MessageDescription>An unexpected error has occurred within the Gateway and your request may not have been completed</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0010</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Security</Subtype>
+			<MessageDescription>A security-related error occurred.</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0011</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Security</Subtype>
+			<MessageDescription>The provider is unable to authorise access to the system.</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0012</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>System</Subtype>
+			<MessageDescription>A service time-out error has occurred. The system is currently unable to process your request</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0013</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>System</Subtype>
+			<MessageDescription>Time-out occurred</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0014</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>System</Subtype>
+			<MessageDescription>Time-out error raised on a secondary service provider invocation</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0015</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>*</Type>
+			<Subtype>*</Subtype>
+			<MessageDescription>Provider failed to authenticate the user request</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0016</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>User does not have sufficient security privileges</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0020</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>Invalid or missing SOAP Envelope.</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0021</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>*</Type>
+			<Subtype>*</Subtype>
+			<MessageDescription>Unknown service request type</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0022</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>Sytax validation error. One or more mandatory fields are missing from the request</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0023</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Warning</Type>
+			<Subtype>System</Subtype>
+			<MessageDescription>A given field is longer than the maximum specified length</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0025</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>SOAP Fault received as response from a back-end system. $providerDescription</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0026</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0027</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Error</Type>
+			<Subtype>Validation</Subtype>
+			<MessageDescription>A validation error occurred. $providerDescription</MessageDescription>
+			<ErrorDomain>Enterprise</ErrorDomain>
+		</Row>
+		<Row>
+			<EnterpriseCode>ERROR0030</EnterpriseCode>
+			<Provider>*</Provider>
+			<ProviderCode>*</ProviderCode>
+			<Service>*</Service>
+			<Type>Informational</Type>
+			<Subtype>Logic</Subtype>
+			<MessageDescription>Request excluded by service filter</MessageDescription>
+			<ErrorDomain>Framework</ErrorDomain>
+		</Row>
+	</Table>
+</Worksheet>

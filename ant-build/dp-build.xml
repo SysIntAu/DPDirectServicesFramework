@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************
+	**
+	** NAME
+	** dp-build.xml
+	**
+	** PURPOSE
+	** This file is an ANT build script developed to build version controlled configuration files from normalised development artifacts.
+	**
+	** PARAMETERS
+	** release.build.dir    == Contains the built deployment artifacts
+	**
+	** OPTIONAL PARMS - Deployment
+	** component.list == Comma delimeted list of components to build. Default is all (contents of ../src/main/xml/configuration)
+	**
+	** MODIFICATIONS    DATE       	DETAILS
+	** Tim Goodwill		2012.11.26	Initial script
+	**
+	******************************************************************** -->
+<project name="dp-build" default="package.components">
+	
+	<!-- Location of optional properties file -->
+	<property file="build.properties"/>
+	
+	<!-- Default parameters -->
+	<property name="component.list" value="framework-common,framework-soa-esb,framework-gateway-router"/>
+	<property name="wsp.template.name" value="WebServiceProxy_Template.xcfg"/>
+	<property name="gateway.router.name" value="framework-gateway-router"/>
+	<property name="gateway.routefile.name" value="framework-gateway-router_V1_ServiceRoute.xml"/>
+	<property name="type" value="all"/>
+	
+	<!-- Default locations -->
+	<property name="project.dir"  location="${basedir}/../.."/>
+	<property name="build.dir"  location="${basedir}/ant-build"/>
+	<property name="deploy.dir"  location="${basedir}/ant-deploy"/>
+	<property name="dpdirect.dir"  location="${basedir}/../dpdirect"/>
+	<property name="ant.resources.lib.dir"  location="${project.dir}/ant-build/lib"/>
+	<property name="environment.dirs"  location="${project.dir}/*/src/main/xml/environment"/>
+	<property name="certificates.dir"  location="${project.dir}/framework-soa-esb/src/main/resources/certificates"/>
+	<property name="security.dir"  location="${project.dir}/framework-soa-esb/src/main/xml/security"/>
+	<property name="service.schema.dir"  location="${project.dir}/framework-soa-esb/src/main/xml/service-schema"/>
+	<property name="service.source.dir"  location="${project.dir}/framework-soa-esb/src/main/xml/configuration/framework-soa-esb"/>
+	
+	<!-- *****************************************************************
+		** Set up the "ant-contrib" task library
+		****************************************************************** -->
+	<path id="saxon9.calss.path">
+		<pathelement location="${ant.resources.lib.dir}/saxon9.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9-ant.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9-dom.jar"/>
+		<pathelement location="${ant.resources.lib.dir}/saxon9-xpath.jar"/>
+	</path>
+	<path id="antcontrib.class.path" path="${ant.resources.lib.dir}/ant-contrib-1.0b3.jar"/>
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="antcontrib.class.path"/>
+	
+	<!-- === BUILD TARGETS ================================================================================= -->
+	
+	<!-- **********************************************************
+		** target: package.components
+		**
+		** PURPOSE
+		** Package (zip) config files from component deploy dir, and copy the zip package 
+		** and files from the src dir to the stageing dir.
+		****************************************************************** -->
+	<target name="package.components" depends="create.component.list">
+		
+		<!-- copy the versioned dp-build project to the release.build.dir -->
+		<copy todir="${release.build.dir}/ant-build" overwrite="true">
+			<fileset dir="${build.dir}" includes="**/*"/>
+		</copy>
+		<copy todir="${release.build.dir}/ant-build/lib" overwrite="true">
+			<fileset dir="${ant.resources.lib.dir}" includes="**/*"/>
+		</copy>
+		<copy todir="${release.build.dir}/dpdirect" overwrite="true">
+			<fileset dir="${dpdirect.dir}" includes="**/*"/>
+		</copy>
+		<copy todir="${release.build.dir}/ant-deploy" overwrite="true">
+			<fileset dir="${deploy.dir}" includes="**/*"/>
+		</copy>
+		<copy todir="${release.build.dir}/ant-deploy/lib" overwrite="true">
+			<fileset dir="${ant.resources.lib.dir}" includes="**/*"/>
+		</copy>
+		
+		<!-- copy the Certificates files to the release.build.dir -->
+		<copy todir="${release.build.dir}/cert">
+			<fileset dir="${certificates.dir}"/>
+		</copy>
+		
+		<!-- copy the Security files to the release.build.dir -->
+		<copy todir="${release.build.dir}/security">
+			<fileset dir="${security.dir}"/>
+		</copy>
+		
+		<!-- Copy schema directory to local subdir -->
+		<if>
+			<or>
+				<equals arg1="${type}" arg2="all" />
+				<equals arg1="${type}" arg2="schema" />
+				<equals arg1="${type}" arg2="services" />
+			</or>
+			<then>
+				<mkdir dir="${release.build.dir}/local/service-schema"/>
+				<copy todir="${release.build.dir}/local/service-schema" overwrite="true">
+					<fileset dir="${service.schema.dir}" excludes="**/XML/**,**\XML\**"/>
+				</copy>
+<!--				<subant target="validate.wsdl" inheritall="true" inheritrefs="true">
+					<fileset dir="${build.dir}" includes="transform-and-validate.xml"/>
+				</subant>-->
+			</then>
+		</if>
+		
+		<!-- Copy component directory to local subdir -->
+		<for list="${component.list}" param="this.component" >
+			<sequential>
+				<var name="component" value="@{this.component}"/>
+				
+				<!-- copy the Environment configuration files -->
+				<copy todir="${release.build.dir}/environment">
+					<fileset dir="${project.dir}/@{this.component}/src/main/xml/environment" includes="**/*"/>
+				</copy>
+				
+				<!-- Copy component directory -->
+				<mkdir dir="${release.build.dir}/local/@{this.component}"/>
+				<copy todir="${release.build.dir}" overwrite="true">
+					<fileset dir="${project.dir}/@{this.component}/src/main/xml/configuration/@{this.component}/xconfig" excludes="**/*.java"/>
+				</copy>
+				<copy todir="${release.build.dir}/local/@{this.component}" overwrite="true">
+					<fileset dir="${project.dir}/@{this.component}/src/main/xml/configuration/@{this.component}" excludes="**/*.java"/>
+				</copy>
+				<var name="component" unset="true"/>
+				<var name="is.gateway-router.config" unset="true"/>
+				<condition property="is.router.config" value="">
+					<contains string="@{this.component}" substring="router" />
+				</condition>
+				<antcall target="wsgateway.configuration" inheritall="true" inheritrefs="true">
+					<param name="component" value="@{this.component}"/>
+				</antcall>
+				<!-- only build WSProxy objects for an SOA Services component-->
+				<var name="is.services.config" unset="true"/>
+				<condition property="is.services.config" value="">
+					<contains string="@{this.component}" substring="soa-esb" />
+				</condition>
+				<var name="component" unset="true"/>
+				<antcall target="wsproxy.configuration" inheritall="true" inheritrefs="true">
+					<param name="component" value="@{this.component}"/>
+				</antcall>
+				<var name="component" unset="true"/>
+<!--				<subant target="transform.and.validate" inheritall="true" inheritrefs="true">
+					<property name="component" value="@{this.component}"/>
+					<fileset dir="${build.dir}" includes="transform-and-validate.xml"/>
+				</subant>-->
+			</sequential>
+		</for>
+	</target>
+	<!-- **********************************************************
+		** target: wsgateway.configuration
+		**
+		** PURPOSE
+		** inject xcfg file with custom operation configuration
+		****************************************************************** -->
+	<target name="wsgateway.configuration" if="is.router.config">
+		<path id="config.files.path">
+			<fileset dir="${service.source.dir}/config" includes="*ServiceConfig.xml"/>
+		</path>
+		<property name="component.config.dir" value="${service.source.dir}/config/"/>
+		<pathconvert property="config.files.list" refid="config.files.path" pathsep=",">
+			<map from="${component.config.dir}" to=""/>
+		</pathconvert>
+		<for list="${config.files.list}" param="this.config.file" >
+			<sequential>
+				<echo message="Building Gateway RouteFile from @{this.config.file} Service Config"/>
+				<!-- inject xcfg services template with service configuration -->
+				<xslt in="${release.build.dir}/local/${gateway.router.name}/config/${gateway.routefile.name}"
+					out="${release.build.dir}/local/${gateway.router.name}/config/${gateway.routefile.name}.@{this.config.file}"
+					style="${release.build.dir}/ant-build/Build_Gateway_Routefile_From_Config.xsl" force="true">
+					<param name="SERVICE_CONFIG_FILE_PATH" expression="${service.source.dir}/config/@{this.config.file}"/>
+					<outputproperty name="method" value="xml"/>
+					<outputproperty name="standalone" value="yes"/>
+					<outputproperty name="encoding" value="UTF-8"/>
+					<outputproperty name="indent" value="yes"/>
+				</xslt>
+				<move file="${release.build.dir}/local/${gateway.router.name}/config/${gateway.routefile.name}.@{this.config.file}"
+					tofile="${release.build.dir}/local/${gateway.router.name}/config/${gateway.routefile.name}" 
+					overwrite="true"/>
+			</sequential>
+		</for>
+	</target>
+	<!-- **********************************************************
+		** target: wsproxy.configuration
+		**
+		** PURPOSE
+		** inject xcfg file with custom operation configuration
+		****************************************************************** -->
+	<target name="wsproxy.configuration" if="is.services.config">
+		<path id="config.files.path">
+			<fileset dir="${service.source.dir}/config" includes="*ServiceConfig.xml"/>
+		</path>
+		<property name="component.config.dir" value="${service.source.dir}/config"/>
+		<pathconvert property="config.files.list" refid="config.files.path" pathsep=",">
+			<map from="${component.config.dir}/" to=""/>
+		</pathconvert>
+		<for list="${config.files.list}" param="this.config.file" >
+			<sequential>
+				<echo message="Building Web Service Proxy objects from @{this.config.file} Service Config and WSDL"/>
+				<echo message="File path ${component.config.dir}/@{this.config.file}"/>
+				<xslt in="${release.build.dir}/${wsp.template.name}" out="${release.build.dir}/@{this.config.file}.xcfg" extension=".xcfg"
+					style="${release.build.dir}/ant-build/Build_WSProxy_Objects_From_Config.xsl" force="true">
+					<param name="SERVICE_CONFIG_FILE_PATH" expression="${component.config.dir}/@{this.config.file}"/>
+					<outputproperty name="method" value="xml"/>
+					<outputproperty name="standalone" value="yes"/>
+					<outputproperty name="encoding" value="UTF-8"/>
+					<outputproperty name="indent" value="yes"/>
+				</xslt>
+				<!--Combine  xconfig file with service framework xconfig -->
+				<xslt in="${release.build.dir}/${component}.xcfg" out="${release.build.dir}/${component}_combined.xcfg"
+					style="${release.build.dir}/ant-build/Combine_XConfig.xsl" force="true">
+					<param name="XCONFIG_PATH" expression="${release.build.dir}/@{this.config.file}.xcfg"/>
+					<outputproperty name="method" value="xml"/>
+					<outputproperty name="standalone" value="yes"/>
+					<outputproperty name="encoding" value="UTF-8"/>
+					<outputproperty name="indent" value="yes"/>
+				</xslt>
+				<move file="${release.build.dir}/${component}_combined.xcfg" tofile="${release.build.dir}/${component}.xcfg" overwrite="true"/>
+			</sequential>
+		</for>
+	</target>
+	
+	<!-- **********************************************************
+		** target: create.component.list
+		**
+		** PURPOSE
+		** Generate a list of components to be built 
+		** based on the contents of the src/main/xml/configuration directory
+		****************************************************************** -->
+	<target name="create.component.list" unless="component.list">
+		<!-- reform service.source.dir path -->
+		<path id="service.source.dir.path">
+			<pathelement path="${service.source.dir}"/>
+		</path>
+		<var name="service.source.dir" unset="true"/>
+		<pathconvert property="service.source.dir" refid="service.source.dir.path"/>
+		
+		<!-- store a list of source components -->
+		<path id="component.dirs">
+			<dirset dir="${service.source.dir}" includes="*" excludes="*_Gateway/**"/>
+		</path>
+		<pathconvert property="component.list" pathsep="," refid="component.dirs">
+			<map from="${service.source.dir}\" to=""/>
+			<map from="${service.source.dir}/" to=""/>
+		</pathconvert>
+		
+	</target>
+</project>

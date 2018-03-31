@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ack="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
+	targetNamespace="http://www.dpdirect.org/Namespace/Enterprise/AcknowledgementMessage/V1.0"
+	elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.1">
+	<xs:simpleType name="acknowledgementType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="SUCCESS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="codeType">
+		<xs:restriction base="xs:token">
+			<xs:length value="9"/>
+			<xs:pattern value="[A-Z]{3}[\sA-Z:\-][0-9]{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Code" type="ack:codeType"/>
+	<xs:element name="Description" type="xs:token"/>
+	<xs:element name="SubCode" type="xs:token"/>
+	<xs:element name="SubDescription" type="xs:token"/>
+	<xs:element name="Location" type="xs:token"/>
+	<xs:element name="MessageOrigin" type="xs:token"/>
+	<xs:element name="Acknowledgement" type="ack:acknowledgementType"/>
+	<xs:complexType name="acknowledgementMessageType">
+		<xs:sequence>
+			<xs:element ref="ack:Acknowledgement"/>
+			<xs:element ref="ack:Code" minOccurs="0"/>
+			<xs:element ref="ack:Description" minOccurs="0"/>
+			<xs:element ref="ack:SubCode" minOccurs="0"/>
+			<xs:element ref="ack:SubDescription" minOccurs="0"/>
+			<xs:element ref="ack:Location" minOccurs="0"/>
+			<xs:element ref="ack:MessageOrigin" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="AcknowledgementMessage" type="ack:acknowledgementMessageType"/>
+</xs:schema>

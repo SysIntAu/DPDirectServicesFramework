@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!--  Copyright (c) 2002-2003 DataPower Technology, Inc. All Rights Reserved. -->
+<!--
+  Licensed Materials - Property of IBM
+  IBM WebSphere DataPower Appliances
+  Copyright IBM Corporation 2007. All Rights Reserved.
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:dp="http://www.datapower.com/schemas/management"
+    targetNamespace="http://www.datapower.com/schemas/management"
+    elementFormDefault="qualified">
+    
+    <xsd:include schemaLocation="xml-mgmt-2004-types.xsd"/>
+    
+    <xsd:complexType name="export-object">
+        <xsd:attribute name="class" type="xsd:string"/>
+        <xsd:attribute name="name" type="xsd:string"/>
+        <xsd:attribute name="ref-objects" type="xsd:boolean"/>
+        <xsd:attribute name="ref-files" type="xsd:boolean"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="export-domain">
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="export-format">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ZIP"/>
+            <xsd:enumeration value="XML"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="restore-domain">
+        <xsd:attribute name="name" type="xsd:string"/>
+        <xsd:attribute name="import-domain" type="xsd:boolean"/>
+        <xsd:attribute name="reset-domain" type="xsd:boolean"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="get-samlart">
+        <xsd:attribute name="user" type="xsd:string"/>
+        <xsd:attribute name="password" type="xsd:string"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="get-status">
+        <xsd:attribute name="class" type="dp:status-class"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="get-config">
+        <xsd:attribute name="class" type="dp:config-class"/>
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="get-log">
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="get-filestore">
+        <xsd:attribute name="location" type="dp:filestore-location"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="get-file">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="export">
+        <xsd:sequence>
+            <xsd:element name="user-comment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="object" type="dp:export-object" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="format" type="dp:export-format"/>
+        <xsd:attribute name="all-files" type="xsd:boolean"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="import">
+        <xsd:sequence>
+            <xsd:element name="input-file" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+        <xsd:attribute name="source-type" type="dp:export-format"/>
+        <xsd:attribute name="dry-run" type="xsd:boolean"/>
+        <xsd:attribute name="overwrite-files" type="xsd:boolean"/>
+        <xsd:attribute name="overwrite-objects" type="xsd:boolean"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="backup">
+        <xsd:sequence>
+            <xsd:element name="user-comment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="domain" type="dp:export-domain" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="format" type="dp:export-format"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="restore">
+        <xsd:sequence>
+            <xsd:element name="input-file" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="domain" type="dp:restore-domain" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="source-type" type="dp:export-format"/>
+        <xsd:attribute name="dry-run" type="xsd:boolean"/>
+        <xsd:attribute name="overwrite-files" type="xsd:boolean"/>
+        <xsd:attribute name="overwrite-objects" type="xsd:boolean"/>
+    </xsd:complexType>
+    
+    <!-- a request comprises a sequence of operations -->
+    <xsd:element name="request">
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element name="get-samlart" type="dp:get-samlart"/>
+                <xsd:element name="get-status" type="dp:get-status"/>
+                <xsd:element name="get-config" type="dp:get-config"/>
+                <xsd:element name="get-log" type="dp:get-log"/>
+                <xsd:element name="get-filestore" type="dp:get-filestore"/>
+                <xsd:element name="get-file" type="dp:get-file"/>
+                <xsd:element name="set-config" type="dp:config-objects"/>
+                <xsd:element name="modify-config" type="dp:config-objects"/>
+                <xsd:element name="del-config" type="dp:config-objects"/>
+                <xsd:element name="set-file" type="dp:file"/>
+                <xsd:element name="do-action" type="dp:action-objects"/>
+                <xsd:element name="do-export" type="dp:export"/>
+                <xsd:element name="do-import" type="dp:import"/>
+                <xsd:element name="do-backup" type="dp:backup"/>
+                <xsd:element name="do-restore" type="dp:restore"/>
+            </xsd:choice>
+            <xsd:attribute name="domain" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+</xsd:schema>
+

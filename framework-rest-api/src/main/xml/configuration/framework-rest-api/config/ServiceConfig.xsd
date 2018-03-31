@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.1">
+	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:appinfo xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<dc:creator>N.A.</dc:creator>
+			<dc:date>2016-10-19</dc:date>
+			<dc:title>DPDIRECT Datapower Service Configuration Schema</dc:title>
+			<dc:subject>XML Schema configuration model for the DataPower Gateway  Web Services component</dc:subject>
+			<dc:contributor>N.A.</dc:contributor>
+			<dc:publisher>DPDIRECT</dc:publisher>
+		</xs:appinfo>
+	</xs:annotation>
+	<!--========================================================================
+		History:
+		2016-10-19	v1.0	N.A.		Initial Version.
+		========================================================================-->
+	<!--
+	=================================================================
+		Global Elements
+	=================================================================
+	-->
+	<xs:element name="AAA" type="aaaType"/>
+	<xs:element name="Action" type="nonEmptyTokenType"/>
+	<xs:element name="Address" type="nonEmptyURIType"/>
+	<xs:element name="BackendRouting" type="backendRoutingType"/>
+	<xs:element name="BackendStub" type="nonEmptyURIType"/>
+	<xs:element name="CallService" type="callServiceType"/>
+	<xs:element name="Copy" type="copyType"/>
+	<xs:element name="Description" type="xs:string"/>
+	<xs:element name="ErrorPolicyConfig" type="errorPolicyConfigType"/>
+	<xs:element name="HTTPEndpoint" type="httpEndpointType"/>
+	<xs:element name="HTTPPort" type="xs:positiveInteger"/>
+	<xs:element name="HTTPSPort" type="xs:positiveInteger"/>
+	<xs:element name="HTTPPortList" type="httpPortListType"/>
+	<xs:element name="HTTPSPortList" type="httpPortListType"/>
+	<xs:element name="Header" type="nameValuePairType"/>
+	<xs:element name="HeaderList" type="headerListType"/>
+	<xs:element name="InputMatchCriteria" type="inputMatchCriteriaType"/>
+	<xs:element name="Method" type="aaaMethodType"/>
+	<xs:element name="MQMDConfig" type="nonEmptyURIType"/>
+	<xs:element name="MQRouting" type="mqRoutingType"/>
+	<xs:element name="OutputVar" type="nonEmptyTokenType"/>
+	<xs:element name="Parameter" type="nameValuePairType"/>
+	<xs:element name="ParameterList" type="parameterListType"/>
+	<xs:element name="OperationConfig" type="operationConfigType"/>
+	<xs:element name="Port" type="xs:positiveInteger"/>
+	<xs:element name="PreProcessConfig" type="genericPolicyConfigType"/>
+	<xs:element name="QueueMgr" type="nonEmptyTokenType"/>
+	<xs:element name="RemoteQueueMgr" type="nonEmptyTokenType"/>
+	<xs:element name="ReplyQueue" type="queueNameType"/>
+	<xs:element name="PublishTopicString" type="nonEmptyTokenType"/>
+	<xs:element name="RequestPolicyConfig" type="requestPolicyConfigType"/>
+	<xs:element name="RequestQueue" type="queueNameType"/>
+	<xs:element name="ResponsePolicyConfig" type="responsePolicyConfigType"/>
+	<xs:element name="InboundURI" type="nonEmptyTokenType"/>
+	<xs:element name="Schema" type="nonEmptyURIType"/>
+	<xs:element name="Schematron" type="nonEmptyURIType"/>
+	<xs:element name="ServiceConfig" type="serviceConfigType"/>
+	<xs:element name="SFTPEndpoint" type="sftpEndpointType" />
+	<xs:element name="SFTPUserName" type="nonEmptyTokenType" />
+	<xs:element name="SOAPConfig" type="nonEmptyURIType"/>
+	<xs:element name="Stylesheet" type="nonEmptyURIType"/>
+	<xs:element name="TargetElement" type="xs:string"/>
+	<xs:element name="TimeoutSeconds" type="xs:positiveInteger"/>
+	<xs:element name="Transform" type="transformType"/>
+	<xs:element name="Filter" type="transformType"/>
+	<xs:element name="UrlOpenOutputVar" type="nonEmptyTokenType"/>
+	<xs:element name="EncodeMTOM" type="MTOMType"/>
+	<xs:element name="DecodeMTOM" type="MTOMType"/>
+	<xs:element name="Validate" type="validateType"/>
+	<!--
+	=================================================================
+		Global Complex Types
+	=================================================================
+	-->
+	<xs:complexType name="aaaType">
+		<xs:sequence>
+			<xs:element ref="Method"/>
+		</xs:sequence>
+		<xs:attribute name="condition" type="xs:token" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="backendRoutingType">
+		<xs:sequence>
+			<xs:element ref="SOAPConfig" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element ref="MQRouting"/>
+				<xs:element ref="HTTPEndpoint"/>
+				<xs:element ref="SFTPEndpoint" />
+				<xs:element ref="BackendStub"/>
+			</xs:choice>
+			<xs:element ref="TimeoutSeconds" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="useWSAddressing" type="trueFalseBooleanType" use="optional" default="false"/>
+		<xs:attribute name="provider" type="xs:token" use="required" />
+ 		<xs:attribute name="async" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="condition" type="xs:token" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="callServiceType">
+		<xs:sequence>
+			<xs:element ref="Transform" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="SOAPConfig" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element ref="HTTPEndpoint"/>
+				<xs:element ref="MQRouting"/>
+				<xs:element ref="SFTPEndpoint" />
+			</xs:choice>
+			<xs:element ref="TimeoutSeconds" minOccurs="0"/>
+			<xs:element ref="OutputVar" minOccurs="0"/>
+			<xs:element ref="UrlOpenOutputVar" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="useWSAddressing" type="trueFalseBooleanType" use="optional" default="false"/>
+		<xs:attribute name="provider" type="xs:token" use="required"/>
+		<xs:attribute name="failOnError" type="xs:boolean" use="optional"/>
+		<xs:attribute name="condition" type="xs:token" use="optional"/>
+		<xs:attribute name="async" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MTOMType">
+		<xs:sequence>
+			<xs:element ref="TargetElement"/>
+		</xs:sequence>
+		<xs:attribute name="condition" type="xs:token" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="copyType">
+		<xs:sequence>
+			<xs:element ref="Transform" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="SOAPConfig" minOccurs="0"/>
+			<xs:choice>
+				<xs:element ref="HTTPEndpoint"/>
+				<xs:element ref="MQRouting"/>
+				<xs:element ref="SFTPEndpoint"/>
+			</xs:choice>
+			<xs:element ref="UrlOpenOutputVar" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="failOnError" type="xs:boolean" use="optional"/>
+		<xs:attribute name="provider" type="xs:token" use="optional"/>
+		<xs:attribute name="condition" type="xs:token" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="genericPolicyConfigType">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="AAA"/>
+			<xs:element ref="Validate"/>
+			<xs:element ref="CallService"/>
+			<xs:element ref="Transform"/>
+			<xs:element ref="Filter"/>
+			<xs:element ref="EncodeMTOM"/>
+			<xs:element ref="DecodeMTOM"/>
+			<xs:element ref="Copy"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="headerListType">
+		<xs:sequence>
+			<xs:element ref="Header" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="sftpEndpointType">
+		<xs:sequence>
+			<xs:element ref="Address"/>
+			<xs:element ref="SFTPUserName" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="httpEndpointType">
+		<xs:sequence>
+			<xs:element ref="Address"/>
+			<xs:element ref="HeaderList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="httpPortListType">
+		<xs:sequence>
+			<xs:element ref="Port" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mqRoutingType">
+		<xs:sequence>
+			<xs:element ref="QueueMgr"/>
+			<xs:element ref="RemoteQueueMgr" minOccurs="0"/>
+			<xs:choice>
+				<!-- Let request and reply queues be optional but assert that 
+				at least one is provided -->
+				<xs:sequence>
+					<xs:element ref="RequestQueue"/>
+					<xs:element ref="ReplyQueue" minOccurs="0"/>
+				</xs:sequence>
+				<xs:element ref="ReplyQueue"/>
+				<xs:element ref="PublishTopicString"/>
+			</xs:choice>
+			<xs:element ref="MQMDConfig" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="inputMatchCriteriaType">
+		<xs:sequence>
+			<xs:element ref="Action" minOccurs="0"/>
+			<xs:element ref="InboundURI" minOccurs="0"/>
+			<xs:element ref="HTTPPort" minOccurs="0"/>
+			<xs:element ref="HTTPSPort" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nameValuePairType">
+		<xs:attribute name="name" type="nonEmptyTokenType" use="required"/>
+		<xs:attribute name="value" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="parameterListType">
+		<xs:sequence>
+			<xs:element ref="Parameter" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="operationConfigType">
+		<xs:sequence>
+			<xs:element ref="Description" minOccurs="0"/>
+			<xs:element ref="InputMatchCriteria" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="RequestPolicyConfig"/>
+			<xs:element ref="ResponsePolicyConfig"/>
+			<xs:element ref="ErrorPolicyConfig"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="requestPolicyConfigType">
+		<xs:complexContent>
+			<xs:extension base="genericPolicyConfigType">
+				<xs:sequence>
+					<xs:element ref="BackendRouting" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="schemaValidate" type="xs:boolean" use="optional" default="true"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="responsePolicyConfigType">
+		<xs:complexContent>
+			<xs:extension base="genericPolicyConfigType">
+				<xs:attribute name="allowSoapFaults" type="xs:boolean" use="optional"/>
+				<xs:attribute name="schemaValidate" type="xs:boolean" use="optional" default="true"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="errorPolicyConfigType">
+		<xs:complexContent>
+			<xs:extension base="genericPolicyConfigType">
+				<xs:attribute name="schemaValidate" type="xs:boolean" use="optional" default="true"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="serviceConfigType">
+		<xs:sequence>
+			<xs:element ref="InputMatchCriteria" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="PreProcessConfig" minOccurs="0"/>
+			<xs:element ref="OperationConfig" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="wsdlLocation" type="nonEmptyTokenType" use="optional"/>
+		<xs:attribute name="version" type="nonEmptyTokenType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="transformType">
+		<xs:sequence>
+			<xs:element ref="Stylesheet"/>
+			<xs:element ref="ParameterList" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="condition" type="xs:token" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="validateType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element ref="Schema"/>
+				<xs:element ref="Schematron" minOccurs="0"/>
+			</xs:sequence>
+			<xs:element ref="Schematron"/>
+		</xs:choice>
+		<xs:attribute name="substituteMimeRefs" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="warningOnly" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="condition" type="xs:token" use="optional"/>
+	</xs:complexType>
+	<!--
+	=================================================================
+		Global Simple Types
+	=================================================================
+	-->
+	<xs:simpleType name="nonEmptyTokenType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nonEmptyURIType">
+		<xs:restriction base="xs:anyURI">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="trueFalseBooleanType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="true"/>
+			<xs:enumeration value="false"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="aaaMethodType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="STS-SAML-Validation"/>
+			<xs:enumeration value="Signed-SAML-Filter"/>
+			<xs:enumeration value="X.509"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="queueNameType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Z0-9_\./\*:]+"/>
+			<xs:pattern value="\s+"/>
+			<xs:pattern value="\\$\{.*\}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

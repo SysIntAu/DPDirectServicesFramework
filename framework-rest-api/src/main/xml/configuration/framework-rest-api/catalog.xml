@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+	<rewriteURI uriStartString="local:///framework-soa-esb/" rewritePrefix="./"/>
+	<rewriteURI uriStartString="local:///Json_RestAPI/" rewritePrefix="./"/>
+	<rewriteSystem systemIdStartString="local:///framework-soa-esb/" rewritePrefix="./"/>
+	<rewriteSystem systemIdStartString="local:///Json_RestAPI/" rewritePrefix="./"/>
+</catalog>

@@ -1,0 +1,459 @@
+<datapower-configuration version="3">
+
+	<configuration domain="DPSOA">
+		<DomainSettings name="default" intrinsic="true">
+			<mAdminState>enabled</mAdminState>
+			<PasswordTreatment>none</PasswordTreatment>
+		</DomainSettings>
+		<PasswordAlias name="SOA_GW">
+			<mAdminState>enabled</mAdminState>
+			<DomainSettings class="DomainSettings">default</DomainSettings>
+		</PasswordAlias>
+		<CryptoKey name="SOA_GW">
+			<mAdminState>enabled</mAdminState>
+			<Filename>cert:///SOA_GW_DEV-privkey.pem</Filename>
+			<PasswordAlias>on</PasswordAlias>
+			<Alias class="PasswordAlias">SOA_GW</Alias>
+		</CryptoKey>
+		<CryptoFWCred name="SOA_GW">
+			<mAdminState>enabled</mAdminState>
+			<PrivateKey class="CryptoKey">SOA_GW</PrivateKey>
+			<Certificate class="CryptoCertificate">SOA_GW</Certificate>
+		</CryptoFWCred>
+		<CryptoIdentCred name="SOA_GW">
+			<mAdminState>enabled</mAdminState>
+			<Key class="CryptoKey">SOA_GW</Key>
+			<Certificate class="CryptoCertificate">SOA_GW</Certificate>
+		</CryptoIdentCred>
+		<CryptoValCred name="authenticationManagerValCreds">
+			<mAdminState>enabled</mAdminState>
+			<Certificate class="CryptoCertificate">authenticationManager</Certificate>
+			<CertValidationMode>legacy</CertValidationMode>
+			<UseCRL>on</UseCRL>
+			<RequireCRL>off</RequireCRL>
+			<CRLDPHandling>ignore</CRLDPHandling>
+			<InitialPolicySet>2.5.29.32.0</InitialPolicySet>
+			<ExplicitPolicy>off</ExplicitPolicy>
+			<CheckDates>on</CheckDates>
+		</CryptoValCred>
+		<CryptoValCred name="SOA_GW">
+			<mAdminState>enabled</mAdminState>
+			<Certificate class="CryptoCertificate">SOA_GW_DEV</Certificate>
+			<CertValidationMode>legacy</CertValidationMode>
+			<UseCRL>on</UseCRL>
+			<RequireCRL>off</RequireCRL>
+			<CRLDPHandling>ignore</CRLDPHandling>
+			<InitialPolicySet>2.5.29.32.0</InitialPolicySet>
+			<ExplicitPolicy>off</ExplicitPolicy>
+			<CheckDates>on</CheckDates>
+		</CryptoValCred>
+		<SSLClientProfile name="SOA_GW">
+			<mAdminState>enabled</mAdminState>
+			<Protocols>
+				<SSLv3>off</SSLv3>
+				<TLSv1d0>on</TLSv1d0>
+				<TLSv1d1>on</TLSv1d1>
+				<TLSv1d2>on</TLSv1d2>
+			</Protocols>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_256_GCM_SHA384</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_256_GCM_SHA384</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_256_CBC_SHA384</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_256_CBC_SHA384</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_256_CBC_SHA</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_256_CBC_SHA</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_256_GCM_SHA384</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_256_GCM_SHA384</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_256_CBC_SHA256</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_256_CBC_SHA256</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_256_CBC_SHA</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_256_CBC_SHA</Ciphers>
+			<Ciphers>RSA_WITH_AES_256_GCM_SHA384</Ciphers>
+			<Ciphers>RSA_WITH_AES_256_CBC_SHA256</Ciphers>
+			<Ciphers>RSA_WITH_AES_256_CBC_SHA</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_128_GCM_SHA256</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_128_GCM_SHA256</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_128_CBC_SHA256</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_128_CBC_SHA256</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_128_CBC_SHA</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_128_CBC_SHA</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_128_GCM_SHA256</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_128_GCM_SHA256</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_128_CBC_SHA256</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_128_CBC_SHA256</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_128_CBC_SHA</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_128_CBC_SHA</Ciphers>
+			<Ciphers>RSA_WITH_AES_128_GCM_SHA256</Ciphers>
+			<Ciphers>RSA_WITH_AES_128_CBC_SHA256</Ciphers>
+			<Ciphers>RSA_WITH_AES_128_CBC_SHA</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_3DES_EDE_CBC_SHA</Ciphers>
+			<Ciphers>DHE_RSA_WITH_3DES_EDE_CBC_SHA</Ciphers>
+			<Ciphers>DHE_DSS_WITH_3DES_EDE_CBC_SHA</Ciphers>
+			<Ciphers>RSA_WITH_3DES_EDE_CBC_SHA</Ciphers>
+			<Idcred class="CryptoIdentCred">SOA_GW</Idcred>
+			<ValidateServerCert>off</ValidateServerCert>
+			<Caching>on</Caching>
+			<CacheTimeout>300</CacheTimeout>
+			<CacheSize>100</CacheSize>
+			<SSLClientFeatures>
+				<use-sni>on</use-sni>
+				<permit-insecure-servers>on</permit-insecure-servers>
+				<compression>off</compression>
+			</SSLClientFeatures>
+			<EllipticCurves>secp521r1</EllipticCurves>
+			<EllipticCurves>secp384r1</EllipticCurves>
+			<EllipticCurves>secp256k1</EllipticCurves>
+			<EllipticCurves>secp256r1</EllipticCurves>
+			<UseCustomSNIHostname>no</UseCustomSNIHostname>
+		</SSLClientProfile>
+		<SSLServerProfile name="SOA_GW">
+			<mAdminState>enabled</mAdminState>
+			<Protocols>
+				<SSLv3>on</SSLv3>
+				<TLSv1d0>on</TLSv1d0>
+				<TLSv1d1>on</TLSv1d1>
+				<TLSv1d2>on</TLSv1d2>
+			</Protocols>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_256_GCM_SHA384</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_256_GCM_SHA384</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_256_CBC_SHA384</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_256_CBC_SHA384</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_256_CBC_SHA</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_256_CBC_SHA</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_256_GCM_SHA384</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_256_GCM_SHA384</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_256_CBC_SHA256</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_256_CBC_SHA256</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_256_CBC_SHA</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_256_CBC_SHA</Ciphers>
+			<Ciphers>RSA_WITH_AES_256_GCM_SHA384</Ciphers>
+			<Ciphers>RSA_WITH_AES_256_CBC_SHA256</Ciphers>
+			<Ciphers>RSA_WITH_AES_256_CBC_SHA</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_128_GCM_SHA256</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_128_GCM_SHA256</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_128_CBC_SHA256</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_128_CBC_SHA256</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_AES_128_CBC_SHA</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_AES_128_CBC_SHA</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_128_GCM_SHA256</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_128_GCM_SHA256</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_128_CBC_SHA256</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_128_CBC_SHA256</Ciphers>
+			<Ciphers>DHE_RSA_WITH_AES_128_CBC_SHA</Ciphers>
+			<Ciphers>DHE_DSS_WITH_AES_128_CBC_SHA</Ciphers>
+			<Ciphers>RSA_WITH_AES_128_GCM_SHA256</Ciphers>
+			<Ciphers>RSA_WITH_AES_128_CBC_SHA256</Ciphers>
+			<Ciphers>RSA_WITH_AES_128_CBC_SHA</Ciphers>
+			<Ciphers>ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA</Ciphers>
+			<Ciphers>ECDHE_RSA_WITH_3DES_EDE_CBC_SHA</Ciphers>
+			<Ciphers>DHE_RSA_WITH_3DES_EDE_CBC_SHA</Ciphers>
+			<Ciphers>DHE_DSS_WITH_3DES_EDE_CBC_SHA</Ciphers>
+			<Ciphers>RSA_WITH_3DES_EDE_CBC_SHA</Ciphers>
+			<Idcred class="CryptoIdentCred">SOA_GW</Idcred>
+			<RequestClientAuth>off</RequestClientAuth>
+			<RequireClientAuth>on</RequireClientAuth>
+			<ValidateClientCert>on</ValidateClientCert>
+			<SendClientAuthCAList>on</SendClientAuthCAList>
+			<Caching>on</Caching>
+			<CacheTimeout>300</CacheTimeout>
+			<CacheSize>20</CacheSize>
+			<SSLOptions>
+				<max-duration>off</max-duration>
+				<max-renegotiation>off</max-renegotiation>
+			</SSLOptions>
+			<MaxSSLDuration>60</MaxSSLDuration>
+			<NumberOfRenegotiationAllowed>0</NumberOfRenegotiationAllowed>
+			<ProhibitResumeOnReneg>off</ProhibitResumeOnReneg>
+			<Compression>off</Compression>
+			<AllowLegacyRenegotiation>on</AllowLegacyRenegotiation>
+			<PreferServerCiphers>on</PreferServerCiphers>
+			<EllipticCurves>secp521r1</EllipticCurves>
+			<EllipticCurves>secp384r1</EllipticCurves>
+			<EllipticCurves>secp256k1</EllipticCurves>
+			<EllipticCurves>secp256r1</EllipticCurves>
+		</SSLServerProfile>
+		<HTTPUserAgent name="default" intrinsic="true">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Default User Agent</UserSummary>
+			<MaxRedirects>8</MaxRedirects>
+			<Timeout>300</Timeout>
+		</HTTPUserAgent>
+		<HTTPUserAgent name="DomainDefaultUserAgent_V1">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Domain Default User Agent</UserSummary>
+			<MaxRedirects>8</MaxRedirects>
+			<Timeout>300</Timeout>
+		</HTTPUserAgent>
+		<LogTarget name="default-log" intrinsic="true">
+			<mAdminState read-only="true">enabled</mAdminState>
+			<UserSummary read-only="true">Default Domain Log</UserSummary>
+			<Type read-only="true">file</Type>
+			<Priority read-only="true">normal</Priority>
+			<SoapVersion read-only="true">soap11</SoapVersion>
+			<Format read-only="true">text</Format>
+			<TimestampFormat read-only="true">zulu</TimestampFormat>
+			<Size read-only="true">500</Size>
+			<LocalFile read-only="true">logtemp:///default-log</LocalFile>
+			<ArchiveMode read-only="true">rotate</ArchiveMode>
+			<Rotate read-only="true">3</Rotate>
+			<UseANSIColor read-only="true">off</UseANSIColor>
+			<SyslogFacility read-only="true">user</SyslogFacility>
+			<SigningMode read-only="true">off</SigningMode>
+			<EncryptMode read-only="true">off</EncryptMode>
+			<RateLimit read-only="true">100</RateLimit>
+			<ConnectTimeout read-only="true">60</ConnectTimeout>
+			<IdleTimeout read-only="true">15</IdleTimeout>
+			<ActiveTimeout read-only="true">0</ActiveTimeout>
+			<FeedbackDetection read-only="true">off</FeedbackDetection>
+			<IdenticalEventSuppression read-only="true">off</IdenticalEventSuppression>
+			<IdenticalEventPeriod read-only="true">10</IdenticalEventPeriod>
+			<LogEvents>
+				<Class class="LogLabel">all</Class>
+				<Priority>warn</Priority>
+			</LogEvents>
+		</LogTarget>
+		<Statistics name="default" intrinsic="true">
+			<mAdminState>disabled</mAdminState>
+			<LoadInterval read-only="true">1000</LoadInterval>
+		</Statistics>
+		<CryptoProfile name="NoCredentials">
+			<mAdminState>enabled</mAdminState>
+			<Ciphers>HIGH:MEDIUM:!aNULL:!eNULL:@STRENGTH</Ciphers>
+			<SSLOptions>
+				<OpenSSL-default>on</OpenSSL-default>
+				<Disable-SSLv2>on</Disable-SSLv2>
+				<Disable-SSLv3>off</Disable-SSLv3>
+				<Disable-TLSv1>off</Disable-TLSv1>
+				<Enable-Legacy-Renegotiation>off</Enable-Legacy-Renegotiation>
+			</SSLOptions>
+			<ClientCAList>off</ClientCAList>
+		</CryptoProfile>
+		<SSLProxyProfile name="SslClientNoCredentials">
+			<mAdminState>enabled</mAdminState>
+			<Direction>forward</Direction>
+			<ForwardCryptoProfile class="CryptoProfile">NoCredentials</ForwardCryptoProfile>
+			<ServerCaching>on</ServerCaching>
+			<SessionTimeout>300</SessionTimeout>
+			<CacheSize>20</CacheSize>
+			<ClientCache>on</ClientCache>
+			<ClientAuthOptional>on</ClientAuthOptional>
+			<ClientAuthAlwaysRequest>off</ClientAuthAlwaysRequest>
+			<PermitInsecureServers>on</PermitInsecureServers>
+		</SSLProxyProfile>
+		<WebServicesAgent name="default" intrinsic="true">
+			<mAdminState>enabled</mAdminState>
+			<MaxRecords>3000</MaxRecords>
+			<MaxMemoryKB>64000</MaxMemoryKB>
+			<CaptureMode>faults</CaptureMode>
+			<BufferMode>discard</BufferMode>
+			<MediationMetrics>off</MediationMetrics>
+		</WebServicesAgent>
+		<SLMAction name="ShapeAndLog">
+			<mAdminState>enabled</mAdminState>
+			<Type>shape</Type>
+			<LogLevel>warn</LogLevel>
+		</SLMAction>
+		<Matching name="Url_All_V1">
+			<mAdminState>enabled</mAdminState>
+			<MatchRules>
+				<Type>url</Type>
+				<HttpTag/>
+				<HttpValue/>
+				<Url>*</Url>
+				<ErrorCode/>
+				<XPATHExpression/>
+			</MatchRules>
+			<MatchWithPCRE>off</MatchWithPCRE>
+			<CombineWithOr>off</CombineWithOr>
+		</Matching>
+		<URLMap name="default-attempt-stream-all" intrinsic="true">
+			<mAdminState>enabled</mAdminState>
+			<URLMapRule>
+				<Pattern>*</Pattern>
+			</URLMapRule>
+		</URLMap>
+		<CompileOptionsPolicy name="default-attempt-stream" intrinsic="true">
+			<mAdminState>enabled</mAdminState>
+			<XSLTVersion>XSLT10</XSLTVersion>
+			<Strict>off</Strict>
+			<TryStream class="URLMap">default-attempt-stream-all</TryStream>
+			<StackSize>524288</StackSize>
+			<WSIValidation>ignore</WSIValidation>
+			<WSDLValidateBody>strict</WSDLValidateBody>
+			<WSDLValidateHeaders>lax</WSDLValidateHeaders>
+			<WSDLValidateFaults>strict</WSDLValidateFaults>
+			<WSDLWrappedFaults>off</WSDLWrappedFaults>
+			<WSDLStrictSOAPVersion>off</WSDLStrictSOAPVersion>
+			<XACMLDebug>off</XACMLDebug>
+		</CompileOptionsPolicy>
+		<XMLManager name="default" intrinsic="true">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Default XML-Manager</UserSummary>
+			<CacheSize>256</CacheSize>
+			<SHA1Caching>on</SHA1Caching>
+			<StaticDocumentCalls>on</StaticDocumentCalls>
+			<SearchResults>on</SearchResults>
+			<SupportTxWarn>off</SupportTxWarn>
+			<Memoization>on</Memoization>
+			<ParserLimitsBytesScanned>4194304</ParserLimitsBytesScanned>
+			<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+			<ParserLimitsAttributeCount>128</ParserLimitsAttributeCount>
+			<ParserLimitsMaxNodeSize>33554432</ParserLimitsMaxNodeSize>
+			<ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+			<ParserLimitsExternalReferences>forbid</ParserLimitsExternalReferences>
+			<ParserLimitsMaxPrefixes>0</ParserLimitsMaxPrefixes>
+			<ParserLimitsMaxNamespaces>0</ParserLimitsMaxNamespaces>
+			<ParserLimitsMaxLocalNames>0</ParserLimitsMaxLocalNames>
+			<DocCacheMaxDocs>5000</DocCacheMaxDocs>
+			<DocCacheSize>0</DocCacheSize>
+			<UserAgent class="HTTPUserAgent">default</UserAgent>
+		</XMLManager>
+		<XMLManager name="DomainDefaultCache">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Deafult Domain XML Manager</UserSummary>
+			<CacheSize>1000</CacheSize>
+			<SHA1Caching>on</SHA1Caching>
+			<StaticDocumentCalls>on</StaticDocumentCalls>
+			<SearchResults>on</SearchResults>
+			<SupportTxWarn>off</SupportTxWarn>
+			<Memoization>on</Memoization>
+			<ParserLimitsBytesScanned>0</ParserLimitsBytesScanned>
+			<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+			<ParserLimitsAttributeCount>512</ParserLimitsAttributeCount>
+			<ParserLimitsMaxNodeSize>33554432</ParserLimitsMaxNodeSize>
+			<ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+			<ParserLimitsExternalReferences>ignore</ParserLimitsExternalReferences>
+			<ParserLimitsMaxPrefixes>0</ParserLimitsMaxPrefixes>
+			<ParserLimitsMaxNamespaces>0</ParserLimitsMaxNamespaces>
+			<ParserLimitsMaxLocalNames>0</ParserLimitsMaxLocalNames>
+			<DocCacheMaxDocs>5000</DocCacheMaxDocs>
+			<DocCacheSize>16384000</DocCacheSize>
+			<DocCachePolicy>
+				<Match>local:/*</Match>
+				<Type>fixed</Type>
+				<TTL>31536000</TTL>
+				<Priority>128</Priority>
+			</DocCachePolicy>
+			<UserAgent class="HTTPUserAgent">DomainDefaultUserAgent_V1</UserAgent>
+		</XMLManager>
+		<XMLManager name="default-attempt-stream" intrinsic="true">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Default Streaming XML-Manager</UserSummary>
+			<CompileOptionsPolicy class="CompileOptionsPolicy">default-attempt-stream</CompileOptionsPolicy>
+			<CacheSize>256</CacheSize>
+			<SHA1Caching>on</SHA1Caching>
+			<StaticDocumentCalls>on</StaticDocumentCalls>
+			<SearchResults>on</SearchResults>
+			<SupportTxWarn>off</SupportTxWarn>
+			<Memoization>on</Memoization>
+			<ParserLimitsBytesScanned>268435456</ParserLimitsBytesScanned>
+			<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+			<ParserLimitsAttributeCount>128</ParserLimitsAttributeCount>
+			<ParserLimitsMaxNodeSize>268435456</ParserLimitsMaxNodeSize>
+			<ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+			<ParserLimitsExternalReferences>forbid</ParserLimitsExternalReferences>
+			<ParserLimitsMaxPrefixes>0</ParserLimitsMaxPrefixes>
+			<ParserLimitsMaxNamespaces>0</ParserLimitsMaxNamespaces>
+			<ParserLimitsMaxLocalNames>0</ParserLimitsMaxLocalNames>
+			<DocCacheMaxDocs>5000</DocCacheMaxDocs>
+			<DocCacheSize>0</DocCacheSize>
+			<UserAgent class="HTTPUserAgent">DomainDefaultUserAgent_V1</UserAgent>
+		</XMLManager>
+		<!-- MQQMs -->
+<!--		<MQQM name="SOA_Internal_MQQM_1_RealTime_V1">
+			<mAdminState>disabled</mAdminState>
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
+		</MQQM>
+		<MQQM name="SOA_Internal_MQQM_2_RealTime_V1">
+			<mAdminState>disabled</mAdminState>
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
+		</MQQM>
+		<MQQMGroup name="SOA_Internal_Grp_RealTime_V1">
+			<mAdminState>enabled</mAdminState>
+			<PrimaryQueueManager class="MQQM">SOA_Internal_MQQM_1_RealTime_V1</PrimaryQueueManager>
+			<BackupQueueManagers class="MQQM">SOA_Internal_MQQM_2_RealTime_V1</BackupQueueManagers>
+		</MQQMGroup>-->
+		<WebServicesAgent name="default" intrinsic="true">
+			<mAdminState>enabled</mAdminState>
+			<MaxRecords>3000</MaxRecords>
+			<MaxMemoryKB>64000</MaxMemoryKB>
+			<CaptureMode>faults</CaptureMode>
+			<BufferMode>discard</BufferMode>
+			<MediationMetrics>off</MediationMetrics>
+		</WebServicesAgent>
+		<WSStylePolicy name="default" intrinsic="true">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Default Processing Policy</UserSummary>
+			<DefStylesheetForSoap>store:///filter-reject-all.xsl</DefStylesheetForSoap>
+			<DefStylesheetForXsl>store:///identity.xsl</DefStylesheetForXsl>
+		</WSStylePolicy>
+		<StylePolicy name="default" intrinsic="true">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Default Processing Policy</UserSummary>
+			<DefStylesheetForSoap>store:///filter-reject-all.xsl</DefStylesheetForSoap>
+			<DefStylesheetForXsl>store:///identity.xsl</DefStylesheetForXsl>
+		</StylePolicy>
+		<XMLFirewallService name="LoopbackProxy">
+			<mAdminState>enabled</mAdminState>
+			<LocalAddress>${localHostAlias}</LocalAddress>
+			<Priority>normal</Priority>
+			<LocalPort>10000</LocalPort>
+			<HTTPTimeout>180</HTTPTimeout>
+			<HTTPPersistTimeout>200</HTTPPersistTimeout>
+			<DoHostRewrite>on</DoHostRewrite>
+			<SuppressHTTPWarnings>off</SuppressHTTPWarnings>
+			<HTTPCompression>off</HTTPCompression>
+			<HTTPIncludeResponseTypeEncoding>off</HTTPIncludeResponseTypeEncoding>
+			<AlwaysShowErrors>off</AlwaysShowErrors>
+			<DisallowGet>off</DisallowGet>
+			<DisallowEmptyResponse>off</DisallowEmptyResponse>
+			<HTTPPersistentConnections>on</HTTPPersistentConnections>
+			<HTTPClientIPLabel>X-Client-IP</HTTPClientIPLabel>
+			<HTTPLogCorIDLabel>X-Global-Transaction-ID</HTTPLogCorIDLabel>
+			<HTTPProxyPort>800</HTTPProxyPort>
+			<HTTPVersion>
+				<Front>HTTP/1.1</Front>
+				<Back>HTTP/1.1</Back>
+			</HTTPVersion>
+			<DoChunkedUpload>off</DoChunkedUpload>
+			<DefaultParamNamespace>http://www.datapower.com/param/config</DefaultParamNamespace>
+			<QueryParamNamespace>http://www.datapower.com/param/query</QueryParamNamespace>
+			<ForcePolicyExec>on</ForcePolicyExec>
+			<MonitorProcessingPolicy>terminate-at-first-throttle</MonitorProcessingPolicy>
+			<DebugMode persisted="false">off</DebugMode>
+			<DebuggerType>internal</DebuggerType>
+			<DebugHistory>25</DebugHistory>
+			<WebGUIMode>off</WebGUIMode>
+			<Type>loopback-proxy</Type>
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
+			<StylePolicy class="StylePolicy">default</StylePolicy>
+			<MaxMessageSize>0</MaxMessageSize>
+			<RequestType>unprocessed</RequestType>
+			<ResponseType>unprocessed</ResponseType>
+			<RequestAttachments>allow</RequestAttachments>
+			<ResponseAttachments>allow</ResponseAttachments>
+			<RootPartNotFirstAction>process-in-order</RootPartNotFirstAction>
+			<FrontAttachmentFormat>dynamic</FrontAttachmentFormat>
+			<BackAttachmentFormat>dynamic</BackAttachmentFormat>
+			<MIMEHeaders>on</MIMEHeaders>
+			<RewriteErrors>off</RewriteErrors>
+			<DelayErrors>on</DelayErrors>
+			<DelayErrorsDuration>1000</DelayErrorsDuration>
+			<SOAPSchemaURL>store:///schemas/soap-envelope.xsd</SOAPSchemaURL>
+			<WSDLResponsePolicy>off</WSDLResponsePolicy>
+			<FirewallParserLimits>off</FirewallParserLimits>
+			<ParserLimitsBytesScanned>4194304</ParserLimitsBytesScanned>
+			<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+			<ParserLimitsAttributeCount>128</ParserLimitsAttributeCount>
+			<ParserLimitsMaxNodeSize>33554432</ParserLimitsMaxNodeSize>
+			<ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+			<ParserLimitsMaxPrefixes>0</ParserLimitsMaxPrefixes>
+			<ParserLimitsMaxNamespaces>0</ParserLimitsMaxNamespaces>
+			<ParserLimitsMaxLocalNames>0</ParserLimitsMaxLocalNames>
+			<ParserLimitsAttachmentByteCount>2000000000</ParserLimitsAttachmentByteCount>
+			<ParserLimitsAttachmentPackageByteCount>0</ParserLimitsAttachmentPackageByteCount>
+			<ParserLimitsExternalReferences>forbid</ParserLimitsExternalReferences>
+			<CredentialCharset>protocol</CredentialCharset>
+		</XMLFirewallService>
+	</configuration>
+</datapower-configuration>

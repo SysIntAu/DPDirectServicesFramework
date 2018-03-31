@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datapower-configuration version="3">
+	<configuration domain="DPSOAUAT">
+		<!-- MQQMs -->
+<!--		<MQQM name="SOA_Internal_MQQM_1_RealTime_V1">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Primary MQ Channel to LOGSERVER New Queue Manager</UserSummary>
+			<HostName>localhost</HostName>
+			<QMname>localhost</QMname>
+			<CCSID>819</CCSID>
+			<ChannelName>DP.SOA.SVRCONN</ChannelName>
+			<Heartbeat>5</Heartbeat>
+			<UserName>QMNAME</UserName>
+			<MaximumMessageSize>8388608</MaximumMessageSize>
+			<CacheTimeout>64</CacheTimeout>
+			<UnitsOfWork>1</UnitsOfWork>
+			<AutomaticBackout>on</AutomaticBackout>
+			<BackoutThreshold>2</BackoutThreshold>
+			<BackoutQueueName>DP.SOA.DEAD.QUEUE</BackoutQueueName>
+			<TotalConnectionLimit>6</TotalConnectionLimit>
+			<InitialConnections>1</InitialConnections>
+			<SharingConversations>0</SharingConversations>
+			<PermitInsecureServers>off</PermitInsecureServers>
+			<SSLcipher>none</SSLcipher>
+			<ConvertInput>on</ConvertInput>
+			<AutoRetry>on</AutoRetry>
+			<RetryInterval>300</RetryInterval>
+			<RetryAttempts>0</RetryAttempts>
+			<LongRetryInterval>1800</LongRetryInterval>
+			<ReportingInterval>1</ReportingInterval>
+			<AlternateUser>off</AlternateUser>
+			<XMLManager class="XMLManager">DomainDefaultCache</XMLManager>
+		</MQQM>
+		<MQQMGroup name="SOA_Internal_Grp_RealTime_V1">
+			<mAdminState>enabled</mAdminState>
+			<PrimaryQueueManager class="MQQM">SOA_Internal_MQQM_1_RealTime_V1</PrimaryQueueManager>
+		</MQQMGroup>-->
+	</configuration>
+</datapower-configuration>

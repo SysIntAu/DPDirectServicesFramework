@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--========================================================================
+	
+	Creator: Tim Goodwill
+	Date   : 2016
+	Title  : DEV DPSOA Environment File
+	Publisher: DPDirect
+	
+	Description and Usage:
+	This file is to store environmental differences for use during the
+	deployment process.
+
+	History: 
+	2016-12-12	v1.0	Tim Goodwill 				Initial Version with History.
+
+	========================================================================-->
+<env name="DEV" description="Development Environment">
+	<!-- Datapower Environment Parameters to Control Deployment-->
+	<container type="dpsoa" version="1.0" basedir="./">
+		<parameter name="dp.hostname.list" value="dpgateway01,dpgateway02"/>
+		<parameter name="dp.port" value="5550"/>
+		<parameter name="soa.domain" value="SOA_DEV"/>
+		<parameter name="soa.xmlmanager" value="DomainDefaultCache"/>
+		<parameter name="debug" value="false"/>
+		<parameter name="fail.on.error" value="true"/>
+		<parameter name="rollback.on.error" value="true"/>
+	</container>
+	<!-- Datapower Environment Variables for Config Injection-->
+	<runtime name="environment_properties">
+		<!-- Environment -->
+		<parameter name="dpdirect://envName" value="DEV"/>
+		<parameter name="dpdirect://echoHttpEndpoint" value="http://SOA_DEV:10000"/>
+		<!-- SERVICELOG Logging -->
+		<parameter name="dpdirect://logging/capturePointLogs" value="none"/>
+		<parameter name="dpdirect://logging/successLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.SERVICE.LOG;AsyncPut=true"/>
+		<parameter name="dpdirect://logging/errorLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.ERROR.LOG;AsyncPut=true"/>
+		<!-- Stats Logging -->
+		<parameter name="dpdirect://logCategory/esbStats/DEV1" value="DEV1_ServiceStats"/>
+		<parameter name="dpdirect://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
+		<parameter name="dpdirect://logTarget/remoteSystemManagement/address" value="logserver.dpdirect.org"/>
+		<parameter name="dpdirect://logTarget/remoteSystemManagement/port" value="23456"/>
+	</runtime>
+	<!-- Datapower Environment Variables for Config Injection-->
+	<injection name="environment_properties">
+		<!-- DP Echo Endpoint -->
+		<parameter name="echoHttpEndpoint" value="http://SOA_DEV:10000"/>
+		<!-- Domain Host Alias -->
+		<parameter name="dpApplianceHostName1" value="SOA_DEV"/>
+		<parameter name="dpApplianceHostName2" value="SOA_DEV"/>				
+		<parameter name="localHostAlias" value="SOA_DEV"/>
+		<!-- default encryption algorithms-->
+		<parameter name="defaultEncryptionAlgorithm" value="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
+		<parameter name="defaultKeyTransportAlgorithm" value="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
+		<parameter name="defaultDigestAlgorithm" value="http://www.w3.org/2001/04/xmlenc#sha256"/>
+		<!-- Logging -->
+		<parameter name="logCategoryServiceStats" value="DEV1_ServiceStats"/>
+		<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
+		<parameter name="logTargetRemoteSystemManagementAddress" value="logserver.dpdirect.org"/>
+		<parameter name="logTargetRemoteSystemManagementPort" value="23456"/>
+	</injection>
+	<!-- Datapower Environment xconfig insertions-->
+	<insertions name="environment_insertions">
+	<!-- ===== Example xconfig object insertion ===== -->
+		<!--				<insertion parentClass="LoadBalancerGroup" parentName="Target_LBG">
+			<LBGroupMembers parentClass="LoadBalancerGroup" parentName="Target_LBG">
+				<Server>server.local</Server>
+				<Weight>1</Weight>
+				<MappedPort>80</MappedPort>
+				<Activity/>
+				<HealthPort/>
+			</LBGroupMembers>
+		</insertion>-->
+	</insertions>
+</env>
+<!-- *************************************************************** -->

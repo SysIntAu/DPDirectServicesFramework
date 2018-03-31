@@ -1,0 +1,1597 @@
+<datapower-configuration version="3">
+	<configuration domain="DPSOA">
+		<HTTPUserAgent name="SOA_Services_UserAgent_V1">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>SOA Services User Agent</UserSummary>
+			<MaxRedirects>8</MaxRedirects>
+			<Timeout>200</Timeout>
+		</HTTPUserAgent>
+<!--		<CryptoProfile name="NoCredentials">
+			<mAdminState>enabled</mAdminState>
+			<Ciphers>HIGH:MEDIUM:!aNULL:!eNULL:@STRENGTH</Ciphers>
+			<SSLOptions>
+				<OpenSSL-default>on</OpenSSL-default>
+				<Disable-SSLv2>on</Disable-SSLv2>
+				<Disable-SSLv3>off</Disable-SSLv3>
+				<Disable-TLSv1>off</Disable-TLSv1>
+				<Enable-Legacy-Renegotiation>off</Enable-Legacy-Renegotiation>
+			</SSLOptions>
+			<ClientCAList>off</ClientCAList>
+		</CryptoProfile>
+		<SSLProxyProfile name="SslClientNoCredentials">
+			<mAdminState>enabled</mAdminState>
+			<Direction>forward</Direction>
+			<ForwardCryptoProfile class="CryptoProfile">NoCredentials</ForwardCryptoProfile>
+			<ServerCaching>on</ServerCaching>
+			<SessionTimeout>300</SessionTimeout>
+			<CacheSize>20</CacheSize>
+			<ClientCache>on</ClientCache>
+			<ClientAuthOptional>off</ClientAuthOptional>
+			<ClientAuthAlwaysRequest>off</ClientAuthAlwaysRequest>
+			<PermitInsecureServers>off</PermitInsecureServers>
+		</SSLProxyProfile>-->
+		<XACMLPDP name="soa-services-xacml-auth" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+			xmlns:dp="http://www.datapower.com/schemas/management">
+			<mAdminState>enabled</mAdminState>
+			<EqualPolicies>on</EqualPolicies>
+			<GeneralPolicy>local:///security/soa-services-xacml-auth.xml</GeneralPolicy>
+			<CombiningAlg>deny-overrides</CombiningAlg>
+			<DependentPolicy>local:///security/soa-services-xacml-auth.xml</DependentPolicy>
+			<CacheTTL>0</CacheTTL>
+		</XACMLPDP>>
+		<AAAPolicy name="SOA_Services_SAML_XACML_AAAPolicy" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+			xmlns:dp="http://www.datapower.com/schemas/management">
+			<mAdminState>enabled</mAdminState>
+			<ExtractIdentity>
+				<EIBitmap>
+					<http-basic-auth>off</http-basic-auth>
+					<wssec-username>off</wssec-username>
+					<wssec-derived-key>off</wssec-derived-key>
+					<wssec-binary-token>off</wssec-binary-token>
+					<ws-secure-conversation>off</ws-secure-conversation>
+					<ws-trust>off</ws-trust>
+					<kerberos>off</kerberos>
+					<kerberos-spnego>off</kerberos-spnego>
+					<client-ssl>off</client-ssl>
+					<saml-attr-name>on</saml-attr-name>
+					<saml-authen-name>on</saml-authen-name>
+					<saml-artifact>off</saml-artifact>
+					<client-ip-address>off</client-ip-address>
+					<signer-dn>off</signer-dn>
+					<token>off</token>
+					<cookie-token>off</cookie-token>
+					<ltpa>off</ltpa>
+					<metadata>off</metadata>
+					<custom>off</custom>
+					<html-forms-auth>off</html-forms-auth>
+					<oauth>off</oauth>
+				</EIBitmap>
+				<EICustomURL/>
+				<EIXPath/>
+				<EISignerDNValcred/>
+				<EICookieName/>
+				<EIBasicAuthRealm>login</EIBasicAuthRealm>
+				<EIUseWSSec>off</EIUseWSSec>
+				<EIMetadata/>
+				<EIAllowRemoteTokenReference>off</EIAllowRemoteTokenReference>
+				<EIRemoteTokenProcessService/>
+				<EIPasswordRetrievalMechanism>xmlfile</EIPasswordRetrievalMechanism>
+				<EIPasswordRetrievalCustomURL/>
+				<EIPasswordRetrievalAAAInfoURL/>
+				<EISSLProxyProfile/>
+				<EIFormsLoginPolicy/>
+				<EIOAuthClientGroup/>
+			</ExtractIdentity>
+			<Authenticate>
+				<AUMethod>saml-signature</AUMethod>
+				<AUCustomURL/>
+				<AUMapURL/>
+				<AUHost/>
+				<AUPort/>
+				<AUSSLValcred/>
+				<AUCacheAllow>absolute</AUCacheAllow>
+				<AUCacheTTL>3</AUCacheTTL>
+				<AUKerberosPrincipal/>
+				<AUKerberosPassword/>
+				<AUClearTrustServerURL/>
+				<AUClearTrustApplication/>
+				<AUSAMLArtifactResponder/>
+				<AUKerberosVerifySignature>on</AUKerberosVerifySignature>
+				<AUNetegrityBaseURI/>
+				<AUSAMLAuthQueryServer/>
+				<AUSAMLVersion>1.1</AUSAMLVersion>
+				<AULDAPPrefix>cn=</AULDAPPrefix>
+				<AULDAPSuffix/>
+				<AULDAPLoadBalanceGroup/>
+				<AUKerberosKeytab/>
+				<AUWSTrustURL/>
+				<AUSAML2Issuer/>
+				<AUSignerValcred/>
+				<AUSignedXPath/>
+				<AUSSLProxyProfile/>
+				<AUNetegrityConfig/>
+				<AULDAPBindDN/>
+				<AULDAPBindPassword/>
+				<AULDAPSearchAttribute>userPassword</AULDAPSearchAttribute>
+				<AULTPATokenVersionsBitmap>
+					<LTPA>off</LTPA>
+					<LTPA2>on</LTPA2>
+					<LTPADomino>off</LTPADomino>
+				</AULTPATokenVersionsBitmap>
+				<AULTPAKeyFile/>
+				<AULTPAKeyFilePassword/>
+				<AULTPAStashFile/>
+				<AUBinaryTokenX509Valcred/>
+				<AUTAMServer/>
+				<AUAllowRemoteTokenReference>off</AUAllowRemoteTokenReference>
+				<AURemoteTokenProcessService/>
+				<AUWSTrustVersion>1.2</AUWSTrustVersion>
+				<AULDAPSearchForDN>off</AULDAPSearchForDN>
+				<AULDAPSearchParameters/>
+				<AUWSTrustRequireClientEntropy>off</AUWSTrustRequireClientEntropy>
+				<AUWSTrustClientEntropySize>32</AUWSTrustClientEntropySize>
+				<AUWSTrustRequireServerEntropy>off</AUWSTrustRequireServerEntropy>
+				<AUWSTrustServerEntropySize>32</AUWSTrustServerEntropySize>
+				<AUWSTrustRequireRSTC>off</AUWSTrustRequireRSTC>
+				<AUWSTrustRequireAppliesToHeader>off</AUWSTrustRequireAppliesToHeader>
+				<AUWSTrustAppliesToHeader/>
+				<AUWSTrustEncryptionCertificate/>
+				<AUZOSNSSConfig/>
+				<AULDAPAttributes/>
+				<AUSkewTime>10</AUSkewTime>
+				<AUTAMPACReturn>off</AUTAMPACReturn>
+			</Authenticate>
+			<MapCredentials>
+				<MCMethod>none</MCMethod>
+				<MCCustomURL/>
+				<MCMapURL/>
+				<MCMapXPath/>
+				<MCTFIMEndpoint/>
+			</MapCredentials>
+			<ExtractResource>
+				<ERBitmap>
+					<target-url>off</target-url>
+					<original-url>off</original-url>
+					<request-uri>on</request-uri>
+					<request-opname>on</request-opname>
+					<http-method>off</http-method>
+					<XPath>off</XPath>
+					<metadata>off</metadata>
+				</ERBitmap>
+				<ERXPath/>
+				<ERMetadata/>
+			</ExtractResource>
+			<MapResource>
+				<MRMethod>none</MRMethod>
+				<MRCustomURL/>
+				<MRMapURL/>
+				<MRMapXPath/>
+				<MRTAMMap>WebSEAL</MRTAMMap>
+				<MRTAMInstancePrefix/>
+				<MRTAMWebSEALDynURLFile/>
+			</MapResource>
+			<Authorize>
+				<AZMethod>xacml</AZMethod>
+				<AZCustomURL/>
+				<AZMapURL/>
+				<AZHost/>
+				<AZPort/>
+				<AZLDAPGroup/>
+				<AZValcred/>
+				<AZSAMLURL/>
+				<AZSAMLType>any</AZSAMLType>
+				<AZSAMLXPath/>
+				<AZSAMLNameQualifier/>
+				<AZCacheAllow>absolute</AZCacheAllow>
+				<AZCacheTTL>3</AZCacheTTL>
+				<AZNetegrityBaseURI/>
+				<AZNetegrityOpNameExtension/>
+				<AZClearTrustServerURL/>
+				<AZSAMLVersion>1.1</AZSAMLVersion>
+				<AZLDAPLoadBalanceGroup/>
+				<AZLDAPBindDN/>
+				<AZLDAPBindPassword/>
+				<AZLDAPGroupAttribute>member</AZLDAPGroupAttribute>
+				<AZSSLProxyProfile/>
+				<AZNetegrityConfig/>
+				<AZLDAPSearchScope>subtree</AZLDAPSearchScope>
+				<AZLDAPSearchFilter>(objectClass=*)</AZLDAPSearchFilter>
+				<AZXACMLVersion>1.0</AZXACMLVersion>
+				<AZXACMLPEPType>deny-biased</AZXACMLPEPType>
+				<AZXACMLUseOnBoxPDP>on</AZXACMLUseOnBoxPDP>
+				<AZXACMLPDP class="XACMLPDP">soa-services-xacml-auth</AZXACMLPDP>
+				<AZXACMLExternalPDPUrl/>
+				<AZXACMLBindingMethod>custom</AZXACMLBindingMethod>
+				<AZXACMLBindingObject/>
+				<AZXACMLBindingXSL>store:///tspm-aaa-xacml-binding-rtss.xsl</AZXACMLBindingXSL>
+				<AZXACMLCustomObligation>local:///framework-soa-esb/framework/AAAXACMLObligations.xsl</AZXACMLCustomObligation>
+				<AZXACMLUseSAML2>off</AZXACMLUseSAML2>
+				<AZTAMServer/>
+				<AZTAMDefaultAction>T</AZTAMDefaultAction>
+				<AZTAMActionResourceMap/>
+				<AZXACMLUseSOAP>off</AZXACMLUseSOAP>
+				<AZZOSNSSConfig/>
+				<AZSAFDefaultAction>r</AZSAFDefaultAction>
+				<AZLDAPAttributes/>
+				<AZSkewTime>0</AZSkewTime>
+				<AZOAuthValidationEndpointType>tfim</AZOAuthValidationEndpointType>
+				<AZTFIMEndpoint/>
+				<AZOAuthEnforceScope>off</AZOAuthEnforceScope>
+				<AZOAuthExportHeaders>on</AZOAuthExportHeaders>
+				<AZTAMPACReturn>off</AZTAMPACReturn>
+				<AZTAMPACUse>off</AZTAMPACUse>
+			</Authorize>
+			<PostProcess>
+				<PPEnabled>off</PPEnabled>
+				<PPCustomURL/>
+				<PPSAMLAuthAssertion>off</PPSAMLAuthAssertion>
+				<PPSAMLServerName>XS</PPSAMLServerName>
+				<PPSAMLNameQualifier/>
+				<PPKerberosTicket>off</PPKerberosTicket>
+				<PPKerberosClient/>
+				<PPKerberosClientPassword/>
+				<PPKerberosServer/>
+				<PPWSTrust>off</PPWSTrust>
+				<PPTimestamp>on</PPTimestamp>
+				<PPTimestampExpiry>0</PPTimestampExpiry>
+				<PPAllowRenewal>off</PPAllowRenewal>
+				<PPSAMLVersion>2.0</PPSAMLVersion>
+				<PPSAMLSendSLO>off</PPSAMLSendSLO>
+				<PPSAMLSLOEndpoint/>
+				<PPSSLProxyProfile/>
+				<PPWSUsernameToken>off</PPWSUsernameToken>
+				<PPWSUsernameTokenPasswordType>Digest</PPWSUsernameTokenPasswordType>
+				<PPSAMLValidity>0</PPSAMLValidity>
+				<PPSAMLSkew>0</PPSAMLSkew>
+				<PPWSUsernameTokenIncludePwd>on</PPWSUsernameTokenIncludePwd>
+				<PPLTPA>off</PPLTPA>
+				<PPLTPAVersion>LTPA2</PPLTPAVersion>
+				<PPLTPAExpiry>600</PPLTPAExpiry>
+				<PPLTPAKeyFile/>
+				<PPLTPAKeyFilePassword/>
+				<PPLTPAStashFile/>
+				<PPKerberosSPNEGOToken>off</PPKerberosSPNEGOToken>
+				<PPKerberosBstValueType>http://docs.oasis-open.org/wss/oasis-wss-kerberos-token-profile-1.1#GSS_Kerberosv5_AP_REQ</PPKerberosBstValueType>
+				<PPSAMLUseWSSec>off</PPSAMLUseWSSec>
+				<PPKerberosClientKeytab/>
+				<PPUseWSSec>off</PPUseWSSec>
+				<PPActorRoleID/>
+				<PPTFIMTokenMapping>off</PPTFIMTokenMapping>
+				<PPTFIMEndpoint/>
+				<PPWSDerivedKeyUsernameToken>off</PPWSDerivedKeyUsernameToken>
+				<PPWSDerivedKeyUsernameTokenIterations>1000</PPWSDerivedKeyUsernameTokenIterations>
+				<PPWSUsernameTokenAllowReplacement>off</PPWSUsernameTokenAllowReplacement>
+				<PPTFIMReplaceMethod>all</PPTFIMReplaceMethod>
+				<PPTFIMRetrieveMode>CallTFIM</PPTFIMRetrieveMode>
+				<PPHMACSigningAlg>hmac-sha1</PPHMACSigningAlg>
+				<PPSigningHashAlg>sha1</PPSigningHashAlg>
+				<PPWSTrustHeader>off</PPWSTrustHeader>
+				<PPWSSCKeySource>random</PPWSSCKeySource>
+				<PPSharedSecretKey/>
+				<PPWSTrustRenewalWait>0</PPWSTrustRenewalWait>
+				<PPWSTrustNewInstance>off</PPWSTrustNewInstance>
+				<PPWSTrustNewKey>off</PPWSTrustNewKey>
+				<PPWSTrustNeverExpire>off</PPWSTrustNeverExpire>
+				<PPICRXToken>off</PPICRXToken>
+				<PPICRXUserRealm/>
+				<PPSAMLIdentityProvider>off</PPSAMLIdentityProvider>
+				<PPSAMLProtocol>assertion</PPSAMLProtocol>
+				<PPSAMLResponseDestination/>
+				<PPResultWrapup>wssec-new</PPResultWrapup>
+				<PPSAMLAssertionType>
+					<authentication>on</authentication>
+					<attribute>on</attribute>
+					<authorization>off</authorization>
+				</PPSAMLAssertionType>
+				<PPSAMLSubjectConfirm>bearer</PPSAMLSubjectConfirm>
+				<PPSAMLNameID>on</PPSAMLNameID>
+				<PPSAMLNameIDFormat/>
+				<PPSAMLRecipient/>
+				<PPSAMLAudience/>
+				<PPSAMLOmitNotBefore>off</PPSAMLOmitNotBefore>
+				<PPOneTimeUse>off</PPOneTimeUse>
+				<PPSAMLProxy>off</PPSAMLProxy>
+				<PPSAMLProxyAudience/>
+				<PPSAMLProxyCount>0</PPSAMLProxyCount>
+				<PPSAMLAuthzAction>AllHTTP</PPSAMLAuthzAction>
+				<PPSAMLAttributes/>
+				<PPLTPAInsertCookie>on</PPLTPAInsertCookie>
+				<PPTAMPACPropagate>off</PPTAMPACPropagate>
+				<PPTAMHeader>HTTP_IV_CREDS</PPTAMHeader>
+				<PPTAMHeaderSize>0</PPTAMHeaderSize>
+			</PostProcess>
+			<SAMLValcred class="CryptoValCred">documentSignerValCreds</SAMLValcred>
+			<SAMLSigningHashAlg>sha1</SAMLSigningHashAlg>
+			<SAMLSigningAlg>rsa</SAMLSigningAlg>
+			<LDAPsuffix/>
+			<LogAllowed>on</LogAllowed>
+			<LogAllowedLevel>notice</LogAllowedLevel>
+			<LogRejected>on</LogRejected>
+			<LogRejectedLevel>warn</LogRejectedLevel>
+			<PingIdentityCompatibility>off</PingIdentityCompatibility>
+			<DoSValve>1</DoSValve>
+			<LDAPVersion>v2</LDAPVersion>
+			<EnforceSOAPActor>on</EnforceSOAPActor>
+			<WSSecActorRoleID/>
+		</AAAPolicy>
+		<AAAPolicy name="SOA_Services_STSValidate_XACMLAuthorize_AAAPolicy" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+			xmlns:dp="http://www.datapower.com/schemas/management">
+			<mAdminState>enabled</mAdminState>
+			<ExtractIdentity>
+				<EIBitmap>
+					<http-basic-auth>off</http-basic-auth>
+					<wssec-username>off</wssec-username>
+					<wssec-derived-key>off</wssec-derived-key>
+					<wssec-binary-token>off</wssec-binary-token>
+					<ws-secure-conversation>off</ws-secure-conversation>
+					<ws-trust>off</ws-trust>
+					<kerberos>off</kerberos>
+					<kerberos-spnego>off</kerberos-spnego>
+					<client-ssl>off</client-ssl>
+					<saml-attr-name>on</saml-attr-name>
+					<saml-authen-name>off</saml-authen-name>
+					<saml-artifact>off</saml-artifact>
+					<client-ip-address>off</client-ip-address>
+					<signer-dn>off</signer-dn>
+					<token>on</token>
+					<cookie-token>off</cookie-token>
+					<ltpa>off</ltpa>
+					<metadata>off</metadata>
+					<custom>off</custom>
+					<html-forms-auth>off</html-forms-auth>
+					<oauth>off</oauth>
+				</EIBitmap>
+				<EICustomURL/>
+				<EIXPath>/*[local-name()='Envelope']/*[local-name()='Header']/*[local-name()='Security']</EIXPath>
+				<EISignerDNValcred/>
+				<EICookieName/>
+				<EIBasicAuthRealm>login</EIBasicAuthRealm>
+				<EIUseWSSec>off</EIUseWSSec>
+				<EIMetadata/>
+				<EIAllowRemoteTokenReference>off</EIAllowRemoteTokenReference>
+				<EIRemoteTokenProcessService/>
+				<EIPasswordRetrievalMechanism>xmlfile</EIPasswordRetrievalMechanism>
+				<EIPasswordRetrievalCustomURL/>
+				<EIPasswordRetrievalAAAInfoURL/>
+				<EISSLProxyProfile/>
+				<EIFormsLoginPolicy/>
+				<EIOAuthClientGroup/>
+			</ExtractIdentity>
+			<Authenticate>
+				<AUMethod>custom</AUMethod>
+				<AUCustomURL>local:///framework-soa-esb/framework/STSTokenValidation.xsl</AUCustomURL>
+				<AUMapURL/>
+				<AUHost/>
+				<AUPort/>
+				<AUSSLValcred/>
+				<AUCacheAllow>absolute</AUCacheAllow>
+				<AUCacheTTL>3</AUCacheTTL>
+				<AUKerberosPrincipal/>
+				<AUKerberosPassword/>
+				<AUClearTrustServerURL/>
+				<AUClearTrustApplication/>
+				<AUSAMLArtifactResponder/>
+				<AUKerberosVerifySignature>on</AUKerberosVerifySignature>
+				<AUNetegrityBaseURI/>
+				<AUSAMLAuthQueryServer/>
+				<AUSAMLVersion>1.1</AUSAMLVersion>
+				<AULDAPPrefix>cn=</AULDAPPrefix>
+				<AULDAPSuffix/>
+				<AULDAPLoadBalanceGroup/>
+				<AUKerberosKeytab/>
+				<AUWSTrustURL/>
+				<AUSAML2Issuer/>
+				<AUSignerValcred/>
+				<AUSignedXPath/>
+				<AUSSLProxyProfile/>
+				<AUNetegrityConfig/>
+				<AULDAPBindDN/>
+				<AULDAPBindPassword/>
+				<AULDAPSearchAttribute>userPassword</AULDAPSearchAttribute>
+				<AULTPATokenVersionsBitmap>
+					<LTPA>off</LTPA>
+					<LTPA2>on</LTPA2>
+					<LTPADomino>off</LTPADomino>
+				</AULTPATokenVersionsBitmap>
+				<AULTPAKeyFile/>
+				<AULTPAKeyFilePassword/>
+				<AULTPAStashFile/>
+				<AUBinaryTokenX509Valcred/>
+				<AUTAMServer/>
+				<AUAllowRemoteTokenReference>off</AUAllowRemoteTokenReference>
+				<AURemoteTokenProcessService/>
+				<AUWSTrustVersion>1.2</AUWSTrustVersion>
+				<AULDAPSearchForDN>off</AULDAPSearchForDN>
+				<AULDAPSearchParameters/>
+				<AUWSTrustRequireClientEntropy>off</AUWSTrustRequireClientEntropy>
+				<AUWSTrustClientEntropySize>32</AUWSTrustClientEntropySize>
+				<AUWSTrustRequireServerEntropy>off</AUWSTrustRequireServerEntropy>
+				<AUWSTrustServerEntropySize>32</AUWSTrustServerEntropySize>
+				<AUWSTrustRequireRSTC>off</AUWSTrustRequireRSTC>
+				<AUWSTrustRequireAppliesToHeader>off</AUWSTrustRequireAppliesToHeader>
+				<AUWSTrustAppliesToHeader/>
+				<AUWSTrustEncryptionCertificate/>
+				<AUZOSNSSConfig/>
+				<AULDAPAttributes/>
+				<AUSkewTime>0</AUSkewTime>
+				<AUTAMPACReturn>off</AUTAMPACReturn>
+			</Authenticate>
+			<MapCredentials>
+				<MCMethod>none</MCMethod>
+				<MCCustomURL/>
+				<MCMapURL/>
+				<MCMapXPath/>
+				<MCTFIMEndpoint/>
+			</MapCredentials>
+			<ExtractResource>
+				<ERBitmap>
+					<target-url>off</target-url>
+					<original-url>off</original-url>
+					<request-uri>on</request-uri>
+					<request-opname>on</request-opname>
+					<http-method>off</http-method>
+					<XPath>off</XPath>
+					<metadata>off</metadata>
+				</ERBitmap>
+				<ERXPath/>
+				<ERMetadata/>
+			</ExtractResource>
+			<MapResource>
+				<MRMethod>none</MRMethod>
+				<MRCustomURL/>
+				<MRMapURL/>
+				<MRMapXPath/>
+				<MRTAMMap>WebSEAL</MRTAMMap>
+				<MRTAMInstancePrefix/>
+				<MRTAMWebSEALDynURLFile/>
+			</MapResource>
+			<Authorize>
+				<AZMethod>custom</AZMethod>
+				<AZCustomURL>local:///framework-soa-esb/framework/Authorisation.xsl</AZCustomURL>
+				<AZMapURL/>
+				<AZHost/>
+				<AZPort/>
+				<AZLDAPGroup/>
+				<AZValcred/>
+				<AZSAMLURL/>
+				<AZSAMLType>any</AZSAMLType>
+				<AZSAMLXPath/>
+				<AZSAMLNameQualifier/>
+				<AZCacheAllow>absolute</AZCacheAllow>
+				<AZCacheTTL>3</AZCacheTTL>
+				<AZNetegrityBaseURI/>
+				<AZNetegrityOpNameExtension/>
+				<AZClearTrustServerURL/>
+				<AZSAMLVersion>1.1</AZSAMLVersion>
+				<AZLDAPLoadBalanceGroup/>
+				<AZLDAPBindDN/>
+				<AZLDAPBindPassword/>
+				<AZLDAPGroupAttribute>member</AZLDAPGroupAttribute>
+				<AZSSLProxyProfile/>
+				<AZNetegrityConfig/>
+				<AZLDAPSearchScope>subtree</AZLDAPSearchScope>
+				<AZLDAPSearchFilter>(objectClass=*)</AZLDAPSearchFilter>
+				<AZXACMLVersion>2.0</AZXACMLVersion>
+				<AZXACMLPEPType>deny-biased</AZXACMLPEPType>
+				<AZXACMLUseOnBoxPDP>on</AZXACMLUseOnBoxPDP>
+				<AZXACMLPDP/>
+				<AZXACMLExternalPDPUrl/>
+				<AZXACMLBindingMethod>custom</AZXACMLBindingMethod>
+				<AZXACMLBindingObject/>
+				<AZXACMLBindingXSL/>
+				<AZXACMLCustomObligation/>
+				<AZXACMLUseSAML2>off</AZXACMLUseSAML2>
+				<AZTAMServer/>
+				<AZTAMDefaultAction>T</AZTAMDefaultAction>
+				<AZTAMActionResourceMap/>
+				<AZXACMLUseSOAP>off</AZXACMLUseSOAP>
+				<AZZOSNSSConfig/>
+				<AZSAFDefaultAction>r</AZSAFDefaultAction>
+				<AZLDAPAttributes/>
+				<AZSkewTime>0</AZSkewTime>
+				<AZOAuthValidationEndpointType>tfim</AZOAuthValidationEndpointType>
+				<AZTFIMEndpoint/>
+				<AZOAuthEnforceScope>off</AZOAuthEnforceScope>
+				<AZOAuthExportHeaders>on</AZOAuthExportHeaders>
+				<AZTAMPACReturn>off</AZTAMPACReturn>
+				<AZTAMPACUse>off</AZTAMPACUse>
+			</Authorize>
+			<PostProcess>
+				<PPEnabled>off</PPEnabled>
+				<PPCustomURL/>
+				<PPSAMLAuthAssertion>off</PPSAMLAuthAssertion>
+				<PPSAMLServerName>XS</PPSAMLServerName>
+				<PPSAMLNameQualifier/>
+				<PPKerberosTicket>off</PPKerberosTicket>
+				<PPKerberosClient/>
+				<PPKerberosClientPassword/>
+				<PPKerberosServer/>
+				<PPWSTrust>off</PPWSTrust>
+				<PPTimestamp>on</PPTimestamp>
+				<PPTimestampExpiry>0</PPTimestampExpiry>
+				<PPAllowRenewal>off</PPAllowRenewal>
+				<PPSAMLVersion>2.0</PPSAMLVersion>
+				<PPSAMLSendSLO>off</PPSAMLSendSLO>
+				<PPSAMLSLOEndpoint/>
+				<PPSSLProxyProfile/>
+				<PPWSUsernameToken>off</PPWSUsernameToken>
+				<PPWSUsernameTokenPasswordType>Digest</PPWSUsernameTokenPasswordType>
+				<PPSAMLValidity>0</PPSAMLValidity>
+				<PPSAMLSkew>0</PPSAMLSkew>
+				<PPWSUsernameTokenIncludePwd>on</PPWSUsernameTokenIncludePwd>
+				<PPLTPA>off</PPLTPA>
+				<PPLTPAVersion>LTPA2</PPLTPAVersion>
+				<PPLTPAExpiry>600</PPLTPAExpiry>
+				<PPLTPAKeyFile/>
+				<PPLTPAKeyFilePassword/>
+				<PPLTPAStashFile/>
+				<PPKerberosSPNEGOToken>off</PPKerberosSPNEGOToken>
+				<PPKerberosBstValueType>http://docs.oasis-open.org/wss/oasis-wss-kerberos-token-profile-1.1#GSS_Kerberosv5_AP_REQ</PPKerberosBstValueType>
+				<PPSAMLUseWSSec>off</PPSAMLUseWSSec>
+				<PPKerberosClientKeytab/>
+				<PPUseWSSec>off</PPUseWSSec>
+				<PPActorRoleID/>
+				<PPTFIMTokenMapping>off</PPTFIMTokenMapping>
+				<PPTFIMEndpoint/>
+				<PPWSDerivedKeyUsernameToken>off</PPWSDerivedKeyUsernameToken>
+				<PPWSDerivedKeyUsernameTokenIterations>1000</PPWSDerivedKeyUsernameTokenIterations>
+				<PPWSUsernameTokenAllowReplacement>off</PPWSUsernameTokenAllowReplacement>
+				<PPTFIMReplaceMethod>all</PPTFIMReplaceMethod>
+				<PPTFIMRetrieveMode>CallTFIM</PPTFIMRetrieveMode>
+				<PPHMACSigningAlg>hmac-sha1</PPHMACSigningAlg>
+				<PPSigningHashAlg>sha1</PPSigningHashAlg>
+				<PPWSTrustHeader>off</PPWSTrustHeader>
+				<PPWSSCKeySource>random</PPWSSCKeySource>
+				<PPSharedSecretKey/>
+				<PPWSTrustRenewalWait>0</PPWSTrustRenewalWait>
+				<PPWSTrustNewInstance>off</PPWSTrustNewInstance>
+				<PPWSTrustNewKey>off</PPWSTrustNewKey>
+				<PPWSTrustNeverExpire>off</PPWSTrustNeverExpire>
+				<PPICRXToken>off</PPICRXToken>
+				<PPICRXUserRealm/>
+				<PPSAMLIdentityProvider>off</PPSAMLIdentityProvider>
+				<PPSAMLProtocol>assertion</PPSAMLProtocol>
+				<PPSAMLResponseDestination/>
+				<PPResultWrapup>wssec-new</PPResultWrapup>
+				<PPSAMLAssertionType>
+					<authentication>on</authentication>
+					<attribute>on</attribute>
+					<authorization>off</authorization>
+				</PPSAMLAssertionType>
+				<PPSAMLSubjectConfirm>bearer</PPSAMLSubjectConfirm>
+				<PPSAMLNameID>on</PPSAMLNameID>
+				<PPSAMLNameIDFormat/>
+				<PPSAMLRecipient/>
+				<PPSAMLAudience/>
+				<PPSAMLOmitNotBefore>off</PPSAMLOmitNotBefore>
+				<PPOneTimeUse>off</PPOneTimeUse>
+				<PPSAMLProxy>off</PPSAMLProxy>
+				<PPSAMLProxyAudience/>
+				<PPSAMLProxyCount>0</PPSAMLProxyCount>
+				<PPSAMLAuthzAction>AllHTTP</PPSAMLAuthzAction>
+				<PPSAMLAttributes/>
+				<PPLTPAInsertCookie>on</PPLTPAInsertCookie>
+				<PPTAMPACPropagate>off</PPTAMPACPropagate>
+				<PPTAMHeader>HTTP_IV_CREDS</PPTAMHeader>
+				<PPTAMHeaderSize>0</PPTAMHeaderSize>
+			</PostProcess>
+			<SAMLSigningHashAlg>sha1</SAMLSigningHashAlg>
+			<SAMLSigningAlg>rsa-sha256</SAMLSigningAlg>
+			<LDAPsuffix/>
+			<LogAllowed>on</LogAllowed>
+			<LogAllowedLevel>notice</LogAllowedLevel>
+			<LogRejected>on</LogRejected>
+			<LogRejectedLevel>warn</LogRejectedLevel>
+			<PingIdentityCompatibility>off</PingIdentityCompatibility>
+			<DoSValve>1</DoSValve>
+			<LDAPVersion>v2</LDAPVersion>
+			<EnforceSOAPActor>off</EnforceSOAPActor>
+			<WSSecActorRoleID/>
+		</AAAPolicy>
+		<Matching name="Binary_Response_Match_V1">
+			<mAdminState>enabled</mAdminState>
+			<MatchRules>
+				<Type>url</Type>
+				<HttpTag/>
+				<HttpValue/>
+				<Url>*Binary*</Url>
+				<ErrorCode/>
+				<XPATHExpression/>
+				<Method>default</Method>
+			</MatchRules>
+			<MatchRules>
+				<Type>url</Type>
+				<HttpTag/>
+				<HttpValue/>
+				<Url>*AsyncPut=true*</Url>
+				<ErrorCode/>
+				<XPATHExpression/>
+				<Method>default</Method>
+			</MatchRules>
+			<MatchWithPCRE>off</MatchWithPCRE>
+			<CombineWithOr>on</CombineWithOr>
+		</Matching>
+		<HTTPSourceProtocolHandler/>
+		<HTTPSSourceProtocolHandler/>
+		<XMLManager name="SOA_Services_DefaultCache_V1">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Deafult Domain XML Manager</UserSummary>
+			<CacheSize>1000</CacheSize>
+			<SHA1Caching>on</SHA1Caching>
+			<StaticDocumentCalls>on</StaticDocumentCalls>
+			<SearchResults>on</SearchResults>
+			<SupportTxWarn>off</SupportTxWarn>
+			<Memoization>on</Memoization>
+			<ParserLimitsBytesScanned>0</ParserLimitsBytesScanned>
+			<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+			<ParserLimitsAttributeCount>512</ParserLimitsAttributeCount>
+			<ParserLimitsMaxNodeSize>8388608</ParserLimitsMaxNodeSize>
+			<ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+			<ParserLimitsExternalReferences>ignore</ParserLimitsExternalReferences>
+			<ParserLimitsMaxPrefixes>0</ParserLimitsMaxPrefixes>
+			<ParserLimitsMaxNamespaces>0</ParserLimitsMaxNamespaces>
+			<ParserLimitsMaxLocalNames>0</ParserLimitsMaxLocalNames>
+			<DocCacheMaxDocs>5000</DocCacheMaxDocs>
+			<DocCacheSize>16384000</DocCacheSize>
+			<DocCachePolicy>
+				<Match>local:/*</Match>
+				<Type>fixed</Type>
+				<TTL>31536000</TTL>
+				<Priority>128</Priority>
+			</DocCachePolicy>
+			<UserAgent class="HTTPUserAgent">SOA_Services_UserAgent_V1</UserAgent>
+		</XMLManager>
+		<PolicyParameters name="verbose-error-reporting">
+			<mAdminState>enabled</mAdminState>
+			<PolicyParameter>
+				<ParameterName>{http://www.datapower.com/param/config}verbose-error-reporting</ParameterName>
+				<ParameterValue>on</ParameterValue>
+			</PolicyParameter>
+		</PolicyParameters>
+<!--		<PolicyParameters name="require-client-cert">
+			<mAdminState>enabled</mAdminState>
+			<PolicyParameter>
+				<ParameterName>{http://www.datapower.com/param/config}require-client-cert</ParameterName>
+				<ParameterValue>off</ParameterValue>
+			</PolicyParameter>
+		</PolicyParameters>-->
+		<MTOMPolicy name="encodeMTOMPolicy">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>encodeMTOM</UserSummary>
+			<Mode>encode</Mode>
+			<IncludeContentType>on</IncludeContentType>
+			<Rule>
+				<XPath>//*[local-name()='DPAttachmentsReference']</XPath>
+				<ContentType/>
+				<ContentID/>
+			</Rule>
+		</MTOMPolicy>
+		<MTOMPolicy name="decodeMTOMPolicy">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>decodeMTOM</UserSummary>
+			<Mode>decode</Mode>
+			<IncludeContentType>off</IncludeContentType>
+			<Rule>
+				<XPath>//*[local-name()='DPAttachmentsReference']</XPath>
+				<ContentType/>
+				<ContentID/>
+			</Rule>
+		</MTOMPolicy> 
+		<SLMPolicy/>
+		<WSEndpointRewritePolicy/>
+		<StylePolicyAction name="SOA_Services_V1_SamlSig_filter">
+			<mAdminState>enabled</mAdminState>
+			<Type>filter</Type>
+			<Input>INPUT</Input>
+			<Transform>store:///verify.xsl</Transform>
+			<Output>NULL</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<StylesheetParameters>
+				<ParameterName>{http://www.datapower.com/param/config}must-be-signed-xpath</ParameterName>
+				<ParameterValue>/*[local-name() = 'Envelope'][1]/*[local-name() =
+					'Header'][1]/*[namespace-uri()='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'
+					and local-name()='Security'][1]/*[namespace-uri()='urn:oasis:names:tc:SAML:2.0:assertion' and
+					local-name()='Assertion'][1]</ParameterValue>
+			</StylesheetParameters>
+			<StylesheetParameters>
+				<ParameterName>{http://www.datapower.com/param/config}signature-method-type</ParameterName>
+				<ParameterValue>asymmetric</ParameterValue>
+			</StylesheetParameters>
+			<StylesheetParameters>
+				<ParameterName>{http://www.datapower.com/param/config}valcred</ParameterName>
+				<ParameterValue>STS_IdpKey-ValCred</ParameterValue>
+			</StylesheetParameters>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_STSValidate_XACML_AAA">
+			<mAdminState>enabled</mAdminState>
+			<Type>aaa</Type>
+			<Input>INPUT</Input>
+			<Output>NULL</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<AAA class="AAAPolicy">SOA_Services_STSValidate_XACMLAuthorize_AAAPolicy</AAA>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_SAML_XACML_AAAPolicy">
+			<mAdminState>enabled</mAdminState>
+			<Type>aaa</Type>
+			<Input>INPUT</Input>
+			<Output>NULL</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<AAA class="AAAPolicy">SOA_Services_SAML_XACML_AAAPolicy</AAA>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_Authorization_AAA">
+			<mAdminState>enabled</mAdminState>
+			<Type>conditional</Type>
+			<Input>SERVICE_METADATA</Input>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<Condition>
+				<Expression>/OperationConfig/AAA/Method[text() = 'Signed-SAML-Filter']</Expression>
+				<ConditionAction>SOA_Services_V1_SamlSig_filter</ConditionAction>
+			</Condition>
+			<Condition>
+				<Expression>/OperationConfig/AAA/Method[text() = 'STS-XACML']</Expression>
+				<ConditionAction>SOA_Services_V1_STSValidate_XACML_AAA</ConditionAction>
+			</Condition>
+			<Condition>
+				<Expression>/OperationConfig/AAA/Method[text() = 'SAML-XACML']</Expression>
+				<ConditionAction>SOA_Services_SAML_XACML_AAAPolicy</ConditionAction>
+			</Condition>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_InitRequestConfig_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local://framework-soa-esb/framework/InitRequestConfig.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_InitResponseConfig_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local://framework-soa-esb/framework/InitResponseConfig.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_InitResponseConfig_BinaryResponse_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>RESULT_DOC</Input>
+			<Transform>local://framework-soa-esb/framework/InitResponseConfig.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_HandleErrors_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local:///framework-soa-esb/framework/HandleErrors.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_FinalisePolicyConfig_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>NULL</Input>
+			<Transform>local://framework-soa-esb/framework/FinalisePolicyConfig.xsl</Transform>
+			<Output>NULL</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_ApplyResponseWSAddressing_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>RESULT_DOC</Input>
+			<Transform>local://framework-soa-esb/framework/ResponseWSAddressing.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_ResultDocToOutput_output">
+			<mAdminState>enabled</mAdminState>
+			<Type>results</Type>
+			<Input>RESULT_DOC</Input>
+			<Output>OUTPUT</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_ResultDocToOutput_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local://framework-soa-esb/framework/CopyResultDoc.xsl</Transform>
+			<Output>OUTPUT</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_LogTimingStats_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>NULL</Input>
+			<Transform>local://framework-soa-esb/framework/LogTimingStats.xsl</Transform>
+			<Output>NULL</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>on</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_SetNextRuleName_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>SERVICE_METADATA</Input>
+			<Transform>local://framework-soa-esb/framework/SetNextRuleName.xsl</Transform>
+			<Output>SERVICE_METADATA</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_Transform_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local://framework-soa-esb/framework/Transform.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_Filter_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>filter</Type>
+			<Input>INPUT</Input>
+			<Transform>local:///framework-soa-esb/framework/Filter.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_PreProcessAttachments_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local://framework-soa-esb/framework/ProcessAttachments.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<StylesheetParameters>
+				<ParameterName>PROCESS</ParameterName>
+				<ParameterValue>pre</ParameterValue>
+			</StylesheetParameters>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_WrapBinary_xformbin">
+			<mAdminState>enabled</mAdminState>
+			<Type>xformbin</Type>
+			<Input>INPUT</Input>
+			<Transform>local:///framework-soa-esb/services/common/WrapBinary.xsl</Transform>
+			<TxMode>dpa</TxMode>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_EncodeMTOM_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>RESULT_DOC</Input>
+			<Transform>store:///mtom.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<StylesheetParameters>
+				<ParameterName>{http://www.datapower.com/param/config}mtompolicy</ParameterName>
+				<ParameterValue>encodeMTOMPolicy</ParameterValue>
+			</StylesheetParameters>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_DecodeMTOM_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>RESULT_DOC</Input>
+			<Transform>store:///mtom.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<StylesheetParameters>
+				<ParameterName>{http://www.datapower.com/param/config}mtompolicy</ParameterName>
+				<ParameterValue>decodeMTOMPolicy</ParameterValue>
+			</StylesheetParameters>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_PostProcessAttachments_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>RESULT_DOC</Input>
+			<Transform>local://framework-soa-esb/framework/ProcessAttachments.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<StylesheetParameters>
+				<ParameterName>PROCESS</ParameterName>
+				<ParameterValue>post</ParameterValue>
+			</StylesheetParameters>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_Validate_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local://framework-soa-esb/framework/Validate.xsl</Transform>
+			<Output>VALIDATE_RESULT</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_Copy_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local:///framework-soa-esb/framework/Copy.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_CallService_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local:///framework-soa-esb/framework/CallService.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_BackendRouting_xform">
+			<mAdminState>enabled</mAdminState>
+			<Type>xform</Type>
+			<Input>INPUT</Input>
+			<Transform>local://framework-soa-esb/framework/BackendRouting.xsl</Transform>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<OutputType>default</OutputType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_NextRuleName_call">
+			<mAdminState>enabled</mAdminState>
+			<Type>call</Type>
+			<Input>RESULT_DOC</Input>
+			<Output>RESULT_DOC</Output>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<Rule>var://context/framework-soa-esb/nextRuleName</Rule>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<StylePolicyAction name="SOA_Services_V1_NextRuleName_conditional">
+			<mAdminState>enabled</mAdminState>
+			<Type>conditional</Type>
+			<Input>SERVICE_METADATA</Input>
+			<NamedInOutLocationType>default</NamedInOutLocationType>
+			<Transactional>off</Transactional>
+			<SOAPValidation>body</SOAPValidation>
+			<SQLSourceType>static</SQLSourceType>
+			<Asynchronous>off</Asynchronous>
+			<Condition>
+				<Expression>/OperationConfig/*</Expression>
+				<ConditionAction>SOA_Services_V1_NextRuleName_call</ConditionAction>
+			</Condition>
+			<ResultsMode>first-available</ResultsMode>
+			<RetryCount>0</RetryCount>
+			<RetryInterval>1000</RetryInterval>
+			<MultipleOutputs>off</MultipleOutputs>
+			<IteratorType>XPATH</IteratorType>
+			<Timeout>0</Timeout>
+			<MethodRewriteType>GET</MethodRewriteType>
+			<MethodType>POST</MethodType>
+			<MethodType2>POST</MethodType2>
+		</StylePolicyAction>
+		<WSStylePolicyRule name="SOA_Services_V1_Request_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>request-rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_InitRequestConfig_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_FinalisePolicyConfig_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_Binary_Response_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>response-rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_WrapBinary_xformbin</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_InitResponseConfig_BinaryResponse_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ApplyResponseWSAddressing_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_FinalisePolicyConfig_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_LogTimingStats_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_Response_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>response-rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_InitResponseConfig_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ApplyResponseWSAddressing_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_FinalisePolicyConfig_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_LogTimingStats_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_xform</Actions>
+		</WSStylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_Error_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>error-rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_InitResponseConfig_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ApplyResponseWSAddressing_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_FinalisePolicyConfig_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_LogTimingStats_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<!-- Duplicate WSStylePolicy and StylePolicy rules required to satisfy CALL -->
+		<WSStylePolicyRule name="SOA_Services_V1_AAA_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_Authorization_AAA</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<StylePolicyRule name="SOA_Services_V1_AAA_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_Authorization_AAA</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</StylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_Transform_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_Transform_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<StylePolicyRule name="SOA_Services_V1_Transform_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_Transform_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</StylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_Filter_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_Filter_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<StylePolicyRule name="SOA_Services_V1_Filter_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_Filter_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</StylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_EncodeMTOM_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_PreProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_EncodeMTOM_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_PostProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<StylePolicyRule name="SOA_Services_V1_EncodeMTOM_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_PreProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_EncodeMTOM_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_PostProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</StylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_DecodeMTOM_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_PreProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_DecodeMTOM_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_PostProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<StylePolicyRule name="SOA_Services_V1_DecodeMTOM_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_PreProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_DecodeMTOM_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_PostProcessAttachments_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</StylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_Validate_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_Validate_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<StylePolicyRule name="SOA_Services_V1_Validate_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_Validate_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</StylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_Copy_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_Copy_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<StylePolicyRule name="SOA_Services_V1_Copy_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_Copy_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</StylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_CallService_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_CallService_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<StylePolicyRule name="SOA_Services_V1_CallService_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_CallService_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</StylePolicyRule>
+		<WSStylePolicyRule name="SOA_Services_V1_BackendRouting_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_BackendRouting_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</WSStylePolicyRule>
+		<StylePolicyRule name="SOA_Services_V1_BackendRouting_rule">
+			<mAdminState>enabled</mAdminState>
+			<Direction>rule</Direction>
+			<InputFormat>none</InputFormat>
+			<OutputFormat>none</OutputFormat>
+			<NonXMLProcessing>off</NonXMLProcessing>
+			<Unprocessed>off</Unprocessed>
+			<Actions class="StylePolicyAction">SOA_Services_V1_BackendRouting_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_SetNextRuleName_xform</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_NextRuleName_conditional</Actions>
+			<Actions class="StylePolicyAction">SOA_Services_V1_ResultDocToOutput_output</Actions>
+		</StylePolicyRule>
+		<WSStylePolicy/>
+		<PolicyAttachments/>
+		<WSGateway/>
+	</configuration>
+</datapower-configuration>

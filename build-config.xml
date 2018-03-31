@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config 
+            name                          ="DPDirect"
+            description                   ="DPDirect project build configuration"
+            xsi:noNamespaceSchemaLocation ="etc/config.xsd"
+            xmlns:xsi                     ="http://www.w3.org/2001/XMLSchema-instance">
+            
+            <repository>http://mynexus:8080/nexus</repository>
+            
+            <notification>
+                <email></email>
+            </notification>
+            
+            <java-version>IBM1.7</java-version>
+            <builder-version>MVN3.0</builder-version>
+            <appserver-version>WAS8.0</appserver-version>
+            <rsa-version>RSA7.0</rsa-version>
+            
+            <target-name>package</target-name>
+            <report-goal>site</report-goal>
+
+            <skip-tests>true</skip-tests>
+            <skip-optional-tests>true</skip-optional-tests>
+            <ignore-test-failure>true</ignore-test-failure>
+            
+</config>

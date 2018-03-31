@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlLocation="local:///service-schema/Verify/WSDL/V1.0/Verify_ServicesProxy_V1.wsdl"
+	xsi:noNamespaceSchemaLocation="ServiceConfig.xsd"  version="1.0">
+	<OperationConfig id="Verify">
+		<Description>Configuration for the "Verify" service</Description>
+		<InputMatchCriteria>
+			<Action>http://www.dpdirect.org/Namespace/Verify/ServicesProxy/Interface/V1/Verify_ServicesProxy_PortType_V1/VerifyRequest</Action>
+			<InboundURI>*/Verify</InboundURI>
+			<HTTPSPort>4000</HTTPSPort>
+		</InputMatchCriteria>
+		<RequestPolicyConfig schemaValidate="true">
+			<BackendRouting provider="IIB">
+				<BackendStub>local:///framework-soa-esb/services/Verify/V1.0/VerifyResponse_Stub.xsl</BackendStub>
+				<!--<HTTPEndpoint>
+					<Address>${verifyHttpEndpoint}</Address>
+				</HTTPEndpoint>
+				<TimeoutSeconds>31</TimeoutSeconds>-->
+			</BackendRouting>
+		</RequestPolicyConfig>
+		<ResponsePolicyConfig schemaValidate="true"/>
+		<ErrorPolicyConfig schemaValidate="true">
+			<Transform>
+				<Stylesheet>local:///framework-soa-esb/framework/HandleErrors.xsl</Stylesheet>
+			</Transform>
+		</ErrorPolicyConfig>
+	</OperationConfig>
+</ServiceConfig>

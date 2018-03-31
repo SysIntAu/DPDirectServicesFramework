@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed Materials - Property of IBM
+  IBM WebSphere DataPower Appliances
+  Copyright IBM Corporation 2012. All Rights Reserved.
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:tns="http://www.datapower.com/schemas/management"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.datapower.com/schemas/management">
+    
+    <xsd:complexType name="query-condition">
+        <xsd:choice>
+            <xsd:group ref="tns:property-condition" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:group ref="tns:sub-conditions" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:attribute name="evaluation" type="tns:condition-evaluation" use="required" />
+    </xsd:complexType>
+    
+    <xsd:group name="sub-conditions">
+        <xsd:sequence>
+            <xsd:element name="query-condition" type="tns:query-condition" minOccurs="1" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:group>
+    
+    <xsd:simpleType name="condition-evaluation">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="logical-and" />
+            <xsd:enumeration value="logical-or" />
+            <xsd:enumeration value="logical-not" />
+            <xsd:enumeration value="property-equals" />
+            <xsd:enumeration value="property-does-not-equal" />
+            <xsd:enumeration value="property-greater-than" />
+            <xsd:enumeration value="property-greater-than-or-equal" />
+            <xsd:enumeration value="property-less-than" />
+            <xsd:enumeration value="property-less-than-or-equal" />
+            <xsd:enumeration value="property-value-in-list" />
+            <xsd:enumeration value="property-value-not-in-list" />
+            <xsd:enumeration value="property-between" />
+            <xsd:enumeration value="property-contains" />
+            <xsd:enumeration value="property-ends-with" />
+            <xsd:enumeration value="property-starts-with" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:group name="property-condition">
+        <xsd:sequence>
+            <xsd:element name="property-name" type="tns:property-name" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="value" type="xsd:string" maxOccurs="unbounded" nillable="true"/>
+        </xsd:sequence>
+    </xsd:group>
+    
+    <xsd:simpleType name="property-name">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="TransactionSetID"/>
+            <xsd:enumeration value="TransactionID"/>
+            <xsd:enumeration value="GatewayName"/>
+            <xsd:enumeration value="Domain"/>
+            <xsd:enumeration value="SenderID"/>
+            <xsd:enumeration value="SenderName"/>
+            <xsd:enumeration value="ReceiverID"/>
+            <xsd:enumeration value="ReceiverName"/>
+            <xsd:enumeration value="InboundURL"/>
+            <xsd:enumeration value="OutboundURL"/>
+            <xsd:enumeration value="InputTime"/>
+            <xsd:enumeration value="BeginMessageRetry"/>
+            <xsd:enumeration value="ProcessingCompleted"/>
+            <xsd:enumeration value="ResultCode"/>
+            <xsd:enumeration value="MDNType"/>
+            <xsd:enumeration value="MDNStatus"/>
+            <xsd:enumeration value="OutputTime"/>
+            <xsd:enumeration value="MDNSent"/>
+            <xsd:enumeration value="MDNReceived"/>
+            <xsd:enumeration value="MessageIDHeader"/>
+            <xsd:enumeration value="ContentTypeHeader"/>
+            <xsd:enumeration value="ASFromHeader"/>
+            <xsd:enumeration value="ASToHeader"/>
+            <xsd:enumeration value="DateHeader"/>
+            <xsd:enumeration value="DispositionHeader"/>
+            <xsd:enumeration value="DispositionOptionsHeader"/>
+            <xsd:enumeration value="ContentLengthHeader"/>
+            <xsd:enumeration value="ContentDispositionHeader"/>
+            <xsd:enumeration value="OriginalMessageIDHeader"/>
+            <xsd:enumeration value="ASVersion"/>
+            <xsd:enumeration value="IsInbound"/>
+            <xsd:enumeration value="SubjectHeader"/>
+            <xsd:enumeration value="DocumentID"/>
+            <xsd:enumeration value="DocumentType"/>
+            <xsd:enumeration value="MessageDisposition"/>
+            <xsd:enumeration value="IntegrationID"/>
+            <xsd:enumeration value="MaxResend"/>
+            <xsd:enumeration value="ResendStatus"/>
+            <xsd:enumeration value="ResendCount"/>
+            <xsd:enumeration value="EBMSMessageID"/>
+            <xsd:enumeration value="EBMSRefToMessageID"/>
+            <xsd:enumeration value="EBMSCPAID"/>
+            <xsd:enumeration value="EBMSFromPartyID"/>
+            <xsd:enumeration value="EBMSToPartyID"/>
+            <xsd:enumeration value="EBMSFromRole"/>
+            <xsd:enumeration value="EBMSToRole"/>
+            <xsd:enumeration value="EBMSConversationID"/>
+            <xsd:enumeration value="EBMSService"/>
+            <xsd:enumeration value="EBMSServiceType"/>
+            <xsd:enumeration value="EBMSAction"/>
+            <xsd:enumeration value="EBMSTimeToPersist"/>
+            <xsd:enumeration value="EBMSSyncReplyMode"/>
+            <xsd:enumeration value="EBMSDuplicateElimination"/>
+            <xsd:enumeration value="EBMSAckRequested"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="result-constraints">
+        <xsd:all minOccurs="0">
+            <xsd:element name="max-rows" type="xsd:unsignedInt" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="start-index" type="xsd:unsignedInt" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="sort-order" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="property-name" minOccurs="1" maxOccurs="unbounded">
+                            <xsd:complexType>
+                                <xsd:simpleContent>
+                                    <xsd:extension base="tns:property-name">
+                                        <xsd:attribute name="direction">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base="xsd:string">
+                                                    <xsd:enumeration value="asc"/>
+                                                    <xsd:enumeration value="desc"/>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:attribute>
+                                    </xsd:extension>
+                                </xsd:simpleContent>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+                <xsd:unique name="sortby-property-uniqueness">
+                    <xsd:selector xpath="tns:property-name"/>
+                    <xsd:field xpath="."/>
+                </xsd:unique>
+            </xsd:element>
+            <xsd:element name="include-properties" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                    <xsd:group ref="tns:property-filter"/>
+                </xsd:complexType>
+                <xsd:unique name="include-property-uniqueness">
+                    <xsd:selector xpath="tns:property-name"/>
+                    <xsd:field xpath="."/>
+                </xsd:unique>
+            </xsd:element>
+            <xsd:element name="exclude-properties" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                    <xsd:group ref="tns:property-filter"/>
+                </xsd:complexType>
+                <xsd:unique name="exclude-property-uniqueness">
+                    <xsd:selector xpath="tns:property-name"/>
+                    <xsd:field xpath="."/>
+                </xsd:unique>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    
+    <xsd:group name="property-filter">
+        <xsd:sequence>
+            <xsd:element name="property-name" type="tns:property-name" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:group>
+</xsd:schema>
+
