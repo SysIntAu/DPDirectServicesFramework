@@ -137,13 +137,13 @@
 	<xsl:variable name="DP_LOG_LEVEL_INFO" select="'info'"/>
 	<xsl:variable name="DP_LOG_LEVEL_DEBUG" select="'debug'"/>
 	<!--
-		'dpdirect://' properties prefix and property keys
+		'propkey://' properties prefix and property keys
 	-->
-	<xsl:variable name="DPDIRECT.PROP_URI_PREFIX" select="'dpdirect://'"/>
-	<xsl:variable name="DPDIRECT.PROPKEY_LOGCAT_DPDIRECT.STATS" select="'dpdirect://logCategory/dpdirectStats'"/>
-	<xsl:variable name="DPDIRECT.PROPKEY_LOGCAT_DPDIRECT.SERVICE" select="'dpdirect://logCategory/dpdirectService'"/>
-	<xsl:variable name="DPDIRECT.LOGCAT_DPDIRECT.STATS_SUFFIX" select="'_DPDirectStats'"/>
-	<xsl:variable name="DPDIRECT.LOGCAT_DPDIRECT.SERVICE_SUFFIX" select="'_DPDirectService'"/>
+	<xsl:variable name="PROP_URI_PREFIX" select="'propkey://'"/>
+	<xsl:variable name="PROPKEY_LOGCAT_STATS" select="'propkey://logCategory/dpdirectStats'"/>
+	<xsl:variable name="PROPKEY_LOGCAT_SERVICE" select="'propkey://logCategory/dpdirectService'"/>
+	<xsl:variable name="LOGCAT_STATS_SUFFIX" select="'_DPDirectStats'"/>
+	<xsl:variable name="LOGCAT_SERVICE_SUFFIX" select="'_DPDirectService'"/>
 	<!-- 
 		Miscellaneous variables
 	-->

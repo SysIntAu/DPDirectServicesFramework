@@ -46,7 +46,7 @@
 	<xsl:variable name="OPERATION_CONFIG_NODE_ID" select="normalize-space(dp:variable($OPERATION_CONFIG_NODE_ID_VAR_NAME))"/>
 	<xsl:variable name="THIS_SERVICE_NAME" select="normalize-space(regexp:replace($OPERATION_CONFIG_NODE_ID, '-.*$', 'i', ''))"/>
 	<!-- Determine the name of the service log category (must be unique for each domain) -->
-	<xsl:variable name="SERVICE_LOG_CATEGORY" select="concat(string(dp:variable($DP_SERVICE_DOMAIN_NAME)), $DPDIRECT.LOGCAT_DPDIRECT.SERVICE_SUFFIX)"/>
+	<xsl:variable name="SERVICE_LOG_CATEGORY" select="concat(string(dp:variable($DP_SERVICE_DOMAIN_NAME)), $LOGCAT_SERVICE_SUFFIX)"/>
 	<xsl:variable name="MSG" select="."/>
 	<!--=============================================================-->
 	<!-- NAMED TEMPLATES                                             -->

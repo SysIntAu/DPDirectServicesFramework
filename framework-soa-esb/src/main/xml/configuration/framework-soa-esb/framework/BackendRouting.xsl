@@ -81,7 +81,7 @@
 				<xsl:when test="$SERVICE_METADATA/OperationConfig[1]/BackendRouting[1]/BackendStub">
 					<xsl:variable name="DP_ECHO_ENDPOINT">
 						<xsl:call-template name="GetDPDirectProperty">
-							<xsl:with-param name="KEY" select="concat($DPDIRECT.PROP_URI_PREFIX,'echoHttpEndpoint')"/>
+							<xsl:with-param name="KEY" select="concat($PROP_URI_PREFIX,'echoHttpEndpoint')"/>
 						</xsl:call-template>
 					</xsl:variable>
 					<BackendRouting provider="MSG">

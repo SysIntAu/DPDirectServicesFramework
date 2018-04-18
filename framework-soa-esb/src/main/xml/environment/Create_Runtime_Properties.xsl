@@ -31,7 +31,7 @@
 	</xsl:template>
 	<!-- Template to create "Property" output elements -->
 	<xsl:template match="parameter">
-		<xsl:if test="starts-with(normalize-space(@name),'dpdirect://')">
+		<xsl:if test="starts-with(normalize-space(@name),'propkey://')">
 			<Property key="{normalize-space(@name)}" value="{normalize-space(@value)}"/>
 		</xsl:if>
 	</xsl:template>

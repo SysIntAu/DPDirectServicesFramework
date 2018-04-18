@@ -29,17 +29,17 @@
 	<!-- Datapower Environment Variables for Config Injection-->
 	<runtime name="environment_properties">
 		<!-- Environment -->
-		<parameter name="dpdirect://envName" value="UAT"/>
-		<parameter name="dpdirect://echoHttpEndpoint" value="http://DPSOAUAT:10000"/>
+		<parameter name="propkey://envName" value="UAT"/>
+		<parameter name="propkey://echoHttpEndpoint" value="http://DPSOAUAT:10000"/>
 		<!-- SERVICELOG Logging -->
-		<parameter name="dpdirect://logging/capturePointLogs" value="none"/>
-		<parameter name="dpdirect://logging/successLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPSOA.SERVICE.LOG;AsyncPut=true"/>
-		<parameter name="dpdirect://logging/errorLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPSOA.ERROR.LOG;AsyncPut=true"/>
+		<parameter name="propkey://logging/capturePointLogs" value="none"/>
+		<parameter name="propkey://logging/successLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPSOA.SERVICE.LOG;AsyncPut=true"/>
+		<parameter name="propkey://logging/errorLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPSOA.ERROR.LOG;AsyncPut=true"/>
 		<!-- Stats Logging -->
-		<parameter name="dpdirect://logCategory/esbStats/DPSOAUAT" value="DPSOAUAT_ServiceStats"/>
-		<parameter name="dpdirect://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
-		<parameter name="dpdirect://logTarget/remoteSystemManagement/address" value="logserver.dpdirect.org"/>
-		<parameter name="dpdirect://logTarget/remoteSystemManagement/port" value="23456"/>
+		<parameter name="propkey://logCategory/esbStats/DPSOAUAT" value="DPSOAUAT_ServiceStats"/>
+		<parameter name="propkey://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
+		<parameter name="propkey://logTarget/remoteSystemManagement/address" value="logserver.dpdirect.org"/>
+		<parameter name="propkey://logTarget/remoteSystemManagement/port" value="23456"/>
 	</runtime>
 	<!-- Datapower Environment Variables for Config Injection-->
 	<injection name="environment_properties">

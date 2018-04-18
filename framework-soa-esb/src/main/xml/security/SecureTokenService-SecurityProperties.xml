@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PropertiesList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PropertiesList.xsd">
 
-    <Property key="dpdirect://authorisation/ldapConf/bindPassword" value="admin"/>
-    <Property key="dpdirect://authentication/jwt/hmacSecret" value="key:c2VjcmV0"/>
+    <Property key="propkey://authorisation/ldapConf/bindPassword" value="admin"/>
+    <Property key="propkey://authentication/jwt/hmacSecret" value="key:c2VjcmV0"/>
 
 </PropertiesList>

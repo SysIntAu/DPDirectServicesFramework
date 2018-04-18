@@ -28,17 +28,17 @@
 	<!-- Datapower Environment Variables for Config Injection-->
 	<runtime name="environment_properties">
 		<!-- Environment -->
-		<parameter name="dpdirect://envName" value="DEV"/>
-		<parameter name="dpdirect://echoHttpEndpoint" value="http://SOA_DEV:10000"/>
+		<parameter name="propkey://envName" value="DEV"/>
+		<parameter name="propkey://echoHttpEndpoint" value="http://SOA_DEV:10000"/>
 		<!-- SERVICELOG Logging -->
-		<parameter name="dpdirect://logging/capturePointLogs" value="none"/>
-		<parameter name="dpdirect://logging/successLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.SERVICE.LOG;AsyncPut=true"/>
-		<parameter name="dpdirect://logging/errorLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.ERROR.LOG;AsyncPut=true"/>
+		<parameter name="propkey://logging/capturePointLogs" value="none"/>
+		<parameter name="propkey://logging/successLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.SERVICE.LOG;AsyncPut=true"/>
+		<parameter name="propkey://logging/errorLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.ERROR.LOG;AsyncPut=true"/>
 		<!-- Stats Logging -->
-		<parameter name="dpdirect://logCategory/esbStats/DEV1" value="DEV1_ServiceStats"/>
-		<parameter name="dpdirect://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
-		<parameter name="dpdirect://logTarget/remoteSystemManagement/address" value="logserver.dpdirect.org"/>
-		<parameter name="dpdirect://logTarget/remoteSystemManagement/port" value="23456"/>
+		<parameter name="propkey://logCategory/esbStats/SOA_DEV" value="SOA_DEV_ServiceStats"/>
+		<parameter name="propkey://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
+		<parameter name="propkey://logTarget/remoteSystemManagement/address" value="logserver.dpdirect.org"/>
+		<parameter name="propkey://logTarget/remoteSystemManagement/port" value="23456"/>
 	</runtime>
 	<!-- Datapower Environment Variables for Config Injection-->
 	<injection name="environment_properties">
@@ -53,7 +53,7 @@
 		<parameter name="defaultKeyTransportAlgorithm" value="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
 		<parameter name="defaultDigestAlgorithm" value="http://www.w3.org/2001/04/xmlenc#sha256"/>
 		<!-- Logging -->
-		<parameter name="logCategoryServiceStats" value="DEV1_ServiceStats"/>
+		<parameter name="logCategoryServiceStats" value="SOA_DEV_ServiceStats"/>
 		<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
 		<parameter name="logTargetRemoteSystemManagementAddress" value="logserver.dpdirect.org"/>
 		<parameter name="logTargetRemoteSystemManagementPort" value="23456"/>

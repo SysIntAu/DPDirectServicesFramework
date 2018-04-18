@@ -22,8 +22,7 @@
 		of configured search/replace parameters for a specific environment.
 		
 		History:
-		2016-12-12	v0.1	Tim Goodwill	Initial Version.
-		2016-12-12	v0.1	N.A.		Updated to strip clear-text HTTP front side handler/s in higher environments (UAT,STAGE/TRAIN/PROD).
+		2016-12-12	v0.1	Tim Goodwill, N.A.	Initial Version.
 		========================================================================-->
 	<!--============== Output Configuration =========================-->
 	<xsl:output encoding="UTF-8" method="xml" indent="yes" version="1.0"/>

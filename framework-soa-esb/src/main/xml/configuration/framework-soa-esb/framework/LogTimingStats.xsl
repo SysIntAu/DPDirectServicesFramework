@@ -43,7 +43,7 @@
 	<!-- Root Template -->
 	<xsl:template match="/">
 		<!-- Determine the name of the stats log category (must be unique for each domain) -->
-		<xsl:variable name="STATS_LOG_CATEGORY" select="concat(string(dp:variable($DP_SERVICE_DOMAIN_NAME)), $DPDIRECT.LOGCAT_DPDIRECT.STATS_SUFFIX)"/>
+		<xsl:variable name="STATS_LOG_CATEGORY" select="concat(string(dp:variable($DP_SERVICE_DOMAIN_NAME)), $LOGCAT_STATS_SUFFIX)"/>
 		<xsl:variable name="ERROR_CODE" select="string(dp:variable($ERROR_CODE_VAR_NAME))"/>
 		<xsl:variable name="OUT_MSG_ROOT_NAME">
 			<xsl:call-template name="GetOutputMsgRootName"/>
