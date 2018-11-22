@@ -44,7 +44,7 @@
 		<!-- One of ('all'|'none'|'error') -->
 		<xsl:variable name="CAPTURE_POINT_LOGS">
 			<xsl:call-template name="GetDPDirectProperty">
-				<xsl:with-param name="KEY" select="concat($PROP_URI_PREFIX,'logging/capturePointLogs')"/>
+				<xsl:with-param name="KEY" select="concat($PROP_URI_PREFIX,'capturePointLogs')"/>
 			</xsl:call-template>
 		</xsl:variable>
 		<xsl:choose>

@@ -32,18 +32,18 @@
 		<parameter name="propkey://esbLocalHostAlias" value="DPSOATEST"/>
 		<parameter name="propkey://echoHttpEndpoint" value="http://DPSOATEST:10000"/>
 		<!-- SERVICELOG Logging -->
-		<parameter name="propkey://logging/capturePointLogs" value="none"/>
-		<parameter name="propkey://logging/successLog/putUrl/1"
+		<parameter name="propkey://capturePointLogs" value="none"/>
+		<parameter name="propkey://successLogPutUrl"
 			value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPSOA.SERVICE.LOG;AsyncPut=true"/>
-		<parameter name="propkey://logging/errorLog/putUrl/1"
+		<parameter name="propkey://errorLogPutUrl"
 			value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPSOA.ERROR.LOG;AsyncPut=true"/>
 		<!-- Stats Logging -->
-		<parameter name="propkey://logCategory/esbStats/DPSOATEST" value="DPSOATEST_ServiceStats"/>
-		<parameter name="propkey://logTarget/url"
+		<parameter name="propkey://logCategoryServiceStats/DPSOATEST" value="DPSOATEST_ServiceStats"/>
+		<parameter name="propkey://logTargetUrl"
 			value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
 		<parameter name="propkey://logTarget/remoteSystemManagement/address" value="logserver.dpdirect.org"/>
 		<parameter name="propkey://logTarget/remoteSystemManagement/port" value="23456"/>
-		<parameter name="propkey://logCategory/esbStats/DPSOA" value="SOA_ServiceStats"/>
+		<parameter name="propkey://logCategoryServiceStats/DPSOA" value="SOA_ServiceStats"/>
 		<parameter name="propkey://authorisation/signature/signingKey" value="authenticationManager"/>
 	</runtime>
 	<!-- Datapower Environment Variables for Config Injection-->

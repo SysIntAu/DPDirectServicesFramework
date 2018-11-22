@@ -18,8 +18,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:wsoap11="http://schemas.xmlsoap.org/wsdl/soap/"
 	xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
 	xmlns:exslt="http://exslt.org/common"
-	extension-element-prefixes="exslt wsoap11 wsoap12 xsi" version="1.0">
+	exclude-result-prefixes="wsoap11 wsoap12 xsi wsdl"
+	extension-element-prefixes="exslt" version="1.0">
 	<!--========================================================================
 		History:
 		2016-12-12	v0.1	Tim Goodwill	Initial Version.
@@ -52,10 +54,10 @@
 	</xsl:variable>
 	<xsl:variable name="WSDL_BUILD_PATH" select="concat('../local/', substring-after($WSDL_DP_PATH, 'local:///'))"/>
 	<xsl:variable name="WSDL_DOC" select="document($WSDL_BUILD_PATH)"/>
-	<xsl:variable name="WSDL_NAMESPACE" select="string($WSDL_DOC//*[local-name() = 'definitions'][1]/@targetNamespace)"/>
+	<xsl:variable name="WSDL_NAMESPACE" select="string($WSDL_DOC//wsdl:definitions[1]/@targetNamespace)"/>
 	<xsl:variable name="WSDL_SOAP_VERSION">
 		<xsl:choose>
-			<xsl:when test="$WSDL_DOC//*[local-name() = 'definitions']/*[local-name() = 'binding']/wsoap11:binding">
+			<xsl:when test="$WSDL_DOC//wsdl:definitions/binding/wsoap11:binding">
 				<xsl:value-of select="'soap-11'"/>
 			</xsl:when>
 			<xsl:otherwise>
@@ -63,8 +65,6 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
-	<xsl:variable name="WSDL_SERVICE_NAME" select="string($WSDL_DOC//*[local-name() = 'definitions']/*[local-name() = 'service']/@name)"/>
-	<xsl:variable name="WSDL_SERVICE_PORT_NAME" select="string($WSDL_DOC//*[local-name() = 'definitions']/*[local-name() = 'service']/*[local-name() = 'port'][1]/@name)"/>
 	<xsl:variable name="DP_CONFIG" select="//configuration[1]"/>
 	<xsl:variable name="HTTPS_FRONT_SIDE_HANDLERS">
 		<FSH>
@@ -397,13 +397,13 @@
 		<xsl:param name="RESPONSE_VALIDATION" select="'true'"/>
 		<xsl:param name="FAULT_VALIDATION" select="'true'"/>
 		<xsl:param name="HEADER_VALIDATION" select="'true'"/>
-		<!-- Vars -->
-		<xsl:variable name="FRONTSIDE_PORT_SUFFIX">
-			<xsl:if test="contains(@id, '_VERIFY_Policy')">
-				<xsl:value-of select="'.1'"/>
-			</xsl:if>
-		</xsl:variable>
-		<xsl:variable name="OPERATION_NAME" select="normalize-space($WSDL_DOC//*[local-name() = 'definitions'][1]/*[local-name() = 'binding'][1]/*[local-name() = 'operation'][*[@soapAction=$ACTION]]/@name)"/>
+		<!-- Vars --> 
+		<xsl:variable name="WSDL_OPERATION_NAME" select="$WSDL_DOC//wsdl:definitions/wsdl:binding/wsdl:operation[*[local-name() = 'operation']/@soapAction=$ACTION][1]/@name"/>
+		<xsl:variable name="WSDL_BINDING_NAME" select="$WSDL_DOC//wsdl:definitions/wsdl:binding[wsdl:operation/@name=$WSDL_OPERATION_NAME][1]/@name"/>
+		<xsl:variable name="WSDL_SERVICE_NAME" select="$WSDL_DOC//wsdl:definitions/wsdl:service[wsdl:port[substring-after(@binding, ':')=$WSDL_BINDING_NAME]][1]/@name"/>
+		<xsl:variable name="WSDL_SERVICE_PORT_NAME" select="$WSDL_DOC//wsdl:definitions/wsdl:service[@name=$WSDL_SERVICE_NAME]/wsdl:port[substring-after(@binding, ':')=$WSDL_BINDING_NAME][1]/@name"/>
+		<!-- Create toggles where WSDL serice port and operation is identified -->
+		<xsl:if test="$WSDL_SERVICE_PORT_NAME and $WSDL_OPERATION_NAME">
 		<UserToggles>
 			<Toggles>
 				<Enable>on</Enable>
@@ -457,9 +457,10 @@
 			</Toggles>
 			<UseFragmentID>on</UseFragmentID>
 			<FragmentID>
-				<xsl:value-of select="concat($WSDL_NAMESPACE, '#dp.portOperation(', $WSDL_SERVICE_NAME, '/', $WSDL_SERVICE_PORT_NAME, '/', $OPERATION_NAME, ')')"/>
+				<xsl:value-of select="concat($WSDL_NAMESPACE, '#dp.portOperation(', $WSDL_SERVICE_NAME, '/', $WSDL_SERVICE_PORT_NAME, '/', $WSDL_OPERATION_NAME, ')')"/>
 			</FragmentID>
 		</UserToggles>
+		</xsl:if>
 	</xsl:template>
 	<!-- Standard Identity template -->
 	<xsl:template match="node()|@*">

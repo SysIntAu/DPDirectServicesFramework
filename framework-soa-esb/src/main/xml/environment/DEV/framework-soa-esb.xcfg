@@ -1,7 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datapower-configuration version="3">
 	<configuration domain="DEV1">
-		<!-- MQQMs -->
+		<!-- Logs : custom log category can be defined only once for each DP instance. 
+			Framework custom categories are by default prefixed by DP domain name per environment, however
+			'logCategoryServiceLog' and 'logCategoryServiceStats' properties can be defined as an envionment property.
+			The internal, default log will roll, so a remote log target should be configured to retain and index logs. 
+			A log target is defined for each env to provide control over priority logging per category, per environment. -->
+<!--		<LogTarget name="Remote_Performance_Log_Target_SOAP">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>Logs to remote log target which processes and indexes log messages</UserSummary>
+			<Type>soap</Type>
+			<Priority>normal</Priority>
+			<SoapVersion>soap11</SoapVersion>
+			<Format>xml</Format>
+			<TimestampFormat>syslog</TimestampFormat>
+			<Size>500</Size>
+			<URL>http://localhost:8090/dplog/add-log-entry/</URL>
+			<ArchiveMode>rotate</ArchiveMode>
+			<UploadMethod>ftp</UploadMethod>
+			<Rotate>3</Rotate>
+			<UseANSIColor>off</UseANSIColor>
+			<LocalAddress>localhost</LocalAddress>
+			<SyslogFacility>user</SyslogFacility>
+			<SigningMode>off</SigningMode>
+			<EncryptMode>off</EncryptMode>
+			<RateLimit>100</RateLimit>
+			<ConnectTimeout>60</ConnectTimeout>
+			<IdleTimeout>15</IdleTimeout>
+			<ActiveTimeout>0</ActiveTimeout>
+			<FeedbackDetection>off</FeedbackDetection>
+			<IdenticalEventSuppression>off</IdenticalEventSuppression>
+			<IdenticalEventPeriod>10</IdenticalEventPeriod>
+			<LogEvents>
+				<Class class="LogLabel">all</Class>
+				<Priority>warn</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">aaa</Class>
+				<Priority>info</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">auth</Class>
+				<Priority>notice</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">crypto</Class>
+				<Priority>info</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">mpgw</Class>
+				<Priority>info</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">multistep</Class>
+				<Priority>notice</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">${logCategoryServiceStats}</Class>
+				<Priority>debug</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">${logCategoryServiceLog}</Class>
+				<Priority>debug</Priority>
+			</LogEvents>
+		</LogTarget>-->
+		<!-- MQ Queue Manager definitions -->
 <!--		<MQQM name="SOA_Internal_MQQM_1_RealTime_V1">
 			<mAdminState>enabled</mAdminState>
 			<UserSummary>Primary MQ Channel to LOGSERVER New Queue Manager</UserSummary>

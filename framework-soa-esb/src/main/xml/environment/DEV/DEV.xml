@@ -11,12 +11,12 @@
 	deployment process.
 
 	History: 
-	2016-12-12	v1.0	Tim Goodwill 				Initial Version with History.
+	2016-12-12	v1.0	Tim Goodwill, N.A. 				Initial Version with History.
 
 	========================================================================-->
 <env name="DEV" description="Development Environment">
 	<!-- Datapower Environment Parameters to Control Deployment-->
-	<container type="dpsoa" version="1.0" basedir="./">
+	<deployment type="dpsoa" version="1.0" basedir="./">
 		<parameter name="dp.hostname.list" value="dpgateway01,dpgateway02"/>
 		<parameter name="dp.port" value="5550"/>
 		<parameter name="soa.domain" value="SOA_DEV"/>
@@ -24,40 +24,28 @@
 		<parameter name="debug" value="false"/>
 		<parameter name="fail.on.error" value="true"/>
 		<parameter name="rollback.on.error" value="true"/>
-	</container>
-	<!-- Datapower Environment Variables for Config Injection-->
-	<runtime name="environment_properties">
-		<!-- Environment -->
-		<parameter name="propkey://envName" value="DEV"/>
-		<parameter name="propkey://echoHttpEndpoint" value="http://SOA_DEV:10000"/>
-		<!-- SERVICELOG Logging -->
-		<parameter name="propkey://logging/capturePointLogs" value="none"/>
-		<parameter name="propkey://logging/successLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.SERVICE.LOG;AsyncPut=true"/>
-		<parameter name="propkey://logging/errorLog/putUrl/1" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.ERROR.LOG;AsyncPut=true"/>
-		<!-- Stats Logging -->
-		<parameter name="propkey://logCategory/esbStats/SOA_DEV" value="SOA_DEV_ServiceStats"/>
-		<parameter name="propkey://logTarget/url" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
-		<parameter name="propkey://logTarget/remoteSystemManagement/address" value="logserver.dpdirect.org"/>
-		<parameter name="propkey://logTarget/remoteSystemManagement/port" value="23456"/>
-	</runtime>
-	<!-- Datapower Environment Variables for Config Injection-->
-	<injection name="environment_properties">
+	</deployment>
+	<!-- Datapower Environment Run-time and Injection Variables -->
+	<configuration name="environment_properties">
 		<!-- DP Echo Endpoint -->
+		<parameter name="envName" value="DEV"/>
 		<parameter name="echoHttpEndpoint" value="http://SOA_DEV:10000"/>
 		<!-- Domain Host Alias -->
 		<parameter name="dpApplianceHostName1" value="SOA_DEV"/>
 		<parameter name="dpApplianceHostName2" value="SOA_DEV"/>				
 		<parameter name="localHostAlias" value="SOA_DEV"/>
+		<!-- Stats Logging -->
+		<parameter name="logCategoryServiceStats" value="SOA_DEV_ServiceStats"/>
+		<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
+		<!-- Service point Logging -->
+		<parameter name="capturePointLogs" value="none"/>
+		<parameter name="successLogPutUrl" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.SERVICE.LOG;AsyncPut=true"/>
+		<parameter name="errorLogPutUrl" value="dpmq://SOA_Internal_Grp_RealTime_V1/?RequestQueue=DPXML.ERROR.LOG;AsyncPut=true"/>
 		<!-- default encryption algorithms-->
 		<parameter name="defaultEncryptionAlgorithm" value="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
 		<parameter name="defaultKeyTransportAlgorithm" value="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
 		<parameter name="defaultDigestAlgorithm" value="http://www.w3.org/2001/04/xmlenc#sha256"/>
-		<!-- Logging -->
-		<parameter name="logCategoryServiceStats" value="SOA_DEV_ServiceStats"/>
-		<parameter name="logTargetUrl" value="http://logserver.dpdirect.org:8090/dplog/add-log-entry/"/>
-		<parameter name="logTargetRemoteSystemManagementAddress" value="logserver.dpdirect.org"/>
-		<parameter name="logTargetRemoteSystemManagementPort" value="23456"/>
-	</injection>
+	</configuration>
 	<!-- Datapower Environment xconfig insertions-->
 	<insertions name="environment_insertions">
 	<!-- ===== Example xconfig object insertion ===== -->

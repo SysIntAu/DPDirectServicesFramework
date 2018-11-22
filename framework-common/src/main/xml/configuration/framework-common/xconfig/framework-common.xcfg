@@ -1,6 +1,70 @@
 <datapower-configuration version="3">
-
 	<configuration domain="DPSOA">
+		<!-- Logs : custom log category can be defined only once for each DP instance. 
+			Framework custom categories are by default prefixed by DP domain name per environment, 
+			however 'logCategoryServiceLog' and 'logCategoryServiceStats' properties can be defined as 
+			an envionment property. The default-log may be over-ridden in the environment xcfg file
+			to control default priority logging per category, per environment. -->
+		<LogLabel name="${logCategoryServiceStats}">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>SOA Service Stats Log</UserSummary>
+			<Type>user</Type>
+		</LogLabel>
+		<LogLabel name="${logCategoryServiceLog}">
+			<mAdminState>enabled</mAdminState>
+			<UserSummary>SOA Service Log</UserSummary>
+			<Type>user</Type>
+		</LogLabel>
+		<LogTarget name="default-log" intrinsic="true">
+			<mAdminState read-only="true">enabled</mAdminState>
+			<UserSummary read-only="true">Default Domain Log</UserSummary>
+			<Type read-only="true">file</Type>
+			<Priority read-only="true">normal</Priority>
+			<SoapVersion read-only="true">soap11</SoapVersion>
+			<Format read-only="true">text</Format>
+			<TimestampFormat read-only="true">zulu</TimestampFormat>
+			<Size read-only="true">500</Size>
+			<LocalFile read-only="true">logtemp:///default-log</LocalFile>
+			<ArchiveMode read-only="true">rotate</ArchiveMode>
+			<Rotate read-only="true">3</Rotate>
+			<UseANSIColor read-only="true">off</UseANSIColor>
+			<SyslogFacility read-only="true">user</SyslogFacility>
+			<SigningMode read-only="true">off</SigningMode>
+			<EncryptMode read-only="true">off</EncryptMode>
+			<RateLimit read-only="true">100</RateLimit>
+			<ConnectTimeout read-only="true">60</ConnectTimeout>
+			<IdleTimeout read-only="true">15</IdleTimeout>
+			<ActiveTimeout read-only="true">0</ActiveTimeout>
+			<FeedbackDetection read-only="true">off</FeedbackDetection>
+			<IdenticalEventSuppression read-only="true">off</IdenticalEventSuppression>
+			<IdenticalEventPeriod read-only="true">10</IdenticalEventPeriod>
+			<LogEvents>
+				<Class class="LogLabel">all</Class>
+				<Priority>warn</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">crypto</Class>
+				<Priority>info</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">mpgw</Class>
+				<Priority>info</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">multistep</Class>
+				<Priority>notice</Priority>
+			</LogEvents>
+			<LogEvents>
+				<Class class="LogLabel">${logCategoryServiceLog}</Class>
+				<Priority>notice</Priority>
+			</LogEvents>
+		</LogTarget>
+		<Statistics name="default" intrinsic="true">
+			<mAdminState>disabled</mAdminState>
+			<LoadInterval read-only="true">1000</LoadInterval>
+		</Statistics>
+		<!-- credentials, profiles: certificate objects (incl. names and paths) 
+				defined per environment in each environment xcfg file  -->
 		<DomainSettings name="default" intrinsic="true">
 			<mAdminState>enabled</mAdminState>
 			<PasswordTreatment>none</PasswordTreatment>
@@ -9,12 +73,6 @@
 			<mAdminState>enabled</mAdminState>
 			<DomainSettings class="DomainSettings">default</DomainSettings>
 		</PasswordAlias>
-		<CryptoKey name="SOA_GW">
-			<mAdminState>enabled</mAdminState>
-			<Filename>cert:///SOA_GW_DEV-privkey.pem</Filename>
-			<PasswordAlias>on</PasswordAlias>
-			<Alias class="PasswordAlias">SOA_GW</Alias>
-		</CryptoKey>
 		<CryptoFWCred name="SOA_GW">
 			<mAdminState>enabled</mAdminState>
 			<PrivateKey class="CryptoKey">SOA_GW</PrivateKey>
@@ -184,38 +242,6 @@
 			<MaxRedirects>8</MaxRedirects>
 			<Timeout>300</Timeout>
 		</HTTPUserAgent>
-		<LogTarget name="default-log" intrinsic="true">
-			<mAdminState read-only="true">enabled</mAdminState>
-			<UserSummary read-only="true">Default Domain Log</UserSummary>
-			<Type read-only="true">file</Type>
-			<Priority read-only="true">normal</Priority>
-			<SoapVersion read-only="true">soap11</SoapVersion>
-			<Format read-only="true">text</Format>
-			<TimestampFormat read-only="true">zulu</TimestampFormat>
-			<Size read-only="true">500</Size>
-			<LocalFile read-only="true">logtemp:///default-log</LocalFile>
-			<ArchiveMode read-only="true">rotate</ArchiveMode>
-			<Rotate read-only="true">3</Rotate>
-			<UseANSIColor read-only="true">off</UseANSIColor>
-			<SyslogFacility read-only="true">user</SyslogFacility>
-			<SigningMode read-only="true">off</SigningMode>
-			<EncryptMode read-only="true">off</EncryptMode>
-			<RateLimit read-only="true">100</RateLimit>
-			<ConnectTimeout read-only="true">60</ConnectTimeout>
-			<IdleTimeout read-only="true">15</IdleTimeout>
-			<ActiveTimeout read-only="true">0</ActiveTimeout>
-			<FeedbackDetection read-only="true">off</FeedbackDetection>
-			<IdenticalEventSuppression read-only="true">off</IdenticalEventSuppression>
-			<IdenticalEventPeriod read-only="true">10</IdenticalEventPeriod>
-			<LogEvents>
-				<Class class="LogLabel">all</Class>
-				<Priority>warn</Priority>
-			</LogEvents>
-		</LogTarget>
-		<Statistics name="default" intrinsic="true">
-			<mAdminState>disabled</mAdminState>
-			<LoadInterval read-only="true">1000</LoadInterval>
-		</Statistics>
 		<CryptoProfile name="NoCredentials">
 			<mAdminState>enabled</mAdminState>
 			<Ciphers>HIGH:MEDIUM:!aNULL:!eNULL:@STRENGTH</Ciphers>

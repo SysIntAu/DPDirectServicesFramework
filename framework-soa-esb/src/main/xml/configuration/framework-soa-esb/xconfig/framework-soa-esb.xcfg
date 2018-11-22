@@ -6,30 +6,6 @@
 			<MaxRedirects>8</MaxRedirects>
 			<Timeout>200</Timeout>
 		</HTTPUserAgent>
-<!--		<CryptoProfile name="NoCredentials">
-			<mAdminState>enabled</mAdminState>
-			<Ciphers>HIGH:MEDIUM:!aNULL:!eNULL:@STRENGTH</Ciphers>
-			<SSLOptions>
-				<OpenSSL-default>on</OpenSSL-default>
-				<Disable-SSLv2>on</Disable-SSLv2>
-				<Disable-SSLv3>off</Disable-SSLv3>
-				<Disable-TLSv1>off</Disable-TLSv1>
-				<Enable-Legacy-Renegotiation>off</Enable-Legacy-Renegotiation>
-			</SSLOptions>
-			<ClientCAList>off</ClientCAList>
-		</CryptoProfile>
-		<SSLProxyProfile name="SslClientNoCredentials">
-			<mAdminState>enabled</mAdminState>
-			<Direction>forward</Direction>
-			<ForwardCryptoProfile class="CryptoProfile">NoCredentials</ForwardCryptoProfile>
-			<ServerCaching>on</ServerCaching>
-			<SessionTimeout>300</SessionTimeout>
-			<CacheSize>20</CacheSize>
-			<ClientCache>on</ClientCache>
-			<ClientAuthOptional>off</ClientAuthOptional>
-			<ClientAuthAlwaysRequest>off</ClientAuthAlwaysRequest>
-			<PermitInsecureServers>off</PermitInsecureServers>
-		</SSLProxyProfile>-->
 		<XACMLPDP name="soa-services-xacml-auth" xmlns:env="http://www.w3.org/2003/05/soap-envelope"
 			xmlns:dp="http://www.datapower.com/schemas/management">
 			<mAdminState>enabled</mAdminState>

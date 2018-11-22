@@ -27,7 +27,7 @@
 	** qualified.path      == qualified path of the upload file or dir
 	** file, dir, service    == unique file, dir or service name for upload - path resolved, dev/test only. Corresponds to deployment type.
 	** MODIFICATIONS    DATE       	DETAILS
-	** Tim Goodwill		2012.11.26	Initial script
+	** Tim Goodwill		2016.12.26	Initial script
 	** 
 	******************************************************************** -->
 <project name="dp-deploy" default="deploy">
@@ -105,17 +105,6 @@
 		<pathelement location="${dpdirect.dir}/lib/xml-apis.jar"/>
 	</path>
 	<taskdef name="dpDeploy" classname="org.dpdirect.dpmgmt.DPDirectTask" classpathref="dpdirect.class.path"/>
-	
-	<!-- *****************************************************************
-		** Set up the "schematron" task library
-		****************************************************************** -->
-<!--	<path id="schematron.class.path">
-		<!-\- classpath for performing runtime tests -\->
-		<pathelement location="${ant.resources.lib.dir}/ant-schematron-dpdirect.jar"/>
-		<pathelement location="${ant.resources.lib.dir}/saxon9.jar"/>
-		<pathelement location="${ant.resources.lib.dir}/saxon9-ant.jar"/>
-	</path>
-	<taskdef name="schematron" classname="org.dpdirect.schematron.SchematronTask" classpathref="schematron.class.path"/>-->
 	
 	<!-- *****************************************************************
 		** Set up the "ant-contrib" task library
@@ -319,20 +308,6 @@
 					<outputproperty name="encoding" value="UTF-8"/>
 					<outputproperty name="indent" value="yes"/>
 				</xslt>
-				<!-- Validate properties file against schematron assertions -->
-				<path id="properties.file.path">
-					<fileset dir="${staging.dir}/local/@{this.component}/config">
-						<include name="*-Properties.xml"/>
-					</fileset>
-				</path>
-				<pathconvert property="properties.file" refid="properties.file.path"/>
-<!--				<for list="${properties.file}" delimiter=";" param="file" >
-					<sequential>
-						<schematron schema="${staging.dir}/local/@{this.component}/config/@{this.component}-PropertiesValidation.sch" 
-							srcfile="@{file}" failonerror="true"/>
-						<delete file="result.xml"/>
-					</sequential>
-				</for>-->
 			</sequential>
 		</for>
 		<property name="${dp.hostname}.object.config.injected"  value="true"/>
@@ -815,6 +790,39 @@
 				</dpDeploy>
 			</sequential>
 		</for>
+	</target>
+	
+	<!-- **********************************************************
+		** target:reload.default.neighbordomain
+		**
+		** PARAM
+		** 'domain.name'
+		**
+		** PURPOSE
+		** Workaround to restore default domain visibility following domain reset
+		**	e.g. restore visibility of default domain pasword map alias
+		****************************************************************** -->
+	<target name="reload.default.neighbordomain">
+		<!-- takes 'domain.name' parameter -->
+		<dpDeploy firmware="5" domain="default" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="true" rollbackOnError="false">
+			<operation name="modify-config">
+				<option name="Domain.name" value="${domain.name}"/>
+				<option name="Domain.NeighborDomain" value=""/>
+			</operation>
+			<operation name="SaveConfig"/>
+			<operation name="modify-config">
+				<option name="Domain.name" value="${domain.name}"/>
+				<option name="Domain.NeighborDomain" value="default"/>
+			</operation>
+			<operation name="SaveConfig"/>
+		</dpDeploy>
+		<dpDeploy firmware="5" domain="${domain.name}" hostname="${dp.hostname}" 
+			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
+			<operation name="RestartDomain">
+				<option name="Domain" value="${domain.name}"/>
+			</operation>
+		</dpDeploy>
 	</target>
 	
 	<!-- **********************************************************
