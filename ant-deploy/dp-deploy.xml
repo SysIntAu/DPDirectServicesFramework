@@ -800,7 +800,7 @@
 		**
 		** PURPOSE
 		** Workaround to restore default domain visibility following domain reset
-		**	e.g. restore visibility of default domain pasword map alias
+		**	e.g. restore visibility of default domain pasword map alias following reset
 		****************************************************************** -->
 	<target name="reload.default.neighbordomain">
 		<!-- takes 'domain.name' parameter -->
