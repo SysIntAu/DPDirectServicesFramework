@@ -1,83 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ServiceConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="ServiceConfig.xsd"  version="1.0">
-	<OperationConfig id="cpoRestServicesWeb">
-		<Description>Configuration for the "cpoRestServicesWeb" URI root</Description>
+	<OperationConfig id="VerificationRESTAPI">
+		<Description>Configuration for the "verification" URI root</Description>
 		<InputMatchCriteria>
-			<InboundURI>*/cpoRestServicesWeb/*</InboundURI>
-			<HTTPSPort>4040</HTTPSPort>
-		</InputMatchCriteria>
-		<RequestPolicyConfig>
-			<BackendRouting provider="CSP">
-				<HTTPEndpoint>
-					<Address>${msgJSONCSPEndpoint}</Address>
-					<HeaderList>
-<!--						<Header name="Authorization" value="Basic ZGh1Yl9sb2FkZXI6ZGh1Yl9sb2FkZXI="/>-->
-						<Header name="callerName" value="*"/>
-					</HeaderList>
-				</HTTPEndpoint>
-				<TimeoutSeconds>31</TimeoutSeconds>
-			</BackendRouting>
-		</RequestPolicyConfig>
-		<ResponsePolicyConfig/>
-		<ErrorPolicyConfig/>
-	</OperationConfig>
-	<OperationConfig id="mobileServicesWeb">
-		<Description>Configuration for the "mobileServicesWeb" URI root</Description>
-		<InputMatchCriteria>
-			<InboundURI>*/mobileServicesWeb/*</InboundURI>
-			<HTTPSPort>4040</HTTPSPort>
-		</InputMatchCriteria>
-		<RequestPolicyConfig>
-			<BackendRouting provider="CSP">
-				<HTTPEndpoint>
-					<Address>${msgJSONCSPEndpoint}</Address>
-					<HeaderList>
-						<!--<Header name="Connection" value="close"/>-->
-<!--						<Header name="Authorization" value="Basic ZGh1Yl9sb2FkZXI6ZGh1Yl9sb2FkZXI="/>-->
-						<Header name="callerName" value="*"/>
-					</HeaderList>
-				</HTTPEndpoint>
-				<TimeoutSeconds>31</TimeoutSeconds>
-			</BackendRouting>
-		</RequestPolicyConfig>
-		<ResponsePolicyConfig/>
-		<ErrorPolicyConfig/>
-	</OperationConfig>
-	<!-- Example ESB service exposed as a Json API -->
-	<OperationConfig id="ConsolidatedPartySummary">
-		<Description>Configuration for the "ConsolidatedPartySummary" ESB Service</Description>
-		<InputMatchCriteria>
-			<InboundURI>/ServiceRequest/rest/ConsolidatedPartySummary/*</InboundURI>
+			<InboundURI>*/verification/*</InboundURI>
 			<HTTPSPort>4040</HTTPSPort>
 		</InputMatchCriteria>
 		<RequestPolicyConfig>
 			<Transform>
-				<Stylesheet>local:///Json_RestAPI/services/ConsolidatedPartySummary/V9.0/RetrieveConsolidatedPartySummaryRequest.xsl</Stylesheet>
+				<Stylesheet>local:///framework-rest-api/services/verify/V1.0/VerifyRequest.xsl</Stylesheet>
 			</Transform>
 			<BackendRouting provider="ESB">
-<!--				<SOAPConfig>local:///Json_RestAPI/services/common/AddEsbServicesSecurityHeaders.xsl</SOAPConfig>
+				<SOAPConfig>local:///framework-rest-api/services/common/AddEsbServicesSecurityHeaders.xsl</SOAPConfig>
 				<HTTPEndpoint>
-					<Address>http://dpsoa-esbe5.dpdirect.org:6274/Party</Address>
+					<Address>http://dpesb.dpdirect.org:6100/Verify</Address>
 					<HeaderList>
 						<Header name="Content-Type" value="application/xml"/>
 						<Header name="Connection" value="close"/>
-					</HeaderList>
-				</HTTPEndpoint>-->
-				<HTTPEndpoint>
-					<Address>https://dpsoa-esbe5.dpdirect.org:4034/ServiceRequest</Address>
-					<HeaderList>
-						<Header name="Content-Type" value="application/xml"/>
-						<Header name="Connection" value="close"/>
-						<Header name="Authorization" value="Basic VU5JVFRFU1QxOlI1dFFvd2xVMjRXeA=="/>
 					</HeaderList>
 				</HTTPEndpoint>
-				<TimeoutSeconds>31</TimeoutSeconds>
+				<TimeoutSeconds>10</TimeoutSeconds>
 			</BackendRouting>
 		</RequestPolicyConfig>
 		<ResponsePolicyConfig>
 			<Transform>
-				<Stylesheet>local:///Json_RestAPI/services/common/XML2JSON_StripResponseWrapper.xsl</Stylesheet>
+				<Stylesheet>local:///framework-rest-api/services/verify/V1.0/XML2JSON_StripResponseWrapper.xsl</Stylesheet>
 			</Transform>
 		</ResponsePolicyConfig>
 		<ErrorPolicyConfig/>
