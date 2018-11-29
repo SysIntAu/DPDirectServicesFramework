@@ -32,7 +32,7 @@
 	<xsl:strip-space elements="*"/>
 	<!--============== Global Variable Declarations =================-->
 	<xsl:param name="SERVICE_CONFIG_FILE_PATH" select="''"/>
-	<!--<xsl:variable name="SERVICE_CONFIG_FILE_DOC" select="document('C:/Projects/DPDirectServicesFramework/target/release/local/framework-soa-esb/config/PoliceCheckResultRetrievalService_ServicesProxy_V1_ServiceConfig.xml')"/>-->
+	<!--<xsl:variable name="SERVICE_CONFIG_FILE_DOC" select="document('C:/Projects/DPDirectServicesFramework/target/release/local/framework-soa-esb/config/Verify_ServicesProxy_V1_ServiceConfig.xml')"/>-->
 	<xsl:variable name="SERVICE_CONFIG_FILE_DOC" select="document($SERVICE_CONFIG_FILE_PATH)"/>
 	<!-- WSDL must path must contain the path elements .../WSDL/Vx.0/WsdlName.wsdl -->
 	<xsl:variable name="WSDL_DP_PATH" select="string($SERVICE_CONFIG_FILE_DOC/ServiceConfig/@wsdlLocation[1])"/>

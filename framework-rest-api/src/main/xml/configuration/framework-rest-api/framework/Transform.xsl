@@ -24,6 +24,7 @@
 				
 		History:
 		2016-12-12	v1.0	N.A. , Tim Goodwil	Initial Version.
+		2018-11-29  v1.1	Brendon Stephens	Include parameter list in transform
 		========================================================================-->
 	<!--============== Included Stylesheets =========================-->
 	<xsl:include href="Utils.xsl"/>
@@ -36,6 +37,15 @@
 	<xsl:template match="/">
 		<xsl:variable name="SERVICE_METADATA" select="dp:variable($SERVICE_METADATA_CONTEXT_NAME)"/>
 		<xsl:variable name="XSLT_LOCATION" select="$SERVICE_METADATA//OperationConfig/Transform[1]/Stylesheet"/>
-		<xsl:copy-of select="dp:transform($XSLT_LOCATION,.)"/>
+		<xsl:variable name="PARAMETERS">
+			<xsl:apply-templates select="$SERVICE_METADATA//OperationConfig/Transform[1]/ParameterList/Parameter"/>
+		</xsl:variable>
+		<xsl:copy-of select="dp:transform($XSLT_LOCATION, ., $PARAMETERS)"/>
+	</xsl:template>
+	<!-- Template to process 'Parameter' in format required for dp:transform -->
+	<xsl:template match="Parameter">
+		<parameter name="{@name}">
+			<xsl:value-of select="@value"/>
+		</parameter>
 	</xsl:template>
 </xsl:stylesheet>
