@@ -20,17 +20,17 @@ Typically, defining a new service consists of the following steps:
 2) A service configuration is created for each WSDL, constrained by a service configuration schema, which can be built from a template. The service configuration will contain a relative path reference to the associated WSDL, and will define a unique port. Each service operation will be defined in the service config. A request configuration for a particular might look like the following:
 
 ~~~
-		<RequestPolicyConfig schemaValidate="true">
-			<Transform>
-				<Stylesheet>local:///framework-soa-esb/services/Verify/V1.0/DoSomething.xsl</Stylesheet>
-			</Transform>
-			<BackendRouting provider="VerfyService">
-				<HTTPEndpoint>
-					<Address>${verifyHttpEndpoint}</Address>
-				</HTTPEndpoint>
-				<TimeoutSeconds>10</TimeoutSeconds>
-			</BackendRouting>
-		</RequestPolicyConfig>
+<RequestPolicyConfig schemaValidate="true">
+	<Transform>
+		<Stylesheet>local:///framework-soa-esb/services/Verify/V1.0/DoSomething.xsl</Stylesheet>
+	</Transform>
+	<BackendRouting provider="VerfyService">
+		<HTTPEndpoint>
+			<Address>${verifyHttpEndpoint}</Address>
+		</HTTPEndpoint>
+		<TimeoutSeconds>10</TimeoutSeconds>
+	</BackendRouting>
+</RequestPolicyConfig>
 ~~~
 3) If transformation, aggregation etc is required, xslt stylesheet(s) are placed in the services directory, and referenced in the service config.
 
