@@ -17,7 +17,7 @@ Typically, defining a new service consists of the following steps:
 
 1) Service WSDLs and optional schemas are placed in the service-schema directory.
 
-2) A service configuration is created for each WSDL, constrained by a service configuration schema, which can be built from a template. The service configuration will contain a relative path reference to the associated WSDL, and will define a unique port. Each service operation will be defined in the service config. A request configuration for a particular operation might look like the following:
+2) A service configuration is created for each WSDL, constrained by a service configuration schema, which can be built from a template. The service configuration will contain a relative path reference to the associated WSDL. Each service operation will be defined in the service config. A request configuration for a particular operation might look like the following:
 
 ~~~
 <RequestPolicyConfig schemaValidate="true">
@@ -36,4 +36,7 @@ Typically, defining a new service consists of the following steps:
 
 Assuming your environment variables (hostnames etc) have already beed defined, all that is left is build and deploy.
 ---------------------------------------------
+
+Feel free to use the pre-defined Verify Service as a WSDL and Service Configuration template, and exampine the ServiceConfig schema to discover supported service chain operations.
+
 This project is currently under active development. This page, and accompanying guides, will be augmented. admin@sysint.com.au
