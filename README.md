@@ -34,7 +34,8 @@ Typically, defining a new service consists of the following steps:
 ~~~
 3) If transformation, aggregation etc is required, xslt stylesheet(s) are placed in the services directory, and referenced in the service config.
 
-Assuming your environment variables (hostnames etc) have already beed defined, all that is left is build and deploy.
+#### Assuming your environment variables (hostnames etc) have already beed defined, all that is left is build and deploy. ####
+
 ---------------------------------------------
 
 Feel free to use the pre-defined Verify Service as a WSDL and Service Configuration template, and exampine the ServiceConfig schema to discover supported service chain operations.
