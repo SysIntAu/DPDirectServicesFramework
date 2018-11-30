@@ -13,6 +13,7 @@ The DPDirect Services Framework provides a robust, flexible service chain, enabl
 
 ![Services1](https://github.com/mqsysadmin/DPDirectServicesFramework/blob/master/distribution/doc/images/xmlservices.png)
 
+### Rapid, XML-Only Development ###
 Typically, defining a new service consists of the following steps:
 
 1) Service WSDLs (and referenced schemas, if any) are placed in the service-schema directory.
@@ -35,6 +36,18 @@ Typically, defining a new service consists of the following steps:
 3) If transformation, aggregation etc is required, xslt stylesheet(s) are placed in the services directory, and referenced in the service config.
 
 #### Assuming your environment variables (hostnames etc) have already beed defined, all that is left is build and deploy. ####
+
+### Multi-Protocol Gateway ###
+
+Optionally deploy a multi-tenancy aware Multi-Protocol Gateway to enable service invocation via MQ, SFTP etc, or to provide mediation services to XML consumers that are not SOAP aware. The gateway is configuration free - and is created at build-time from the information contained in existing service WSDLs and configuration files.
+
+### Present an JSON/REST Facade to Your Services ###
+
+Optionally deploy a fast, lightwieight API gateway to provide a AAA protected JSON/REST API interface to services. The API Gateway supports several authentication and authorization schemas, and is readily extensible to integrate in any way you need it to.
+
+### Build and Deploy ###
+
+The project provides Maven and Ant build configurations, and may be deployed via a dedicated ant task, or via any script capable of command-line execution. See the aligned DPDirect utility project fo details.
 
 ---------------------------------------------
 
