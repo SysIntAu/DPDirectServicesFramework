@@ -15,7 +15,7 @@ The DPDirect Services Framework provides a robust, flexible service chain, enabl
 
 Typically, defining a new service consists of the following steps:
 
-1) Service WSDLs and optional schemas are placed in the service-schema directory.
+1) Service WSDLs (and referenced schemas, if any) are placed in the service-schema directory.
 
 2) A service configuration is created for each WSDL, constrained by a service configuration schema, which can be built from a template. The service configuration will contain a relative path reference to the associated WSDL. Each service operation will be defined in the service config. A request configuration for a particular operation might look like the following:
 
