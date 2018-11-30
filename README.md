@@ -19,7 +19,6 @@ Typically, defining a new service consists of the following steps:
 1) Service WSDLs (and referenced schemas, if any) are placed in the service-schema directory.
 
 2) A service configuration is created for each WSDL, constrained by a service configuration schema, which can be built from a template. The service configuration will contain a relative path reference to the associated WSDL. Each service operation will be defined in the service config. A request configuration for a particular operation might look like the following:
-
 ~~~
 <RequestPolicyConfig schemaValidate="true">
 	<Transform>
@@ -37,20 +36,22 @@ Typically, defining a new service consists of the following steps:
 
 #### Assuming your environment variables (hostnames etc) have already beed defined, all that is left is build and deploy. ####
 
+Feel free to use the pre-defined Verify Service as a WSDL and Service Configuration template, and exampine the ServiceConfig schema to discover supported service chain operations.
+
 ### Multi-Protocol Gateway ###
 
 Optionally deploy a multi-tenancy aware Multi-Protocol Gateway to enable service invocation via MQ, SFTP etc, or to provide mediation services to XML consumers that are not SOAP aware. The gateway is configuration free - and is created at build-time from the information contained in existing service WSDLs and configuration files.
 
-### Present an JSON/REST Facade to Your Services ###
+### API Gateway: Present an JSON/REST Service Facade ###
 
 Optionally deploy a fast, lightwieight API gateway to provide a AAA protected JSON/REST API interface to services. The API Gateway supports several authentication and authorization schemas, and is readily extensible to integrate in any way you need it to.
 
 ### Build and Deploy ###
 
-The project provides Maven and Ant build configurations, and may be deployed via a dedicated ant task, or via any script capable of command-line execution. See the aligned DPDirect utility project fo details.
+The project provides Maven and Ant build configurations, and may be deployed via a dedicated ant task, or via any script capable of command-line execution. Example script are provided. See the aligned DPDirect utility project furhter details.
 
 ---------------------------------------------
 
-Feel free to use the pre-defined Verify Service as a WSDL and Service Configuration template, and exampine the ServiceConfig schema to discover supported service chain operations.
+
 
 This project is currently under active development. This page, and accompanying guides, will be augmented. admin@sysint.com.au
