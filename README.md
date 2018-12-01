@@ -48,7 +48,7 @@ Optionally deploy a fast, lightwieight API gateway to provide a AAA protected JS
 
 ### Build and Deploy ###
 
-The project provides Maven and Ant build configurations, and may be deployed via a dedicated ant task, or via any script capable of command-line execution. Example script are provided. See the aligned DPDirect utility project furhter details.
+The project provides Maven and Ant build configurations, and may be deployed via a dedicated ant task, or via any script capable of command-line execution. Example scripts are provided. For more details on the DPDirect command-line and ant-task utility, see the aligned DPDirect project at https://github.com/SysIntAu/dpdirect/blob/master/README.md.
 
 ---------------------------------------------
 
