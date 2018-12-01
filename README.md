@@ -18,15 +18,15 @@ Typically, defining a new service consists of the following steps:
 
 1) Service WSDLs (and referenced schemas, if any) are placed in the service-schema directory.
 
-2) A service configuration is created for each WSDL, constrained by a service configuration schema, which can be built from a template. The service configuration will contain a relative path reference to the associated WSDL. Each service operation will be defined in the service config. A request configuration for a particular operation might look like the following:
+2) A service configuration is created for each WSDL, constrained by a service configuration schema, and can be built from a template. The service configuration will contain a relative path reference to the associated WSDL. Each service operation will be defined in the service config. Configuration for a particular operation may contain any number of optional steps, in any order, including transformation, schema validation, MTOM encoding and decoding, service calls and aggregation. A request configuration might look like the following:
 ~~~
 <RequestPolicyConfig schemaValidate="true">
 	<Transform>
-		<Stylesheet>local:///framework-soa-esb/services/Verify/V1.0/DoSomething.xsl</Stylesheet>
+		<Stylesheet>local:///framework-soa-esb/services/RetrieveSomething/V1.0/ChangeSomething.xsl</Stylesheet>
 	</Transform>
-	<BackendRouting provider="VerfyService">
+	<BackendRouting provider="SomethingService">
 		<HTTPEndpoint>
-			<Address>${verifyHttpEndpoint}</Address>
+			<Address>${somethingHttpEndpoint}</Address>
 		</HTTPEndpoint>
 		<TimeoutSeconds>10</TimeoutSeconds>
 	</BackendRouting>
