@@ -36,7 +36,7 @@ Typically, defining a new service consists of the following steps:
 
 #### Assuming your environment variables (hostnames etc) have already beed defined, all that is left is build and deploy. ####
 
-Feel free to use the pre-defined Verify Service as a WSDL and Service Configuration template, and exampine the ServiceConfig schema to discover supported service chain operations.
+Use the pre-defined Verify Service as a WSDL and Service Configuration template, and explore the ServiceConfig schema, or a schema aware editor to discover supported service chain operations.
 
 ### Multi-Protocol Gateway ###
 
