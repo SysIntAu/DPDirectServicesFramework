@@ -33,7 +33,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import org.dpdirect.commons.xpath.XPathFunctionResolver;
+import org.dpdirect.commons.xpath.DpXPathFunctionResolver;
 import org.dpdirect.commons.xpath.NamespaceContextMap;
 
 /**
@@ -164,7 +164,7 @@ public class XMLTools {
 		try {
 			xpathObj.setNamespaceContext(new NamespaceContextMap(
 					namespaceBindings, true));
-			xpathObj.setXPathFunctionResolver(XPathFunctionResolver
+			xpathObj.setXPathFunctionResolver(DpXPathFunctionResolver
 					.getInstance());
 			xpathObj.compile(xpath);
 		} catch (XPathExpressionException e) {
@@ -234,7 +234,7 @@ public class XMLTools {
 		XPath xpathObj = getXPathFactory().newXPath();
 		xpathObj.setNamespaceContext(new NamespaceContextMap(namespaceBindings,
 				true));
-		xpathObj.setXPathFunctionResolver(XPathFunctionResolver
+		xpathObj.setXPathFunctionResolver(DpXPathFunctionResolver
 				.getInstance());
 		javax.xml.xpath.XPathExpression xpathExp = xpathObj.compile(xpath);
 		return (String) xpathExp.evaluate(node, XPathConstants.STRING);
@@ -331,7 +331,7 @@ public class XMLTools {
 		NodeInfo doc = ((XPathEvaluator) xpathObj).setSource(saxSource);
 		xpathObj.setNamespaceContext(new NamespaceContextMap(namespaceBindings,
 				true));
-		xpathObj.setXPathFunctionResolver(XPathFunctionResolver
+		xpathObj.setXPathFunctionResolver(DpXPathFunctionResolver
 				.getInstance());
 		javax.xml.xpath.XPathExpression xpathExp = xpathObj.compile(xpath);
 		Object results = xpathExp.evaluate(doc, XPathConstants.NODESET);

@@ -16,7 +16,7 @@ import org.dpdirect.commons.xpath.func.IsUpperCamelCaseFunction;
  * 
  * @author N.A.
  */
-public class XPathFunctionResolver implements XPathFunctionResolver {
+public class XPathFunctionResolver implements javax.xml.xpath.XPathFunctionResolver {
 
 	/**
 	 * Singleton class instance.
