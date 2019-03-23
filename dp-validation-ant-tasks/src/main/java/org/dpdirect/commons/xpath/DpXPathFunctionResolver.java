@@ -16,12 +16,12 @@ import org.dpdirect.commons.xpath.func.IsUpperCamelCaseFunction;
  * 
  * @author N.A.
  */
-public class XPathFunctionResolver implements javax.xml.xpath.XPathFunctionResolver {
+public class DpXPathFunctionResolver implements XPathFunctionResolver {
 
 	/**
 	 * Singleton class instance.
 	 */
-	private static XPathFunctionResolver instance = null;
+	private static DpXPathFunctionResolver instance = null;
 
 	/**
 	 * Collection of functions.
@@ -31,7 +31,7 @@ public class XPathFunctionResolver implements javax.xml.xpath.XPathFunctionResol
 	/**
 	 * Private constructor for instantiating singleton instance.
 	 */
-	private XPathFunctionResolver() {
+	private DpXPathFunctionResolver() {
 		// Add all known DPDIRECT XPath functions
 		if (null == functionMap) {
 			functionMap = new HashMap<String, AbstractXPathFunction>();
@@ -45,9 +45,9 @@ public class XPathFunctionResolver implements javax.xml.xpath.XPathFunctionResol
 	 * 
 	 * @return the shared class instance.
 	 */
-	public static XPathFunctionResolver getInstance() {
+	public static DpXPathFunctionResolver getInstance() {
 		if (null == instance) {
-			instance = new XPathFunctionResolver();
+			instance = new DpXPathFunctionResolver();
 		}
 		return instance;
 	}
