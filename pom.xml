@@ -24,11 +24,11 @@
 			<id>dpPackage</id>
 			<activation>
 				<file>
-					<exists>dpPackage.txt</exists>
+					<exists>assembly.xml</exists>
 				</file>
 			</activation>
 			<build>
-				<finalName>${finalName}</finalName>
+				<finalName>distribution</finalName>
 				<resources>
 					<resource>
 						<directory>.</directory>
@@ -65,7 +65,7 @@
 						</executions>
 						<configuration>
 							<descriptors>
-								<descriptor>${basedir}/dpAssembly.xml</descriptor>
+								<descriptor>${basedir}\assembly.xml</descriptor>
 							</descriptors>
 							<outputDirectory>${release.dir}</outputDirectory>
 						</configuration>

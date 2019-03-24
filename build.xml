@@ -29,7 +29,7 @@
 	<!-- Default locations -->
 	<property name="project.dir"  location="${basedir}"/>
 	<property name="build.dir"  location="${basedir}/ant-build"/>
-	<property name="release.dir"  location="${basedir}/target"/>
+	<property name="release.dir"  location="${basedir}/distribution/target"/>
 	<property name="release.build.dir"  location="${release.dir}/release"/>
 	<property name="deploy.dir"  location="${basedir}/ant-deploy"/>
 	<property name="release.zip.name"  value="distribution-deploy.zip"/>

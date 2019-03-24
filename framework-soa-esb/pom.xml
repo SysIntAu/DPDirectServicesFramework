@@ -12,6 +12,14 @@
 	<description/>
 	<dependencies/>
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>Certificates/</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -69,13 +77,16 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/xcfg</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}</outputDirectory>
 							<resources>
 								<resource>
-									<directory>src/main/xml/configuration/framework-soa-esb/xcfg</directory>
+									<directory>src/main/xml/configuration/framework-soa-esb/xconfig</directory>
 									<includes>
 										<include>*.xcfg</include>
 									</includes>
+									<excludes>
+										<exclude>*_Template.xcfg</exclude>
+									</excludes>
 								</resource>
 							</resources>
 						</configuration>
@@ -98,6 +109,30 @@
 										<include>**/*.xslt</include>
 										<include>**/*.sch</include>
 										<include>**/*.ffd</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy_resources_service-schema</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.outputDirectory}/local/service-schema</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/xml/service-schema</directory>
+									<includes>
+										<include>**/*.xml</include>
+										<include>**/*.xsd</include>
+										<include>**/*.xsl</include>
+										<include>**/*.xslt</include>
+										<include>**/*.sch</include>
+										<include>**/*.ffd</include>
+										<include>**/*.wsdl</include>
 									</includes>
 								</resource>
 							</resources>
@@ -140,18 +175,18 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>copy_resources_legacy_deploy_configuration</id>
+						<id>copy_resources_certificates</id>
 						<phase>validate</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/ant-deploy</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/cert</outputDirectory>
 							<resources>
 								<resource>
-									<directory>src/main/resources</directory>
+									<directory>src/main/resources/Certificates</directory>
 									<includes>
-										<include>ant-deploy/</include>
+										<include>**/*</include>
 									</includes>
 								</resource>
 							</resources>
@@ -180,7 +215,6 @@
                         <build-java>${java.vendor} ${java.version}</build-java>
                         <build-java-home>${java.home}</build-java-home>
                         <build-java-vm>${java.vm.vendor}${java.vm.version} ${java.vm.name}</build-java-vm>
-						<soa-artifact>${soa-artifact}</soa-artifact>
                     </manifestEntries>
                 </archive>
 				</configuration>

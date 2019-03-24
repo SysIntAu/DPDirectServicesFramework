@@ -2,17 +2,17 @@
 
 
 
-set Environment=%1
+SET /P ENV=[Environment]
 
 
-echo Deploy build to DP environment %Environment%
+echo Deploying build to DP environment %ENV%
 echo.
 
-set ANT_HOME=C:\Program Files\apache-ant-1.8.2
-set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_162
-set PATH=%PATH%;C:\Program Files\apache-ant-1.8.2\bin;C:\Program Files\Java\jdk1.8.0_162\bin
+set ANT_HOME=C:\Apps\Ant\apache-ant-1.8.2-bin\apache-ant-1.8.2
+set JAVA_HOME=C:\Apps\Java\jdk1.8.0_151
+set PATH=%PATH%;%ANT_HOME%\bin;%JAVA_HOME%\bin
 
-cd .\target
+cd .\distribution\target
 
 
 
@@ -41,7 +41,5 @@ jar xf ..\distribution-deploy.zip
 
 cd ant-deploy
 
-REM SET /P ENV=[Environment]
-SET ENV=%Environment%
 
 cmd /k ant -f dp-deploy.xml deploy -Denv=%ENV%

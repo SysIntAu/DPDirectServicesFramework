@@ -7,8 +7,8 @@
 		<artifactId>dpdirect-framework</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>dpdirect-gateway-router</artifactId>
-	<name>dpdirect-gateway-router</name>
+	<artifactId>framework-gateway-router</artifactId>
+	<name>framework-gateway-router</name>
 	<description/>
 	<dependencies/>
 	<build>
@@ -37,7 +37,7 @@
 										<include>**/*.ffd</include>
 									</includes>
 									<excludes>
-										<exclude>xcfg/</exclude>
+										<exclude>xconfig/</exclude>
 										<exclude>**/*.xcfg</exclude>
 									</excludes>
 								</resource>
@@ -69,10 +69,10 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/xcfg</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}</outputDirectory>
 							<resources>
 								<resource>
-									<directory>src/main/xml/configuration/framework-gateway-router/xcfg</directory>
+									<directory>src/main/xml/configuration/framework-gateway-router/xconfig</directory>
 									<includes>
 										<include>*.xcfg</include>
 									</includes>
@@ -139,24 +139,6 @@
 							</resources>
 						</configuration>
 					</execution>
-					<execution>
-						<id>copy_resources_legacy_deploy_configuration</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/ant-deploy</outputDirectory>
-							<resources>
-								<resource>
-									<directory>src/main/resources</directory>
-									<includes>
-										<include>ant-deploy/</include>
-									</includes>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -180,7 +162,6 @@
                         <build-java>${java.vendor} ${java.version}</build-java>
                         <build-java-home>${java.home}</build-java-home>
                         <build-java-vm>${java.vm.vendor}${java.vm.version} ${java.vm.name}</build-java-vm>
-						<soa-artifact>${soa-artifact}</soa-artifact>
                     </manifestEntries>
                 </archive>
 				</configuration>
