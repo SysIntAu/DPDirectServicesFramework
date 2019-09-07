@@ -86,6 +86,7 @@
 	<property name="project.dir"  location="${basedir}/.."/>
 	<property name="release.dir"  location="${basedir}/.."/>
 	<property name="build.dir"  location="${project.dir}/ant-build"/>
+	<property name="deploy.resources.dir" location="${project.dir}/ant-deploy"/>
 	<property name="ant.resources.lib.dir"  location="${project.dir}/ant-deploy/lib"/>
 	<property name="dpdirect.dir"  location="${project.dir}/dpdirect"/>
 	<property name="environment.dir"  location="${release.dir}/environment"/>
@@ -300,7 +301,7 @@
 				<!-- Create runtime  properties file -->
 				<xslt in="${environment.dir}/${environment}/${environment}.xml" 
 					out="${staging.dir}/local/@{this.component}/config/@{this.component}-Properties.xml"
-					style="${environment.dir}/Create_Runtime_Properties.xsl"  force="true">
+					style="${deploy.resources.dir}/Create_Runtime_Properties.xsl"  force="true">
 					<param name="ENV" expression="${environment}"/>
 					<param name="HOSTNAME" expression="${dp.hostname}"/>
 					<outputproperty name="method" value="xml"/>
@@ -323,10 +324,10 @@
 	<target name="environment.config.file.present">
 		<available file="${staging.dir}/environment/${environment}/${component}.xcfg"  property="environment.config.file.present"/>
 	</target>
-	<target name="combine.environment.config.file" if="environment.config.file.present">
+	<target name="combine.environment.config.file" if="environment.config.file.present"> 
 		<!-- inject xcfg file with Env properties -->
 		<xslt in="${release.dir}/${component}.xcfg" out="${release.dir}/${component}_${environment}.xcfg"
-			style="${environment.dir}/Update_Environment_Properties.xsl" force="true">
+			style="${deploy.resources.dir}/Update_Environment_Properties.xsl" force="true">
 			<param name="ENV" expression="${environment}"/>
 			<param name="DOMAIN" expression="${domain}"/>
 			<param name="HOSTNAME" expression="${dp.hostname}"/>
@@ -337,7 +338,7 @@
 		</xslt>
 		<!--Combine environment xconfig file with gateway xconfig, suffix environment xconfig file with Env name -->
 		<xslt in="${release.dir}/${component}_${environment}.xcfg" out="${staging.dir}/${component}_${environment}.xcfg"
-			style="${environment.dir}/Combine_XConfig.xsl" force="true">
+			style="${deploy.resources.dir}/Combine_XConfig.xsl" force="true">
 			<param name="ENV" expression="${environment}"/>
 			<param name="DOMAIN" expression="${domain}"/>
 			<param name="HOSTNAME" expression="${dp.hostname}"/>
@@ -351,7 +352,7 @@
 	<target name="move.rename.config.file" unless="environment.config.file.present">
 		<!-- no env xcfg, inject Env properties and suffix environment xconfig file with Env name -->
 		<xslt in="${release.dir}/${component}.xcfg" out="${staging.dir}/${component}_${environment}.xcfg"
-			style="${environment.dir}/Update_Environment_Properties.xsl" force="true">
+			style="${deploy.resources.dir}/Update_Environment_Properties.xsl" force="true">
 			<param name="ENV" expression="${environment}"/>
 			<param name="DOMAIN" expression="${domain}"/>
 			<param name="HOSTNAME" expression="${dp.hostname}"/>
@@ -374,7 +375,7 @@
 			<sequential>
 				<mkdir dir="${staging.dir}/local"/>
 				<xslt in="${release.dir}/local/@{this.config.file}" out="${staging.dir}/local/@{this.config.file}"
-					style="${environment.dir}/Update_Environment_Properties.xsl" force="true">
+					style="${deploy.resources.dir}/Update_Environment_Properties.xsl" force="true">
 					<param name="ENV" expression="${environment}"/>
 					<param name="DOMAIN" expression="${domain}"/>
 					<param name="HOSTNAME" expression="${dp.hostname}"/>

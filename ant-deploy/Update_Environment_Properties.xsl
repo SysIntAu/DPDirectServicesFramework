@@ -44,7 +44,7 @@
 	</xsl:variable>
 	<xsl:variable name="localHostAlias">
 		<xsl:choose>
-			<xsl:when test="$localHostAlias != ''">
+			<xsl:when test="$injection/parameter[@name = 'localHostAlias']/@value != ''">
 				<xsl:value-of select="$injection/parameter[@name = 'localHostAlias']/@value"/>
 			</xsl:when>
 			<xsl:otherwise>
@@ -136,14 +136,14 @@
 				</xsl:choose>
 			</xsl:when>
 			<!-- default values for mandatory injection params -->
-			<xsl:when test="$TEXT = 'localHostAlias' or $TEXT = 'domainHostAlias'">
+			<xsl:when test="$KEY = 'localHostAlias' or $KEY = 'domainHostAlias'">
 				<xsl:value-of select="$domainHostAlias"/>
 			</xsl:when>
-			<xsl:when test="$TEXT = 'logCategoryServiceLog'">
+			<xsl:when test="$KEY = 'logCategoryServiceLog'">
 				<xsl:value-of select="$DOMAIN"/>
 				<xsl:value-of select="'_ServiceLog'"/>
 			</xsl:when>
-			<xsl:when test="$TEXT = 'logCategoryServiceStats'">
+			<xsl:when test="$KEY = 'logCategoryServiceStats'">
 				<xsl:value-of select="$DOMAIN"/>
 				<xsl:value-of select="'_ServiceStats'"/>
 			</xsl:when>
