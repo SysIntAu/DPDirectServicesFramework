@@ -1,85 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <os:PolicySet xmlns:os="urn:oasis:names:tc:xacml:2.0:policy:schema:os" PolicySetId="DPAPI_Service_Access_Policy"
-	Version="1.0" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:deny-overrides"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:os ../xacml-2.0-policy.xsd">
-	<os:Description>DataPower ESB XACML 2.0 Services Access Policy Definition</os:Description>
-	<os:Target/>
-	<os:Policy PolicyId="Verify_Access_Policy"
-		RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
-		<os:Target>
-			<os:Subjects>
-				<os:Subject>
-					<os:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-						<os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
-							>API_Developers</os:AttributeValue>
-						<os:SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
-							DataType="http://www.w3.org/2001/XMLSchema#string"/>
-					</os:SubjectMatch>
-				</os:Subject>
-			</os:Subjects>
-			<os:Resources>
-				<os:Resource>
-					<os:ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
-						<os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
-							>{http://www.dpdirect.org/Namespace/Verify/Services/V.*}VerifyRequest</os:AttributeValue>
-						<os:ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
-							DataType="http://www.w3.org/2001/XMLSchema#string"/>
-					</os:ResourceMatch>
-				</os:Resource>
-			</os:Resources>
-		</os:Target>
-		<os:Rule RuleId="PermitRule" Effect="Permit"/>
-	</os:Policy>
-	<os:Policy PolicyId="All_Services_Access_Policy"
-		RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
-		<os:Target>
-			<os:Subjects>
-				<os:Subject>
-					<os:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-						<os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
-							>API_Testers</os:AttributeValue>
-						<os:SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
-							DataType="http://www.w3.org/2001/XMLSchema#string"/>
-					</os:SubjectMatch>
-				</os:Subject>
-			</os:Subjects>
-			<os:Resources>
-				<os:Resource>
-					<os:ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
-						<os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">.*</os:AttributeValue>
-						<os:ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
-							DataType="http://www.w3.org/2001/XMLSchema#string"/>
-					</os:ResourceMatch>
-				</os:Resource>
-			</os:Resources>
-		</os:Target>
-		<os:Rule RuleId="PermitRule" Effect="Permit"/>
-	</os:Policy>
-<!--	<os:Policy PolicyId="Blacklist_Deny_Policy"
-		RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:deny-overrides">
-		<os:Target>
-			<os:Subjects>
-				<os:Subject>
-					<os:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
-						<os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
-							>API_Blacklisted</os:AttributeValue>
-						<os:SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
-							DataType="http://www.w3.org/2001/XMLSchema#string"/>
-					</os:SubjectMatch>
-				</os:Subject>
-			</os:Subjects>
-			<os:Resources>
-				<os:Resource>
-					<os:ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
-						<os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
-							>.*</os:AttributeValue>
-						<os:ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
-							DataType="http://www.w3.org/2001/XMLSchema#string"/>
-					</os:ResourceMatch>
-				</os:Resource>
-			</os:Resources>
-		</os:Target>
-		<os:Rule RuleId="DenyRule" Effect="Deny"/>
-	</os:Policy>-->
+    Version="1.0" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:deny-overrides"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:os ../xacml-2.0-policy.xsd">
+    <os:Description>DataPower ESB XACML 2.0 API Access Policy Definition</os:Description>
+    <os:Target/>
+    <os:Policy PolicyId="Verify_Access_Policy"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+        <os:Target>
+            <!--<os:Subjects><os:AnySubject/></os:Subjects>-->
+            <os:Resources>
+                <os:Resource>
+                    <os:ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+                        <os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
+                            >/verify/.*</os:AttributeValue>
+                        <os:ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </os:ResourceMatch>
+                </os:Resource>
+            </os:Resources>
+            <!--<os:Actions><os:AnyAction/></os:Actions>-->
+        </os:Target>
+        <os:Rule RuleId="PermitRule" Effect="Permit">
+            <os:Target>
+                <os:Subjects>
+                    <os:Subject>
+                        <os:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                            <os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
+                                >API_Testers</os:AttributeValue>
+                            <os:SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+                                DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                        </os:SubjectMatch>
+                    </os:Subject>
+                </os:Subjects>
+                <os:Actions>
+                    <os:Action>
+                        <os:ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+                            <os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">(GET|HEAD|OPTIONS|POST)</os:AttributeValue>
+                            <os:ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                        </os:ActionMatch>
+                    </os:Action>
+                </os:Actions>
+            </os:Target>
+        </os:Rule>
+    </os:Policy>
+    <os:Policy PolicyId="All_Services_Access_Policy"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+        <os:Target>
+            <!--<os:Subjects><os:AnySubject/></os:Subjects>-->
+            <os:Resources>
+                <os:Resource>
+                    <os:ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+                        <os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">.*</os:AttributeValue>
+                        <os:ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </os:ResourceMatch>
+                </os:Resource>
+            </os:Resources>
+            <!--<os:Actions><os:AnyAction/></os:Actions>-->
+        </os:Target>
+        <os:Rule RuleId="PermitRule" Effect="Permit">
+            <os:Target>
+                <os:Subjects>
+                    <os:Subject>
+                        <os:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                            <os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
+                                >UAT_Testers</os:AttributeValue>
+                            <os:SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+                                DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                        </os:SubjectMatch>
+                    </os:Subject>
+                </os:Subjects>
+                <os:Actions>
+                    <os:Action>
+                        <os:ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+                            <os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">(GET|HEAD|OPTIONS|POST|PUT|PATCH|DELETE)</os:AttributeValue>
+                            <os:ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                        </os:ActionMatch>
+                    </os:Action>
+                </os:Actions>
+            </os:Target>
+        </os:Rule>
+        <os:Rule RuleId="DenyRule" Effect="Deny">
+            <os:Target>
+                <os:Subjects>
+                    <os:Subject>
+                        <os:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                            <os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
+                                >API_Blacklisted</os:AttributeValue>
+                            <os:SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+                                DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                        </os:SubjectMatch>
+                    </os:Subject>
+                </os:Subjects>
+                <os:Actions>
+                    <os:Action>
+                        <os:ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+                            <os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">(GET|HEAD|OPTIONS|POST|PUT|PATCH|DELETE)</os:AttributeValue>
+                            <os:ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                        </os:ActionMatch>
+                    </os:Action>
+                </os:Actions>
+            </os:Target>
+        </os:Rule>
+    </os:Policy>
 </os:PolicySet>

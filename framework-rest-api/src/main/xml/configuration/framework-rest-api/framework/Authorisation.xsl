@@ -37,11 +37,19 @@
 	<!--=============================================================-->
 	<!-- Root Template -->
 	<xsl:template match="/">
-		<xsl:variable name="RESOURCE_URI"
-			select="normalize-space((container/mapped-resource/resource/item[@type='original-url'])[1])"/>
-		<xsl:variable name="RESOURCE_METHOD"
+		<xsl:variable name="RESOURCE_URI">
+			<xsl:variable name="ORIGINAL_URL" select="normalize-space((container/mapped-resource/resource/item[@type='original-url'])[1])"/>
+			<xsl:choose>
+				<xsl:when test="contains($ORIGINAL_URL, '?')">
+					<xsl:value-of select="substring-before($ORIGINAL_URL, '?')"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$ORIGINAL_URL"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="ACTION_ID"
 			select="normalize-space((container/mapped-resource/resource/item[@type='http-method'])[1])"/>
-		<xsl:variable name="RESOURCE_ID" select="concat($RESOURCE_URI,'/',$RESOURCE_METHOD)"/>
 		<xsl:choose>
 			<xsl:when test="container/mapped-credentials[@au-success = 'false']">
 				<!-- Output an 'no-authorisation-required' element -->
@@ -71,12 +79,14 @@
 									<xsl:call-template name="deniedMatch">
 										<xsl:with-param name="SUBJECT_ID" select="$GROUP_NAME"/>
 										<xsl:with-param name="RESOURCE_ID" select="$RESOURCE_ID"/>
+										<xsl:with-param name="ACTION_ID" select="$RESOURCE_ID"/>
 									</xsl:call-template>
 								</xsl:attribute>
 								<xsl:attribute name="isPermitted">
 									<xsl:call-template name="permitMatch">
 										<xsl:with-param name="SUBJECT_ID" select="$GROUP_NAME"/>
 										<xsl:with-param name="RESOURCE_ID" select="$RESOURCE_ID"/>
+										<xsl:with-param name="ACTION_ID" select="$RESOURCE_ID"/>
 									</xsl:call-template>
 								</xsl:attribute>
 							</xsl:element>
@@ -93,7 +103,9 @@
 						<unauthorised>
 							<xsl:text>The presented group attribute [</xsl:text>
 							<xsl:value-of select="normalize-space($AUTHORISATION_RESULT_SET//AuthorisationResult[@isDenied='true'][1]/@groupName)"/>
-							<xsl:text>] is denied access to the resource [</xsl:text>
+							<xsl:text>] is denied access to perform the action [</xsl:text>
+							<xsl:value-of select="$ACTION_ID"/>
+							<xsl:text>] on the resource [</xsl:text>
 							<xsl:value-of select="$RESOURCE_ID"/>
 							<xsl:text>]</xsl:text>
 						</unauthorised>
@@ -104,7 +116,9 @@
 						<approved>
 							<xsl:text>The presented group attribute [</xsl:text>
 							<xsl:value-of select="normalize-space($AUTHORISATION_RESULT_SET//AuthorisationResult[@isPermitted='true'][1]/@groupName)"/>
-							<xsl:text>] is permitted access to the resource [</xsl:text>
+							<xsl:text>] is permitted access to perform the action [</xsl:text>
+							<xsl:value-of select="$ACTION_ID"/>
+							<xsl:text>] on the resource [</xsl:text>
 							<xsl:value-of select="$RESOURCE_ID"/>
 							<xsl:text>]</xsl:text>
 						</approved>
@@ -124,7 +138,9 @@
 						<unauthorised>
 							<xsl:text>The presented group attributes [</xsl:text>
 							<xsl:value-of select="$GROUP_NAMES"/>
-							<xsl:text>] NOT permitted access to the resource [</xsl:text>
+							<xsl:text>] NOT permitted access to perform the action [</xsl:text>
+							<xsl:value-of select="$ACTION_ID"/>
+							<xsl:text>] on the resource [</xsl:text>
 							<xsl:value-of select="$RESOURCE_ID"/>
 							<xsl:text>]</xsl:text>
 						</unauthorised>
@@ -133,30 +149,76 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	<xsl:template name="permitMatch">
-		<xsl:param name="SUBJECT_ID"/>
-		<xsl:param name="RESOURCE_ID"/>
-		<!-- Query the XACML Policy Set -->
-		<xsl:value-of select="string(0 &lt;
-			count($XACML_POLICY_SET/os:Policy[os:Rule/@Effect='Permit'][os:Target
-			[os:Subjects/os:Subject/
-			os:SubjectMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue = $SUBJECT_ID]
-			[os:Resources/os:Resource[
-			os:ResourceMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue[text()=$RESOURCE_ID] or 
-			os:ResourceMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($RESOURCE_ID, text()) != '']
-			]]]))"/>
-	</xsl:template>
 	<xsl:template name="deniedMatch">
 		<xsl:param name="SUBJECT_ID"/>
 		<xsl:param name="RESOURCE_ID"/>
+		<xsl:param name="ACTION_ID"/>
+		<xsl:variable name="APPLICABLE_POLICY">
+			<xsl:call-template name="firstApplicablePolicy">
+				<xsl:with-param name="SUBJECT_ID" select="$SUBJECT_ID"/>
+				<xsl:with-param name="RESOURCE_ID" select="$RESOURCE_ID"/>
+				<xsl:with-param name="ACTION_ID" select="$ACTION_ID"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<!-- Query the XACML Policy -->
+		<xsl:if test="$APPLICABLE_POLICY/*">
+			<xsl:value-of select="string(0 &lt;
+				count($APPLICABLE_POLICY/os:Policy[os:Rule[@Effect='Deny'][os:Target
+				[not(os:Subjects/os:Subject) or os:Subjects/os:Subject[
+				os:SubjectMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue[text()=$SUBJECT_ID] or
+				os:SubjectMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($SUBJECT_ID, text(), 'i') != '']]]
+				[not(os:Resources/os:Resource) or os:Resources/os:Resource[
+				os:ResourceMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue[text()=$RESOURCE_ID] or 
+				os:ResourceMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($RESOURCE_ID, text(), 'i') != '']]]
+				[not(os:Actions/os:Action) or os:Actions/os:Action[
+				os:ActionMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue[text()=$ACTION_ID] or 
+				os:ActionMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($ACTION_ID, text(), 'i') != '']]]
+				]]))"/>
+		</xsl:if>
+	</xsl:template>
+	<xsl:template name="permitMatch">
+		<xsl:param name="SUBJECT_ID"/>
+		<xsl:param name="RESOURCE_ID"/>
+		<xsl:param name="ACTION_ID"/>
+		<xsl:variable name="APPLICABLE_POLICY">
+			<xsl:call-template name="firstApplicablePolicy">
+				<xsl:with-param name="SUBJECT_ID" select="$SUBJECT_ID"/>
+				<xsl:with-param name="RESOURCE_ID" select="$RESOURCE_ID"/>
+				<xsl:with-param name="ACTION_ID" select="$ACTION_ID"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<!-- Query the XACML Policy -->
+		<xsl:if test="$APPLICABLE_POLICY/*">
+			<dp:set-variable name="$XACML_POLICY_VAR_NAME" value="normalize-space($APPLICABLE_POLICY/os:Policy/@PolicyId)"/>
+			<xsl:value-of select="string(0 &lt;
+				count($APPLICABLE_POLICY/os:Policy[os:Rule[@Effect='Permit'][os:Target
+				[not(os:Subjects/os:Subject) or os:Subjects/os:Subject[
+				os:SubjectMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue[text()=$SUBJECT_ID] or
+				os:SubjectMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($SUBJECT_ID, text(), 'i') != '']]]
+				[not(os:Resources/os:Resource) or os:Resources/os:Resource[
+				os:ResourceMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue[text()=$RESOURCE_ID] or 
+				os:ResourceMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($RESOURCE_ID, text(), 'i') != '']]]
+				[not(os:Actions/os:Action) or os:Actions/os:Action[
+				os:ActionMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue[text()=$ACTION_ID] or 
+				os:ActionMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($ACTION_ID, text(), 'i') != '']]]
+				]]))"/>
+		</xsl:if>
+	</xsl:template>
+	<xsl:template name="firstApplicablePolicy">
+		<xsl:param name="SUBJECT_ID"/>
+		<xsl:param name="RESOURCE_ID"/>
+		<xsl:param name="ACTION_ID"/>
 		<!-- Query the XACML Policy Set -->
-		<xsl:value-of select="string(0 &lt;
-			count($XACML_POLICY_SET/os:Policy[os:Rule/@Effect='Deny'][os:Target
-			[os:Subjects/os:Subject/
-			os:SubjectMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue = $SUBJECT_ID]
-			[os:Resources/os:Resource[
+		<xsl:copy-of select="$XACML_POLICY_SET/os:Policy[os:Target
+			[not(os:Subjects/os:Subject) or os:Subjects/os:Subject[
+			os:SubjectMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue[text()=$SUBJECT_ID] or
+			os:SubjectMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($SUBJECT_ID, text(), 'i') != '']]]
+			[not(os:Resources/os:Resource) or os:Resources/os:Resource[
 			os:ResourceMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue[text()=$RESOURCE_ID] or 
-			os:ResourceMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($RESOURCE_ID, text()) != '']
-			]]]))"/>
+			os:ResourceMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($RESOURCE_ID, text(), 'i') != '']]]
+			[not(os:Actions/os:Action) or os:Actions/os:Action[
+			os:ActionMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-equal']/os:AttributeValue[text()=$ACTION_ID] or 
+			os:ActionMatch[@MatchId='urn:oasis:names:tc:xacml:1.0:function:string-regexp-match']/os:AttributeValue[regexp:match($ACTION_ID, text(), 'i') != '']]]
+			][1]"/>
 	</xsl:template>
 </xsl:stylesheet>
