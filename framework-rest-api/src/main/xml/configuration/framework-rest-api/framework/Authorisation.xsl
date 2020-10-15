@@ -37,8 +37,17 @@
 	<!--=============================================================-->
 	<!-- Root Template -->
 	<xsl:template match="/">
-		<xsl:variable name="RESOURCE_ID"
-			select="normalize-space((container/mapped-resource/resource/item[@type='original-url'])[1])"/>
+		<xsl:variable name="RESOURCE_URI">
+			<xsl:variable name="ORIGINAL_URL" select="normalize-space((container/mapped-resource/resource/item[@type='original-url'])[1])"/>
+			<xsl:choose>
+				<xsl:when test="contains($ORIGINAL_URL, '?')">
+					<xsl:value-of select="substring-before($ORIGINAL_URL, '?')"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$ORIGINAL_URL"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 		<xsl:variable name="ACTION_ID"
 			select="normalize-space((container/mapped-resource/resource/item[@type='http-method'])[1])"/>
 		<xsl:choose>
