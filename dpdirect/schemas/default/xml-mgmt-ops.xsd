@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
   Copyright (c) 1999-2004 DataPower Technology, Inc.
   All Rights Reserved.
@@ -7,20 +6,17 @@
 <!--
   Licensed Materials - Property of IBM
   IBM WebSphere DataPower Appliances
-  Copyright IBM Corporation 2007,2009. All Rights Reserved.
+  Copyright IBM Corporation 2007,2016. All Rights Reserved.
   US Government Users Restricted Rights - Use, duplication or disclosure
   restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
-
 <xsd:schema
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:tns="http://www.datapower.com/schemas/management"
   elementFormDefault="qualified"
   targetNamespace="http://www.datapower.com/schemas/management">
-
   <xsd:include schemaLocation="xml-mgmt.xsd"/>
   <xsd:include schemaLocation="xml-mgmt-b2b.xsd"/>
-
   <!--
   Utility types
   -->
@@ -30,27 +26,22 @@
       <xsd:enumeration value="XML"/>
     </xsd:restriction>
   </xsd:simpleType>
-
   <xsd:simpleType name="export-all-classes">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="all-classes"/>
     </xsd:restriction>
   </xsd:simpleType>
-
   <xsd:simpleType name="export-class">
     <xsd:union memberTypes="tns:export-all-classes tns:ConfigEnum"/>
   </xsd:simpleType>
-
   <xsd:simpleType name="export-all-objects">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="all-objects"/>
     </xsd:restriction>
   </xsd:simpleType>
-
   <xsd:simpleType name="export-name">
     <xsd:union memberTypes="tns:export-all-objects xsd:string"/>
   </xsd:simpleType>
-
   <xsd:complexType name="base64-binary">
     <xsd:simpleContent>
       <xsd:extension base="xsd:base64Binary"/>
@@ -64,14 +55,20 @@
     <xsd:attribute name="serial" type="xsd:integer"/>
     <xsd:attribute name="domain" type="xsd:string"/>
   </xsd:complexType>
-
+  <xsd:complexType name="log-event">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="class" type="xsd:string"/>
+        <xsd:attribute name="level" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
   <!--
   An xml-mgmt request
   -->
   <xsd:element name="request">
     <xsd:complexType>
       <xsd:choice>
-
         <!-- get login token -->
         <xsd:element name="get-samlart">
           <xsd:complexType>
@@ -79,7 +76,6 @@
             <xsd:attribute name="password" type="xsd:string"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- get status -->
         <xsd:element name="get-status">
           <xsd:complexType>
@@ -88,7 +84,6 @@
             <xsd:attribute name="object-name" type="tns:export-name"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- get config -->
         <xsd:element name="get-config">
           <xsd:complexType>
@@ -98,7 +93,6 @@
             <xsd:attribute name="persisted" type="xsd:boolean"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- config diff -->
         <xsd:element name="get-diff">
           <xsd:complexType>
@@ -150,7 +144,6 @@
             </xsd:choice>
           </xsd:complexType>
         </xsd:element>
-
     	<!-- profile conformance report -->
     	<xsd:element name="get-conformance-report">
     	   <xsd:complexType>
@@ -159,14 +152,12 @@
                   <xsd:attribute name="profile" type="xsd:string"/>
                </xsd:complexType>
     	</xsd:element>
-
         <!-- get log -->
         <xsd:element name="get-log">
           <xsd:complexType>
             <xsd:attribute name="name" type="xsd:string"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- get filestore snapshot -->
         <xsd:element name="get-filestore">
           <xsd:complexType>
@@ -176,14 +167,12 @@
             <xsd:attribute name="no-subdirectories" type="xsd:boolean"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- download file -->
         <xsd:element name="get-file">
           <xsd:complexType>
             <xsd:attribute name="name" type="xsd:string" use="required"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- upload file -->
         <xsd:element name="set-file">
           <xsd:complexType>
@@ -194,7 +183,6 @@
             </xsd:simpleContent>
           </xsd:complexType>
         </xsd:element>
-
         <!-- export config -->
         <xsd:element name="do-export">
           <xsd:complexType>
@@ -217,7 +205,6 @@
             <xsd:attribute name="deployment-policy" type="xsd:string"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- import config from export -->
         <xsd:element name="do-import">
           <xsd:complexType>
@@ -249,7 +236,6 @@
             <xsd:attribute name="deployment-policy-variables" type="xsd:string"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- deploy a pattern -->
         <xsd:element name="do-deploy-pattern">
           <xsd:complexType>
@@ -265,7 +251,6 @@
             <xsd:attribute name="deployment-policy-variables" type="xsd:string"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- backup config -->
         <xsd:element name="do-backup">
           <xsd:complexType>
@@ -283,7 +268,6 @@
             <xsd:attribute name="deployment-policy" type="xsd:string"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- restore config from backup -->
         <xsd:element name="do-restore">
           <xsd:complexType>
@@ -308,20 +292,16 @@
             <xsd:attribute name="deployment-policy-variables" type="xsd:string"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- do action -->
         <xsd:element name="do-action" type="tns:AnyActionElement"/>
-
         <!-- get-async-result -->
         <xsd:element name="get-async-result">
           <xsd:complexType>
             <xsd:attribute name="logid" type="xsd:integer"/>
           </xsd:complexType>
         </xsd:element>
-
         <!-- create configuration -->
         <xsd:element name="set-config" type="tns:AnyConfigElement"/>
-
         <!-- Modify existing configuration.  Vectors with indexes (example: 
 	     BaseWSDL in ModifyWSGateway) will be merged based on matching index
 	     values (example: WSDLSourceLocation for BaseWSDL).  Vectors without
@@ -331,10 +311,8 @@
 	     via modify-config.
         -->
         <xsd:element name="modify-config" type="tns:AnyModifyElement"/>
-
         <!-- delete existing configuration -->
         <xsd:element name="del-config" type="tns:AnyDeleteElement"/>
-
         <!-- b2b -->
         <xsd:element name="do-cpa-import">
           <xsd:complexType>
@@ -348,7 +326,6 @@
             <xsd:attribute name="overwrite-objects" type="xsd:boolean"/>
           </xsd:complexType>
         </xsd:element>
-
         <xsd:element name="b2b-query-metadata">
           <xsd:complexType>
             <xsd:sequence>
@@ -365,7 +342,6 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-
         <!-- view-details of certificate obj -->
         <xsd:element name="do-view-certificate-details">
           <xsd:complexType>
@@ -375,29 +351,23 @@
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
-
       <!-- domain of the operation -->
       <xsd:attribute name="domain" type="xsd:string"/>
     </xsd:complexType>
   </xsd:element>
-
   <!--
   An xml-mgmt response
   -->
   <xsd:element name="response">
     <xsd:complexType>
 	 <xsd:sequence>
-
       <!-- optional timestamp -->
       <xsd:element name="timestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
-
       <xsd:choice>
         <!-- get-status response -->
         <xsd:element name="status" type="tns:AnyStatusElement"/>
-
         <!-- get-config response -->
         <xsd:element name="config" type="tns:AnyConfigElement"/>
-
         <!-- get-diff response -->
         <xsd:element name="diff">
           <xsd:complexType>
@@ -406,7 +376,6 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-
         <!-- get-conformance-report response -->
         <xsd:element name="conformance-report">
           <xsd:complexType>
@@ -415,16 +384,27 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-
-        <!-- get-log response -->
-        <xsd:element name="log">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="log-entry" type="tns:log-entry" minOccurs="0" maxOccurs="unbounded"/>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-
+        <!-- logs and results are grouped together -->
+        <xsd:sequence>
+          <!-- get-log response -->
+          <xsd:element name="log" minOccurs="0">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="log-entry" type="tns:log-entry" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="log-event" type="tns:log-event" minOccurs="0" maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        
+          <!-- general response -->
+          <xsd:element name="result">
+            <xsd:complexType mixed="true">
+              <xsd:sequence>
+                <xsd:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
         <!-- get-filestore response -->
         <xsd:element name="filestore">
           <xsd:complexType>
@@ -433,10 +413,8 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-
         <!-- get-file response -->
         <xsd:element name="file" type="tns:file"/>
-
         <!-- do-import /do-restore response -->
         <xsd:element name="import">
           <xsd:complexType>
@@ -445,7 +423,6 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-
         <!-- do-deploy-pattern response -->
         <xsd:element name="deploy-pattern">
           <xsd:complexType>
@@ -454,7 +431,6 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-
         <!-- do-cpa-import -->
         <xsd:element name="cpa-import">
           <xsd:complexType>
@@ -463,7 +439,6 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-
        <!-- do-view-certificate response -->
         <xsd:element name="view-certificate-details">
           <xsd:complexType>
@@ -472,21 +447,8 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-
-        <!-- general response -->
-        <xsd:element name="result">
-          <xsd:complexType mixed="true">
-            <xsd:sequence>
-              <xsd:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-
       </xsd:choice>
      </xsd:sequence>
     </xsd:complexType>
   </xsd:element>
-
 </xsd:schema>
-
-

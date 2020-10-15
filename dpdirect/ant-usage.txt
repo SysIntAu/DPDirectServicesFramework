@@ -21,8 +21,7 @@
 
       Invoke the DPDirect task (as 'dpDeploy' in this eg), with the following attributes (global options):
           hostname                          (required)
-          
-	  username, userPassword            (optional - by default extracted from .netrc or _netrc)
+          username, userPassword            (optional - by default extracted from .netrc or _netrc)
           port                              (optional - default is '5550')
           failOnError                       (optional - default is 'true')
           rollbackOnError                   (optional - default is 'false')

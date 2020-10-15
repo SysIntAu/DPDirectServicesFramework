@@ -100,7 +100,7 @@
 		****************************************************************** -->
 	<path id="dpdirect.class.path">
 		<!-- classpath for the dpdirect task -->
-		<pathelement location="${dpdirect.dir}/dpdirect-1.0.5.jar"/>
+		<pathelement location="${dpdirect.dir}/dpdirect.jar"/>
 		<pathelement location="${dpdirect.dir}/lib/xercesImpl.jar"/>
 		<pathelement location="${dpdirect.dir}/lib/log4j.jar"/>
 		<pathelement location="${dpdirect.dir}/lib/xml-apis.jar"/>
@@ -805,7 +805,7 @@
 		****************************************************************** -->
 	<target name="reload.default.neighbordomain">
 		<!-- takes 'domain.name' parameter -->
-		<dpDeploy firmware="5" domain="default" hostname="${dp.hostname}" 
+		<dpDeploy domain="default" hostname="${dp.hostname}" 
 			verbose="${verbose}" failOnError="true" rollbackOnError="false">
 			<operation name="modify-config">
 				<option name="Domain.name" value="${domain.name}"/>
@@ -818,7 +818,7 @@
 			</operation>
 			<operation name="SaveConfig"/>
 		</dpDeploy>
-		<dpDeploy firmware="5" domain="${domain.name}" hostname="${dp.hostname}" 
+		<dpDeploy domain="${domain.name}" hostname="${dp.hostname}" 
 			verbose="${verbose}" failOnError="${fail.on.error}" rollbackOnError="false">
 			<operation name="RestartDomain">
 				<option name="Domain" value="${domain.name}"/>
