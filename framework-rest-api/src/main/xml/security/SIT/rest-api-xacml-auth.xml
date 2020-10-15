@@ -32,6 +32,14 @@
                                 DataType="http://www.w3.org/2001/XMLSchema#string"/>
                         </os:SubjectMatch>
                     </os:Subject>
+                    <os:Subject>
+                        <os:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                            <os:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"
+                                >API_Testers</os:AttributeValue>
+                            <os:SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+                                DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                        </os:SubjectMatch>
+                    </os:Subject>
                 </os:Subjects>
                 <os:Actions>
                     <os:Action>
