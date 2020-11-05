@@ -26,9 +26,15 @@
 	** xmlmanager      == Name of an XMLManager to flush when files are uploaded
 	** qualified.path      == qualified path of the upload file or dir
 	** file, dir, service    == unique file, dir or service name for upload - path resolved, dev/test only. Corresponds to deployment type.
+	**
 	** MODIFICATIONS    DATE       	DETAILS
 	** Tim Goodwill		2016.12.26	Initial script
 	** 
+	**
+	** PLEASE NOTE: there is currently a known xerces issue running under any ant version above 1.8.0.
+	** To remediate, please copy dpdirect/lib/xercesImpl.jar into your apache-ant-[version]/lib folder. 
+	** Or alternatively, run the ant-task with the ant 1.8.0 distribution.
+	**
 	******************************************************************** -->
 <project name="dp-deploy" default="deploy">
 	<property name="env" value="DEV"/>
