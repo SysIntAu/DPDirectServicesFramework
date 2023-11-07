@@ -54,4 +54,4 @@ The project provides Maven and Ant build configurations, and may be deployed via
 
 
 
-This project is currently under active development. This page, and accompanying guides, will be augmented. admin@sysint.com.au
+This project is no longer under active development. This page, and accompanying guides, will no longer be updated. admin@sysint.com.au
